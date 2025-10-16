@@ -5,6 +5,7 @@ import About from "./pages/About";
 import DataPortal from "./pages/DataPortal";
 import Pricing from "./pages/Pricing.jsx";
 import Contact from "./pages/Contact";
+import Education from "./pages/Education";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/education" element={<Education />} />
             <Route path="/about" element={<About />} />
             <Route path="/data-portal" element={<DataPortal />} />
             <Route path="/pricing" element={<Pricing />} />

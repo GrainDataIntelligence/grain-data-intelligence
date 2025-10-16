@@ -25,6 +25,7 @@ export default function Navbar() {
       <ul className="flex space-x-8 text-gray-300">
         {[
           { name: "Home", path: "/" },
+          { name: "Education", path: "/education" },
           { name: "About", path: "/about" },
           { name: "Data Portal", path: "/data-portal" },
           { name: "Pricing", path: "/pricing" },
