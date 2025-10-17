@@ -4,7 +4,7 @@ export default function Educational() {
       <h1 className="text-4xl font-bold text-gdiGold mb-6 text-center">Educational Resources</h1>
       <p className="text-gray-300 text-center mb-12 max-w-3xl mx-auto">
         Learn more about the South African grain markets, trading strategies, and data analytics.
-        Our educational center provides accessible insights for traders, producers, and analysts.
+        Our educational center provides accessible insights for students to traders and anyone in between.
       </p>
 
       <div className="space-y-6 max-w-3xl mx-auto">
