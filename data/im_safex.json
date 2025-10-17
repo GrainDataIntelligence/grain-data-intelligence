@@ -1,0 +1,461 @@
+[
+  {
+    "commodity": "BEAN",
+    "expiry_date": "03-Nov-25",
+    "imr": "48 700",
+    "csmr": "9 200",
+    "vsr": 3.5,
+    "ssmr": "23 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "BEAN",
+    "expiry_date": "02-Mar-26",
+    "imr": "50 700",
+    "csmr": "9 200",
+    "vsr": 3.5,
+    "ssmr": "23 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "BEAN",
+    "expiry_date": "04-May-26",
+    "imr": "51 600",
+    "csmr": "9 200",
+    "vsr": 3.5,
+    "ssmr": "23 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "CORN",
+    "expiry_date": "01-Dec-25",
+    "imr": "23 200",
+    "csmr": "6 500",
+    "vsr": 2.2,
+    "ssmr": "20 200",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "CORN",
+    "expiry_date": "02-Mar-26",
+    "imr": "24 400",
+    "csmr": "6 500",
+    "vsr": 2.2,
+    "ssmr": "20 200",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "CORN",
+    "expiry_date": "04-May-26",
+    "imr": "25 100",
+    "csmr": "6 500",
+    "vsr": 2.2,
+    "ssmr": "20 200",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "CORN",
+    "expiry_date": "01-Jul-26",
+    "imr": "25 500",
+    "csmr": "6 500",
+    "vsr": 2.2,
+    "ssmr": "20 200",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "KANS",
+    "expiry_date": "01-Dec-25",
+    "imr": "18 600",
+    "csmr": "2 400",
+    "vsr": 3.5,
+    "ssmr": "8 200",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "KANS",
+    "expiry_date": "02-Mar-26",
+    "imr": "19 600",
+    "csmr": "2 400",
+    "vsr": 3.5,
+    "ssmr": "8 200",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "KANS",
+    "expiry_date": "04-May-26",
+    "imr": "20 200",
+    "csmr": "2 400",
+    "vsr": 3.5,
+    "ssmr": "8 200",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "REDW",
+    "expiry_date": "01-Dec-25",
+    "imr": "17 400",
+    "csmr": "2 600",
+    "vsr": 3.5,
+    "ssmr": "8 800",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "REDW",
+    "expiry_date": "02-Mar-26",
+    "imr": "18 100",
+    "csmr": "2 600",
+    "vsr": 3.5,
+    "ssmr": "8 800",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "REDW",
+    "expiry_date": "04-May-26",
+    "imr": "18 600",
+    "csmr": "2 600",
+    "vsr": 3.5,
+    "ssmr": "8 800",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "SOYB",
+    "expiry_date": "24-Oct-25",
+    "imr": "47 800",
+    "csmr": "17 000",
+    "vsr": 6.3,
+    "ssmr": "17 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "SOYB",
+    "expiry_date": "21-Nov-25",
+    "imr": "40 700",
+    "csmr": "17 000",
+    "vsr": 6.3,
+    "ssmr": "17 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "SOYB",
+    "expiry_date": "22-Dec-25",
+    "imr": "40 500",
+    "csmr": "17 000",
+    "vsr": 6.3,
+    "ssmr": "17 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "SOYB",
+    "expiry_date": "24-Mar-26",
+    "imr": "40 600",
+    "csmr": "17 000",
+    "vsr": 6.3,
+    "ssmr": "17 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "SOYB",
+    "expiry_date": "22-Apr-26",
+    "imr": "41 600",
+    "csmr": "17 000",
+    "vsr": 6.3,
+    "ssmr": "17 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "SOYB",
+    "expiry_date": "22-May-26",
+    "imr": "40 700",
+    "csmr": "17 000",
+    "vsr": 6.3,
+    "ssmr": "17 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "SOYB",
+    "expiry_date": "24-Jul-26",
+    "imr": "41 500",
+    "csmr": "17 000",
+    "vsr": 6.3,
+    "ssmr": "17 300",
+    "ssg": "SOYA/BEAN/OILS/MEAL/SOYB"
+  },
+  {
+    "commodity": "SUNS",
+    "expiry_date": "24-Oct-25",
+    "imr": "40 200",
+    "csmr": "15 500",
+    "vsr": 2.5,
+    "ssmr": " -   ",
+    "ssg": null
+  },
+  {
+    "commodity": "SUNS",
+    "expiry_date": "21-Nov-25",
+    "imr": "30 500",
+    "csmr": "15 500",
+    "vsr": 2.5,
+    "ssmr": " -   ",
+    "ssg": null
+  },
+  {
+    "commodity": "SUNS",
+    "expiry_date": "22-Dec-25",
+    "imr": "30 900",
+    "csmr": "15 500",
+    "vsr": 2.5,
+    "ssmr": " -   ",
+    "ssg": null
+  },
+  {
+    "commodity": "SUNS",
+    "expiry_date": "24-Mar-26",
+    "imr": "30 100",
+    "csmr": "15 500",
+    "vsr": 2.5,
+    "ssmr": " -   ",
+    "ssg": null
+  },
+  {
+    "commodity": "SUNS",
+    "expiry_date": "22-Apr-26",
+    "imr": "29 000",
+    "csmr": "15 500",
+    "vsr": 2.5,
+    "ssmr": " -   ",
+    "ssg": null
+  },
+  {
+    "commodity": "SUNS",
+    "expiry_date": "22-May-26",
+    "imr": "27 600",
+    "csmr": "15 500",
+    "vsr": 2.5,
+    "ssmr": " -   ",
+    "ssg": null
+  },
+  {
+    "commodity": "SUNS",
+    "expiry_date": "24-Jul-26",
+    "imr": "28 200",
+    "csmr": "15 500",
+    "vsr": 2.5,
+    "ssmr": " -   ",
+    "ssg": null
+  },
+  {
+    "commodity": "WEAT",
+    "expiry_date": "24-Oct-25",
+    "imr": "19 900",
+    "csmr": "7 400",
+    "vsr": 2.5,
+    "ssmr": "8 100",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "WEAT",
+    "expiry_date": "21-Nov-25",
+    "imr": "17 100",
+    "csmr": "7 400",
+    "vsr": 2.5,
+    "ssmr": "8 100",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "WEAT",
+    "expiry_date": "22-Dec-25",
+    "imr": "16 600",
+    "csmr": "7 400",
+    "vsr": 2.5,
+    "ssmr": "8 100",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "WEAT",
+    "expiry_date": "24-Mar-26",
+    "imr": "17 000",
+    "csmr": "7 400",
+    "vsr": 2.5,
+    "ssmr": "8 100",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "WEAT",
+    "expiry_date": "22-May-26",
+    "imr": "17 200",
+    "csmr": "7 400",
+    "vsr": 2.5,
+    "ssmr": "8 100",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "WEAT",
+    "expiry_date": "24-Jul-26",
+    "imr": "17 200",
+    "csmr": "7 400",
+    "vsr": 2.5,
+    "ssmr": "8 100",
+    "ssg": "WHEAT/CBOT WHEAT/KANS WHEAT/CAPE WHEAT"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "24-Oct-25",
+    "imr": "50 100",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "21-Nov-25",
+    "imr": "31 500",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "22-Dec-25",
+    "imr": "31 600",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "20-Feb-26",
+    "imr": "31 600",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "24-Mar-26",
+    "imr": "31 700",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "22-May-26",
+    "imr": "31 100",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "24-Jul-26",
+    "imr": "31 300",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "23-Dec-26",
+    "imr": "32 700",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "WMAZ",
+    "expiry_date": "23-Jul-27",
+    "imr": "32 900",
+    "csmr": "13 000",
+    "vsr": 4.2,
+    "ssmr": "14 300",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "24-Oct-25",
+    "imr": "27 700",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "21-Nov-25",
+    "imr": "22 400",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "22-Dec-25",
+    "imr": "22 700",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "20-Feb-26",
+    "imr": "22 900",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "24-Mar-26",
+    "imr": "22 900",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "22-May-26",
+    "imr": "22 800",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "24-Jul-26",
+    "imr": "22 900",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "23-Dec-26",
+    "imr": "23 600",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  },
+  {
+    "commodity": "YMAZ",
+    "expiry_date": "23-Jul-27",
+    "imr": "24 300",
+    "csmr": "9 900",
+    "vsr": 3.0,
+    "ssmr": "11 000",
+    "ssg": "WMAZ/YMAZ/CORN/WOPT/YOPT/MSRG/WNCI/YNCI/XWMS/"
+  }
+]
