@@ -2,18 +2,14 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        gdiGold: "#C9A13A",
-        gdiGreen: "#0A3D2E",
-      },
-      fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        gdiGold: "#FFD700", // or your preferred gold hex code
       },
     },
   },
   plugins: [],
-}
+};

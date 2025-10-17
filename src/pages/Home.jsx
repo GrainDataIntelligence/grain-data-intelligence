@@ -1,25 +1,17 @@
-import { motion } from "framer-motion";
-
 export default function Home() {
-  const fadeIn = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
-
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={fadeIn}
-      className="flex flex-col items-center justify-center text-center flex-grow px-6 py-24"
-    >
-      <h1 className="text-5xl font-bold text-gdiGold mb-4">
-        Grain Data Intelligence
+    <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col items-center justify-center p-8">
+      <h1 className="text-5xl font-bold text-gdiGold mb-4 text-center">
+        Welcome to Grain Data Intelligence
       </h1>
-      <p className="text-lg text-gray-400 max-w-2xl">
-        Delivering data-driven insights into South Africa’s grain markets.  
-        Analyze trends, explore SAFEX data, and gain clarity from years of historical analytics.
+      <p className="text-lg text-gray-300 max-w-3xl text-center mb-8">
+        Your analytics gateway to South Africa’s grain markets. 
+        Explore data-driven insights, seasonal trends, and powerful tools 
+        designed to empower producers, traders, and analysts alike.
       </p>
-    </motion.div>
+      <button className="bg-gdiGold text-gray-950 font-semibold px-6 py-3 rounded-lg hover:bg-yellow-500 transition">
+        Explore Platform
+      </button>
+    </div>
   );
 }

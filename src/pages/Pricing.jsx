@@ -1,70 +1,30 @@
 export default function Pricing() {
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col items-center py-16 px-4">
-      <h1 className="text-4xl font-bold text-gdiGold mb-10">Pricing Plans</h1>
+    <div className="min-h-screen bg-gray-950 text-gray-100 p-10 flex flex-col items-center">
+      <h1 className="text-4xl font-bold text-gdiGold mb-6 text-center">Pricing Plans</h1>
+      <p className="text-gray-300 text-center mb-12 max-w-2xl">
+        Choose a plan that fits your needs. Start with a free demo or unlock full analytical capabilities with a premium subscription.
+      </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-        {/* --- Free Demo --- */}
-        <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-lg flex flex-col items-center p-8 hover:scale-105 transition-transform">
-          <h2 className="text-2xl font-semibold mb-4">Free Demo</h2>
-          <p className="text-4xl font-bold text-gdiGold mb-2">$0</p>
-          <p className="text-sm text-gray-400 mb-6">
-            Access to one commodity (e.g. white maize)
-          </p>
-
-          <ul className="text-gray-300 space-y-2 mb-6 text-center">
-            <li>Basic Analytics</li>
-            <li>1 Commodity Limit</li>
-            <li>Delivery Reports</li>
-            <li>Access to Seasonal Trends</li>
-          </ul>
-
-          <button className="w-full bg-gray-700 hover:bg-gdiGold hover:text-gray-900 text-sm font-semibold py-2 rounded transition-colors">
-            Register for Free
-          </button>
-        </div>
-
-        {/* --- Standard Plan --- */}
-        <div className="bg-gray-900 border-2 border-gdiGold rounded-xl shadow-xl flex flex-col items-center p-8 hover:scale-105 transition-transform">
-          <h2 className="text-2xl font-semibold mb-4 text-gdiGold">Standard</h2>
-          <p className="text-4xl font-bold mb-2">$29</p>
-          <p className="text-sm text-gray-400 mb-6">
-            per month (VAT may apply)
-          </p>
-
-          <ul className="text-gray-300 space-y-2 mb-6 text-center">
-            <li>All Commodities</li>
-            <li>Portfolio Overview</li>
-            <li>Backtesting Tools</li>
-            <li>Seasonal & Delivery Data</li>
-            <li>Basic Alerts</li>
-          </ul>
-
-          <button className="w-full bg-gdiGold text-gray-900 font-semibold py-2 rounded hover:bg-yellow-500 transition-colors">
-            Choose Plan
-          </button>
-        </div>
-
-        {/* --- Deluxe Plan --- */}
-        <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-lg flex flex-col items-center p-8 hover:scale-105 transition-transform">
-          <h2 className="text-2xl font-semibold mb-4">Deluxe</h2>
-          <p className="text-4xl font-bold text-gdiGold mb-2">$59</p>
-          <p className="text-sm text-gray-400 mb-6">
-            per month (advanced analytics)
-          </p>
-
-          <ul className="text-gray-300 space-y-2 mb-6 text-center">
-            <li>All Standard Features</li>
-            <li>Advanced Backtesting</li>
-            <li>Custom Strategy Builder</li>
-            <li>Priority Support</li>
-            <li>Early Feature Access</li>
-          </ul>
-
-          <button className="w-full bg-gray-700 hover:bg-gdiGold hover:text-gray-900 text-sm font-semibold py-2 rounded transition-colors">
-            Upgrade to Deluxe
-          </button>
-        </div>
+      <div className="grid md:grid-cols-3 gap-8 max-w-5xl">
+        {[
+          { name: "Free Demo", price: "R0", features: ["Limited access", "1 commodity", "Basic analytics"] },
+          { name: "Standard", price: "R499/month", features: ["All commodities", "Seasonal tracking", "Analytics tools"] },
+          { name: "Deluxe", price: "R799/month", features: ["Full data suite", "Backtesting", "Priority support"] },
+        ].map((plan, idx) => (
+          <div key={idx} className="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition flex flex-col items-center">
+            <h2 className="text-2xl font-semibold text-gdiGold mb-2">{plan.name}</h2>
+            <p className="text-3xl font-bold mb-4">{plan.price}</p>
+            <ul className="text-gray-400 space-y-2 mb-6">
+              {plan.features.map((f, i) => (
+                <li key={i}>• {f}</li>
+              ))}
+            </ul>
+            <button className="bg-gdiGold text-gray-950 font-semibold px-6 py-2 rounded-lg hover:bg-yellow-500 transition">
+              Select
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

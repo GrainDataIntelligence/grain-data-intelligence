@@ -1,60 +1,89 @@
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
 
-export default function Navbar() {
+function Navbar() {
+  const linkClasses =
+    "text-gray-300 hover:text-yellow-400 transition-colors duration-300 px-3 py-2 text-sm font-medium";
+  const activeLinkClasses = "text-yellow-400 font-semibold transition-colors duration-300";
+
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="flex items-center justify-between px-8 py-4 bg-gray-900 border-b border-gray-800"
-    >
-      {/* --- Left side: Logo --- */}
-      <div className="flex items-center space-x-3">
-        <img
-          src="/gdi_logo.jpeg"
-          alt="Grain Data Intelligence Logo"
-          className="h-10 w-auto rounded-md"
-        />
-        <span className="text-xl font-semibold text-gdiGold tracking-wide">
-          Grain Data Intelligence
-        </span>
-      </div>
+    <nav className="bg-gray-900 text-gray-100 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        {/* Left section — logo and title */}
+        <div className="flex items-center space-x-2">
+          <img
+            src="/gdi_logo.jpeg"
+            alt="GDI Logo"
+            className="h-8 w-8 rounded-full"
+          />
+          <span className="font-bold text-lg text-yellow-400 tracking-wide">
+            Grain Data Intelligence
+          </span>
+        </div>
 
-      {/* --- Middle: Navigation Links --- */}
-      <ul className="flex space-x-8 text-gray-300">
-        {[
-          { name: "Home", path: "/" },
-          { name: "Education", path: "/education" },
-          { name: "About", path: "/about" },
-          { name: "Data Portal", path: "/data-portal" },
-          { name: "Pricing", path: "/pricing" },
-          { name: "Contact", path: "/contact" },
-        ].map((link) => (
-          <li key={link.path}>
-            <NavLink
-              to={link.path}
-              className={({ isActive }) =>
-                isActive
-                  ? "text-gdiGold border-b-2 border-gdiGold pb-1 transition-colors"
-                  : "hover:text-gdiGold transition-colors"
-              }
-            >
-              {link.name}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+        {/* Center section — navigation links */}
+        <div className="flex space-x-6">
+          <NavLink
+            to="/home"
+            className={({ isActive }) =>
+              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/platform"
+            className={({ isActive }) =>
+              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+            }
+          >
+            Platform
+          </NavLink>
+          <NavLink
+            to="/demo-trading"
+            className={({ isActive }) =>
+              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+            }
+          >
+            Demo Trading
+          </NavLink>
+          <NavLink
+            to="/educational"
+            className={({ isActive }) =>
+              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+            }
+          >
+            Educational
+          </NavLink>
+          <NavLink
+            to="/pricing"
+            className={({ isActive }) =>
+              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+            }
+          >
+            Pricing
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+            }
+          >
+            About Us
+          </NavLink>
+        </div>
 
-      {/* --- Right side: Login / Signup --- */}
-      <div className="flex items-center space-x-4">
-        <button className="px-4 py-1 text-sm font-medium text-gray-200 border border-gray-700 rounded-md hover:border-gdiGold hover:text-gdiGold transition-colors">
-          Log In
-        </button>
-        <button className="px-4 py-1 text-sm font-medium text-gray-900 bg-gdiGold rounded-md hover:bg-yellow-500 transition-colors">
-          Sign Up
-        </button>
+        {/* Right section — login/signup buttons */}
+        <div className="flex space-x-3">
+          <button className="bg-transparent border border-yellow-400 text-yellow-400 px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-gray-900 transition-colors duration-300">
+            Login
+          </button>
+          <button className="bg-yellow-400 text-gray-900 px-3 py-1 rounded-md font-semibold hover:bg-yellow-300 transition-colors duration-300">
+            Sign Up
+          </button>
+        </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
+
+export default Navbar;
