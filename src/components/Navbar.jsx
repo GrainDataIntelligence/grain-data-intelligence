@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
+import logo from "../assets/logo.png";
+
 
 function Navbar() {
   const linkClasses =
     "text-gray-300 hover:text-yellow-400 transition-colors duration-300 px-3 py-2 text-sm font-medium";
-  const activeLinkClasses = "text-yellow-400 font-semibold transition-colors duration-300";
+  const activeLinkClasses =
+    "text-yellow-400 font-semibold border-b-2 border-yellow-400 transition-colors duration-300";
 
   return (
     <nav className="bg-gray-900 text-gray-100 shadow-md">
@@ -11,13 +14,13 @@ function Navbar() {
         {/* Left section — logo and title */}
         <div className="flex items-center space-x-2">
           <img
-            src="/gdi_logo.jpeg"
-            alt="GDI Logo"
-            className="h-8 w-8 rounded-full"
-          />
-          <span className="font-bold text-lg text-yellow-400 tracking-wide">
-            Grain Data Intelligence
-          </span>
+  src={logo}
+  alt="Grain Data Intelligence Logo"
+  className="h-8 w-auto mr-2"
+/>
+<span className="text-yellow-400 font-semibold">
+  Grain Data Intelligence
+</span>
         </div>
 
         {/* Center section — navigation links */}
@@ -30,6 +33,7 @@ function Navbar() {
           >
             Home
           </NavLink>
+
           <NavLink
             to="/platform"
             className={({ isActive }) =>
@@ -38,6 +42,7 @@ function Navbar() {
           >
             Platform
           </NavLink>
+
           <NavLink
             to="/demo-trading"
             className={({ isActive }) =>
@@ -46,6 +51,7 @@ function Navbar() {
           >
             Demo Trading
           </NavLink>
+
           <NavLink
             to="/educational"
             className={({ isActive }) =>
@@ -54,6 +60,7 @@ function Navbar() {
           >
             Educational
           </NavLink>
+
           <NavLink
             to="/pricing"
             className={({ isActive }) =>
@@ -62,6 +69,7 @@ function Navbar() {
           >
             Pricing
           </NavLink>
+
           <NavLink
             to="/about"
             className={({ isActive }) =>

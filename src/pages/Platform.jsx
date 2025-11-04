@@ -1,23 +1,55 @@
-export default function Platform() {
-  return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 p-10">
-      <h1 className="text-4xl font-bold text-gdiGold mb-6 text-center">Our Platform</h1>
-      <p className="text-gray-300 text-center mb-12 max-w-3xl mx-auto">
-        The Grain Data Intelligence platform brings together years of market data and 
-        analytical capability. Discover tools that transform raw data into actionable insights.
-      </p>
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
-      <div className="grid md:grid-cols-3 gap-8">
-        {[
-          { title: "Market Analytics", desc: "Analyze real-time and historical SAFEX data to identify seasonal opportunities." },
-          { title: "Seasonal Tracking", desc: "Monitor seasonal price movements and cumulative delivery patterns across commodities." },
-          { title: "Backtesting Tools", desc: "Simulate strategies and test ideas using historical market performance." },
-        ].map((card, idx) => (
-          <div key={idx} className="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-gdiGold mb-3">{card.title}</h2>
-            <p className="text-gray-400">{card.desc}</p>
-          </div>
-        ))}
+export default function Platform() {
+  const subLinkClasses =
+    "text-gray-300 hover:text-yellow-400 transition-colors duration-300 px-2 py-1 text-sm";
+  const activeSubLink =
+    "text-yellow-400 border-b-2 border-yellow-400 font-semibold";
+
+  return (
+    <div className="text-gray-100 bg-gray-900 min-h-screen">
+      {/* Platform Section Header */}
+      <div className="px-6 pt-6 pb-2 border-b border-gray-700">
+        <h1 className="text-2xl font-bold text-yellow-400">Platform</h1>
+        <p className="text-sm text-gray-400 mt-1">
+          Select a tool below to explore analytics, deliveries, or market models.
+        </p>
+      </div>
+
+      {/* Secondary Navigation Bar */}
+      <div className="flex space-x-6 px-6 py-3 border-b border-gray-700 bg-gray-800">
+        <NavLink
+          to="/platform/deliveries"
+          className={({ isActive }) =>
+            isActive ? `${subLinkClasses} ${activeSubLink}` : subLinkClasses
+          }
+        >
+          Deliveries Hub
+        </NavLink>
+
+        <NavLink
+          to="/platform/supply-demand"
+          className={({ isActive }) =>
+            isActive ? `${subLinkClasses} ${activeSubLink}` : subLinkClasses
+          }
+        >
+          S&D Hub
+        </NavLink>
+
+        <NavLink
+          to="/platform/backtesting"
+          className={({ isActive }) =>
+            isActive ? `${subLinkClasses} ${activeSubLink}` : subLinkClasses
+          }
+        >
+          Backtesting
+        </NavLink>
+      </div>
+
+      {/* 👇 THIS PART IS CRITICAL — renders Deliveries/S&D/Backtesting */}
+      <div className="p-6">
+        <Outlet />
       </div>
     </div>
   );
