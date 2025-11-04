@@ -16,3 +16,6 @@ export default defineConfig({
     open: true,
   },
 })
+
+// Trigger GitHub Pages redeploy
+
