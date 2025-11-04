@@ -12,7 +12,7 @@ import About from "./pages/About";
 
 function App() {
   return (
-    <Router basename="/">
+    <Router basename="/grain-data-intelligence">
       <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
