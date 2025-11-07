@@ -5,7 +5,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/grain-data-intelligence/', // 👈 important for GitHub Pages
+  base: '/', // ✅ Important change for custom domain
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -16,6 +16,3 @@ export default defineConfig({
     open: true,
   },
 })
-
-// Trigger GitHub Pages redeploy
-
