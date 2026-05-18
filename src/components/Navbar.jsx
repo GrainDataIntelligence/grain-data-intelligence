@@ -1,52 +1,85 @@
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
-
+import { useState } from "react";
+import Logo from "../assets/logo.png"; // adjust if needed
 
 function Navbar() {
-  const linkClasses =
-    "text-gray-300 hover:text-yellow-400 transition-colors duration-300 px-3 py-2 text-sm font-medium";
-  const activeLinkClasses =
-    "text-yellow-400 font-semibold border-b-2 border-yellow-400 transition-colors duration-300";
+  const [platformOpen, setPlatformOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-900 text-gray-100 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Left section — logo and title */}
-        <div className="flex items-center space-x-2">
-          <img
-  src={logo}
-  alt="Grain Data Intelligence Logo"
-  className="h-8 w-auto mr-2"
-/>
-<span className="text-yellow-400 font-semibold">
-  Grain Data Intelligence
-</span>
+    <nav className="w-full bg-[#0a1128] text-white shadow-md border-b border-gray-700">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+        
+        {/* LEFT SIDE: Logo + Name */}
+        <div className="flex items-center space-x-3">
+          <img src={Logo} alt="GDI Logo" className="h-8" />
+          <span className="text-lg font-semibold text-yellow-400">
+            Grain Data Intelligence
+          </span>
         </div>
 
-        {/* Center section — navigation links */}
-        <div className="flex space-x-6">
+        {/* RIGHT SIDE: Menu */}
+        <div className="flex items-center space-x-6">
+
           <NavLink
             to="/home"
             className={({ isActive }) =>
-              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+              isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
             }
           >
             Home
           </NavLink>
 
-          <NavLink
-            to="/platform"
-            className={({ isActive }) =>
-              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
-            }
+          {/* PLATFORM DROPDOWN */}
+          <div
+            className="relative"
+            onMouseEnter={() => setPlatformOpen(true)}
+            onMouseLeave={() => setPlatformOpen(false)}
           >
-            Platform
-          </NavLink>
+            <button
+              className="hover:text-yellow-300 flex items-center space-x-1"
+            >
+              <span>Platform</span>
+              <span className="text-xs">▼</span>
+            </button>
+
+            {platformOpen && (
+              <div className="absolute left-0 mt-2 w-52 bg-[#0f1629] border border-gray-700 rounded-lg shadow-lg z-50">
+                <NavLink
+                  to="/deliveries"
+                  className="block px-4 py-2 hover:bg-gray-800"
+                >
+                  Deliveries Hub
+                </NavLink>
+
+                <NavLink
+                  to="/supply-and-demand"
+                  className="block px-4 py-2 hover:bg-gray-800"
+                >
+                  S&D Hub
+                </NavLink>
+
+                <NavLink
+                  to="/backtesting"
+                  className="block px-4 py-2 hover:bg-gray-800"
+                >
+                  Backtesting
+                </NavLink>
+
+                {/* NEW PAGE */}
+                <NavLink
+                  to="/long-term-charts"
+                  className="block px-4 py-2 hover:bg-gray-800"
+                >
+                  Long-Term Charts
+                </NavLink>
+              </div>
+            )}
+          </div>
 
           <NavLink
             to="/demo-trading"
             className={({ isActive }) =>
-              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+              isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
             }
           >
             Demo Trading
@@ -55,7 +88,7 @@ function Navbar() {
           <NavLink
             to="/educational"
             className={({ isActive }) =>
-              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+              isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
             }
           >
             Educational
@@ -64,7 +97,7 @@ function Navbar() {
           <NavLink
             to="/pricing"
             className={({ isActive }) =>
-              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+              isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
             }
           >
             Pricing
@@ -73,22 +106,25 @@ function Navbar() {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              isActive ? `${linkClasses} ${activeLinkClasses}` : linkClasses
+              isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
             }
           >
             About Us
           </NavLink>
+
         </div>
 
-        {/* Right section — login/signup buttons */}
-        <div className="flex space-x-3">
-          <button className="bg-transparent border border-yellow-400 text-yellow-400 px-3 py-1 rounded-md hover:bg-yellow-400 hover:text-gray-900 transition-colors duration-300">
+        {/* LOGIN / SIGNUP */}
+        <div className="flex items-center space-x-3">
+          <button className="px-4 py-1 border border-yellow-400 rounded-lg text-yellow-400 hover:bg-yellow-500 hover:text-black transition">
             Login
           </button>
-          <button className="bg-yellow-400 text-gray-900 px-3 py-1 rounded-md font-semibold hover:bg-yellow-300 transition-colors duration-300">
+
+          <button className="px-4 py-1 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 transition">
             Sign Up
           </button>
         </div>
+
       </div>
     </nav>
   );
