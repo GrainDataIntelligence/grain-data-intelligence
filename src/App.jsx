@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
+import SeasonalCharts from "./pages/SeasonalCharts";
 import Platform from "./pages/Platform";
 import Deliveries from "./pages/Deliveries";
 import SupplyAndDemand from "./pages/SupplyAndDemand";
@@ -27,6 +28,7 @@ function App() {
 
         {/* MAIN PAGES */}
         <Route path="/home" element={<Home />} />
+        <Route path="/seasonal-charts" element={<SeasonalCharts />} />
         <Route path="/platform" element={<Platform />} />
         <Route path="/deliveries" element={<Deliveries />} />
         <Route path="/supply-and-demand" element={<SupplyAndDemand />} />

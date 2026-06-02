@@ -29,6 +29,15 @@ function Navbar() {
             Home
           </NavLink>
 
+          <NavLink
+            to="/seasonal-charts"
+            className={({ isActive }) =>
+              isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
+            }
+          >
+            Seasonal Charts
+          </NavLink>
+
           {/* PLATFORM DROPDOWN */}
           <div
             className="relative"
