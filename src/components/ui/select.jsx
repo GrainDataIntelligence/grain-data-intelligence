@@ -5,7 +5,7 @@ export function Select({ value, onValueChange, children, className = "" }) {
     <select
       value={value}
       onChange={(e) => onValueChange && onValueChange(e.target.value)}
-      className={`w-full rounded-lg border border-gray-600 bg-zinc-800 px-3 py-2 text-sm text-gray-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 ${className}`}
+      className={`w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-400 ${className}`}
     >
       {children}
     </select>

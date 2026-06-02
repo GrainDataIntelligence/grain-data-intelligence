@@ -2,14 +2,14 @@ import * as React from "react"
 
 export function Card({ className = "", children, ...props }) {
   return (
-    <div className={`rounded-2xl border bg-white/5 shadow-sm ${className}`} {...props}>
+    <div className={`rounded-lg border border-slate-200 bg-white shadow-sm ${className}`} {...props}>
       {children}
     </div>
   )
 }
 
 export function CardHeader({ className = "", children }) {
-  return <div className={`border-b px-4 py-2 ${className}`}>{children}</div>
+  return <div className={`border-b border-slate-200 px-4 py-2 ${className}`}>{children}</div>
 }
 
 export function CardTitle({ className = "", children }) {

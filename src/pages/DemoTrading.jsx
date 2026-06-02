@@ -197,42 +197,42 @@ setAccount({
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 py-10">
-      <div className="max-w-6xl mx-auto p-6 bg-gray-900 rounded-2xl shadow-lg">
-        <h1 className="text-3xl font-bold text-center text-gdiGold mb-8">
+    <div className="min-h-screen bg-slate-100 text-slate-900 py-10">
+      <div className="max-w-6xl mx-auto p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
+        <h1 className="text-3xl font-bold text-center text-slate-950 mb-8">
           Demo Trading Account
         </h1>
 
         {/* Account Summary */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-center">
-          <div className="bg-green-950/30 p-4 rounded-lg">
-            <p className="text-sm text-gray-400">💰 Balance (Incl. P/L)</p>
-            <p className="text-xl font-bold text-green-400">{fmt(account.balance)}</p>
+          <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-lg">
+            <p className="text-sm text-slate-500">Balance (Incl. P/L)</p>
+            <p className="text-xl font-bold text-emerald-700">{fmt(account.balance)}</p>
           </div>
-          <div className="bg-yellow-950/30 p-4 rounded-lg">
-            <p className="text-sm text-gray-400">📊 Margin Used</p>
-            <p className="text-xl font-bold text-yellow-400">{fmt(account.marginUsed)}</p>
+          <div className="bg-amber-50 border border-amber-100 p-4 rounded-lg">
+            <p className="text-sm text-slate-500">Margin Used</p>
+            <p className="text-xl font-bold text-amber-700">{fmt(account.marginUsed)}</p>
           </div>
-          <div className="bg-blue-950/30 p-4 rounded-lg">
-            <p className="text-sm text-gray-400">🧮 Available Margin</p>
-            <p className="text-xl font-bold text-blue-400">
+          <div className="bg-sky-50 border border-sky-100 p-4 rounded-lg">
+            <p className="text-sm text-slate-500">Available Margin</p>
+            <p className="text-xl font-bold text-sky-700">
               {fmt(account.balance - account.marginUsed)}
             </p>
           </div>
-          <div className="bg-purple-950/30 p-4 rounded-lg">
-            <p className="text-sm text-gray-400">📈 Realized P/L</p>
-            <p className="text-xl font-bold text-purple-400">{fmt(account.realizedPL)}</p>
+          <div className="bg-violet-50 border border-violet-100 p-4 rounded-lg">
+            <p className="text-sm text-slate-500">Realized P/L</p>
+            <p className="text-xl font-bold text-violet-700">{fmt(account.realizedPL)}</p>
           </div>
         </div>
 
         {/* Trade Form */}
-        <div className="bg-gray-800 p-6 rounded-lg mb-8">
-          <h2 className="text-xl font-semibold mb-4 text-gdiGold">Place New Trade</h2>
+        <div className="bg-slate-50 border border-slate-200 p-6 rounded-lg mb-8">
+          <h2 className="text-xl font-semibold mb-4 text-slate-950">Place New Trade</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label>Trade Type</label>
               <select
-                className="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-700"
+                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
                 value={tradeType}
                 onChange={(e) => setTradeType(e.target.value)}
               >
@@ -244,7 +244,7 @@ setAccount({
             <div>
               <label>Commodity 1</label>
               <select
-                className="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-700"
+                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
                 value={commodity1}
                 onChange={(e) => {
                   setCommodity1(e.target.value);
@@ -260,7 +260,7 @@ setAccount({
             <div>
               <label>Expiry 1</label>
               <select
-                className="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-700"
+                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
                 value={expiry1}
                 onChange={(e) => setExpiry1(e.target.value)}
               >
@@ -275,7 +275,7 @@ setAccount({
               <div>
                 <label>Expiry 2</label>
                 <select
-                  className="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-700"
+                  className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
                   value={expiry2}
                   onChange={(e) => setExpiry2(e.target.value)}
                 >
@@ -291,7 +291,7 @@ setAccount({
               <div>
                 <label>Commodity 2</label>
                 <select
-                  className="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-700"
+                  className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
                   value={commodity2}
                   onChange={(e) => setCommodity2(e.target.value)}
                 >
@@ -306,7 +306,7 @@ setAccount({
             <div>
               <label>Direction</label>
               <select
-                className="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-700"
+                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
                 value={direction}
                 onChange={(e) => setDirection(e.target.value)}
               >
@@ -321,7 +321,7 @@ setAccount({
                 min="1"
                 value={quantity}
                 onChange={(e) => setQuantity(+e.target.value)}
-                className="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-700"
+                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
               />
             </div>
             <div>
@@ -331,7 +331,7 @@ setAccount({
                 step="0.01"
                 value={entryPrice}
                 onChange={(e) => setEntryPrice(parseFloat(+e.target.value))}
-                className="w-full mt-1 p-2 rounded bg-gray-900 border border-gray-700"
+                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
                 placeholder="e.g. -45or 4300"
               />
             </div>
@@ -344,7 +344,7 @@ setAccount({
             🧮 Calculate Margin
           </button>
           {calcResult && (
-            <p className="text-sm mt-2 text-center text-gray-300">{calcResult}</p>
+            <p className="text-sm mt-2 text-center text-slate-600">{calcResult}</p>
           )}
 
           <button
@@ -356,9 +356,9 @@ setAccount({
         </div>
 
         {/* Positions Table */}
-        <h2 className="text-xl font-semibold mb-4 text-gdiGold">Open Positions</h2>
-        <table className="w-full text-sm border-collapse border border-gray-700">
-          <thead className="bg-gray-800 text-gray-300">
+        <h2 className="text-xl font-semibold mb-4 text-slate-950">Open Positions</h2>
+        <table className="w-full text-sm border-collapse border border-slate-200">
+          <thead className="bg-slate-100 text-slate-700">
             <tr>
               <th className="border p-2">ID</th>
               <th className="border p-2">Type</th>
@@ -375,7 +375,7 @@ setAccount({
           </thead>
           <tbody>
             {account.trades.map((t) => (
-              <tr key={t.id} className="border-t border-gray-700">
+              <tr key={t.id} className="border-t border-slate-200">
                 <td className="p-2 border">{t.id}</td>
                 <td className="p-2 border">{t.type}</td>
                 <td className="p-2 border">
@@ -398,7 +398,7 @@ setAccount({
                       onBlur={(e) =>
                         closeTrade(t.id, parseFloat(e.target.value))
                       }
-                      className="w-24 p-1 rounded bg-gray-900 border border-gray-700"
+                      className="w-24 p-1 rounded bg-white border border-slate-300"
                     />
                   ) : (
                     t.closePrice

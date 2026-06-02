@@ -147,7 +147,7 @@ export default function LongTermChart() {
   const latestValue = processed.length ? processed[processed.length - 1].value : null;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100">
+    <div className="min-h-screen bg-slate-100 text-slate-900">
       <div className="mx-auto max-w-7xl px-4 py-6">
         {/* Header */}
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -155,10 +155,10 @@ export default function LongTermChart() {
             <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">
               Long Term Chart
             </h1>
-            <p className="mt-1 text-neutral-400">
+            <p className="mt-1 text-slate-500">
               {headerTitle}
               {latestValue != null ? (
-                <span className="ml-2 text-neutral-300">
+                <span className="ml-2 text-slate-600">
                   • Latest: <span className="font-semibold">{formatNumber(latestValue)}</span>
                 </span>
               ) : null}
@@ -170,7 +170,7 @@ export default function LongTermChart() {
             <select
               value={commodity}
               onChange={(e) => setCommodity(e.target.value)}
-              className="rounded-xl bg-neutral-900 border border-neutral-800 px-3 py-2 text-sm outline-none focus:border-neutral-600"
+              className="rounded-md bg-white border border-slate-300 px-3 py-2 text-sm outline-none focus:border-slate-500"
             >
               {COMMODITIES.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -179,13 +179,13 @@ export default function LongTermChart() {
               ))}
             </select>
 
-            <div className="flex rounded-xl border border-neutral-800 bg-neutral-900 p-1">
+            <div className="flex rounded-md border border-slate-300 bg-white p-1">
               {RANGE_PRESETS.map((p) => (
                 <button
                   key={p.id}
                   onClick={() => setRange(p.id)}
                   className={`px-3 py-1.5 text-sm rounded-lg transition ${
-                    range === p.id ? "bg-neutral-800 text-neutral-50" : "text-neutral-300 hover:text-neutral-50"
+                    range === p.id ? "bg-slate-900 text-white" : "text-slate-600 hover:text-slate-950"
                   }`}
                 >
                   {p.label}
@@ -193,11 +193,11 @@ export default function LongTermChart() {
               ))}
             </div>
 
-            <div className="flex rounded-xl border border-neutral-800 bg-neutral-900 p-1">
+            <div className="flex rounded-md border border-slate-300 bg-white p-1">
               <button
                 onClick={() => setChartMode("line")}
                 className={`px-3 py-1.5 text-sm rounded-lg transition ${
-                  chartMode === "line" ? "bg-neutral-800 text-neutral-50" : "text-neutral-300 hover:text-neutral-50"
+                  chartMode === "line" ? "bg-slate-900 text-white" : "text-slate-600 hover:text-slate-950"
                 }`}
               >
                 Line
@@ -205,7 +205,7 @@ export default function LongTermChart() {
               <button
                 onClick={() => setChartMode("area")}
                 className={`px-3 py-1.5 text-sm rounded-lg transition ${
-                  chartMode === "area" ? "bg-neutral-800 text-neutral-50" : "text-neutral-300 hover:text-neutral-50"
+                  chartMode === "area" ? "bg-slate-900 text-white" : "text-slate-600 hover:text-slate-950"
                 }`}
               >
                 Area
@@ -216,37 +216,37 @@ export default function LongTermChart() {
 
         {/* Overlay toggles */}
         <div className="mt-4 flex flex-wrap gap-2">
-          <label className="flex items-center gap-2 rounded-xl border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm">
+          <label className="flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm">
             <input
               type="checkbox"
               checked={showSMA20}
               onChange={(e) => setShowSMA20(e.target.checked)}
-              className="accent-neutral-200"
+              className="accent-slate-900"
             />
             SMA 20
           </label>
-          <label className="flex items-center gap-2 rounded-xl border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm">
+          <label className="flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm">
             <input
               type="checkbox"
               checked={showSMA50}
               onChange={(e) => setShowSMA50(e.target.checked)}
-              className="accent-neutral-200"
+              className="accent-slate-900"
             />
             SMA 50
           </label>
-          <label className="flex items-center gap-2 rounded-xl border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm">
+          <label className="flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm">
             <input
               type="checkbox"
               checked={showSMA200}
               onChange={(e) => setShowSMA200(e.target.checked)}
-              className="accent-neutral-200"
+              className="accent-slate-900"
             />
             SMA 200
           </label>
         </div>
 
         {/* Chart Card */}
-        <div className="mt-4 rounded-2xl border border-neutral-800 bg-neutral-950/60 p-4 shadow-sm">
+        <div className="mt-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
           <div className="h-[420px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               {chartMode === "area" ? (
@@ -287,11 +287,11 @@ export default function LongTermChart() {
           </div>
 
           {/* Footer */}
-          <div className="mt-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between text-sm text-neutral-400">
+          <div className="mt-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between text-sm text-slate-500">
             <div>
-              Data points: <span className="text-neutral-200">{processed.length}</span>
+              Data points: <span className="text-slate-800">{processed.length}</span>
             </div>
-            <div className="text-neutral-500">
+            <div className="text-slate-500">
               * Currently using sample data. Next step: wire in your real SAFEX/CBOT dataset.
             </div>
           </div>

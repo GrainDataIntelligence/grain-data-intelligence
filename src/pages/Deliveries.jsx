@@ -163,14 +163,14 @@ export default function Deliveries() {
   }, []);
 
   if (dataState.loading)
-    return <div className="p-6 text-gray-400">Loading data...</div>;
+    return <div className="min-h-screen bg-slate-100 p-6 text-slate-500">Loading data...</div>;
 
   if (dataState.error)
     return (
-      <div className="p-6 text-red-300">
+      <div className="min-h-screen bg-slate-100 p-6 text-red-700">
         <h2 className="text-xl font-bold mb-2">⚠️ Data error</h2>
         <p className="text-sm mb-3">{dataState.error}</p>
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-slate-500">
           Check your CSVs inside <code>public/data/</code> and confirm the column
           names match.
         </p>
@@ -180,7 +180,7 @@ export default function Deliveries() {
   const { processed, years, avg, latest } = dataState;
   if (!Array.isArray(years) || years.length === 0)
     return (
-      <div className="p-6 text-red-300">
+      <div className="min-h-screen bg-slate-100 p-6 text-red-700">
         ⚠️ No valid data found after processing — please verify CSV contents.
       </div>
     );
@@ -216,21 +216,21 @@ export default function Deliveries() {
 
   const layout = {
     title: `🌻 GDI | Sunflower Deliveries – ${mode}`,
-    paper_bgcolor: "#111827",
-    plot_bgcolor: "#111827",
-    font: { color: "#E5E7EB", family: "Inter, sans-serif" },
+    paper_bgcolor: "#FFFFFF",
+    plot_bgcolor: "#FFFFFF",
+    font: { color: "#0F172A", family: "Inter, sans-serif" },
     legend: { orientation: "h", y: -0.3 },
-    xaxis: { title: "Days Since Season Start", gridcolor: "#374151" },
+    xaxis: { title: "Days Since Season Start", gridcolor: "#E2E8F0" },
     yaxis: {
       title: mode === "% Delivered" ? "% Delivered" : "Cumulative Tons",
-      gridcolor: "#374151",
+      gridcolor: "#E2E8F0",
     },
     margin: { t: 60, b: 60, l: 60, r: 30 },
   };
 
   return (
-    <div className="p-6 text-gray-100">
-      <h1 className="text-2xl font-bold text-yellow-400 mb-4">
+    <div className="min-h-screen bg-slate-100 p-6 text-slate-900">
+      <h1 className="text-2xl font-bold text-slate-950 mb-4">
         Deliveries Hub — Sunflower
       </h1>
 
@@ -240,7 +240,7 @@ export default function Deliveries() {
           className={`px-3 py-1 rounded-md text-sm font-medium ${
             mode === "% Delivered"
               ? "bg-yellow-400 text-gray-900"
-              : "bg-gray-800 text-gray-300 hover:text-yellow-400"
+              : "bg-white border border-slate-300 text-slate-600 hover:text-slate-950"
           }`}
         >
           % Delivered
@@ -250,7 +250,7 @@ export default function Deliveries() {
           className={`px-3 py-1 rounded-md text-sm font-medium ${
             mode === "Tons Delivered"
               ? "bg-yellow-400 text-gray-900"
-              : "bg-gray-800 text-gray-300 hover:text-yellow-400"
+              : "bg-white border border-slate-300 text-slate-600 hover:text-slate-950"
           }`}
         >
           Tons Delivered

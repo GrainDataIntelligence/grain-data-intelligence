@@ -3,7 +3,7 @@ import { useState } from "react";
 import Logo from "../assets/logo.png"; // adjust if needed
 
 function Navbar() {
-  const [platformOpen, setPlatformOpen] = useState(false);
+  const [fundamentalsOpen, setFundamentalsOpen] = useState(false);
 
   return (
     <nav className="w-full bg-[#0a1128] text-white shadow-md border-b border-gray-700">
@@ -29,26 +29,52 @@ function Navbar() {
             Home
           </NavLink>
 
-          {/* PLATFORM DROPDOWN */}
+          <NavLink
+            to="/seasonal-charts"
+            className={({ isActive }) =>
+              isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
+            }
+          >
+            Seasonal Charts
+          </NavLink>
+
+          {/* FUNDAMENTALS DROPDOWN */}
           <div
             className="relative"
-            onMouseEnter={() => setPlatformOpen(true)}
-            onMouseLeave={() => setPlatformOpen(false)}
+            onMouseEnter={() => setFundamentalsOpen(true)}
+            onMouseLeave={() => setFundamentalsOpen(false)}
           >
             <button
+              type="button"
+              onClick={() => setFundamentalsOpen((open) => !open)}
               className="hover:text-yellow-300 flex items-center space-x-1"
             >
-              <span>Platform</span>
+              <span>Fundamentals</span>
               <span className="text-xs">▼</span>
             </button>
 
-            {platformOpen && (
-              <div className="absolute left-0 mt-2 w-52 bg-[#0f1629] border border-gray-700 rounded-lg shadow-lg z-50">
+            {fundamentalsOpen && (
+              <div className="absolute left-0 top-full w-52 pt-3 z-50">
+                <div className="bg-[#0f1629] border border-gray-700 rounded-lg shadow-lg overflow-hidden">
                 <NavLink
-                  to="/deliveries"
+                  to="/fundamentals/deliveries"
                   className="block px-4 py-2 hover:bg-gray-800"
                 >
-                  Deliveries Hub
+                  Deliveries
+                </NavLink>
+
+                <NavLink
+                  to="/fundamentals/imports-exports"
+                  className="block px-4 py-2 hover:bg-gray-800"
+                >
+                  Imports & Exports
+                </NavLink>
+
+                <NavLink
+                  to="/fundamentals/cftc"
+                  className="block px-4 py-2 hover:bg-gray-800"
+                >
+                  CFTC Positions
                 </NavLink>
 
                 <NavLink
@@ -58,20 +84,7 @@ function Navbar() {
                   S&D Hub
                 </NavLink>
 
-                <NavLink
-                  to="/backtesting"
-                  className="block px-4 py-2 hover:bg-gray-800"
-                >
-                  Backtesting
-                </NavLink>
-
-                {/* NEW PAGE */}
-                <NavLink
-                  to="/long-term-charts"
-                  className="block px-4 py-2 hover:bg-gray-800"
-                >
-                  Long-Term Charts
-                </NavLink>
+                </div>
               </div>
             )}
           </div>

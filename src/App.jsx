@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
+import SeasonalCharts from "./pages/SeasonalCharts";
 import Platform from "./pages/Platform";
 import Deliveries from "./pages/Deliveries";
 import SupplyAndDemand from "./pages/SupplyAndDemand";
@@ -12,6 +13,9 @@ import Educational from "./pages/Educational";
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
 import LongTermChart  from "./pages/LongTermCharts";  
+import FundamentalsDeliveries from "./pages/FundamentalsDeliveries";
+import FundamentalsExports from "./pages/FundamentalsExports";
+import FundamentalsCftc from "./pages/FundamentalsCftc";
 
 // NEW PAGE
 import LongTermCharts from "./pages/LongTermCharts";
@@ -27,6 +31,7 @@ function App() {
 
         {/* MAIN PAGES */}
         <Route path="/home" element={<Home />} />
+        <Route path="/seasonal-charts" element={<SeasonalCharts />} />
         <Route path="/platform" element={<Platform />} />
         <Route path="/deliveries" element={<Deliveries />} />
         <Route path="/supply-and-demand" element={<SupplyAndDemand />} />
@@ -36,6 +41,9 @@ function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about" element={<About />} />
         <Route path="/long-term-chart" element={<LongTermChart />} />
+        <Route path="/fundamentals/deliveries" element={<FundamentalsDeliveries />} />
+        <Route path="/fundamentals/imports-exports" element={<FundamentalsExports />} />
+        <Route path="/fundamentals/cftc" element={<FundamentalsCftc />} />
 
 
         {/* NEW LONG-TERM CHARTS MODULE */}

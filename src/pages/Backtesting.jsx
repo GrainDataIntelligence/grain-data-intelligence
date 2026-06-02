@@ -269,9 +269,9 @@ export default function Backtesting() {
   };
 
   return (
-    <div className="p-6 space-y-6 text-gray-100">
+    <div className="min-h-screen bg-slate-100 p-6 space-y-6 text-slate-900">
       <h1 className="text-2xl font-semibold">Seasonal Backtesting — WMAZ</h1>
-      <p className="text-gray-400">
+      <p className="text-slate-600">
         Toggle between Equity Curve and Seasonal Overlay. Works with single contracts or spreads.
       </p>
 
@@ -376,9 +376,9 @@ export default function Backtesting() {
               <CardContent style={{ height: 400 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={output.equityCurve}>
-                    <CartesianGrid stroke="#2e2e2e" strokeDasharray="3 3" />
-                    <XAxis dataKey="year" stroke="#aaa" />
-                    <YAxis stroke="#aaa" />
+                    <CartesianGrid stroke="#E2E8F0" strokeDasharray="3 3" />
+                    <XAxis dataKey="year" stroke="#64748B" />
+                    <YAxis stroke="#64748B" />
                     <Tooltip formatter={(v) => v.toFixed(3) + "×"} />
                     <Line
                       type="monotone"
@@ -402,9 +402,9 @@ export default function Backtesting() {
               <CardContent style={{ height: 500 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart>
-                    <CartesianGrid stroke="#2e2e2e" strokeDasharray="3 3" />
-                    <XAxis dataKey="date" stroke="#aaa" allowDuplicatedCategory={false} />
-                    <YAxis stroke="#aaa" />
+                    <CartesianGrid stroke="#E2E8F0" strokeDasharray="3 3" />
+                    <XAxis dataKey="date" stroke="#64748B" allowDuplicatedCategory={false} />
+                    <YAxis stroke="#64748B" />
                     <Tooltip />
                     {visibleYears(output.seasonalData).map((yr, i) => (
                       <Line

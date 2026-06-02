@@ -16,7 +16,7 @@ const YearSelector = ({ availableYears, selectedYears, toggleYear, selectAll }) 
             key={year}
             onClick={() => toggleYear(year)}
             className={`px-2 py-1 text-[11px] font-semibold rounded-sm border 
-              ${isActive ? "text-black" : "text-gray-300"} 
+              ${isActive ? "text-black" : "text-slate-600"} 
               transition-colors duration-150`}
             style={{
               backgroundColor: isActive ? color : "transparent",
@@ -29,7 +29,7 @@ const YearSelector = ({ availableYears, selectedYears, toggleYear, selectAll }) 
       })}
       <button
         onClick={selectAll}
-        className="ml-2 px-2 py-1 text-[11px] border border-gray-600 rounded-sm text-gray-300 hover:bg-gray-700"
+        className="ml-2 px-2 py-1 text-[11px] border border-slate-300 rounded-sm text-slate-600 hover:bg-slate-200"
       >
         Select / Deselect All
       </button>
