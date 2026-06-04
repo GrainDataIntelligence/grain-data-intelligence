@@ -1,427 +1,498 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-const DemoTrading = () => {
-  const [data, setData] = useState([]);
-  const [commodities, setCommodities] = useState([]);
-  const [expiries, setExpiries] = useState([]);
+const ACCOUNT_START = 1000000;
+const CONTRACT_TONS = 100;
+
+const TRADE_TYPES = ["Futures", "Calendar Spread", "Split"];
+const DEFAULT_ACCOUNT = {
+  cash: ACCOUNT_START,
+  realizedPL: 0,
+  trades: [],
+};
+
+const commodityNames = {
+  BEAN: "Soybeans",
+  CORN: "Corn",
+  SUNS: "Sunflowers",
+  WEAT: "Wheat",
+  WMAZ: "White Maize",
+  YMAZ: "Yellow Maize",
+};
+
+function parseNumber(value) {
+  return Number(String(value ?? "").replace(/\s/g, "")) || 0;
+}
+
+function formatMoney(value) {
+  return new Intl.NumberFormat("en-ZA", {
+    style: "currency",
+    currency: "ZAR",
+    maximumFractionDigits: 0,
+  }).format(Number(value) || 0);
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat("en-ZA", { maximumFractionDigits: 0 }).format(Number(value) || 0);
+}
+
+function getStoredAccount() {
+  try {
+    const stored = JSON.parse(localStorage.getItem("gdiDemoTradingAccount"));
+    if (stored?.trades) return stored;
+  } catch {
+    return DEFAULT_ACCOUNT;
+  }
+  return DEFAULT_ACCOUNT;
+}
+
+function normalizeMarginRow(row) {
+  return {
+    ...row,
+    commodity: String(row.commodity || "").trim(),
+    expiry_date: String(row.expiry_date || "").trim(),
+    imr: parseNumber(row.imr),
+    csmr: parseNumber(row.csmr),
+    ssmr: parseNumber(row.ssmr),
+    vsr: Number(row.vsr) || 0,
+    ssg: row.ssg || "",
+  };
+}
+
+function tradeLabel(trade) {
+  if (trade.type === "Calendar Spread") return `${trade.commodity1} ${trade.expiry1} / ${trade.expiry2}`;
+  if (trade.type === "Split") return `${trade.commodity1} / ${trade.commodity2} ${trade.expiry1}`;
+  return `${trade.commodity1} ${trade.expiry1}`;
+}
+
+export default function DemoTrading() {
+  const [marginRows, setMarginRows] = useState([]);
+  const [account, setAccount] = useState(getStoredAccount);
   const [tradeType, setTradeType] = useState("Futures");
   const [commodity1, setCommodity1] = useState("");
   const [commodity2, setCommodity2] = useState("");
   const [expiry1, setExpiry1] = useState("");
   const [expiry2, setExpiry2] = useState("");
-  const [direction, setDirection] = useState("Buy");
+  const [side, setSide] = useState("Buy");
   const [quantity, setQuantity] = useState(1);
   const [entryPrice, setEntryPrice] = useState("");
-  const [calcResult, setCalcResult] = useState("");
+  const [message, setMessage] = useState("");
+  const [closePrices, setClosePrices] = useState({});
 
-  const [account, setAccount] = useState(() => {
-    return (
-      JSON.parse(localStorage.getItem("gdiAccount")) || {
-        balance: 1000000,
-        marginUsed: 0,
-        realizedPL: 0,
-        trades: [],
-      }
-    );
-  });
-
-  const fmt = (n) => "R " + Number(n).toLocaleString("en-ZA");
-
-  // --- Load SAFEX Data ---
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}data/im_safex.json`)
-      .then((res) => res.json())
-      .then((json) => {
-        // Convert string numbers like "48 700" → 48700
-        const cleaned = json.map((row) => ({
-          ...row,
-          imr: Number(String(row.imr).replace(/\s/g, "")) || 0,
-          csmr: Number(String(row.csmr).replace(/\s/g, "")) || 0,
-          ssmr: Number(String(row.ssmr).replace(/\s/g, "")) || 0,
-          vsr: Number(String(row.vsr).replace(/\s/g, "")) || 0,
-          ssg: row.ssg || "",
-        }));
-        setData(cleaned);
-        const comms = [...new Set(cleaned.map((d) => d.commodity))];
-        setCommodities(comms);
+      .then((response) => response.json())
+      .then((data) => {
+        const rows = data.map(normalizeMarginRow);
+        setMarginRows(rows);
+        const firstCommodity = rows[0]?.commodity || "";
+        setCommodity1(firstCommodity);
+        setCommodity2(rows.find((row) => row.commodity !== firstCommodity)?.commodity || firstCommodity);
       })
-      .catch((err) => console.error("Error loading SAFEX data:", err));
+      .catch(() => setMessage("Could not load the SAFEX margin file."));
   }, []);
 
-  // --- Save Account State ---
   useEffect(() => {
-    localStorage.setItem("gdiAccount", JSON.stringify(account));
+    localStorage.setItem("gdiDemoTradingAccount", JSON.stringify(account));
   }, [account]);
 
-  // --- Update Expiries when selecting commodity ---
-  const updateExpiries = (comm) => {
-    const exps = data
-      .filter((d) => d.commodity === comm)
-      .map((d) => d.expiry_date);
-    setExpiries(exps);
-  };
+  const commodities = useMemo(() => [...new Set(marginRows.map((row) => row.commodity))].sort(), [marginRows]);
 
-  // --- Calculate Margin ---
-  const calcMargin = () => {
-    if (!commodity1 || !expiry1) return 0;
+  const expiries1 = useMemo(
+    () => marginRows.filter((row) => row.commodity === commodity1).map((row) => row.expiry_date),
+    [commodity1, marginRows]
+  );
 
-    const row1 = data.find(
-      (r) =>
-        r.commodity.trim().toUpperCase() === commodity1.trim().toUpperCase() &&
-        r.expiry_date.trim() === expiry1.trim()
-    );
+  const expiries2 = useMemo(
+    () => marginRows.filter((row) => row.commodity === commodity2).map((row) => row.expiry_date),
+    [commodity2, marginRows]
+  );
 
+  useEffect(() => {
+    if (!expiries1.includes(expiry1)) setExpiry1(expiries1[0] || "");
+    if (tradeType === "Calendar Spread" && (!expiry2 || expiry2 === expiry1 || !expiries1.includes(expiry2))) {
+      setExpiry2(expiries1.find((expiry) => expiry !== expiry1) || "");
+    }
+  }, [expiries1, expiry1, expiry2, tradeType]);
+
+  useEffect(() => {
+    if (tradeType === "Split" && !expiries2.includes(expiry1)) {
+      setCommodity2(commodities.find((commodity) => commodity !== commodity1) || commodity1);
+    }
+  }, [commodities, commodity1, expiries2, expiry1, tradeType]);
+
+  const row1 = marginRows.find((row) => row.commodity === commodity1 && row.expiry_date === expiry1);
+  const row2Calendar = marginRows.find((row) => row.commodity === commodity1 && row.expiry_date === expiry2);
+  const row2Split = marginRows.find((row) => row.commodity === commodity2 && row.expiry_date === expiry1);
+
+  const marginPerContract = useMemo(() => {
     if (!row1) return 0;
-
-    // Futures
-    if (tradeType === "Futures") {
-      return row1.imr;
-    }
-
-    // Calendar Spread
+    if (tradeType === "Futures") return row1.imr;
     if (tradeType === "Calendar Spread") {
-      if (!expiry2) return 0;
-      const row2 = data.find(
-        (r) =>
-          r.commodity.trim().toUpperCase() === commodity1.trim().toUpperCase() &&
-          r.expiry_date.trim() === expiry2.trim()
-      );
-      if (!row2 || expiry1 === expiry2) return 0;
-      return row1.csmr + row2.csmr + Math.abs(row1.imr - row2.imr);
+      if (!row2Calendar || expiry1 === expiry2) return 0;
+      return row1.csmr + row2Calendar.csmr + Math.abs(row1.imr - row2Calendar.imr);
     }
-
-    // Split (Inter-Commodity Spread)
-    if (tradeType.includes("Split")) {
-      if (!commodity2) return 0;
-      const row2 = data.find(
-        (r) =>
-          r.commodity.trim().toUpperCase() === commodity2.trim().toUpperCase() &&
-          r.expiry_date.trim() === expiry1.trim()
-      );
-      if (!row2) return 0;
-      if (row1.ssg === row2.ssg)
-        return row1.ssmr + row2.ssmr + Math.abs(row1.imr - row2.imr);
-      return row1.imr + row2.imr;
+    if (tradeType === "Split") {
+      if (!row2Split || commodity1 === commodity2) return 0;
+      if (row1.ssg === row2Split.ssg) return row1.ssmr + row2Split.ssmr + Math.abs(row1.imr - row2Split.imr);
+      return row1.imr + row2Split.imr;
     }
-
     return 0;
-  };
+  }, [commodity1, commodity2, expiry1, expiry2, row1, row2Calendar, row2Split, tradeType]);
 
-  // --- Calculate Margin Button ---
-  const handleCalc = () => {
-    const m = calcMargin();
-    if (!m) return setCalcResult("⚠️ Unable to calculate margin.");
-    const total = m * quantity;
-    setCalcResult(`Margin per contract: ${fmt(m)} | Total: ${fmt(total)}`);
-  };
+  const totalMargin = marginPerContract * (Number(quantity) || 0);
+  const marginUsed = account.trades.filter((trade) => trade.status === "Open").reduce((sum, trade) => sum + trade.margin, 0);
+  const availableFunds = account.cash - marginUsed;
+  const openTrades = account.trades.filter((trade) => trade.status === "Open");
+  const closedTrades = account.trades.filter((trade) => trade.status === "Closed");
 
-  // --- Place Trade ---
   const placeTrade = () => {
-    const m = calcMargin();
-    if (!m) return alert("Margin calc failed.");
-    if (!entryPrice) return alert("Enter entry price.");
-
-    const totalMargin = m * quantity;
-    if (account.balance - account.marginUsed < totalMargin)
-      return alert("Insufficient margin.");
+    const cleanQuantity = Number(quantity);
+    const cleanEntry = Number(entryPrice);
+    if (!commodity1 || !expiry1 || !cleanQuantity || cleanQuantity < 1) {
+      setMessage("Select a contract and enter a valid quantity.");
+      return;
+    }
+    if (!Number.isFinite(cleanEntry)) {
+      setMessage("Enter the entry price or spread level.");
+      return;
+    }
+    if (!marginPerContract || totalMargin > availableFunds) {
+      setMessage("The account does not have enough available margin for this trade.");
+      return;
+    }
 
     const trade = {
       id: Date.now(),
       type: tradeType,
-      comm1: commodity1,
-      comm2: commodity2,
-      exp1: expiry1,
-      exp2: expiry2,
-      dir: direction,
-      qty: quantity,
-      entry: entryPrice,
+      commodity1,
+      commodity2: tradeType === "Split" ? commodity2 : "",
+      expiry1,
+      expiry2: tradeType === "Calendar Spread" ? expiry2 : "",
+      side,
+      quantity: cleanQuantity,
+      entryPrice: cleanEntry,
       margin: totalMargin,
-      pl: 0,
       status: "Open",
+      openedAt: new Date().toISOString(),
     };
 
-    setAccount((prev) => ({
-      ...prev,
-      marginUsed: prev.marginUsed + totalMargin,
-      trades: [...prev.trades, trade],
+    setAccount((current) => ({ ...current, trades: [trade, ...current.trades] }));
+    setEntryPrice("");
+    setMessage("Trade placed.");
+  };
+
+  const closeTrade = (trade) => {
+    const closePrice = Number(closePrices[trade.id]);
+    if (!Number.isFinite(closePrice)) {
+      setMessage("Enter a close price before closing the trade.");
+      return;
+    }
+
+    const direction = trade.side === "Buy" ? 1 : -1;
+    const pl = (closePrice - trade.entryPrice) * CONTRACT_TONS * trade.quantity * direction;
+
+    setAccount((current) => ({
+      ...current,
+      cash: current.cash + pl,
+      realizedPL: current.realizedPL + pl,
+      trades: current.trades.map((item) =>
+        item.id === trade.id
+          ? { ...item, closePrice, pl, status: "Closed", closedAt: new Date().toISOString() }
+          : item
+      ),
     }));
-    setCalcResult("");
+    setMessage("Trade closed.");
   };
 
-  // --- Close Trade ---
-  const closeTrade = (id, closePrice) => {
-    const updatedTrades = account.trades.map((t) => {
-      if (t.id === id && t.status === "Open") {
-        const pl = (closePrice - t.entry) * 100 * (t.dir === "Buy" ? 1 : -1) * t.qty;
-        return {
-          ...t,
-          closePrice,
-          pl,
-          status: "Closed",
-        };
-      }
-      return t;
-    });
-
-    let realizedPL = 0;
-let marginUsed = 0;
-let balance = account.balance;
-
-updatedTrades.forEach((t) => {
-  if (t.status === "Closed") realizedPL += t.pl;
-  if (t.status === "Open") marginUsed += t.margin;
-});
-
-// update running balance
-balance = 1000000 + realizedPL;
-
-setAccount({
-  ...account,
-  realizedPL,
-  marginUsed,
-  balance,
-  trades: updatedTrades,
-});
-
-  };
-
-  // --- Reset Account ---
   const resetAccount = () => {
-    if (!confirm("Reset account to R1,000,000 and clear all trades?")) return;
-    setAccount({
-      balance: 1000000,
-      marginUsed: 0,
-      realizedPL: 0,
-      trades: [],
-    });
+    if (!confirm("Reset the demo account to R1,000,000 and clear all trades?")) return;
+    setAccount(DEFAULT_ACCOUNT);
+    setClosePrices({});
+    setMessage("Account reset.");
   };
+
+  const recentMarginRows = marginRows.slice(0, 8);
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 py-10">
-      <div className="max-w-6xl mx-auto p-6 bg-white border border-slate-200 rounded-lg shadow-sm">
-        <h1 className="text-3xl font-bold text-center text-slate-950 mb-8">
-          Demo Trading Account
-        </h1>
-
-        {/* Account Summary */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-center">
-          <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-lg">
-            <p className="text-sm text-slate-500">Balance (Incl. P/L)</p>
-            <p className="text-xl font-bold text-emerald-700">{fmt(account.balance)}</p>
+    <div className="min-h-screen bg-slate-100 text-slate-900">
+      <div className="mx-auto max-w-[1500px] px-5 py-6">
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wide text-slate-500">GDI paper account</p>
+            <h1 className="text-3xl font-extrabold text-slate-950">Demo Trading</h1>
           </div>
-          <div className="bg-amber-50 border border-amber-100 p-4 rounded-lg">
-            <p className="text-sm text-slate-500">Margin Used</p>
-            <p className="text-xl font-bold text-amber-700">{fmt(account.marginUsed)}</p>
-          </div>
-          <div className="bg-sky-50 border border-sky-100 p-4 rounded-lg">
-            <p className="text-sm text-slate-500">Available Margin</p>
-            <p className="text-xl font-bold text-sky-700">
-              {fmt(account.balance - account.marginUsed)}
-            </p>
-          </div>
-          <div className="bg-violet-50 border border-violet-100 p-4 rounded-lg">
-            <p className="text-sm text-slate-500">Realized P/L</p>
-            <p className="text-xl font-bold text-violet-700">{fmt(account.realizedPL)}</p>
-          </div>
-        </div>
-
-        {/* Trade Form */}
-        <div className="bg-slate-50 border border-slate-200 p-6 rounded-lg mb-8">
-          <h2 className="text-xl font-semibold mb-4 text-slate-950">Place New Trade</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <label>Trade Type</label>
-              <select
-                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
-                value={tradeType}
-                onChange={(e) => setTradeType(e.target.value)}
-              >
-                <option>Futures</option>
-                <option>Calendar Spread</option>
-                <option>Split (Inter-Commodity Spread)</option>
-              </select>
-            </div>
-            <div>
-              <label>Commodity 1</label>
-              <select
-                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
-                value={commodity1}
-                onChange={(e) => {
-                  setCommodity1(e.target.value);
-                  updateExpiries(e.target.value);
-                }}
-              >
-                <option value="">Select</option>
-                {commodities.map((c) => (
-                  <option key={c}>{c}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label>Expiry 1</label>
-              <select
-                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
-                value={expiry1}
-                onChange={(e) => setExpiry1(e.target.value)}
-              >
-                <option value="">Select</option>
-                {expiries.map((e) => (
-                  <option key={e}>{e}</option>
-                ))}
-              </select>
-            </div>
-
-            {tradeType === "Calendar Spread" && (
-              <div>
-                <label>Expiry 2</label>
-                <select
-                  className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
-                  value={expiry2}
-                  onChange={(e) => setExpiry2(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {expiries.map((e) => (
-                    <option key={e}>{e}</option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            {tradeType.includes("Split") && (
-              <div>
-                <label>Commodity 2</label>
-                <select
-                  className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
-                  value={commodity2}
-                  onChange={(e) => setCommodity2(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {commodities.map((c) => (
-                    <option key={c}>{c}</option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            <div>
-              <label>Direction</label>
-              <select
-                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
-                value={direction}
-                onChange={(e) => setDirection(e.target.value)}
-              >
-                <option>Buy</option>
-                <option>Sell</option>
-              </select>
-            </div>
-            <div>
-              <label>Quantity</label>
-              <input
-                type="number"
-                min="1"
-                value={quantity}
-                onChange={(e) => setQuantity(+e.target.value)}
-                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
-              />
-            </div>
-            <div>
-              <label>Entry Price</label>
-              <input
-                type="number"
-                step="0.01"
-                value={entryPrice}
-                onChange={(e) => setEntryPrice(parseFloat(+e.target.value))}
-                className="w-full mt-1 p-2 rounded bg-white border border-slate-300"
-                placeholder="e.g. -45or 4300"
-              />
-            </div>
-          </div>
-
           <button
-            onClick={handleCalc}
-            className="w-full mt-4 bg-yellow-400 text-black py-2 rounded-lg hover:bg-yellow-500"
-          >
-            🧮 Calculate Margin
-          </button>
-          {calcResult && (
-            <p className="text-sm mt-2 text-center text-slate-600">{calcResult}</p>
-          )}
-
-          <button
-            onClick={placeTrade}
-            className="w-full mt-3 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700"
-          >
-            💰 Place Trade
-          </button>
-        </div>
-
-        {/* Positions Table */}
-        <h2 className="text-xl font-semibold mb-4 text-slate-950">Open Positions</h2>
-        <table className="w-full text-sm border-collapse border border-slate-200">
-          <thead className="bg-slate-100 text-slate-700">
-            <tr>
-              <th className="border p-2">ID</th>
-              <th className="border p-2">Type</th>
-              <th className="border p-2">Commodity(s)</th>
-              <th className="border p-2">Expiry(s)</th>
-              <th className="border p-2">Dir</th>
-              <th className="border p-2">Qty</th>
-              <th className="border p-2">Entry</th>
-              <th className="border p-2">Margin</th>
-              <th className="border p-2">Close</th>
-              <th className="border p-2">P/L</th>
-              <th className="border p-2">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {account.trades.map((t) => (
-              <tr key={t.id} className="border-t border-slate-200">
-                <td className="p-2 border">{t.id}</td>
-                <td className="p-2 border">{t.type}</td>
-                <td className="p-2 border">
-                  {t.type.includes("Split") ? `${t.comm1} / ${t.comm2}` : t.comm1}
-                </td>
-                <td className="p-2 border">
-                  {t.type === "Calendar Spread"
-                    ? `${t.exp1} / ${t.exp2}`
-                    : t.exp1}
-                </td>
-                <td className="p-2 border">{t.dir}</td>
-                <td className="p-2 border">{t.qty}</td>
-                <td className="p-2 border">{t.entry}</td>
-                <td className="p-2 border">{fmt(t.margin)}</td>
-                <td className="p-2 border">
-                  {t.status === "Open" ? (
-                    <input
-                      type="number"
-                      placeholder="Close"
-                      onBlur={(e) =>
-                        closeTrade(t.id, parseFloat(e.target.value))
-                      }
-                      className="w-24 p-1 rounded bg-white border border-slate-300"
-                    />
-                  ) : (
-                    t.closePrice
-                  )}
-                </td>
-                <td className="p-2 border">{fmt(t.pl)}</td>
-                <td className="p-2 border">{t.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className="text-center mt-8">
-          <button
+            type="button"
             onClick={resetAccount}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+            className="rounded-md border border-red-200 bg-white px-4 py-2 text-sm font-bold text-red-700 hover:bg-red-50"
           >
-            🔄 Reset Account
+            Reset account
           </button>
+        </div>
+
+        <div className="mb-5 grid gap-4 md:grid-cols-4">
+          <SummaryCard label="Account equity" value={formatMoney(account.cash)} tone="green" />
+          <SummaryCard label="Margin used" value={formatMoney(marginUsed)} tone="amber" />
+          <SummaryCard label="Available funds" value={formatMoney(availableFunds)} tone="blue" />
+          <SummaryCard label="Realized P/L" value={formatMoney(account.realizedPL)} tone={account.realizedPL >= 0 ? "green" : "red"} />
+        </div>
+
+        <div className="grid gap-5 xl:grid-cols-[390px_minmax(0,1fr)]">
+          <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Order ticket</p>
+                <h2 className="text-lg font-extrabold text-slate-950">Place trade</h2>
+              </div>
+              <span className="rounded bg-slate-100 px-2 py-1 text-xs font-bold text-slate-600">100 tons / contract</span>
+            </div>
+
+            <div className="space-y-4">
+              <Field label="Trade type">
+                <Segmented options={TRADE_TYPES} value={tradeType} onChange={setTradeType} />
+              </Field>
+
+              <div className="grid grid-cols-2 gap-3">
+                <Field label="Commodity">
+                  <Select value={commodity1} onChange={setCommodity1} options={commodities} />
+                </Field>
+                <Field label="Expiry">
+                  <Select value={expiry1} onChange={setExpiry1} options={expiries1} />
+                </Field>
+              </div>
+
+              {tradeType === "Calendar Spread" && (
+                <Field label="Second expiry">
+                  <Select value={expiry2} onChange={setExpiry2} options={expiries1.filter((expiry) => expiry !== expiry1)} />
+                </Field>
+              )}
+
+              {tradeType === "Split" && (
+                <Field label="Second commodity">
+                  <Select value={commodity2} onChange={setCommodity2} options={commodities.filter((commodity) => commodity !== commodity1)} />
+                </Field>
+              )}
+
+              <div className="grid grid-cols-2 gap-3">
+                <Field label="Side">
+                  <Segmented options={["Buy", "Sell"]} value={side} onChange={setSide} />
+                </Field>
+                <Field label="Quantity">
+                  <input
+                    type="number"
+                    min="1"
+                    value={quantity}
+                    onChange={(event) => setQuantity(event.target.value)}
+                    className="h-10 w-full rounded-md border border-slate-300 px-3 text-sm outline-none focus:border-slate-500"
+                  />
+                </Field>
+              </div>
+
+              <Field label={tradeType === "Futures" ? "Entry price" : "Entry spread"}>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={entryPrice}
+                  onChange={(event) => setEntryPrice(event.target.value)}
+                  placeholder={tradeType === "Futures" ? "Example: 4300" : "Example: -45"}
+                  className="h-10 w-full rounded-md border border-slate-300 px-3 text-sm outline-none focus:border-slate-500"
+                />
+              </Field>
+
+              <div className="rounded-md border border-slate-200 bg-slate-50 p-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate-500">Margin per contract</span>
+                  <strong>{formatMoney(marginPerContract)}</strong>
+                </div>
+                <div className="mt-1 flex justify-between text-sm">
+                  <span className="text-slate-500">Total required</span>
+                  <strong>{formatMoney(totalMargin)}</strong>
+                </div>
+              </div>
+
+              {message && <div className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">{message}</div>}
+
+              <button
+                type="button"
+                onClick={placeTrade}
+                className="h-11 w-full rounded-md bg-slate-950 text-sm font-extrabold text-white hover:bg-slate-800"
+              >
+                Place demo trade
+              </button>
+            </div>
+          </section>
+
+          <div className="space-y-5">
+            <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="mb-3 flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Positions</p>
+                  <h2 className="text-lg font-extrabold text-slate-950">Open trades</h2>
+                </div>
+                <span className="text-sm font-bold text-slate-500">{openTrades.length} open</span>
+              </div>
+              <PositionsTable
+                trades={openTrades}
+                closePrices={closePrices}
+                setClosePrices={setClosePrices}
+                closeTrade={closeTrade}
+                emptyText="No open demo trades yet."
+              />
+            </section>
+
+            <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
+              <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="mb-3">
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">History</p>
+                  <h2 className="text-lg font-extrabold text-slate-950">Closed trades</h2>
+                </div>
+                <PositionsTable trades={closedTrades} emptyText="Closed trades will appear here." />
+              </div>
+
+              <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="mb-3">
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">SAFEX reference</p>
+                  <h2 className="text-lg font-extrabold text-slate-950">Margin snapshot</h2>
+                </div>
+                <div className="space-y-2">
+                  {recentMarginRows.map((row) => (
+                    <div key={`${row.commodity}-${row.expiry_date}`} className="rounded-md border border-slate-200 p-3">
+                      <div className="flex justify-between gap-3 text-sm font-extrabold text-slate-900">
+                        <span>{commodityNames[row.commodity] || row.commodity}</span>
+                        <span>{row.expiry_date}</span>
+                      </div>
+                      <div className="mt-1 flex justify-between text-xs text-slate-500">
+                        <span>Initial margin</span>
+                        <strong className="text-slate-700">{formatMoney(row.imr)}</strong>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default DemoTrading;
+function SummaryCard({ label, value, tone }) {
+  const tones = {
+    amber: "border-amber-100 bg-amber-50 text-amber-800",
+    blue: "border-blue-100 bg-blue-50 text-blue-800",
+    green: "border-emerald-100 bg-emerald-50 text-emerald-800",
+    red: "border-red-100 bg-red-50 text-red-800",
+  };
+
+  return (
+    <div className={`rounded-lg border p-4 shadow-sm ${tones[tone] || tones.blue}`}>
+      <p className="text-xs font-bold uppercase tracking-wide opacity-75">{label}</p>
+      <p className="mt-1 text-2xl font-extrabold">{value}</p>
+    </div>
+  );
+}
+
+function Field({ label, children }) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-xs font-extrabold uppercase tracking-wide text-slate-500">{label}</span>
+      {children}
+    </label>
+  );
+}
+
+function Select({ value, onChange, options }) {
+  return (
+    <select
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+      className="h-10 w-full rounded-md border border-slate-300 bg-white px-3 text-sm outline-none focus:border-slate-500"
+    >
+      {options.map((option) => (
+        <option key={option} value={option}>
+          {commodityNames[option] || option}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+function Segmented({ options, value, onChange }) {
+  return (
+    <div className="grid overflow-hidden rounded-md border border-slate-300" style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}>
+      {options.map((option) => (
+        <button
+          key={option}
+          type="button"
+          onClick={() => onChange(option)}
+          className={`h-10 text-sm font-bold ${value === option ? "bg-slate-950 text-white" : "bg-white text-slate-700 hover:bg-slate-50"}`}
+        >
+          {option}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function PositionsTable({ trades, closePrices, setClosePrices, closeTrade, emptyText }) {
+  if (!trades.length) {
+    return <div className="rounded-md border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm font-semibold text-slate-500">{emptyText}</div>;
+  }
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full text-sm">
+        <thead>
+          <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500">
+            <th className="px-3 py-2">Trade</th>
+            <th className="px-3 py-2">Side</th>
+            <th className="px-3 py-2 text-right">Qty</th>
+            <th className="px-3 py-2 text-right">Entry</th>
+            <th className="px-3 py-2 text-right">Margin</th>
+            <th className="px-3 py-2 text-right">Close</th>
+            <th className="px-3 py-2 text-right">P/L</th>
+            <th className="px-3 py-2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {trades.map((trade) => (
+            <tr key={trade.id} className="border-b border-slate-100">
+              <td className="px-3 py-3 font-bold text-slate-900">{tradeLabel(trade)}</td>
+              <td className={`px-3 py-3 font-bold ${trade.side === "Buy" ? "text-emerald-700" : "text-red-700"}`}>{trade.side}</td>
+              <td className="px-3 py-3 text-right">{formatNumber(trade.quantity)}</td>
+              <td className="px-3 py-3 text-right">{formatNumber(trade.entryPrice)}</td>
+              <td className="px-3 py-3 text-right">{formatMoney(trade.margin)}</td>
+              <td className="px-3 py-3 text-right">
+                {trade.status === "Open" ? (
+                  <input
+                    type="number"
+                    value={closePrices?.[trade.id] || ""}
+                    onChange={(event) => setClosePrices((current) => ({ ...current, [trade.id]: event.target.value }))}
+                    className="h-9 w-24 rounded-md border border-slate-300 px-2 text-right outline-none focus:border-slate-500"
+                  />
+                ) : (
+                  formatNumber(trade.closePrice)
+                )}
+              </td>
+              <td className={`px-3 py-3 text-right font-extrabold ${(trade.pl || 0) >= 0 ? "text-emerald-700" : "text-red-700"}`}>
+                {trade.status === "Closed" ? formatMoney(trade.pl) : "-"}
+              </td>
+              <td className="px-3 py-3 text-right">
+                {trade.status === "Open" && (
+                  <button
+                    type="button"
+                    onClick={() => closeTrade(trade)}
+                    className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-extrabold text-slate-700 hover:bg-slate-50"
+                  >
+                    Close
+                  </button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

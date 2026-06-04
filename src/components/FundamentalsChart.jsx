@@ -6,6 +6,72 @@ function formatValue(value, kind) {
   return fmt.format(value);
 }
 
+function tooltipPosition({ pointX, pointY, clusterTop, clusterBottom, linePoints, chartWidth, chartHeight, margin }) {
+  const tooltipW = 260;
+  const tooltipH = 150;
+  const pad = 12;
+  const plotLeft = margin.left;
+  const plotRight = chartWidth - margin.right;
+  const plotTop = margin.top;
+  const plotBottom = chartHeight - margin.bottom;
+  const plotW = plotRight - plotLeft;
+  const lineBandTop = Math.max(plotTop, clusterTop - 34);
+  const lineBandBottom = Math.min(plotBottom, clusterBottom + 34);
+  const roomRight = plotRight - pointX;
+  const roomLeft = pointX - plotLeft;
+  const preferRight = roomRight >= tooltipW + 36 || roomRight >= roomLeft;
+  const sideX = preferRight ? pointX + 24 : pointX - tooltipW - 24;
+  const otherSideX = preferRight ? pointX - tooltipW - 24 : pointX + 24;
+
+  const candidates = [
+    { x: sideX, y: pointY - tooltipH / 2 },
+    { x: sideX, y: pointY + 18 },
+    { x: sideX, y: pointY - tooltipH - 18 },
+    { x: otherSideX, y: pointY - tooltipH / 2 },
+    { x: otherSideX, y: pointY + 18 },
+    { x: otherSideX, y: pointY - tooltipH - 18 },
+    { x: pointX - tooltipW / 2, y: pointY + 24 },
+    { x: pointX - tooltipW / 2, y: pointY - tooltipH - 24 },
+    { x: sideX, y: (clusterTop + clusterBottom) / 2 - tooltipH / 2 },
+  ];
+
+  const overlapArea = (candidate, top, bottom) => {
+    const overlapY = Math.max(0, Math.min(candidate.y + tooltipH, bottom) - Math.max(candidate.y, top));
+    return overlapY * tooltipW;
+  };
+
+  const distanceToRect = (candidate) => {
+    const dx = Math.max(candidate.x - pointX, 0, pointX - (candidate.x + tooltipW));
+    const dy = Math.max(candidate.y - pointY, 0, pointY - (candidate.y + tooltipH));
+    return Math.hypot(dx, dy);
+  };
+
+  const score = (candidate) => {
+    const coveredPoints = linePoints.filter(
+      (point) =>
+        point.x >= candidate.x - 8 &&
+        point.x <= candidate.x + tooltipW + 8 &&
+        point.y >= candidate.y - 8 &&
+        point.y <= candidate.y + tooltipH + 8
+    ).length;
+    const crossesPoint =
+      pointX >= candidate.x &&
+      pointX <= candidate.x + tooltipW &&
+      pointY >= candidate.y &&
+      pointY <= candidate.y + tooltipH;
+    return distanceToRect(candidate) * 12 + coveredPoints * 280 + overlapArea(candidate, lineBandTop, lineBandBottom) * 0.02 + (crossesPoint ? 10000 : 0);
+  };
+
+  const valid = candidates
+    .map((candidate) => ({
+      x: Math.max(plotLeft + pad, Math.min(plotRight - tooltipW - pad, candidate.x)),
+      y: Math.max(plotTop + pad, Math.min(plotBottom - tooltipH - pad, candidate.y)),
+    }))
+    .sort((a, b) => score(a) - score(b));
+
+  return valid[0];
+}
+
 export default function FundamentalsChart({
   series,
   average,
@@ -35,10 +101,43 @@ export default function FundamentalsChart({
     const rect = event.currentTarget.getBoundingClientRect();
     const svgX = ((event.clientX - rect.left) / rect.width) * width;
     const week = Math.max(weekStart, Math.min(weekEnd, Math.round(weekStart + ((svgX - margin.left) / plotW) * (weekEnd - weekStart))));
+    const pointX = x(week);
+    const weekValues = active
+      .map((item) => item.values.find((value) => value.week === week)?.value)
+      .filter((value) => Number.isFinite(value));
+    const weekYValues = weekValues.map((value) => y(value));
+    const pointY = weekYValues.length
+      ? weekYValues.reduce((sum, value) => sum + value, 0) / weekYValues.length
+      : margin.top + plotH / 2;
+    const clusterTop = weekYValues.length ? Math.min(...weekYValues) : pointY;
+    const clusterBottom = weekYValues.length ? Math.max(...weekYValues) : pointY;
+    const linePoints = active.flatMap((item) =>
+      item.values
+        .filter((value) => value.week >= weekStart && value.week <= weekEnd)
+        .map((value) => ({
+          x: (x(value.week) / width) * rect.width,
+          y: (y(value.value) / height) * rect.height,
+        }))
+    );
+    const position = tooltipPosition({
+      pointX: (pointX / width) * rect.width,
+      pointY: (pointY / height) * rect.height,
+      clusterTop: (clusterTop / height) * rect.height,
+      clusterBottom: (clusterBottom / height) * rect.height,
+      linePoints,
+      chartWidth: rect.width,
+      chartHeight: rect.height,
+      margin: {
+        top: (margin.top / height) * rect.height,
+        right: (margin.right / width) * rect.width,
+        bottom: (margin.bottom / height) * rect.height,
+        left: (margin.left / width) * rect.width,
+      },
+    });
     setTooltip({
       week,
-      x: Math.min(rect.width - 260, Math.max(12, event.clientX - rect.left + 14)),
-      y: Math.max(12, event.clientY - rect.top - 20),
+      x: position.x,
+      y: position.y,
     });
   };
 
