@@ -35,6 +35,32 @@ function formatSigned(value) {
   return `${sign}${fmt.format(value)}`;
 }
 
+function niceDomain(values) {
+  const finite = values.filter((value) => Number.isFinite(value));
+  if (!finite.length) return { min: -10000, max: 10000, step: 5000 };
+
+  const rawMin = Math.min(...finite, 0);
+  const rawMax = Math.max(...finite, 0);
+  const range = Math.max(1, rawMax - rawMin);
+  const rawStep = range / 5;
+  const power = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const fraction = rawStep / power;
+  const niceFraction = fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 5 ? 5 : 10;
+  const step = niceFraction * power;
+  const min = Math.floor(rawMin / step) * step;
+  const max = Math.ceil(rawMax / step) * step;
+
+  return { min, max: max === min ? min + step : max, step };
+}
+
+function netValue(row, metric) {
+  return metric === "weeklyChange" ? row.managedMoneyNetChange : row.managedMoneyNet;
+}
+
+function metricLabel(metric) {
+  return metric === "weeklyChange" ? "Weekly Change" : "Managed Money Net";
+}
+
 function cftcYearColor(year, years) {
   if (year === years.at(-1)) return "#d62828";
   return yearColor(year, years);
@@ -70,6 +96,7 @@ export default function FundamentalsCftc() {
   const [data, setData] = useState(null);
   const [commodity, setCommodity] = useState("");
   const [view, setView] = useState("seasonal");
+  const [metric, setMetric] = useState("net");
   const [selectedYears, setSelectedYears] = useState(new Set());
   const [showYearLabels, setShowYearLabels] = useState(true);
 
@@ -87,11 +114,19 @@ export default function FundamentalsCftc() {
 
   const commodityRows = useMemo(() => {
     if (!data || !commodity) return [];
-    return data.rows.filter((row) => row.commodity === commodity).sort((a, b) => a.date.localeCompare(b.date));
+    const sorted = data.rows.filter((row) => row.commodity === commodity).sort((a, b) => a.date.localeCompare(b.date));
+    return sorted.map((row, index) => {
+      const previous = sorted[index - 1];
+      return {
+        ...row,
+        managedMoneyNetChange: previous ? row.managedMoneyNet - previous.managedMoneyNet : 0,
+      };
+    });
   }, [data, commodity]);
 
   const availableYears = useMemo(() => [...new Set(commodityRows.map((row) => row.marketingYear))].sort(), [commodityRows]);
   const latest = data?.latest?.[commodity];
+  const latestRow = commodityRows.at(-1);
   const marketName = data?.markets?.find((market) => market.name === commodity)?.market || "";
 
   const handleCommodityChange = (nextCommodity) => {
@@ -131,6 +166,13 @@ export default function FundamentalsCftc() {
               <ToggleGroup value={view} onChange={setView} options={[{ value: "seasonal", label: "Seasonal" }, { value: "breakdown", label: "Breakdown" }]} />
             </section>
 
+            {view === "seasonal" && (
+              <section className="grid gap-2">
+                <label className="text-sm font-bold">Metric</label>
+                <ToggleGroup value={metric} onChange={setMetric} options={[{ value: "net", label: "Net" }, { value: "weeklyChange", label: "Weekly Change" }]} />
+              </section>
+            )}
+
             <section className="grid gap-2">
               <label className="text-sm font-bold">Marketing years</label>
               <div className="grid grid-cols-2 gap-2">
@@ -162,9 +204,10 @@ export default function FundamentalsCftc() {
         </aside>
 
         <section className="grid gap-5">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-5 gap-4">
             <SummaryCard label="Latest report" value={latest ? longDate.format(parseDate(latest.date)) : "-"} sub={marketName} />
             <SummaryCard label="Managed money net" value={latest ? formatSigned(latest.managedMoneyNet) : "-"} sub="Longs minus shorts" />
+            <SummaryCard label="Weekly change" value={latestRow ? formatSigned(latestRow.managedMoneyNetChange) : "-"} sub="From previous report" />
             <SummaryCard label="Net percentile" value={latest ? `${latest.netPercentile.toFixed(1)}%` : "-"} sub="Full available history" />
             <SummaryCard label="Open interest" value={latest ? fmt.format(latest.openInterest) : "-"} sub="Futures & options" />
           </div>
@@ -174,7 +217,7 @@ export default function FundamentalsCftc() {
               <div>
                 <p className="text-xs font-bold uppercase text-slate-500">{marketName}</p>
                 <h2 className="text-lg font-extrabold">
-                  {view === "seasonal" ? "Managed money net seasonal position" : "Current marketing year positioning breakdown"}
+                  {view === "seasonal" ? `${metricLabel(metric)} seasonal position` : "Current marketing year positioning breakdown"}
                 </h2>
               </div>
               {view === "seasonal" && (
@@ -194,7 +237,7 @@ export default function FundamentalsCftc() {
             </div>
 
             {view === "seasonal" ? (
-              <SeasonalPositionChart rows={commodityRows} years={availableYears} selectedYears={selectedYears} showYearLabels={showYearLabels} />
+              <SeasonalPositionChart rows={commodityRows} years={availableYears} selectedYears={selectedYears} showYearLabels={showYearLabels} metric={metric} />
             ) : (
               <BreakdownChart rows={commodityRows} latestYear={latest?.marketingYear} />
             )}
@@ -238,7 +281,7 @@ function BreakdownLegend() {
   );
 }
 
-function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
+function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels, metric }) {
   const [tooltip, setTooltip] = useState(null);
   const width = 1000;
   const height = 500;
@@ -247,16 +290,24 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
   const plotH = height - margin.top - margin.bottom;
   const activeYears = years.filter((year) => selectedYears.has(year));
   const activeRows = rows.filter((row) => selectedYears.has(row.marketingYear));
-  const values = activeRows.map((row) => row.managedMoneyNet);
-  const maxAbs = Math.max(100000, ...values.map((value) => Math.abs(value)));
-  const scale = niceScale(maxAbs, false);
-  const yMax = scale.max;
+  const values = activeRows.map((row) => netValue(row, metric)).filter((value) => Number.isFinite(value));
+  const scale = niceDomain(values);
   const maxSeasonDay = 364;
   const x = (date) => margin.left + (seasonDay(date) / maxSeasonDay) * plotW;
-  const y = (value) => margin.top + plotH - ((value + yMax) / (yMax * 2)) * plotH;
+  const y = (value) => margin.top + plotH - ((value - scale.min) / (scale.max - scale.min)) * plotH;
   const grouped = activeYears.map((year) => ({ year, values: rows.filter((row) => row.marketingYear === year) }));
   const currentYear = years.at(-1);
-  const currentRows = rows.filter((row) => row.marketingYear === currentYear);
+  const currentYearRows = rows.filter((row) => row.marketingYear === currentYear);
+  const weeklySnapDays = (() => {
+    const sourceRows = currentYearRows.length ? currentYearRows : activeRows;
+    if (!sourceRows.length) return [];
+    const days = sourceRows.map((row) => seasonDay(row.date)).sort((a, b) => a - b);
+    const step = 7;
+    for (let day = days.at(-1) + step; day <= maxSeasonDay; day += step) {
+      days.push(day);
+    }
+    return days;
+  })();
   const labelPlacements = (() => {
     const placed = [];
     const labelW = 42;
@@ -271,7 +322,7 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
         const index = Math.min(item.values.length - 1, Math.max(0, Math.floor(item.values.length * fraction)));
         const point = item.values[index];
         const baseX = x(point.date);
-        const baseY = y(point.managedMoneyNet);
+        const baseY = y(netValue(point, metric));
         const offsets = [
           { x: 0, y: -12 },
           { x: 0, y: 16 },
@@ -306,8 +357,8 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
 
       const fallback = best || (() => {
         const point = item.values[Math.min(item.values.length - 1, Math.floor(item.values.length * (0.2 + (seriesIndex % 5) * 0.14)))];
-        const box = { x: x(point.date) - labelW / 2, y: y(point.managedMoneyNet) - 20, w: labelW, h: labelH };
-        return { year: item.year, point, color: cftcYearColor(item.year, years), x: x(point.date), y: y(point.managedMoneyNet) - 12, box };
+        const box = { x: x(point.date) - labelW / 2, y: y(netValue(point, metric)) - 20, w: labelW, h: labelH };
+        return { year: item.year, point, color: cftcYearColor(item.year, years), x: x(point.date), y: y(netValue(point, metric)) - 12, box };
       })();
 
       placed.push({ box: fallback.box, year: item.year });
@@ -323,7 +374,7 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
           const distance = Math.abs(seasonDay(row.date) - targetDay);
           return !best || distance < best.distance ? { row, distance } : best;
         }, null);
-        return nearest?.distance <= 4 ? nearest.row : null;
+        return nearest?.distance <= 4 && Number.isFinite(netValue(nearest.row, metric)) ? nearest.row : null;
       })
       .filter(Boolean);
 
@@ -331,16 +382,18 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
     const rect = event.currentTarget.getBoundingClientRect();
     const svgX = ((event.clientX - rect.left) / rect.width) * width;
     const targetDay = Math.max(0, Math.min(maxSeasonDay, ((svgX - margin.left) / plotW) * maxSeasonDay));
-    const referencePool = currentRows.length ? currentRows : activeRows;
-    const nearest = referencePool.reduce((best, row) => {
-      const distance = Math.abs(seasonDay(row.date) - targetDay);
-      return !best || distance < best.distance ? { row, distance } : best;
+    const nearestSnap = weeklySnapDays.reduce((best, day) => {
+      const distance = Math.abs(day - targetDay);
+      return !best || distance < best.distance ? { day, distance } : best;
     }, null);
-    if (!nearest) return;
-    const snapDay = seasonDay(nearest.row.date);
+    if (!nearestSnap) return;
+    const snapDay = nearestSnap.day;
+    const referenceDate = new Date(2000, 8, 1);
+    referenceDate.setDate(referenceDate.getDate() + snapDay);
     setTooltip({
-      referenceRow: nearest.row,
       rows: selectedRowsForSeasonDay(snapDay),
+      xValue: margin.left + (snapDay / maxSeasonDay) * plotW,
+      title: shortDate.format(referenceDate),
       x: Math.min(rect.width - 260, Math.max(12, event.clientX - rect.left + 14)),
       y: Math.max(12, event.clientY - rect.top - 20),
     });
@@ -351,7 +404,7 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full min-h-[420px]" onMouseMove={handleMove} onMouseLeave={() => setTooltip(null)}>
-        {Array.from({ length: Math.floor((yMax * 2) / scale.step) + 1 }, (_, i) => -yMax + i * scale.step).map((value) => (
+        {Array.from({ length: Math.floor((scale.max - scale.min) / scale.step) + 1 }, (_, i) => scale.min + i * scale.step).map((value) => (
           <g key={value}>
             <line x1={margin.left} x2={width - margin.right} y1={y(value)} y2={y(value)} stroke={value === 0 ? "#94A3B8" : "#E2E8F0"} />
             <text x={margin.left - 10} y={y(value) + 4} textAnchor="end" fill="#637083" fontSize="11">{formatSigned(value)}</text>
@@ -372,7 +425,10 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
         {grouped.map((item) => {
           const isCurrent = item.year === years.at(-1);
           const color = cftcYearColor(item.year, years);
-          const path = item.values.map((point, index) => `${index ? "L" : "M"} ${x(point.date)} ${y(point.managedMoneyNet)}`).join(" ");
+          const path = item.values
+            .filter((point) => Number.isFinite(netValue(point, metric)))
+            .map((point, index) => `${index ? "L" : "M"} ${x(point.date)} ${y(netValue(point, metric))}`)
+            .join(" ");
           return <path key={item.year} d={path} fill="none" stroke={color} strokeWidth={isCurrent ? 4.2 : 2.2} opacity={isCurrent ? 1 : 0.75} />;
         })}
         {showYearLabels && labelPlacements.map((placement) => {
@@ -393,15 +449,15 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels }) {
             </text>
           );
         })}
-        {tooltip && <line x1={x(tooltip.referenceRow.date)} x2={x(tooltip.referenceRow.date)} y1={margin.top} y2={margin.top + plotH} stroke="#2f3a4a" strokeDasharray="4 4" opacity="0.5" />}
+        {tooltip && <line x1={tooltip.xValue} x2={tooltip.xValue} y1={margin.top} y2={margin.top + plotH} stroke="#2f3a4a" strokeDasharray="4 4" opacity="0.5" />}
       </svg>
       {tooltip && (
-        <TooltipBox x={tooltip.x} y={tooltip.y} title={longDate.format(parseDate(tooltip.referenceRow.date))}>
+        <TooltipBox x={tooltip.x} y={tooltip.y} title={tooltip.title}>
           {tooltip.rows.map((row) => (
             <TooltipRow
               key={row.marketingYear}
               label={row.marketingYear}
-              value={formatSigned(row.managedMoneyNet)}
+              value={formatSigned(netValue(row, metric))}
               color={cftcYearColor(row.marketingYear, years)}
             />
           ))}
@@ -422,11 +478,9 @@ function BreakdownChart({ rows, latestYear }) {
   const start = marketingYearStartDate(latestYear);
   const end = marketingYearEndDate(latestYear);
   const values = activeRows.flatMap((row) => [row.managedMoneyLong, -row.managedMoneyShort, row.managedMoneyNet]);
-  const maxAbs = Math.max(100000, ...values.map((value) => Math.abs(value)));
-  const scale = niceScale(maxAbs, false);
-  const yMax = scale.max;
+  const scale = niceDomain(values);
   const x = (date) => margin.left + ((parseDate(date).getTime() - start.getTime()) / (end.getTime() - start.getTime())) * plotW;
-  const y = (value) => margin.top + plotH - ((value + yMax) / (yMax * 2)) * plotH;
+  const y = (value) => margin.top + plotH - ((value - scale.min) / (scale.max - scale.min)) * plotH;
 
   const pathFor = (key, multiplier = 1) =>
     activeRows.map((point, index) => `${index ? "L" : "M"} ${x(point.date)} ${y(point[key] * multiplier)}`).join(" ");
@@ -452,7 +506,7 @@ function BreakdownChart({ rows, latestYear }) {
   return (
     <div className="relative">
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full min-h-[420px]" onMouseMove={handleMove} onMouseLeave={() => setTooltip(null)}>
-        {Array.from({ length: Math.floor((yMax * 2) / scale.step) + 1 }, (_, i) => -yMax + i * scale.step).map((value) => (
+        {Array.from({ length: Math.floor((scale.max - scale.min) / scale.step) + 1 }, (_, i) => scale.min + i * scale.step).map((value) => (
           <g key={value}>
             <line x1={margin.left} x2={width - margin.right} y1={y(value)} y2={y(value)} stroke={value === 0 ? "#94A3B8" : "#E2E8F0"} />
             <text x={margin.left - 10} y={y(value) + 4} textAnchor="end" fill="#637083" fontSize="11">{formatSigned(value)}</text>
