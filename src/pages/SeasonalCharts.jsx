@@ -1,15 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  CartesianGrid,
-  LabelList,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-  Brush,
-} from "recharts";
 import { loadAllCSVData } from "../components/dataLoader";
 
 const MAX_LEGS = 4;
@@ -18,11 +7,11 @@ const COMMODITIES = ["Wheat", "Soybeans", "White Maize", "Yellow Maize", "Sunflo
 const PROGRAMS = ["Long Term Charts", "History", "Calculator"];
 const LINE_COLORS = ["#111827", "#2563EB", "#059669", "#DC2626", "#A16207", "#7C3AED", "#0891B2", "#EA580C"];
 const COMMODITY_CODES = {
-  "White Maize": "WM",
-  "Yellow Maize": "YM",
-  Soybeans: "SB",
-  Sunflower: "FH",
-  Wheat: "WEA",
+  "White Maize": "WMAZ",
+  "Yellow Maize": "YMAZ",
+  Soybeans: "SOYB",
+  Sunflower: "SUNS",
+  Wheat: "WEAT",
 };
 const CONTRACT_MONTH_CODES = {
   Mar: "H",
@@ -47,10 +36,10 @@ const CONTRACT_MONTH_NUMBERS = {
 };
 
 const DEFAULT_LEGS = [
-  { quantity: 2, side: "long", commodity: "Wheat", contract: "Mar" },
-  { quantity: 1, side: "short", commodity: "Wheat", contract: "May" },
-  { quantity: 1, side: "long", commodity: "Wheat", contract: "Jul" },
-  { quantity: 1, side: "long", commodity: "Wheat", contract: "Sep" },
+  { quantity: 1, side: "long", commodity: "White Maize", contract: "Jul" },
+  { quantity: 1, side: "short", commodity: "White Maize", contract: "Dec" },
+  { quantity: 1, side: "long", commodity: "White Maize", contract: "Jul" },
+  { quantity: 1, side: "long", commodity: "White Maize", contract: "Sep" },
 ];
 
 function parseDate(value) {
@@ -170,18 +159,41 @@ function formatCurrency(value) {
   }).format(value);
 }
 
+function formatChartValue(value) {
+  if (value == null || Number.isNaN(value)) return "";
+  return new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(value);
+}
+
 function contractCode(leg, baseYear) {
   const commodity = COMMODITY_CODES[leg.commodity] || leg.commodity;
   const month = CONTRACT_MONTH_CODES[leg.contract] || leg.contract;
   return `${commodity}${month}${String(baseYear).slice(-2)}`;
 }
 
+function contractCodeWithoutYear(leg) {
+  const commodity = COMMODITY_CODES[leg.commodity] || leg.commodity;
+  const month = CONTRACT_MONTH_CODES[leg.contract] || leg.contract;
+  return `${commodity}${month}`;
+}
+
+function signedLegCode(leg, includeYear = false, year = null) {
+  const quantity = Number(leg.quantity) || 1;
+  const code = includeYear ? contractCode(leg, year) : contractCodeWithoutYear(leg);
+  const quantityPrefix = quantity === 1 ? "" : `${quantity}*`;
+  const sign = leg.side === "short" ? "-" : "";
+  return `${sign}${quantityPrefix}${code}`;
+}
+
 function contractLabelForYear(legs, numLegs, year) {
   return legs
     .slice(0, numLegs)
     .filter((leg) => leg.commodity && leg.contract)
-    .map((leg) => contractCode(leg, year))
-    .join(" - ");
+    .map((leg, index) => {
+      const label = signedLegCode(leg, true, year);
+      if (index === 0) return label;
+      return label.startsWith("-") ? label : `+${label}`;
+    })
+    .join(" ");
 }
 
 function buildConfig({ numLegs, legs, selectedYears, showLabels }) {
@@ -195,11 +207,14 @@ function buildConfig({ numLegs, legs, selectedYears, showLabels }) {
 
 function titleForConfig(config) {
   const activeLegs = config.legs.slice(0, config.numLegs);
-  if (activeLegs.length === 1) {
-    const leg = activeLegs[0];
-    return `${leg.contract} ${leg.commodity}`;
-  }
-  return activeLegs.map((leg) => `${leg.side === "short" ? "-" : ""}${leg.contract} ${leg.commodity}`).join(" / ");
+  return activeLegs
+    .filter((leg) => leg.commodity && leg.contract)
+    .map((leg, index) => {
+      const label = signedLegCode(leg);
+      if (index === 0) return label;
+      return label.startsWith("-") ? label : `+${label}`;
+    })
+    .join(" ");
 }
 
 function tabTitle(program, config) {
@@ -215,7 +230,7 @@ export default function SeasonalCharts() {
   const [csvData, setCsvData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [numLegs, setNumLegs] = useState(4);
+  const [numLegs, setNumLegs] = useState(2);
   const [legs, setLegs] = useState(DEFAULT_LEGS);
   const [selectedYears, setSelectedYears] = useState([]);
   const [availableYears, setAvailableYears] = useState([]);
@@ -598,7 +613,7 @@ export default function SeasonalCharts() {
                         : "border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
                     }`}
                   >
-                    Show labels
+                    {showLabels ? "Hide labels" : "Show labels"}
                   </button>
                   <button
                     type="button"
@@ -768,6 +783,13 @@ function YearSelectorRail({ availableYears, selectedYears, setSelectedYears, leg
 }
 
 function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [cursorX, setCursorX] = useState(null);
+  const [cursorY, setCursorY] = useState(null);
+  const [zoomRange, setZoomRange] = useState(null);
+  const [dragStart, setDragStart] = useState(null);
+  const [dragCurrent, setDragCurrent] = useState(null);
+
   if (chartData.length === 0) {
     return (
       <div className="flex h-full min-h-[440px] flex-1 items-center justify-center rounded border border-dashed border-slate-300 bg-white text-center text-slate-500">
@@ -779,64 +801,180 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs }) 
     );
   }
 
+  const width = 1320;
+  const height = 560;
+  const margin = { top: 24, right: 10, bottom: 40, left: 58 };
+  const plotW = width - margin.left - margin.right;
+  const plotH = height - margin.top - margin.bottom;
+  const sortedYears = [...selectedYears].sort((a, b) => b - a);
+  const fullStart = 0;
+  const fullEnd = chartData.length - 1;
+  const visibleStart = Math.max(fullStart, Math.min(zoomRange?.start ?? fullStart, fullEnd));
+  const visibleEnd = Math.max(visibleStart, Math.min(zoomRange?.end ?? fullEnd, fullEnd));
+  const visibleData = chartData.slice(visibleStart, visibleEnd + 1);
+  const activeVisibleIndex = Math.max(0, Math.min(activeIndex - visibleStart, visibleData.length - 1));
+  const activePoint = visibleData[activeVisibleIndex] || visibleData.at(-1);
+  const activeFullIndex = chartData.indexOf(activePoint);
+  const allVisibleValues = visibleData.flatMap((point) => sortedYears.map((year) => point[`year${year}`])).filter(Number.isFinite);
+  const domain = niceChartDomain(allVisibleValues);
+  const yTicks = [];
+  for (let value = domain.min; value <= domain.max + domain.step / 2; value += domain.step) yTicks.push(value);
+
+  const x = (index) => {
+    if (visibleData.length <= 1) return margin.left + plotW / 2;
+    return margin.left + ((index - visibleStart) / Math.max(1, visibleEnd - visibleStart)) * plotW;
+  };
+  const y = (value) => margin.top + plotH - ((value - domain.min) / Math.max(1, domain.max - domain.min)) * plotH;
+  const defaultCursorY = Math.max(margin.top, Math.min(height - margin.bottom, y(0)));
+  const cursorLineY = cursorY ?? defaultCursorY;
+  const cursorValue = domain.max - ((cursorLineY - margin.top) / plotH) * (domain.max - domain.min);
+  const nearestIndexFromClientX = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const svgX = ((event.clientX - rect.left) / rect.width) * width;
+    const ratio = Math.max(0, Math.min(1, (svgX - margin.left) / plotW));
+    return Math.round(visibleStart + ratio * Math.max(1, visibleEnd - visibleStart));
+  };
+  const activeRows = sortedYears
+    .map((year, index) => ({
+      year,
+      label: contractLabelForYear(legs, numLegs, year),
+      color: LINE_COLORS[index % LINE_COLORS.length],
+      value: nearestValueForYear(chartData, activeFullIndex, year),
+    }))
+    .filter((row) => Number.isFinite(row.value));
+  const activeX = x(activeFullIndex);
+  const cursorLineX = cursorX ?? activeX;
+  const xLabelCenter = Math.max(margin.left + 58, Math.min(width - margin.right - 58, cursorLineX));
+  const xTicks = visibleData.filter((_, index) => {
+    const targetTicks = Math.min(7, visibleData.length);
+    const step = Math.max(1, Math.floor(visibleData.length / targetTicks));
+    return index % step === 0 || index === visibleData.length - 1;
+  });
+  const labelRows = activeRows.map((row, index) => ({
+    ...row,
+    x: activeX + 10,
+    y: Math.max(margin.top + 14, Math.min(height - margin.bottom - 10, y(row.value) + (index % 2 ? 10 : -10))),
+  }));
+  const dragLeft = dragStart == null || dragCurrent == null ? null : Math.min(x(dragStart), x(dragCurrent));
+  const dragRight = dragStart == null || dragCurrent == null ? null : Math.max(x(dragStart), x(dragCurrent));
+
   return (
     <div className="h-full min-h-[520px] flex-1 rounded border border-slate-200 bg-white p-2 shadow-sm">
-      <ChartLegend selectedYears={selectedYears} legs={legs} numLegs={numLegs} />
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData} margin={{ top: 8, right: 18, bottom: 16, left: 12 }}>
-          <CartesianGrid stroke="#CCD6E2" strokeDasharray="2 2" />
-          <XAxis dataKey="label" stroke="#64748B" tick={{ fontSize: 10 }} minTickGap={24} />
-          <YAxis
-            stroke="#64748B"
-            tick={{ fontSize: 10 }}
-            tickFormatter={(value) => formatCurrency(value)}
-            width={92}
-          />
-          <Tooltip
-            content={({ active, label, payload }) => (
-              <NearestTooltip
-                active={active}
-                label={label}
-                payload={payload}
-                chartData={chartData}
-                selectedYears={selectedYears}
-                legs={legs}
-                numLegs={numLegs}
-              />
-            )}
-          />
-          {[...selectedYears].sort((a, b) => b - a).map((year, index) => (
-            <Line
-              key={year}
-              type="linear"
-              dataKey={`year${year}`}
-              name={`year${year}`}
-              stroke={LINE_COLORS[index % LINE_COLORS.length]}
-              strokeWidth={index === 0 ? 2 : 1.35}
-              dot={false}
-              connectNulls
-              isAnimationActive={false}
-            >
-              {showLabels && (
-                <LabelList
-                  dataKey={`year${year}`}
-                  position="top"
-                  formatter={(value) => Math.round(value / 1000)}
-                  style={{ fill: LINE_COLORS[index % LINE_COLORS.length], fontSize: 9, fontWeight: 800 }}
-                />
-              )}
-            </Line>
+      <ChartLegend rows={activeRows} />
+      <div className="relative h-[calc(100%-26px)] min-h-[500px]">
+        {zoomRange && (
+          <button
+            type="button"
+            onClick={() => setZoomRange(null)}
+            className="absolute right-3 top-3 z-10 rounded bg-blue-600 px-3 py-1 text-[11px] font-extrabold text-white shadow hover:bg-blue-700"
+          >
+            Reset zoom
+          </button>
+        )}
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          preserveAspectRatio="none"
+          className="h-full w-full select-none"
+          onMouseMove={(event) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            const svgX = ((event.clientX - rect.left) / rect.width) * width;
+            const svgY = ((event.clientY - rect.top) / rect.height) * height;
+            const index = nearestIndexFromClientX(event);
+            setActiveIndex(index);
+            setCursorX(Math.max(margin.left, Math.min(width - margin.right, svgX)));
+            setCursorY(Math.max(margin.top, Math.min(height - margin.bottom, svgY)));
+            if (dragStart != null) setDragCurrent(index);
+          }}
+          onMouseDown={(event) => {
+            const index = nearestIndexFromClientX(event);
+            setDragStart(index);
+            setDragCurrent(index);
+          }}
+          onMouseUp={() => {
+            if (dragStart != null && dragCurrent != null && Math.abs(dragCurrent - dragStart) > 3) {
+              setZoomRange({ start: Math.min(dragStart, dragCurrent), end: Math.max(dragStart, dragCurrent) });
+              setActiveIndex(Math.min(dragStart, dragCurrent));
+            }
+            setDragStart(null);
+            setDragCurrent(null);
+          }}
+        >
+          <rect x={0} y={0} width={width} height={height} fill="#fff" />
+
+          {yTicks.map((value) => (
+            <g key={value}>
+              <line x1={margin.left} y1={y(value)} x2={width - margin.right} y2={y(value)} stroke="#d1d5db" strokeWidth="1" />
+              <text x={margin.left - 10} y={y(value) + 4} textAnchor="end" fill="#111827" fontSize="10">
+                {formatChartValue(value)}
+              </text>
+            </g>
           ))}
-          <Brush
-            dataKey="label"
-            height={18}
-            travellerWidth={8}
-            stroke="#64748B"
-            fill="#F8FAFC"
-            tickFormatter={() => ""}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+
+          {xTicks.map((point) => (
+            <g key={point.dateKey}>
+              <line x1={x(chartData.indexOf(point))} y1={margin.top} x2={x(chartData.indexOf(point))} y2={height - margin.bottom} stroke="#d1d5db" strokeWidth="1" />
+              <text x={x(chartData.indexOf(point))} y={height - 12} textAnchor="middle" fill="#111827" fontSize="10">
+                {point.label}
+              </text>
+            </g>
+          ))}
+
+          <line x1={margin.left} y1={y(0)} x2={width - margin.right} y2={y(0)} stroke="#6b7280" strokeWidth="1" />
+          <line x1={margin.left} y1={margin.top} x2={margin.left} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
+          <line x1={margin.left} y1={height - margin.bottom} x2={width - margin.right} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
+
+          {sortedYears.map((year, index) => {
+            const points = visibleData
+              .map((point) => ({ point, value: point[`year${year}`], fullIndex: chartData.indexOf(point) }))
+              .filter((point) => Number.isFinite(point.value))
+              .map((point) => ({ x: x(point.fullIndex), y: y(point.value) }));
+            if (points.length < 2) return null;
+            return (
+              <path
+                key={year}
+                d={pathFromPoints(points)}
+                fill="none"
+                stroke={LINE_COLORS[index % LINE_COLORS.length]}
+                strokeWidth={index === 0 ? 2.2 : 1.2}
+                strokeLinejoin="round"
+                strokeLinecap="round"
+              />
+            );
+          })}
+
+          <line x1={cursorLineX} y1={margin.top} x2={cursorLineX} y2={height - margin.bottom} stroke="#6b7280" strokeDasharray="3 3" />
+          <line x1={margin.left} y1={cursorLineY} x2={width - margin.right} y2={cursorLineY} stroke="#6b7280" strokeDasharray="3 3" />
+          <g>
+            <rect x={margin.left - 66} y={cursorLineY - 12} width="48" height="20" rx="2" fill="#020617" />
+            <polygon points={`${margin.left - 18},${cursorLineY - 7} ${margin.left - 10},${cursorLineY} ${margin.left - 18},${cursorLineY + 7}`} fill="#020617" />
+            <text x={margin.left - 42} y={cursorLineY + 4} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="800">
+              {formatChartValue(cursorValue)}
+            </text>
+          </g>
+          <g>
+            <rect x={xLabelCenter - 58} y={height - margin.bottom + 12} width="116" height="22" rx="2" fill="#020617" />
+            <polygon points={`${cursorLineX - 5},${height - margin.bottom + 12} ${cursorLineX},${height - margin.bottom + 6} ${cursorLineX + 5},${height - margin.bottom + 12}`} fill="#020617" />
+            <text x={xLabelCenter} y={height - margin.bottom + 27} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="800">
+              {activePoint?.label}
+            </text>
+          </g>
+
+          {showLabels &&
+            labelRows.map((row) => (
+              <g key={row.year}>
+                <line x1={activeX} y1={y(row.value)} x2={row.x - 3} y2={row.y - 5} stroke={row.color} strokeWidth="1" opacity="0.65" />
+                <rect x={row.x} y={row.y - 16} width={Math.min(230, Math.max(112, row.label.length * 6.2 + 42))} height="20" rx="3" fill={row.color} opacity="0.95" />
+                <text x={row.x + 8} y={row.y - 2} fill="#fff" fontSize="10" fontWeight="800">
+                  {row.label}: {formatChartValue(row.value)}
+                </text>
+              </g>
+            ))}
+
+          {dragLeft != null && dragRight != null && (
+            <rect x={dragLeft} y={margin.top} width={Math.max(1, dragRight - dragLeft)} height={plotH} fill="#2563eb" opacity="0.14" />
+          )}
+        </svg>
+      </div>
     </div>
   );
 }
@@ -856,44 +994,42 @@ function nearestValueForYear(chartData, activeIndex, year) {
   return null;
 }
 
-function NearestTooltip({ active, label, chartData, selectedYears, legs, numLegs }) {
-  if (!active || !label) return null;
+function niceChartDomain(values) {
+  const finite = values.filter((value) => Number.isFinite(value));
+  if (!finite.length) return { min: 0, max: 100, step: 20 };
 
-  const activeIndex = chartData.findIndex((point) => point.label === label);
-  if (activeIndex < 0) return null;
+  let min = Math.min(...finite);
+  let max = Math.max(...finite);
+  if (min === max) {
+    min -= 10;
+    max += 10;
+  }
 
-  const years = [...selectedYears].sort((a, b) => b - a);
-  const rows = years
-    .map((year, index) => ({
-      year,
-      label: contractLabelForYear(legs, numLegs, year),
-      color: LINE_COLORS[index % LINE_COLORS.length],
-      value: nearestValueForYear(chartData, activeIndex, year),
-    }))
-    .filter((row) => Number.isFinite(row.value));
+  const span = max - min;
+  const rawStep = span / 6;
+  const power = Math.pow(10, Math.floor(Math.log10(Math.max(1, rawStep))));
+  const fraction = rawStep / power;
+  const niceFraction = fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 5 ? 5 : 10;
+  const step = niceFraction * power;
 
-  if (!rows.length) return null;
-
-  return (
-    <div className="rounded border border-slate-300 bg-white/95 px-3 py-2 text-[11px] shadow-xl">
-      <div className="mb-1 font-extrabold text-slate-950">{label}</div>
-      {rows.map((row) => (
-        <div key={row.year} className="flex min-w-44 justify-between gap-4 py-0.5 font-bold" style={{ color: row.color }}>
-          <span>{row.label}</span>
-          <strong>{formatCurrency(row.value)}</strong>
-        </div>
-      ))}
-    </div>
-  );
+  return {
+    min: Math.floor(min / step) * step,
+    max: Math.ceil(max / step) * step,
+    step,
+  };
 }
 
-function ChartLegend({ selectedYears, legs, numLegs }) {
+function pathFromPoints(points) {
+  return points.map((point, index) => `${index ? "L" : "M"} ${point.x} ${point.y}`).join(" ");
+}
+
+function ChartLegend({ rows }) {
   return (
     <div className="mb-1 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 border-b border-slate-100 pb-1 text-[11px] font-bold text-slate-600">
-      {[...selectedYears].sort((a, b) => b - a).map((year, index) => (
-        <div key={year} className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-sm" style={{ backgroundColor: LINE_COLORS[index % LINE_COLORS.length] }} />
-          <span>{contractLabelForYear(legs, numLegs, year)}</span>
+      {rows.map((row) => (
+        <div key={row.year} className="flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-sm" style={{ backgroundColor: row.color }} />
+          <span>{row.label}: {formatChartValue(row.value)}</span>
         </div>
       ))}
     </div>
