@@ -16,6 +16,10 @@ import LongTermChart  from "./pages/LongTermCharts";
 import FundamentalsDeliveries from "./pages/FundamentalsDeliveries";
 import FundamentalsExports from "./pages/FundamentalsExports";
 import FundamentalsCftc from "./pages/FundamentalsCftc";
+import BalanceSheetWheat from "./pages/BalanceSheetWheat";
+import BalanceSheetSoybeans from "./pages/BalanceSheetSoybeans";
+import BalanceSheetSunflowers from "./pages/BalanceSheetSunflowers";
+import BalanceSheetMaize from "./pages/BalanceSheetMaize";
 
 // NEW PAGE
 import LongTermCharts from "./pages/LongTermCharts";
@@ -44,6 +48,10 @@ function App() {
         <Route path="/fundamentals/deliveries" element={<FundamentalsDeliveries />} />
         <Route path="/fundamentals/imports-exports" element={<FundamentalsExports />} />
         <Route path="/fundamentals/cftc" element={<FundamentalsCftc />} />
+        <Route path="/balance-sheet/wheat" element={<BalanceSheetWheat />} />
+        <Route path="/balance-sheet/soybeans" element={<BalanceSheetSoybeans />} />
+        <Route path="/balance-sheet/sunflowers" element={<BalanceSheetSunflowers />} />
+        <Route path="/balance-sheet/maize" element={<BalanceSheetMaize />} />
 
 
         {/* NEW LONG-TERM CHARTS MODULE */}

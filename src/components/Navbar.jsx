@@ -4,6 +4,7 @@ import Logo from "../assets/logo.png"; // adjust if needed
 
 function Navbar() {
   const [fundamentalsOpen, setFundamentalsOpen] = useState(false);
+  const [balanceSheetOpen, setBalanceSheetOpen] = useState(false);
 
   return (
     <nav className="w-full bg-[#0a1128] text-white shadow-md border-b border-gray-700">
@@ -84,6 +85,53 @@ function Navbar() {
                   S&D Hub
                 </NavLink>
 
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* BALANCE SHEET DROPDOWN */}
+          <div
+            className="relative"
+            onMouseEnter={() => setBalanceSheetOpen(true)}
+            onMouseLeave={() => setBalanceSheetOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setBalanceSheetOpen((open) => !open)}
+              className="hover:text-yellow-300 flex items-center space-x-1"
+            >
+              <span>Balance Sheet</span>
+              <span className="text-xs">▼</span>
+            </button>
+
+            {balanceSheetOpen && (
+              <div className="absolute left-0 top-full w-44 pt-3 z-50">
+                <div className="bg-[#0f1629] border border-gray-700 rounded-lg shadow-lg overflow-hidden">
+                  <NavLink
+                    to="/balance-sheet/wheat"
+                    className="block px-4 py-2 hover:bg-gray-800"
+                  >
+                    Wheat
+                  </NavLink>
+                  <NavLink
+                    to="/balance-sheet/maize"
+                    className="block px-4 py-2 hover:bg-gray-800"
+                  >
+                    Maize
+                  </NavLink>
+                  <NavLink
+                    to="/balance-sheet/soybeans"
+                    className="block px-4 py-2 hover:bg-gray-800"
+                  >
+                    Soybeans
+                  </NavLink>
+                  <NavLink
+                    to="/balance-sheet/sunflowers"
+                    className="block px-4 py-2 hover:bg-gray-800"
+                  >
+                    Sunflowers
+                  </NavLink>
                 </div>
               </div>
             )}
