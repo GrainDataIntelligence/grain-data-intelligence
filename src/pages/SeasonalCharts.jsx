@@ -5,7 +5,8 @@ const MAX_LEGS = 4;
 const HEDGING_MONTHS = ["Mar", "May", "Jul", "Sep", "Dec"];
 const COMMODITIES = ["Wheat", "Soybeans", "White Maize", "Yellow Maize", "Sunflower"];
 const PROGRAMS = ["Long Term Charts", "History", "Calculator"];
-const LINE_COLORS = ["#111827", "#2563EB", "#059669", "#DC2626", "#A16207", "#7C3AED", "#0891B2", "#EA580C"];
+const CURRENT_YEAR_COLOR = "#DC2626";
+const YEAR_COLORS = ["#2563EB", "#059669", "#A16207", "#7C3AED", "#0891B2", "#EA580C", "#64748B", "#111827"];
 const COMMODITY_CODES = {
   "White Maize": "WMAZ",
   "Yellow Maize": "YMAZ",
@@ -164,6 +165,76 @@ function formatChartValue(value) {
   return new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(value);
 }
 
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function colorForYear(year, latestYear) {
+  if (year === latestYear) return CURRENT_YEAR_COLOR;
+  return YEAR_COLORS[Math.abs(Number(year)) % YEAR_COLORS.length];
+}
+
+function buildHoverLabelRows(rows, activeX, yScale, plotBounds) {
+  const labelHeight = 20;
+  const labelGap = 4;
+  const plotLeft = plotBounds.left + 4;
+  const plotRight = plotBounds.right - 4;
+  const plotTop = plotBounds.top + 4;
+  const plotBottom = plotBounds.bottom - 4;
+
+  const measuredRows = rows.map((row) => {
+    const text = `${row.label}: ${formatChartValue(row.value)}`;
+    const width = Math.min(340, Math.max(132, text.length * 6.6 + 24));
+    return {
+      ...row,
+      text,
+      width,
+      targetY: yScale(row.value),
+    };
+  });
+
+  const maxWidth = Math.max(...measuredRows.map((row) => row.width), 112);
+  const side = activeX + 12 + maxWidth > plotRight ? "left" : "right";
+  const laidOutRows = measuredRows
+    .map((row) => ({
+      ...row,
+      y: clamp(row.targetY - labelHeight / 2, plotTop, plotBottom - labelHeight),
+    }))
+    .sort((a, b) => a.y - b.y);
+
+  for (let index = 1; index < laidOutRows.length; index += 1) {
+    const previous = laidOutRows[index - 1];
+    laidOutRows[index].y = Math.max(laidOutRows[index].y, previous.y + labelHeight + labelGap);
+  }
+
+  const overflow = laidOutRows.at(-1)?.y + labelHeight - plotBottom;
+  if (overflow > 0) {
+    laidOutRows.forEach((row) => {
+      row.y -= overflow;
+    });
+  }
+
+  const underflow = plotTop - (laidOutRows[0]?.y ?? plotTop);
+  if (underflow > 0) {
+    laidOutRows.forEach((row) => {
+      row.y += underflow;
+    });
+  }
+
+  return laidOutRows.map((row) => {
+    const x = side === "left"
+      ? clamp(activeX - 10 - row.width, plotLeft, plotRight - row.width)
+      : clamp(activeX + 10, plotLeft, plotRight - row.width);
+
+    return {
+      ...row,
+      x,
+      connectorX: side === "left" ? x + row.width + 3 : x - 3,
+      connectorY: row.y + labelHeight / 2,
+    };
+  });
+}
+
 function contractCode(leg, baseYear) {
   const commodity = COMMODITY_CODES[leg.commodity] || leg.commodity;
   const month = CONTRACT_MONTH_CODES[leg.contract] || leg.contract;
@@ -226,6 +297,34 @@ function saveStoredLayouts(layouts) {
   localStorage.setItem("seasonalChartsSavedAnalyses", JSON.stringify(layouts));
 }
 
+function availableYearsForChart(csvData, legs, numLegs) {
+  if (!csvData) return [];
+
+  const activeLegs = legs
+    .slice(0, numLegs)
+    .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
+
+  if (!activeLegs.length) return [];
+
+  const yearSets = activeLegs.map((leg) => {
+    const contracts = csvData[leg.commodity] ?? {};
+    return new Set(
+      Object.keys(contracts)
+        .map((key) => {
+          const [month, year] = key.split("-");
+          return month === leg.contract ? Number(year) : null;
+        })
+        .filter(Number.isFinite)
+    );
+  });
+
+  if (yearSets.some((set) => set.size === 0)) return [];
+
+  return [...yearSets[0]]
+    .filter((year) => yearSets.every((set) => set.has(year)))
+    .sort((a, b) => b - a);
+}
+
 export default function SeasonalCharts() {
   const [csvData, setCsvData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -233,7 +332,6 @@ export default function SeasonalCharts() {
   const [numLegs, setNumLegs] = useState(2);
   const [legs, setLegs] = useState(DEFAULT_LEGS);
   const [selectedYears, setSelectedYears] = useState([]);
-  const [availableYears, setAvailableYears] = useState([]);
   const [showLabels, setShowLabels] = useState(false);
   const [savedAnalyses, setSavedAnalyses] = useState([]);
   const [saveName, setSaveName] = useState("");
@@ -249,16 +347,6 @@ export default function SeasonalCharts() {
         const data = await loadAllCSVData();
         setCsvData(data);
         setError(null);
-
-        if (data?.Wheat && Object.keys(data.Wheat).length > 0) {
-          const years = Object.keys(data.Wheat)
-            .map((key) => parseInt(key.split("-")[1], 10))
-            .filter((value, index, all) => all.indexOf(value) === index)
-            .sort((a, b) => b - a);
-
-          setAvailableYears(years);
-          setSelectedYears(years.slice(0, 5));
-        }
       } catch (err) {
         setError(`Failed to load data: ${err.message}`);
         console.error("Data loading error:", err);
@@ -278,6 +366,20 @@ export default function SeasonalCharts() {
       console.error("Error loading saved analyses:", err);
     }
   }, []);
+
+  const availableYears = useMemo(
+    () => availableYearsForChart(csvData, legs, numLegs),
+    [csvData, legs, numLegs]
+  );
+
+  useEffect(() => {
+    if (!availableYears.length) return;
+
+    setSelectedYears((currentYears) => {
+      const validYears = currentYears.filter((year) => availableYears.includes(year));
+      return validYears.length ? validYears : availableYears.slice(0, 5);
+    });
+  }, [availableYears]);
 
   const currentConfig = useMemo(
     () => buildConfig({ numLegs, legs, selectedYears, showLabels }),
@@ -654,7 +756,7 @@ export default function SeasonalCharts() {
                 numLegs={numLegs}
               />
               {program === "Long Term Charts" ? (
-                <SeasonalChart chartData={chartData} selectedYears={selectedYears} showLabels={showLabels} legs={legs} numLegs={numLegs} />
+                <SeasonalChart chartData={chartData} selectedYears={selectedYears} showLabels={showLabels} legs={legs} numLegs={numLegs} latestYear={availableYears[0]} />
               ) : (
                 <ProgramPlaceholder program={program} />
               )}
@@ -782,7 +884,7 @@ function YearSelectorRail({ availableYears, selectedYears, setSelectedYears, leg
   );
 }
 
-function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs }) {
+function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, latestYear }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cursorX, setCursorX] = useState(null);
   const [cursorY, setCursorY] = useState(null);
@@ -835,10 +937,10 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs }) 
     return Math.round(visibleStart + ratio * Math.max(1, visibleEnd - visibleStart));
   };
   const activeRows = sortedYears
-    .map((year, index) => ({
+    .map((year) => ({
       year,
       label: contractLabelForYear(legs, numLegs, year),
-      color: LINE_COLORS[index % LINE_COLORS.length],
+      color: colorForYear(year, latestYear),
       value: nearestValueForYear(chartData, activeFullIndex, year),
     }))
     .filter((row) => Number.isFinite(row.value));
@@ -850,11 +952,12 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs }) 
     const step = Math.max(1, Math.floor(visibleData.length / targetTicks));
     return index % step === 0 || index === visibleData.length - 1;
   });
-  const labelRows = activeRows.map((row, index) => ({
-    ...row,
-    x: activeX + 10,
-    y: Math.max(margin.top + 14, Math.min(height - margin.bottom - 10, y(row.value) + (index % 2 ? 10 : -10))),
-  }));
+  const labelRows = buildHoverLabelRows(activeRows, activeX, y, {
+    left: margin.left,
+    right: width - margin.right,
+    top: margin.top,
+    bottom: height - margin.bottom,
+  });
   const dragLeft = dragStart == null || dragCurrent == null ? null : Math.min(x(dragStart), x(dragCurrent));
   const dragRight = dragStart == null || dragCurrent == null ? null : Math.max(x(dragStart), x(dragCurrent));
 
@@ -923,7 +1026,7 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs }) 
           <line x1={margin.left} y1={margin.top} x2={margin.left} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
           <line x1={margin.left} y1={height - margin.bottom} x2={width - margin.right} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
 
-          {sortedYears.map((year, index) => {
+          {sortedYears.map((year) => {
             const points = visibleData
               .map((point) => ({ point, value: point[`year${year}`], fullIndex: chartData.indexOf(point) }))
               .filter((point) => Number.isFinite(point.value))
@@ -934,8 +1037,8 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs }) 
                 key={year}
                 d={pathFromPoints(points)}
                 fill="none"
-                stroke={LINE_COLORS[index % LINE_COLORS.length]}
-                strokeWidth={index === 0 ? 2.2 : 1.2}
+                stroke={colorForYear(year, latestYear)}
+                strokeWidth={year === latestYear ? 2.4 : 1.2}
                 strokeLinejoin="round"
                 strokeLinecap="round"
               />
@@ -962,10 +1065,10 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs }) 
           {showLabels &&
             labelRows.map((row) => (
               <g key={row.year}>
-                <line x1={activeX} y1={y(row.value)} x2={row.x - 3} y2={row.y - 5} stroke={row.color} strokeWidth="1" opacity="0.65" />
-                <rect x={row.x} y={row.y - 16} width={Math.min(230, Math.max(112, row.label.length * 6.2 + 42))} height="20" rx="3" fill={row.color} opacity="0.95" />
-                <text x={row.x + 8} y={row.y - 2} fill="#fff" fontSize="10" fontWeight="800">
-                  {row.label}: {formatChartValue(row.value)}
+                <line x1={activeX} y1={y(row.value)} x2={row.connectorX} y2={row.connectorY} stroke={row.color} strokeWidth="1" opacity="0.65" />
+                <rect x={row.x} y={row.y} width={row.width} height="20" rx="3" fill={row.color} opacity="0.95" />
+                <text x={row.x + 8} y={row.y + 14} fill="#fff" fontSize="10" fontWeight="800">
+                  {row.text}
                 </text>
               </g>
             ))}
