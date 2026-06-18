@@ -82,6 +82,7 @@ export default function FundamentalsChart({
   weekEnd = 52,
   calendarStartMonth = 5,
   referenceYear,
+  showLabels = true,
   height = 480,
   emptyText = "Select at least one marketing year",
 }) {
@@ -251,7 +252,7 @@ export default function FundamentalsChart({
         )}
       </svg>
 
-      {tooltipRows?.length > 0 && (
+      {showLabels && tooltipRows?.length > 0 && (
         <div
           className="pointer-events-none absolute z-20 min-w-[190px] max-w-[280px] rounded-md border border-slate-300 bg-white/95 px-3 py-2 text-xs shadow-xl"
           style={{ left: tooltip.x, top: tooltip.y }}

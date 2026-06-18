@@ -4,7 +4,7 @@ import { averageColor, fmt, yearColor } from "./fundamentalsUtils";
 const featuredMetricKeys = new Set(["producerDeliveries", "imports", "totalSupply", "localDemand", "exports", "totalDemand", "unutilizedClosingStock", "endingStocks"]);
 const chartWidth = 1040;
 const chartHeight = 430;
-const margin = { top: 30, right: 28, bottom: 54, left: 82 };
+const margin = { top: 26, right: 8, bottom: 46, left: 68 };
 const plotWidth = chartWidth - margin.left - margin.right;
 const plotHeight = chartHeight - margin.top - margin.bottom;
 
@@ -23,16 +23,6 @@ function ToggleGroup({ value, onChange, options }) {
           {option.label}
         </button>
       ))}
-    </div>
-  );
-}
-
-function SummaryCard({ label, value, sub }) {
-  return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-xl shadow-slate-200/60">
-      <p className="text-xs font-bold uppercase text-slate-500">{label}</p>
-      <p className="mt-2 text-2xl font-extrabold text-slate-950">{value}</p>
-      {sub && <p className="mt-1 text-xs text-slate-500">{sub}</p>}
     </div>
   );
 }
@@ -166,7 +156,7 @@ function BalanceSheetChart({ months, series, average, selectedYears, allYears, m
   };
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/60">
+    <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-xl shadow-slate-200/60">
       <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-xs font-bold uppercase text-slate-500">{view} Balance Sheet</p>
@@ -193,7 +183,8 @@ function BalanceSheetChart({ months, series, average, selectedYears, allYears, m
       <div className="relative overflow-hidden">
         <svg
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-          className="h-[520px] w-full select-none overflow-visible"
+          preserveAspectRatio="none"
+          className="h-[560px] w-full select-none overflow-visible"
           onMouseMove={handleMove}
           onMouseLeave={() => setHover(null)}
         >
@@ -319,6 +310,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
   }, [data, filteredRows, metric, mode, metricMeta]);
 
   const availableYears = data?.years || [];
+  const displayYears = [...availableYears].reverse();
   const activeSeries = series.filter((item) => selectedYears.has(item.year));
   const latestYear = [...selectedYears].sort().at(-1) || availableYears.at(-1);
   const latestSeries = series.find((item) => item.year === latestYear);
@@ -326,18 +318,6 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
   const average = useMemo(() => averageSeries(series, selectedYears, availableYears, showAverage), [series, selectedYears, availableYears, showAverage]);
   const averageComparable = latestPoint ? average?.values.find((point) => point.monthOrder === latestPoint.monthOrder) : null;
   const latestPublication = data?.publicationDates?.at(-1);
-
-  const quickValues = useMemo(() => {
-    if (!data) return [];
-    const metrics = data.metrics.length > 6 ? data.metrics.filter((item) => featuredMetricKeys.has(item.key)).slice(0, 6) : data.metrics;
-    return metrics.map((item) => {
-      const metricSeries = buildSeries(filteredRows, item.key, "monthly", item.type).find((entry) => entry.year === latestYear);
-      return {
-        ...item,
-        value: metricSeries?.values.at(-1)?.value || 0,
-      };
-    });
-  }, [data, filteredRows, latestYear]);
 
   if (!data || !metricMeta) {
     return <div className="min-h-screen bg-slate-100 p-8 text-slate-700">Loading balance sheet...</div>;
@@ -396,7 +376,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
                 </button>
               </div>
               <div className="grid max-h-64 grid-cols-2 gap-2 overflow-auto text-sm">
-                {availableYears.map((year) => (
+                {displayYears.map((year) => (
                   <label key={year} className="flex items-center gap-2">
                     <input
                       type="checkbox"
@@ -425,30 +405,6 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
         </aside>
 
         <section className="grid gap-5">
-          <div className="grid grid-cols-4 gap-4">
-            <SummaryCard label="Latest selected year" value={latestYear || "-"} sub={latestPoint ? `${latestPoint.month} ${latestPoint.calendarYear || ""}` : ""} />
-            <SummaryCard label={metricMeta.label} value={latestPoint ? `${fmt.format(latestPoint.value)} tons` : "-"} sub={mode === "cumulative" && metricMeta.type !== "stock" ? "Cumulative value" : "Monthly value"} />
-            <SummaryCard label="Vs 5-year average" value={latestPoint && averageComparable ? `${fmt.format(latestPoint.value - averageComparable.value)} tons` : "-"} sub={average?.sourceYears?.join(", ")} />
-            <SummaryCard label="Selected years" value={String(selectedYears.size)} sub={`${activeSeries.length} series displayed`} />
-          </div>
-
-          <div className="grid grid-cols-3 gap-3">
-            {quickValues.map((item) => (
-              <button
-                key={item.key}
-                type="button"
-                onClick={() => setMetric(item.key)}
-                className={`rounded-lg border p-4 text-left shadow-sm transition ${
-                  metric === item.key ? "border-slate-900 bg-slate-900 text-white" : "border-slate-200 bg-white text-slate-900 hover:border-slate-400"
-                }`}
-              >
-                <p className={`text-xs font-bold uppercase ${metric === item.key ? "text-slate-300" : "text-slate-500"}`}>{item.label}</p>
-                <p className="mt-2 text-xl font-extrabold">{fmt.format(item.value)} tons</p>
-                <p className={`mt-1 text-xs ${metric === item.key ? "text-slate-300" : "text-slate-500"}`}>{latestYear}</p>
-              </button>
-            ))}
-          </div>
-
           <BalanceSheetChart
             months={data.months}
             series={series}
