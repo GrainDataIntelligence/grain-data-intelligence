@@ -94,9 +94,12 @@ export default function FundamentalsChart({
   const active = useMemo(() => [...series, ...(average ? [average] : [])], [series, average]);
   const axisReferenceYear = referenceYear || [...series].sort((a, b) => a.year.localeCompare(b.year)).at(-1)?.year;
   const allPoints = active.flatMap((item) => item.values);
-  const scale = niceScale(Math.max(1, ...allPoints.map((point) => point.value)), valueKind === "percent");
+  const pointValues = allPoints.map((point) => point.value).filter((value) => Number.isFinite(value));
+  const maxValue = pointValues.length ? Math.max(...pointValues) : 1;
+  const minValue = pointValues.length ? Math.min(...pointValues) : 0;
+  const scale = niceScale(Math.max(1, maxValue), valueKind === "percent", minValue, valueKind === "percent" && chartType !== "bar");
   const x = (week) => margin.left + ((week - weekStart) / Math.max(1, weekEnd - weekStart)) * plotW;
-  const y = (value) => margin.top + plotH - (value / scale.max) * plotH;
+  const y = (value) => margin.top + plotH - ((value - scale.min) / Math.max(1, scale.max - scale.min)) * plotH;
 
   const handleMove = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -157,6 +160,9 @@ export default function FundamentalsChart({
   const groups = Math.max(1, active.length);
   const band = x(weekStart + 1) - x(weekStart) || 14;
   const barW = Math.max(2, Math.min(18, (band * 0.78) / groups));
+  const yTicks = Array.from({ length: Math.floor((scale.max - scale.min) / scale.step) + 1 }, (_, i) => scale.min + i * scale.step);
+  const yMinorTicks = yTicks.slice(0, -1).map((value) => value + scale.step / 2);
+  const xTicks = tickWeeks(weekStart, weekEnd);
   const tooltipRows =
     tooltip &&
     active
@@ -179,7 +185,15 @@ export default function FundamentalsChart({
         onMouseMove={handleMove}
         onMouseLeave={() => setTooltip(null)}
       >
-        {Array.from({ length: Math.floor(scale.max / scale.step) + 1 }, (_, i) => i * scale.step).map((value) => (
+        {xTicks.map((week) => (
+          <line key={`x-grid-${week}`} x1={x(week)} y1={margin.top} x2={x(week)} y2={margin.top + plotH} stroke="#e5edf5" strokeWidth="0.8" />
+        ))}
+
+        {yMinorTicks.map((value) => (
+          <line key={`y-minor-${value}`} x1={margin.left} y1={y(value)} x2={width - margin.right} y2={y(value)} stroke="#eef3f8" strokeWidth="0.7" />
+        ))}
+
+        {yTicks.map((value) => (
           <g key={value}>
             <line x1={margin.left} y1={y(value)} x2={width - margin.right} y2={y(value)} stroke="#dfe6ed" />
             <text x={margin.left - 10} y={y(value) + 4} textAnchor="end" fill="#637083" fontSize="11">
@@ -188,7 +202,7 @@ export default function FundamentalsChart({
           </g>
         ))}
 
-        {tickWeeks(weekStart, weekEnd).map((week) => (
+        {xTicks.map((week) => (
           <g key={week}>
             <line x1={x(week)} y1={margin.top + plotH} x2={x(week)} y2={margin.top + plotH + 6} stroke="#aeb8c4" />
             <text x={x(week)} y={height - 18} textAnchor="middle" fill="#637083" fontSize="11">
@@ -210,7 +224,7 @@ export default function FundamentalsChart({
               const color = item.year === "5-year avg" ? averageColor : yearColor(item.year, years);
               return item.values.map((point) => {
                 const baseX = x(point.week) - (barW * groups) / 2 + seriesIndex * barW;
-                const barH = margin.top + plotH - y(point.value);
+                const barH = y(scale.min) - y(point.value);
                 return (
                   <rect
                     key={`${item.year}-${point.week}`}

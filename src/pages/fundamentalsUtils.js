@@ -17,17 +17,19 @@ export function clampWeek(value, fallback = 1) {
   return Math.max(1, Math.min(52, Math.round(numeric)));
 }
 
-export function niceScale(maxValue, isPercent = false) {
+export function niceScale(maxValue, isPercent = false, minValue = 0, allowNonZeroMin = false) {
   if (isPercent) {
     const max = Math.min(120, Math.max(10, Math.ceil(maxValue / 10) * 10));
-    return { step: max <= 50 ? 10 : 20, max };
+    const step = max <= 50 ? 10 : 20;
+    const min = allowNonZeroMin && minValue > step ? Math.max(0, Math.floor((minValue - step * 0.5) / step) * step) : 0;
+    return { step, min, max };
   }
   const rawStep = Math.max(1, maxValue) / 5;
   const power = Math.pow(10, Math.floor(Math.log10(rawStep)));
   const fraction = rawStep / power;
   const niceFraction = fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 5 ? 5 : 10;
   const step = niceFraction * power;
-  return { step, max: Math.ceil(maxValue / step) * step };
+  return { step, min: 0, max: Math.ceil(maxValue / step) * step };
 }
 
 export function tickWeeks(start, end) {
