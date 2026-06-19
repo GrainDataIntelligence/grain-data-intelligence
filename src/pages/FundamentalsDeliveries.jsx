@@ -20,6 +20,13 @@ const TOTAL_GRADE_BY_COMMODITY = {
   "Total Maize": "Grand Total",
 };
 
+const LOWER_GRADE_BY_COMMODITY = {
+  "White Maize": ["WM2", "WM3", "WMO"],
+  "Yellow Maize": ["YM2", "YM3", "YMO"],
+};
+
+const tablePctFmt = new Intl.NumberFormat("en-ZA", { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+
 function gradeSelectionLabel(grades) {
   const selected = [...grades];
   if (!selected.length) return "No grade";
@@ -40,6 +47,7 @@ function aggregateGradeRows(rows, totalRowsByKey) {
       cumulativeTons: 0,
       totalWeeklyTons: 0,
       percentOfTotalDelivered: null,
+      percentOfWeeklyDelivered: null,
     };
 
     existing.weeklyTons += row.weeklyTons || 0;
@@ -54,6 +62,7 @@ function aggregateGradeRows(rows, totalRowsByKey) {
       return {
         ...row,
         percentOfTotalDelivered: total?.cumulativeTons ? (row.cumulativeTons / total.cumulativeTons) * 100 : null,
+        percentOfWeeklyDelivered: total?.weeklyTons ? (row.weeklyTons / total.weeklyTons) * 100 : null,
       };
     })
     .sort((a, b) => a.marketingYear.localeCompare(b.marketingYear) || a.weekNumber - b.weekNumber);
@@ -369,11 +378,16 @@ export default function FundamentalsDeliveries() {
   const [gradeMethodology, setGradeMethodology] = useState("SAGIS");
   const [selectedGrades, setSelectedGrades] = useState(new Set(["WM1"]));
   const [gradeMetric, setGradeMetric] = useState("cumulative");
+  const [gradePercentMetric, setGradePercentMetric] = useState("cumulative");
   const [gradeSelectedYears, setGradeSelectedYears] = useState(new Set());
   const [gradeWeekStart, setGradeWeekStart] = useState(1);
   const [gradeWeekEnd, setGradeWeekEnd] = useState(52);
   const [showGradeAverage, setShowGradeAverage] = useState(true);
   const [showGradeLabels, setShowGradeLabels] = useState(true);
+  const [tableMethodology, setTableMethodology] = useState("Earlies");
+  const [tableCommodity, setTableCommodity] = useState("White Maize");
+  const [tableYear, setTableYear] = useState("");
+  const [tableBasis, setTableBasis] = useState("weekly");
   const gradeChartRef = useRef(null);
 
   useEffect(() => {
@@ -383,6 +397,7 @@ export default function FundamentalsDeliveries() {
         setData(payload);
         setSelectedYears(new Set(payload.marketingYears.slice(-4)));
         setGradeSelectedYears(new Set(payload.marketingYears.slice(-4)));
+        setTableYear(payload.marketingYears.at(-1) || "");
       });
   }, []);
 
@@ -452,9 +467,12 @@ export default function FundamentalsDeliveries() {
 
     return aggregateGradeRows(selectedRows, totalRowsByKey);
   }, [data, deliveryType, gradeMethodology, gradeCommodity, selectedGrades, gradeWeekStart, gradeWeekEnd]);
-  const valueForGrade = (row) => (gradeMetric === "percent" ? row.percentOfTotalDelivered : row.cumulativeTons);
-  const gradeSeries = useMemo(() => seriesFromRows(gradeRows.filter((row) => gradeSelectedYears.has(row.marketingYear)), valueForGrade), [gradeRows, gradeSelectedYears, gradeMetric]);
-  const gradeAverage = useMemo(() => (data ? averageSeries(seriesFromRows(gradeRows, valueForGrade), gradeSelectedYears, data.marketingYears, showGradeAverage) : null), [data, gradeRows, gradeSelectedYears, showGradeAverage, gradeMetric]);
+  const valueForGrade = (row) => {
+    if (gradeMetric !== "percent") return row.cumulativeTons;
+    return gradePercentMetric === "weekly" ? row.percentOfWeeklyDelivered : row.percentOfTotalDelivered;
+  };
+  const gradeSeries = useMemo(() => seriesFromRows(gradeRows.filter((row) => gradeSelectedYears.has(row.marketingYear)), valueForGrade), [gradeRows, gradeSelectedYears, gradeMetric, gradePercentMetric]);
+  const gradeAverage = useMemo(() => (data ? averageSeries(seriesFromRows(gradeRows, valueForGrade), gradeSelectedYears, data.marketingYears, showGradeAverage) : null), [data, gradeRows, gradeSelectedYears, showGradeAverage, gradeMetric, gradePercentMetric]);
 
   if (!data) return <div className="min-h-screen bg-slate-100 p-8 text-slate-700">Loading deliveries data...</div>;
 
@@ -462,6 +480,18 @@ export default function FundamentalsDeliveries() {
   const referenceYear = [...selectedYears].sort().at(-1);
   const gradeReferenceYear = [...gradeSelectedYears].sort().at(-1);
   const selectedGradeTitle = gradeSelectionLabel(selectedGrades);
+  const gradeMetricTitle = gradeMetric === "percent"
+    ? `${gradePercentMetric === "weekly" ? "weekly" : "cumulative"} % of total delivered`
+    : "cumulative deliveries";
+  const gradeBasisDescription = gradeMetric === "percent"
+    ? gradePercentMetric === "weekly"
+      ? `Of ${gradeCommodity} delivered in that week, what percentage was ${selectedGradeTitle}?`
+      : `Of all ${gradeCommodity} delivered so far, what percentage was ${selectedGradeTitle}?`
+    : `Cumulative tons delivered for ${selectedGradeTitle}.`;
+  const tableGradeOptions = data.gradeOptions?.[tableCommodity] || [];
+  const tableTotalGrade = TOTAL_GRADE_BY_COMMODITY[tableCommodity];
+  const tableGrades = tableGradeOptions.filter((grade) => grade !== tableTotalGrade);
+  const tableRows = buildGradeTableRows(data.gradeRows, tableMethodology, tableCommodity, tableYear, tableGrades, tableTotalGrade, tableBasis);
   const latestPoint = latest?.values.at(-1);
   const cec = latestPoint?.cec ?? data.cecEstimates[latest?.year]?.[activeCommodity] ?? 0;
   const percent = cec && latestPoint?.cumulative ? (latestPoint.cumulative / cec) * 100 : null;
@@ -591,6 +621,13 @@ export default function FundamentalsDeliveries() {
                     <ToggleGroup value={gradeMetric} onChange={setGradeMetric} options={[{ value: "cumulative", label: "Tons" }, { value: "percent", label: "%" }]} />
                   </section>
 
+                  {gradeMetric === "percent" && (
+                    <section className="grid gap-2">
+                      <label className="text-sm font-bold">Percentage basis</label>
+                      <ToggleGroup value={gradePercentMetric} onChange={setGradePercentMetric} options={[{ value: "cumulative", label: "Cumulative %" }, { value: "weekly", label: "Weekly %" }]} />
+                    </section>
+                  )}
+
                   <YearChecks label="Grade marketing years" years={data.marketingYears} selectedYears={gradeSelectedYears} setSelectedYears={setGradeSelectedYears} />
 
                   <section className="grid gap-2">
@@ -612,7 +649,8 @@ export default function FundamentalsDeliveries() {
                 <div className="mb-4 flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-bold uppercase text-slate-500">Grade deliveries</p>
-                    <h2 className="text-lg font-extrabold">{selectedGradeTitle} {gradeMetric === "percent" ? "% of total delivered" : "cumulative deliveries"} | {gradeMethodology}</h2>
+                    <h2 className="text-lg font-extrabold">{selectedGradeTitle} {gradeMetricTitle} | {gradeMethodology}</h2>
+                    <p className="mt-1 max-w-2xl text-xs font-semibold text-slate-500">{gradeBasisDescription}</p>
                   </div>
                   <div className="grid justify-items-end gap-2">
                     <div className="flex flex-wrap justify-end gap-2">
@@ -626,9 +664,9 @@ export default function FundamentalsDeliveries() {
                           exportChartPng({
                             container: gradeChartRef.current,
                             eyebrow: "Grade deliveries",
-                            title: `${selectedGradeTitle} ${gradeMetric === "percent" ? "% of total delivered" : "cumulative deliveries"} | ${gradeMethodology}`,
+                            title: `${selectedGradeTitle} ${gradeMetricTitle} | ${gradeMethodology}`,
                             legendItems: chartLegendItems(gradeSeries, gradeAverage, data.marketingYears),
-                            fileName: `grade-deliveries-${selectedGradeTitle}-${gradeMethodology}`,
+                            fileName: `grade-deliveries-${selectedGradeTitle}-${gradeMetricTitle}-${gradeMethodology}`,
                             series: gradeSeries,
                             average: gradeAverage,
                             years: data.marketingYears,
@@ -661,10 +699,239 @@ export default function FundamentalsDeliveries() {
                   showLabels={showGradeLabels}
                 />
               </section>
+
+              <GradeDataTable
+                methodology={tableMethodology}
+                setMethodology={setTableMethodology}
+                commodity={tableCommodity}
+                setCommodity={setTableCommodity}
+                year={tableYear}
+                setYear={setTableYear}
+                basis={tableBasis}
+                setBasis={setTableBasis}
+                commodities={data.commodities}
+                years={data.marketingYears}
+                grades={tableRows.grades}
+                rows={tableRows.rows}
+                totals={tableRows.totals}
+              />
             </section>
         )}
       </main>
     </div>
+  );
+}
+
+function buildGradeTableRows(sourceRows, methodology, commodity, year, grades, totalGrade, basis = "weekly") {
+  if (!year || !grades.length || !totalGrade) return { grades, rows: [], totals: null };
+  const rowsByWeek = new Map();
+  const lowerGradeParts = LOWER_GRADE_BY_COMMODITY[commodity] || [];
+  const lowerGradeIndex = lowerGradeParts.length ? grades.findIndex((grade) => grade === lowerGradeParts.at(-1)) : -1;
+  const tableGrades = lowerGradeIndex >= 0
+    ? [...grades.slice(0, lowerGradeIndex + 1), "Lower Grade", ...grades.slice(lowerGradeIndex + 1)]
+    : grades;
+
+  for (const row of sourceRows) {
+    if (row.methodology !== methodology || row.commodity !== commodity || row.marketingYear !== year || row.weekNumber > 52) continue;
+    if (![...grades, totalGrade].includes(row.grade)) continue;
+    if (!rowsByWeek.has(row.weekNumber)) {
+      rowsByWeek.set(row.weekNumber, {
+        week: row.weekNumber,
+        values: Object.fromEntries(grades.map((grade) => [grade, 0])),
+        total: 0,
+      });
+    }
+    const tableRow = rowsByWeek.get(row.weekNumber);
+    const value = basis === "cumulative" ? row.cumulativeTons || 0 : row.weeklyTons || 0;
+    if (row.grade === totalGrade) tableRow.total = value;
+    if (grades.includes(row.grade)) tableRow.values[row.grade] = value;
+  }
+
+  const rows = [...rowsByWeek.values()]
+    .filter((row) => row.total || grades.some((grade) => row.values[grade]))
+    .sort((a, b) => a.week - b.week)
+    .map((row) => {
+      const values = {
+        ...row.values,
+        ...(lowerGradeParts.length ? { "Lower Grade": lowerGradeParts.reduce((sum, grade) => sum + (row.values[grade] || 0), 0) } : {}),
+      };
+      return {
+        ...row,
+        values,
+        percents: Object.fromEntries(tableGrades.map((grade) => [grade, row.total ? (values[grade] / row.total) * 100 : null])),
+      };
+    });
+
+  const totals = basis === "cumulative"
+    ? rows.at(-1) ? { values: { ...rows.at(-1).values }, total: rows.at(-1).total || 0 } : null
+    : rows.reduce(
+        (acc, row) => {
+          for (const grade of tableGrades) acc.values[grade] += row.values[grade] || 0;
+          acc.total += row.total || 0;
+          return acc;
+        },
+        { values: Object.fromEntries(tableGrades.map((grade) => [grade, 0])), total: 0 }
+      );
+  if (!totals) return { grades: tableGrades, rows, totals: null };
+  totals.percents = Object.fromEntries(tableGrades.map((grade) => [grade, totals.total ? (totals.values[grade] / totals.total) * 100 : null]));
+
+  return { grades: tableGrades, rows, totals };
+}
+
+function excelCell(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function exportGradeTableExcel({ methodology, commodity, year, basisLabel, totalLabel, footerLabel, grades, rows, totals }) {
+  const headings = [
+    "Week",
+    ...grades.map((grade) => `${basisLabel} ${grade}`),
+    totalLabel,
+    ...grades.map((grade) => `% ${grade}`),
+    "% Total",
+  ];
+  const tableRows = rows.map((row) => [
+    row.week,
+    ...grades.map((grade) => row.values[grade] || 0),
+    row.total || 0,
+    ...grades.map((grade) => (row.percents[grade] === null ? "" : row.percents[grade] / 100)),
+    row.total ? 1 : "",
+  ]);
+  if (totals) {
+    tableRows.push([
+      footerLabel,
+      ...grades.map((grade) => totals.values[grade] || 0),
+      totals.total || 0,
+      ...grades.map((grade) => (totals.percents[grade] === null ? "" : totals.percents[grade] / 100)),
+      totals.total ? 1 : "",
+    ]);
+  }
+
+  const percentStart = 1 + grades.length + 1;
+  const html = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+      <head><meta charset="utf-8"><style>
+        table { border-collapse: collapse; font-family: Arial, sans-serif; font-size: 12px; }
+        th, td { border: 1px solid #1f2937; padding: 4px 8px; text-align: right; }
+        th { background: #dbe7f7; font-weight: 700; }
+        .title { text-align: center; font-size: 18px; background: #ffffff; }
+        .label { background: #b8cbe8; font-weight: 700; }
+        .total { font-weight: 700; background: #eef2f7; }
+      </style></head>
+      <body>
+        <table>
+          <tr><th class="title" colspan="${headings.length}">${excelCell(year)} - ${excelCell(commodity)} (${excelCell(methodology)} ${excelCell(basisLabel)})</th></tr>
+          <tr>${headings.map((heading, index) => `<th class="${index === 0 ? "label" : ""}">${excelCell(heading)}</th>`).join("")}</tr>
+          ${tableRows
+            .map((row, rowIndex) => {
+              const isTotal = rowIndex === tableRows.length - 1 && totals;
+              return `<tr class="${isTotal ? "total" : ""}">${row
+                .map((value, index) => {
+                  const style = index >= percentStart ? " style=\"mso-number-format:'0.00%'\"" : "";
+                  return `<td${style}>${excelCell(value)}</td>`;
+                })
+                .join("")}</tr>`;
+            })
+            .join("")}
+        </table>
+      </body>
+    </html>`;
+  const blob = new Blob([html], { type: "application/vnd.ms-excel;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${safeFileName(`grade-table-${commodity}-${year}-${methodology}-${basisLabel}`)}.xls`;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+function GradeDataTable({ methodology, setMethodology, commodity, setCommodity, year, setYear, basis, setBasis, commodities, years, grades, rows, totals }) {
+  const basisLabel = basis === "cumulative" ? "Cumulative" : "Weekly";
+  const totalLabel = basis === "cumulative" ? "Cumulative Total" : "Weekly Total";
+  const footerLabel = basis === "cumulative" ? "Season to date" : "Displayed total";
+  return (
+    <section className="col-span-2 rounded-lg border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/60">
+      <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-bold uppercase text-slate-500">Grade data table</p>
+          <h2 className="text-lg font-extrabold">{year || "-"} - {commodity}</h2>
+          <p className="mt-1 text-xs font-semibold text-slate-500">{basisLabel} grade tons and {basisLabel.toLowerCase()} share of total delivered for the selected year.</p>
+        </div>
+        <div className="grid min-w-[720px] grid-cols-4 gap-3">
+          <label className="grid gap-1 text-xs font-bold uppercase text-slate-500">
+            Methodology
+            <select value={methodology} onChange={(event) => setMethodology(event.target.value)} className="rounded-md border border-slate-300 px-3 py-2 text-sm font-normal normal-case text-slate-900">
+              <option>SAGIS</option>
+              <option>Earlies</option>
+            </select>
+          </label>
+          <label className="grid gap-1 text-xs font-bold uppercase text-slate-500">
+            Commodity
+            <select value={commodity} onChange={(event) => setCommodity(event.target.value)} className="rounded-md border border-slate-300 px-3 py-2 text-sm font-normal normal-case text-slate-900">
+              {commodities.map((item) => <option key={item}>{item}</option>)}
+            </select>
+          </label>
+          <label className="grid gap-1 text-xs font-bold uppercase text-slate-500">
+            Marketing year
+            <select value={year} onChange={(event) => setYear(event.target.value)} className="rounded-md border border-slate-300 px-3 py-2 text-sm font-normal normal-case text-slate-900">
+              {[...years].reverse().map((item) => <option key={item}>{item}</option>)}
+            </select>
+          </label>
+          <section className="grid gap-1 text-xs font-bold uppercase text-slate-500">
+            Table basis
+            <ToggleGroup value={basis} onChange={setBasis} options={[{ value: "weekly", label: "Weekly" }, { value: "cumulative", label: "Cumulative" }]} />
+          </section>
+          <div className="col-span-4 flex justify-end">
+            <button
+              type="button"
+              disabled={!rows.length}
+              className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+              onClick={() => exportGradeTableExcel({ methodology, commodity, year, basisLabel, totalLabel, footerLabel, grades, rows, totals })}
+            >
+              Export Excel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="overflow-auto rounded-md border border-slate-300">
+        <table className="min-w-full border-collapse text-sm">
+          <thead>
+            <tr className="bg-slate-200 text-left text-slate-900">
+              <th className="sticky left-0 z-10 border border-slate-300 bg-slate-300 px-2 py-1.5 text-right">Week</th>
+              {grades.map((grade) => <th key={grade} className="border border-slate-300 px-2 py-1.5 text-right">{basisLabel} {grade}</th>)}
+              <th className="border border-slate-300 px-2 py-1.5 text-right">{totalLabel}</th>
+              {grades.map((grade) => <th key={`pct-${grade}`} className="border border-slate-300 px-2 py-1.5 text-right">% {grade}</th>)}
+              <th className="border border-slate-300 px-2 py-1.5 text-right">% Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.week} className="odd:bg-white even:bg-slate-50">
+                <th className="sticky left-0 z-10 border border-slate-300 bg-slate-200 px-2 py-1.5 text-right font-bold">{row.week}</th>
+                {grades.map((grade) => <td key={grade} className="border border-slate-300 px-2 py-1.5 text-right tabular-nums">{fmt.format(row.values[grade] || 0)}</td>)}
+                <td className="border border-slate-300 px-2 py-1.5 text-right font-semibold tabular-nums">{fmt.format(row.total || 0)}</td>
+                {grades.map((grade) => <td key={`pct-${grade}`} className="border border-slate-300 px-2 py-1.5 text-right tabular-nums">{row.percents[grade] === null ? "-" : `${tablePctFmt.format(row.percents[grade])}%`}</td>)}
+                <td className="border border-slate-300 px-2 py-1.5 text-right tabular-nums">{row.total ? "100%" : "-"}</td>
+              </tr>
+            ))}
+            {totals && (
+              <tr className="bg-slate-100 font-bold">
+                <th className="sticky left-0 z-10 border border-slate-300 bg-slate-300 px-2 py-1.5 text-right">{footerLabel}</th>
+                {grades.map((grade) => <td key={grade} className="border border-slate-300 px-2 py-1.5 text-right tabular-nums">{fmt.format(totals.values[grade] || 0)}</td>)}
+                <td className="border border-slate-300 px-2 py-1.5 text-right tabular-nums">{fmt.format(totals.total || 0)}</td>
+                {grades.map((grade) => <td key={`pct-${grade}`} className="border border-slate-300 px-2 py-1.5 text-right tabular-nums">{totals.percents[grade] === null ? "-" : `${tablePctFmt.format(totals.percents[grade])}%`}</td>)}
+                <td className="border border-slate-300 px-2 py-1.5 text-right tabular-nums">{totals.total ? "100%" : "-"}</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      {!rows.length && <p className="mt-3 text-sm font-semibold text-slate-500">No table data available for this selection.</p>}
+    </section>
   );
 }
 
