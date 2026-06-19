@@ -190,7 +190,12 @@ export default function FundamentalsChart({
         ))}
 
         {yMinorTicks.map((value) => (
-          <line key={`y-minor-${value}`} x1={margin.left} y1={y(value)} x2={width - margin.right} y2={y(value)} stroke="#eef3f8" strokeWidth="0.7" />
+          <g key={`y-minor-${value}`}>
+            <line x1={margin.left} y1={y(value)} x2={width - margin.right} y2={y(value)} stroke="#eef3f8" strokeWidth="0.7" />
+            <text x={margin.left - 10} y={y(value) + 4} textAnchor="end" fill="#9aa8b8" fontSize="10">
+              {formatValue(value, valueKind)}
+            </text>
+          </g>
         ))}
 
         {yTicks.map((value) => (
