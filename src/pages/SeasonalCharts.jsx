@@ -8,11 +8,11 @@ const PROGRAMS = ["Long Term Charts", "History", "Calculator"];
 const CURRENT_YEAR_COLOR = "#DC2626";
 const YEAR_COLORS = ["#2563EB", "#059669", "#A16207", "#7C3AED", "#0891B2", "#EA580C", "#64748B", "#111827"];
 const COMMODITY_CODES = {
-  "White Maize": "WMAZ",
-  "Yellow Maize": "YMAZ",
-  Soybeans: "SOYB",
-  Sunflower: "SUNS",
-  Wheat: "WEAT",
+  Wheat: "WEA",
+  Soybeans: "SB",
+  Sunflower: "FH",
+  "White Maize": "WM",
+  "Yellow Maize": "YM",
 };
 const CONTRACT_MONTH_CODES = {
   Mar: "H",
@@ -37,11 +37,16 @@ const CONTRACT_MONTH_NUMBERS = {
 };
 
 const DEFAULT_LEGS = [
-  { quantity: 1, side: "long", commodity: "White Maize", contract: "Jul" },
-  { quantity: 1, side: "short", commodity: "White Maize", contract: "Dec" },
-  { quantity: 1, side: "long", commodity: "White Maize", contract: "Jul" },
-  { quantity: 1, side: "long", commodity: "White Maize", contract: "Sep" },
+  { quantity: 1, side: "long", commodity: "White Maize", contract: "Jul", alignOffset: 0 },
+  { quantity: 1, side: "short", commodity: "White Maize", contract: "Dec", alignOffset: 0 },
+  { quantity: 1, side: "long", commodity: "White Maize", contract: "Jul", alignOffset: 0 },
+  { quantity: 1, side: "long", commodity: "White Maize", contract: "Sep", alignOffset: 0 },
 ];
+const DEFAULT_PERIOD = {
+  side: "sell",
+  openDate: "2026-05-31",
+  closeDate: "2026-10-14",
+};
 
 function parseDate(value) {
   const [year, month, day] = value.split(/[-/]/).map(Number);
@@ -53,6 +58,17 @@ function formatDayLabel(value) {
   return date.toLocaleDateString(undefined, { day: "2-digit", month: "short" });
 }
 
+function formatFullDate(value) {
+  if (!value) return "";
+  const date = parseDate(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString(undefined, {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
 function dayKey(value) {
   const date = parseDate(value);
   return `${String(date.getMonth() + 1).padStart(2, "0")}-${String(
@@ -62,6 +78,25 @@ function dayKey(value) {
 
 function getSeasonEndMonth(legs) {
   return Math.min(...legs.map((leg) => CONTRACT_MONTH_NUMBERS[leg.contract]));
+}
+
+function getSeasonEndInfo(legs) {
+  const endMonth = getSeasonEndMonth(legs);
+  const endOffset = Math.max(
+    ...legs
+      .filter((leg) => CONTRACT_MONTH_NUMBERS[leg.contract] === endMonth)
+      .map((leg) => Number(leg.alignOffset) || 0)
+  );
+
+  return { endMonth, endOffset };
+}
+
+function getAnchorSeasonInfo(legs) {
+  const anchorLeg = legs[0];
+  return {
+    endMonth: CONTRACT_MONTH_NUMBERS[anchorLeg.contract],
+    endOffset: Number(anchorLeg.alignOffset) || 0,
+  };
 }
 
 function getSeasonWindow(contractYear, endMonth) {
@@ -81,8 +116,43 @@ function getSeasonOrder(date, startMonth) {
   return monthOffset * 32 + date.getDate();
 }
 
+function orderForDateValue(value, startMonth) {
+  if (!value) return null;
+  const date = parseDate(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return getSeasonOrder(date, startMonth);
+}
+
+function periodMarkers(period, startMonth, minOrder, maxOrder) {
+  const openOrder = orderForDateValue(period?.openDate, startMonth);
+  const closeOrder = orderForDateValue(period?.closeDate, startMonth);
+  const isValid = openOrder != null && closeOrder != null;
+  const isBuy = period?.side === "buy";
+  const openColor = isBuy ? "#16A34A" : "#DC2626";
+  const closeColor = isBuy ? "#DC2626" : "#16A34A";
+
+  return {
+    openOrder,
+    closeOrder,
+    startOrder: isValid ? Math.min(openOrder, closeOrder) : null,
+    endOrder: isValid ? Math.max(openOrder, closeOrder) : null,
+    isValid,
+    openColor,
+    closeColor,
+    showOpen: isValid && openOrder >= minOrder && openOrder <= maxOrder,
+    showClose: isValid && closeOrder >= minOrder && closeOrder <= maxOrder,
+  };
+}
+
 function isInWindow(date, start, end) {
   return date >= start && date <= end;
+}
+
+function normalizeLegs(legs) {
+  return legs.map((leg) => ({
+    ...leg,
+    alignOffset: Number.isFinite(Number(leg.alignOffset)) ? Number(leg.alignOffset) : 0,
+  }));
 }
 
 function buildSeasonalChartData(csvData, legs, numLegs, selectedYears) {
@@ -94,14 +164,15 @@ function buildSeasonalChartData(csvData, legs, numLegs, selectedYears) {
 
   if (!activeLegs.length) return [];
 
-  const endMonth = getSeasonEndMonth(activeLegs);
+  const { endMonth, endOffset } = getAnchorSeasonInfo(activeLegs);
   const pointsByDay = new Map();
 
   selectedYears.forEach((year) => {
-    const { start, startMonth, end } = getSeasonWindow(year, endMonth);
+    const { start, startMonth, end } = getSeasonWindow(year + endOffset, endMonth);
 
     const rowsByLeg = activeLegs.map((leg) => {
-      const contractRows = csvData[leg.commodity]?.[`${leg.contract}-${year}`] ?? [];
+      const contractYear = year + (Number(leg.alignOffset) || 0);
+      const contractRows = csvData[leg.commodity]?.[`${leg.contract}-${contractYear}`] ?? [];
       const rowsByDate = new Map();
 
       contractRows.forEach((row) => {
@@ -113,20 +184,21 @@ function buildSeasonalChartData(csvData, legs, numLegs, selectedYears) {
           Number.isFinite(row.price) &&
           isInWindow(date, start, end)
         ) {
-          rowsByDate.set(dayKey(row.date), row);
+          rowsByDate.set(row.date, row);
         }
       });
 
       return rowsByDate;
     });
 
-    const commonDays = [...rowsByLeg[0].keys()].filter((dateKey) =>
-      rowsByLeg.every((rows) => rows.has(dateKey))
+    const commonDates = [...rowsByLeg[0].keys()].filter((dateValue) =>
+      rowsByLeg.every((rows) => rows.has(dateValue))
     );
 
-    commonDays.forEach((dateKey) => {
+    commonDates.forEach((dateValue) => {
+      const dateKey = dayKey(dateValue);
       const value = activeLegs.reduce((sum, leg, index) => {
-        const row = rowsByLeg[index].get(dateKey);
+        const row = rowsByLeg[index].get(dateValue);
         const direction = leg.side === "short" ? 1 : -1;
         const quantity = Number(leg.quantity) || 0;
 
@@ -134,7 +206,7 @@ function buildSeasonalChartData(csvData, legs, numLegs, selectedYears) {
       }, 0);
 
       if (!pointsByDay.has(dateKey)) {
-        const sampleDate = rowsByLeg[0].get(dateKey).date;
+        const sampleDate = rowsByLeg[0].get(dateValue).date;
         const parsedSampleDate = parseDate(sampleDate);
 
         pointsByDay.set(dateKey, {
@@ -149,6 +221,180 @@ function buildSeasonalChartData(csvData, legs, numLegs, selectedYears) {
   });
 
   return [...pointsByDay.values()].sort((a, b) => a.order - b.order);
+}
+
+function buildSpreadSeriesForYear(csvData, legs, numLegs, year) {
+  if (!csvData || !Number.isFinite(year)) return [];
+
+  const activeLegs = legs
+    .slice(0, numLegs)
+    .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
+
+  if (!activeLegs.length) return [];
+
+  const rowsByLeg = activeLegs.map((leg) => {
+    const contractYear = year + (Number(leg.alignOffset) || 0);
+    const contractRows = csvData[leg.commodity]?.[`${leg.contract}-${contractYear}`] ?? [];
+    const rowsByDate = new Map();
+
+    contractRows.forEach((row) => {
+      if (row.date && Number.isFinite(row.price)) rowsByDate.set(row.date, row);
+    });
+
+    return rowsByDate;
+  });
+
+  const commonDates = [...rowsByLeg[0].keys()]
+    .filter((dateValue) => rowsByLeg.every((rows) => rows.has(dateValue)))
+    .sort();
+
+  return commonDates.map((dateValue) => {
+    const value = activeLegs.reduce((sum, leg, index) => {
+      const row = rowsByLeg[index].get(dateValue);
+      const direction = leg.side === "short" ? 1 : -1;
+      const quantity = Number(leg.quantity) || 0;
+
+      return sum + row.price * quantity * direction;
+    }, 0);
+    const date = parseDate(dateValue);
+
+    return {
+      date: dateValue,
+      timestamp: date.getTime(),
+      label: formatDayLabel(dateValue),
+      value: Math.round(value),
+    };
+  });
+}
+
+function dateValueFromDate(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(
+    date.getDate()
+  ).padStart(2, "0")}`;
+}
+
+function seasonalDateForYear(periodDateValue, year, legs, numLegs) {
+  const activeLegs = legs
+    .slice(0, numLegs)
+    .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
+  if (!periodDateValue || !activeLegs.length || !Number.isFinite(year)) return null;
+
+  const sourceDate = parseDate(periodDateValue);
+  if (Number.isNaN(sourceDate.getTime())) return null;
+
+  const { endMonth, endOffset } = getAnchorSeasonInfo(activeLegs);
+  const window = getSeasonWindow(year + endOffset, endMonth);
+  const month = sourceDate.getMonth() + 1;
+  const day = sourceDate.getDate();
+  const calendarYear = month >= window.startMonth ? window.start.getFullYear() : window.end.getFullYear();
+  const target = new Date(calendarYear, month - 1, day);
+
+  if (target < window.start || target > window.end) return null;
+  return target;
+}
+
+function nearestSeriesPoint(series, targetDate) {
+  if (!series.length || !targetDate) return null;
+  const targetTime = targetDate.getTime();
+  return series.reduce((best, point) => {
+    const distance = Math.abs(point.timestamp - targetTime);
+    if (!best || distance < best.distance) return { ...point, distance };
+    return best;
+  }, null);
+}
+
+function formatTableDate(value) {
+  if (!value) return "";
+  const date = typeof value === "string" ? parseDate(value) : value;
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" });
+}
+
+function formatSignedNumber(value, decimals = 2) {
+  if (value == null || Number.isNaN(value)) return "";
+  return new Intl.NumberFormat(undefined, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(value);
+}
+
+function formatSignedCurrency(value) {
+  if (value == null || Number.isNaN(value)) return "";
+  const prefix = value < 0 ? "-" : "";
+  return `${prefix}${formatCurrency(Math.abs(value))}`;
+}
+
+function unitMoveForLegs(legs, numLegs) {
+  return legs.slice(0, numLegs).reduce((sum, leg) => {
+    const quantity = Number(leg.quantity) || 0;
+    return sum + Math.abs(quantity) * (UNIT_MOVES[leg.commodity] || 50);
+  }, 0);
+}
+
+function buildCalculatorRows(csvData, legs, numLegs, selectedYears, period) {
+  if (!csvData || !selectedYears.length || !period?.openDate || !period?.closeDate) return [];
+
+  const unitMove = unitMoveForLegs(legs, numLegs);
+  const isBuy = period.side === "buy";
+
+  return [...selectedYears]
+    .sort((a, b) => b - a)
+    .map((year) => {
+      const series = buildSpreadSeriesForYear(csvData, legs, numLegs, year);
+      const openTarget = seasonalDateForYear(period.openDate, year, legs, numLegs);
+      const closeTarget = seasonalDateForYear(period.closeDate, year, legs, numLegs);
+      const openPoint = nearestSeriesPoint(series, openTarget);
+      const closePoint = nearestSeriesPoint(series, closeTarget);
+
+      if (!series.length || !openPoint || !closePoint) {
+        return {
+          year,
+          ticker: contractLabelForYear(legs, numLegs, year),
+          hasData: false,
+        };
+      }
+
+      const startTime = Math.min(openPoint.timestamp, closePoint.timestamp);
+      const endTime = Math.max(openPoint.timestamp, closePoint.timestamp);
+      const periodSeries = series.filter((point) => point.timestamp >= startTime && point.timestamp <= endTime);
+      const change = isBuy ? closePoint.value - openPoint.value : openPoint.value - closePoint.value;
+      const equityChange = change * unitMove;
+      const days = Math.max(1, Math.round(Math.abs(closePoint.timestamp - openPoint.timestamp) / 86400000));
+
+      const excursionRows = periodSeries.map((point) => {
+        const rawPnl = isBuy ? point.value - openPoint.value : openPoint.value - point.value;
+        return {
+          ...point,
+          equity: rawPnl * unitMove,
+        };
+      });
+      const maxAdverse = excursionRows.reduce(
+        (best, point) => (point.equity < best.equity ? point : best),
+        excursionRows[0] || { equity: 0, date: openPoint.date }
+      );
+      const maxProfitable = excursionRows.reduce(
+        (best, point) => (point.equity > best.equity ? point : best),
+        excursionRows[0] || { equity: 0, date: openPoint.date }
+      );
+
+      return {
+        year,
+        ticker: contractLabelForYear(legs, numLegs, year),
+        hasData: true,
+        openDate: openPoint.date,
+        openValue: openPoint.value,
+        closeDate: closePoint.date,
+        closeValue: closePoint.value,
+        change,
+        equityChange,
+        days,
+        avgProfitPerDay: equityChange / days,
+        maxAdverseDate: maxAdverse.date,
+        maxAdverseValue: maxAdverse.equity,
+        maxProfitableDate: maxProfitable.date,
+        maxProfitableValue: maxProfitable.equity,
+      };
+    });
 }
 
 function formatCurrency(value) {
@@ -238,7 +484,8 @@ function buildHoverLabelRows(rows, activeX, yScale, plotBounds) {
 function contractCode(leg, baseYear) {
   const commodity = COMMODITY_CODES[leg.commodity] || leg.commodity;
   const month = CONTRACT_MONTH_CODES[leg.contract] || leg.contract;
-  return `${commodity}${month}${String(baseYear).slice(-2)}`;
+  const contractYear = baseYear + (Number(leg.alignOffset) || 0);
+  return `${commodity}${month}${String(contractYear).slice(-2)}`;
 }
 
 function contractCodeWithoutYear(leg) {
@@ -267,12 +514,14 @@ function contractLabelForYear(legs, numLegs, year) {
     .join(" ");
 }
 
-function buildConfig({ numLegs, legs, selectedYears, showLabels }) {
+function buildConfig({ numLegs, legs, selectedYears, showLabels, period, chartsPerRow }) {
   return {
     numLegs,
     legs,
     selectedYears,
     showLabels,
+    period,
+    chartsPerRow,
   };
 }
 
@@ -286,6 +535,10 @@ function titleForConfig(config) {
       return label.startsWith("-") ? label : `+${label}`;
     })
     .join(" ");
+}
+
+function selectorRailWidth(numLegs) {
+  return Math.min(260, Math.max(132, 74 + numLegs * 48));
 }
 
 function tabTitle(program, config) {
@@ -308,11 +561,12 @@ function availableYearsForChart(csvData, legs, numLegs) {
 
   const yearSets = activeLegs.map((leg) => {
     const contracts = csvData[leg.commodity] ?? {};
+    const offset = Number(leg.alignOffset) || 0;
     return new Set(
       Object.keys(contracts)
         .map((key) => {
           const [month, year] = key.split("-");
-          return month === leg.contract ? Number(year) : null;
+          return month === leg.contract ? Number(year) - offset : null;
         })
         .filter(Number.isFinite)
     );
@@ -333,6 +587,9 @@ export default function SeasonalCharts() {
   const [legs, setLegs] = useState(DEFAULT_LEGS);
   const [selectedYears, setSelectedYears] = useState([]);
   const [showLabels, setShowLabels] = useState(false);
+  const [period, setPeriod] = useState(DEFAULT_PERIOD);
+  const [periodPanelOpen, setPeriodPanelOpen] = useState(false);
+  const [chartsPerRow, setChartsPerRow] = useState(2);
   const [savedAnalyses, setSavedAnalyses] = useState([]);
   const [saveName, setSaveName] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -382,8 +639,8 @@ export default function SeasonalCharts() {
   }, [availableYears]);
 
   const currentConfig = useMemo(
-    () => buildConfig({ numLegs, legs, selectedYears, showLabels }),
-    [numLegs, legs, selectedYears, showLabels]
+    () => buildConfig({ numLegs, legs, selectedYears, showLabels, period, chartsPerRow }),
+    [numLegs, legs, selectedYears, showLabels, period, chartsPerRow]
   );
 
   useEffect(() => {
@@ -431,9 +688,11 @@ export default function SeasonalCharts() {
 
   const applyConfig = (config) => {
     setNumLegs(Math.min(config.numLegs ?? MAX_LEGS, MAX_LEGS));
-    setLegs(config.legs ?? DEFAULT_LEGS);
+    setLegs(normalizeLegs(config.legs ?? DEFAULT_LEGS));
     setSelectedYears(config.selectedYears ?? []);
     setShowLabels(Boolean(config.showLabels));
+    setPeriod(config.period ?? DEFAULT_PERIOD);
+    setChartsPerRow(config.chartsPerRow ?? 2);
   };
 
   const saveAnalysis = () => {
@@ -701,6 +960,13 @@ export default function SeasonalCharts() {
 
           <div className="border-b border-slate-300 bg-white p-2">
             <div className="flex flex-wrap items-start gap-3">
+              <PeriodControl
+                period={period}
+                setPeriod={setPeriod}
+                panelOpen={periodPanelOpen}
+                setPanelOpen={setPeriodPanelOpen}
+              />
+
               <LegBuilder numLegs={numLegs} setNumLegs={setNumLegs} legs={legs} updateLeg={updateLeg} />
 
               <div className="rounded border border-slate-300 bg-slate-50 p-2">
@@ -731,6 +997,22 @@ export default function SeasonalCharts() {
                   >
                     Last 5
                   </button>
+                  {program === "History" && (
+                    <label className="flex h-8 items-center gap-2 rounded border border-slate-300 bg-white px-2 text-xs font-bold text-slate-700">
+                      <span>charts per row:</span>
+                      <select
+                        value={chartsPerRow}
+                        onChange={(event) => setChartsPerRow(Number(event.target.value))}
+                        className="h-6 rounded border border-slate-300 bg-white px-1 text-xs font-bold outline-none"
+                      >
+                        {[1, 2, 3].map((count) => (
+                          <option key={count} value={count}>
+                            {count}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  )}
                 </div>
               </div>
 
@@ -748,15 +1030,48 @@ export default function SeasonalCharts() {
               </div>
             </div>
             <div className="flex min-h-0 flex-1 gap-2 p-2">
-              <YearSelectorRail
-                availableYears={availableYears}
-                selectedYears={selectedYears}
-                setSelectedYears={setSelectedYears}
-                legs={legs}
-                numLegs={numLegs}
-              />
+              <div className="flex shrink-0 flex-col gap-2" style={{ width: selectorRailWidth(numLegs) }}>
+                <AlignerPanel legs={legs} numLegs={numLegs} updateLeg={updateLeg} availableYears={availableYears} />
+                <YearSelectorRail
+                  availableYears={availableYears}
+                  selectedYears={selectedYears}
+                  setSelectedYears={setSelectedYears}
+                  legs={legs}
+                  numLegs={numLegs}
+                />
+              </div>
               {program === "Long Term Charts" ? (
-                <SeasonalChart chartData={chartData} selectedYears={selectedYears} showLabels={showLabels} legs={legs} numLegs={numLegs} latestYear={availableYears[0]} />
+                <SeasonalChart
+                  chartData={chartData}
+                  selectedYears={selectedYears}
+                  showLabels={showLabels}
+                  legs={legs}
+                  numLegs={numLegs}
+                  latestYear={availableYears[0]}
+                  period={period}
+                  periodVisible={periodPanelOpen}
+                />
+              ) : program === "History" ? (
+                <HistoryView
+                  csvData={csvData}
+                  chartData={chartData}
+                  selectedYears={selectedYears}
+                  legs={legs}
+                  numLegs={numLegs}
+                  latestYear={availableYears[0]}
+                  period={period}
+                  periodVisible={periodPanelOpen}
+                  chartsPerRow={chartsPerRow}
+                />
+              ) : program === "Calculator" ? (
+                <CalculatorView
+                  csvData={csvData}
+                  selectedYears={selectedYears}
+                  legs={legs}
+                  numLegs={numLegs}
+                  period={period}
+                  periodVisible={periodPanelOpen}
+                />
               ) : (
                 <ProgramPlaceholder program={program} />
               )}
@@ -774,6 +1089,75 @@ function SidebarSection({ title, children }) {
       <h2 className="mb-2 text-sm font-extrabold text-slate-800">{title}</h2>
       {children}
     </section>
+  );
+}
+
+function PeriodControl({ period, setPeriod, panelOpen, setPanelOpen }) {
+  const isSell = period.side === "sell";
+  const openColor = isSell ? "text-red-600" : "text-green-700";
+  const closeColor = isSell ? "text-green-700" : "text-red-600";
+
+  const updatePeriod = (updates) => {
+    setPeriod((current) => ({ ...current, ...updates }));
+  };
+
+  return (
+    <div className="rounded border border-slate-400 bg-slate-100 p-1.5 text-slate-950">
+      <div className="flex items-center gap-3 px-1 pb-1 text-[11px] font-bold">
+        <label className="flex items-center gap-1">
+          <input
+            type="radio"
+            name="seasonal-period-side"
+            checked={period.side === "buy"}
+            onChange={() => updatePeriod({ side: "buy" })}
+          />
+          buy
+        </label>
+        <label className="flex items-center gap-1">
+          <input
+            type="radio"
+            name="seasonal-period-side"
+            checked={period.side === "sell"}
+            onChange={() => updatePeriod({ side: "sell" })}
+          />
+          sell
+        </label>
+        <button
+          type="button"
+          onClick={() => setPanelOpen((open) => !open)}
+          className={`h-8 rounded border px-3 text-[11px] font-extrabold ${
+            panelOpen
+              ? "border-slate-950 bg-slate-950 text-white"
+              : "border-slate-400 bg-slate-700 text-white hover:bg-slate-800"
+          }`}
+        >
+          period
+        </button>
+      </div>
+
+      {panelOpen && (
+        <div className="rounded border border-yellow-600 bg-yellow-300 p-1.5 text-[11px] font-extrabold">
+          <label className={`mb-1 flex items-center gap-2 ${openColor}`}>
+            <span className="w-10 text-right">open:</span>
+            <input
+              type="date"
+              value={period.openDate}
+              onChange={(event) => updatePeriod({ openDate: event.target.value })}
+              className="h-8 rounded border border-slate-400 bg-white px-2 text-[11px] font-bold text-slate-900"
+            />
+          </label>
+          <label className={`flex items-center gap-2 ${closeColor}`}>
+            <span className="w-10 text-right">close:</span>
+            <input
+              type="date"
+              value={period.closeDate}
+              onChange={(event) => updatePeriod({ closeDate: event.target.value })}
+              className="h-8 rounded border border-slate-400 bg-white px-2 text-[11px] font-bold text-slate-900"
+            />
+          </label>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -852,12 +1236,14 @@ function LegBuilder({ numLegs, setNumLegs, legs, updateLeg }) {
 }
 
 function YearSelectorRail({ availableYears, selectedYears, setSelectedYears, legs, numLegs }) {
+  const buttonTextSize = numLegs >= 4 ? "text-[9px]" : numLegs >= 3 ? "text-[9.5px]" : "text-[10px]";
+
   return (
-    <div className="w-[132px] shrink-0 rounded border border-slate-300 bg-white shadow-sm">
+    <div className="min-h-0 flex-1 rounded border border-slate-300 bg-white shadow-sm">
       <div className="border-b border-slate-300 bg-slate-100 px-2 py-1 text-center text-[11px] font-extrabold uppercase text-slate-700">
         Selector
       </div>
-      <div className="max-h-[calc(100vh-310px)] min-h-[520px] overflow-y-auto px-1.5 py-1">
+      <div className="max-h-[calc(100vh-430px)] min-h-[360px] overflow-y-auto px-1.5 py-1">
         {availableYears.map((year) => (
           <button
             key={year}
@@ -869,7 +1255,7 @@ function YearSelectorRail({ availableYears, selectedYears, setSelectedYears, leg
                   : [...current, year].sort((a, b) => b - a)
               );
             }}
-            className={`mb-0.5 block h-[22px] w-full truncate rounded-sm border px-1 text-[10px] font-bold leading-none ${
+            className={`mb-0.5 block h-[22px] w-full truncate rounded-sm border px-1 ${buttonTextSize} font-bold leading-none ${
               selectedYears.includes(year)
                 ? "border-slate-950 bg-slate-950 text-white"
                 : "border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
@@ -884,7 +1270,64 @@ function YearSelectorRail({ availableYears, selectedYears, setSelectedYears, leg
   );
 }
 
-function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, latestYear }) {
+function AlignerPanel({ legs, numLegs, updateLeg, availableYears }) {
+  const activeLegs = legs.slice(0, numLegs);
+  const previewYear = availableYears[0] ?? new Date().getFullYear();
+
+  return (
+    <div className="rounded border border-slate-300 bg-white shadow-sm">
+      <div className="border-b border-slate-300 bg-slate-100 px-1 py-0.5 text-center text-[10px] font-extrabold text-slate-700">
+        Aligner
+      </div>
+      <div
+        className="grid gap-0.5 p-0.5"
+        style={{ gridTemplateColumns: `repeat(${Math.max(1, activeLegs.length)}, minmax(40px, 1fr))` }}
+      >
+        {activeLegs.map((leg, index) => {
+          const color = colorForLeg(index);
+          const offset = Number(leg.alignOffset) || 0;
+
+          return (
+            <div key={index} className="min-w-0 border-r border-slate-200 p-0.5 last:border-r-0">
+              <div className="mb-0.5 flex items-center justify-center gap-0.5">
+                <button
+                  type="button"
+                  onClick={() => updateLeg(index, { alignOffset: offset - 1 })}
+                  className="h-5 w-5 rounded-sm border border-white text-[10px] font-black leading-none text-white shadow-sm"
+                  style={{ backgroundColor: color }}
+                  title="Shift this leg one contract year back"
+                >
+                  ^
+                </button>
+                <button
+                  type="button"
+                  onClick={() => updateLeg(index, { alignOffset: offset + 1 })}
+                  className="h-5 w-5 rounded-sm border border-white text-[10px] font-black leading-none text-white shadow-sm"
+                  style={{ backgroundColor: color }}
+                  title="Shift this leg one contract year forward"
+                >
+                  v
+                </button>
+              </div>
+              <div className="truncate text-center text-[9px] font-extrabold leading-3" style={{ color }} title={contractCode(leg, previewYear)}>
+                {contractCode(leg, previewYear)}
+              </div>
+              <div className="text-center text-[8px] font-bold leading-3 text-slate-500">
+                {offset === 0 ? ":" : offset > 0 ? `+${offset}` : offset}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function colorForLeg(index) {
+  return ["#2563EB", "#DC2626", "#0F766E", "#7C3AED"][index] || "#111827";
+}
+
+function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, latestYear, period, periodVisible }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cursorX, setCursorX] = useState(null);
   const [cursorY, setCursorY] = useState(null);
@@ -921,10 +1364,26 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
   const domain = niceChartDomain(allVisibleValues);
   const yTicks = [];
   for (let value = domain.min; value <= domain.max + domain.step / 2; value += domain.step) yTicks.push(value);
+  const activeLegs = legs
+    .slice(0, numLegs)
+    .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
+  const seasonEndInfo = activeLegs.length ? getAnchorSeasonInfo(activeLegs) : { endMonth: 12, endOffset: 0 };
+  const startMonth = activeLegs.length
+    ? getSeasonWindow((latestYear || selectedYears[0]) + seasonEndInfo.endOffset, seasonEndInfo.endMonth).startMonth
+    : 1;
+  const visibleMinOrder = visibleData[0]?.order ?? 0;
+  const visibleMaxOrder = visibleData.at(-1)?.order ?? 0;
+  const periodMarker = periodMarkers(period, startMonth, visibleMinOrder, visibleMaxOrder);
+  const periodIsValid = periodMarker.isValid && visibleData.length > 1;
 
   const x = (index) => {
     if (visibleData.length <= 1) return margin.left + plotW / 2;
     return margin.left + ((index - visibleStart) / Math.max(1, visibleEnd - visibleStart)) * plotW;
+  };
+  const xFromOrder = (order) => {
+    const clampedOrder = clamp(order, visibleMinOrder, visibleMaxOrder);
+    const ratio = (clampedOrder - visibleMinOrder) / Math.max(1, visibleMaxOrder - visibleMinOrder);
+    return margin.left + ratio * plotW;
   };
   const y = (value) => margin.top + plotH - ((value - domain.min) / Math.max(1, domain.max - domain.min)) * plotH;
   const defaultCursorY = Math.max(margin.top, Math.min(height - margin.bottom, y(0)));
@@ -960,6 +1419,17 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
   });
   const dragLeft = dragStart == null || dragCurrent == null ? null : Math.min(x(dragStart), x(dragCurrent));
   const dragRight = dragStart == null || dragCurrent == null ? null : Math.max(x(dragStart), x(dragCurrent));
+  const periodOverlapsVisible =
+    periodVisible &&
+    periodIsValid &&
+    periodMarker.endOrder >= visibleMinOrder &&
+    periodMarker.startOrder <= visibleMaxOrder;
+  const periodLeft = periodOverlapsVisible ? xFromOrder(periodMarker.startOrder) : null;
+  const periodRight = periodOverlapsVisible ? xFromOrder(periodMarker.endOrder) : null;
+  const openX = periodOverlapsVisible && periodMarker.showOpen ? xFromOrder(periodMarker.openOrder) : null;
+  const closeX = periodOverlapsVisible && periodMarker.showClose ? xFromOrder(periodMarker.closeOrder) : null;
+  const openStroke = periodMarker.openColor;
+  const closeStroke = periodMarker.closeColor;
 
   return (
     <div className="h-full min-h-[520px] flex-1 rounded border border-slate-200 bg-white p-2 shadow-sm">
@@ -1026,6 +1496,17 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
           <line x1={margin.left} y1={margin.top} x2={margin.left} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
           <line x1={margin.left} y1={height - margin.bottom} x2={width - margin.right} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
 
+          {periodOverlapsVisible && (
+            <rect
+              x={periodLeft}
+              y={margin.top}
+              width={Math.max(1, periodRight - periodLeft)}
+              height={plotH}
+              fill="#FDE68A"
+              opacity="0.72"
+            />
+          )}
+
           {sortedYears.map((year) => {
             const points = visibleData
               .map((point) => ({ point, value: point[`year${year}`], fullIndex: chartData.indexOf(point) }))
@@ -1044,6 +1525,39 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
               />
             );
           })}
+
+          {openX != null && (
+            <g>
+              <line x1={openX} y1={margin.top} x2={openX} y2={height - margin.bottom} stroke={openStroke} strokeWidth="2" />
+              <text
+                x={openX + 10}
+                y={margin.top + plotH / 2}
+                fill={openStroke}
+                fontSize="10"
+                fontWeight="800"
+                transform={`rotate(-90 ${openX + 10} ${margin.top + plotH / 2})`}
+              >
+                open: {formatFullDate(period.openDate)}
+              </text>
+            </g>
+          )}
+
+          {closeX != null && (
+            <g>
+              <line x1={closeX} y1={margin.top} x2={closeX} y2={height - margin.bottom} stroke={closeStroke} strokeWidth="2" />
+              <text
+                x={closeX - 10}
+                y={margin.top + plotH / 2}
+                fill={closeStroke}
+                fontSize="10"
+                fontWeight="800"
+                textAnchor="end"
+                transform={`rotate(-90 ${closeX - 10} ${margin.top + plotH / 2})`}
+              >
+                close: {formatFullDate(period.closeDate)}
+              </text>
+            </g>
+          )}
 
           <line x1={cursorLineX} y1={margin.top} x2={cursorLineX} y2={height - margin.bottom} stroke="#6b7280" strokeDasharray="3 3" />
           <line x1={margin.left} y1={cursorLineY} x2={width - margin.right} y2={cursorLineY} stroke="#6b7280" strokeDasharray="3 3" />
@@ -1078,6 +1592,157 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
           )}
         </svg>
       </div>
+    </div>
+  );
+}
+
+function HistoryView({ csvData, chartData, selectedYears, legs, numLegs, latestYear, period, periodVisible, chartsPerRow }) {
+  const sortedYears = [...selectedYears].sort((a, b) => b - a);
+  const referenceYear = sortedYears.includes(latestYear) ? latestYear : sortedYears[0];
+  const comparisonYears = sortedYears.filter((year) => year !== referenceYear);
+
+  if (!chartData.length || !referenceYear || !comparisonYears.length) {
+    return (
+      <div className="flex h-full min-h-[520px] flex-1 items-center justify-center rounded border border-dashed border-slate-300 bg-white text-center text-slate-500">
+        <div>
+          <p className="mb-2 text-lg font-extrabold">No history comparison yet</p>
+          <p className="text-sm font-semibold">Select the current year plus at least one older year.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-full min-h-[520px] flex-1 overflow-y-auto rounded border border-slate-200 bg-white p-2 shadow-sm">
+      <div
+        className="grid gap-2"
+        style={{ gridTemplateColumns: `repeat(${Math.max(1, chartsPerRow)}, minmax(0, 1fr))` }}
+      >
+        {comparisonYears.map((year) => (
+          <HistoryMiniChart
+            key={year}
+            csvData={csvData}
+            referenceYear={referenceYear}
+            comparisonYear={year}
+            legs={legs}
+            numLegs={numLegs}
+            latestYear={latestYear}
+            period={period}
+            periodVisible={periodVisible}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function HistoryMiniChart({ csvData, referenceYear, comparisonYear, legs, numLegs, latestYear, period, periodVisible }) {
+  const width = 640;
+  const height = 280;
+  const margin = { top: 26, right: 16, bottom: 28, left: 48 };
+  const plotW = width - margin.left - margin.right;
+  const plotH = height - margin.top - margin.bottom;
+  const miniData = buildSeasonalChartData(csvData, legs, numLegs, [referenceYear, comparisonYear]);
+  const referenceKey = `year${referenceYear}`;
+  const comparisonKey = `year${comparisonYear}`;
+  const values = miniData
+    .flatMap((point) => [point[referenceKey], point[comparisonKey]])
+    .filter(Number.isFinite);
+  const domain = niceChartDomain(values);
+  const yTicks = [];
+  for (let value = domain.min; value <= domain.max + domain.step / 2; value += domain.step) yTicks.push(value);
+  const x = (index) => {
+    if (miniData.length <= 1) return margin.left + plotW / 2;
+    return margin.left + (index / Math.max(1, miniData.length - 1)) * plotW;
+  };
+  const y = (value) => margin.top + plotH - ((value - domain.min) / Math.max(1, domain.max - domain.min)) * plotH;
+  const activeLegs = legs
+    .slice(0, numLegs)
+    .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
+  const seasonEndInfo = activeLegs.length ? getAnchorSeasonInfo(activeLegs) : { endMonth: 12, endOffset: 0 };
+  const startMonth = activeLegs.length
+    ? getSeasonWindow((latestYear || referenceYear) + seasonEndInfo.endOffset, seasonEndInfo.endMonth).startMonth
+    : 1;
+  const xFromOrder = (order) => {
+    const minOrder = miniData[0]?.order ?? 0;
+    const maxOrder = miniData.at(-1)?.order ?? 0;
+    const clampedOrder = clamp(order, minOrder, maxOrder);
+    const ratio = (clampedOrder - minOrder) / Math.max(1, maxOrder - minOrder);
+    return margin.left + ratio * plotW;
+  };
+  const minOrder = miniData[0]?.order ?? 0;
+  const maxOrder = miniData.at(-1)?.order ?? 0;
+  const periodMarker = periodMarkers(period, startMonth, minOrder, maxOrder);
+  const periodOverlapsVisible =
+    periodVisible &&
+    periodMarker.isValid &&
+    periodMarker.endOrder >= minOrder &&
+    periodMarker.startOrder <= maxOrder;
+  const periodLeft = periodOverlapsVisible ? xFromOrder(periodMarker.startOrder) : null;
+  const periodRight = periodOverlapsVisible ? xFromOrder(periodMarker.endOrder) : null;
+  const openStroke = periodMarker.openColor;
+  const closeStroke = periodMarker.closeColor;
+  const openX = periodOverlapsVisible && periodMarker.showOpen ? xFromOrder(periodMarker.openOrder) : null;
+  const closeX = periodOverlapsVisible && periodMarker.showClose ? xFromOrder(periodMarker.closeOrder) : null;
+  const referencePoints = miniData
+    .map((point, index) => ({ x: x(index), y: y(point[referenceKey]), value: point[referenceKey] }))
+    .filter((point) => Number.isFinite(point.value));
+  const comparisonPoints = miniData
+    .map((point, index) => ({ x: x(index), y: y(point[comparisonKey]), value: point[comparisonKey] }))
+    .filter((point) => Number.isFinite(point.value));
+  const xTicks = miniData.filter((_, index) => {
+    const step = Math.max(1, Math.floor(miniData.length / 4));
+    return index % step === 0 || index === miniData.length - 1;
+  });
+  const comparisonColor = colorForYear(comparisonYear, latestYear);
+
+  return (
+    <div className="rounded border border-slate-300 bg-white">
+      <div className="border-b border-slate-200 px-2 py-1 text-center text-[11px] font-extrabold text-slate-950">
+        {contractLabelForYear(legs, numLegs, comparisonYear)}
+      </div>
+      <svg viewBox={`0 0 ${width} ${height}`} className="block h-[280px] w-full">
+        <rect x="0" y="0" width={width} height={height} fill="#fff" />
+        {yTicks.map((value) => (
+          <g key={value}>
+            <line x1={margin.left} y1={y(value)} x2={width - margin.right} y2={y(value)} stroke="#d1d5db" strokeWidth="1" />
+            <text x={margin.left - 8} y={y(value) + 3} textAnchor="end" fill="#111827" fontSize="9">
+              {formatChartValue(value)}
+            </text>
+          </g>
+        ))}
+        {xTicks.map((point) => {
+          const index = miniData.indexOf(point);
+          return (
+            <g key={point.dateKey}>
+              <line x1={x(index)} y1={margin.top} x2={x(index)} y2={height - margin.bottom} stroke="#e5e7eb" strokeWidth="1" />
+              <text x={x(index)} y={height - 9} textAnchor="middle" fill="#111827" fontSize="9">
+                {point.label}
+              </text>
+            </g>
+          );
+        })}
+        {periodOverlapsVisible && (
+          <rect x={periodLeft} y={margin.top} width={Math.max(1, periodRight - periodLeft)} height={plotH} fill="#FDE68A" opacity="0.62" />
+        )}
+        <line x1={margin.left} y1={y(0)} x2={width - margin.right} y2={y(0)} stroke="#6b7280" strokeWidth="1" />
+        <line x1={margin.left} y1={margin.top} x2={margin.left} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
+        <line x1={margin.left} y1={height - margin.bottom} x2={width - margin.right} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
+        {referencePoints.length > 1 && (
+          <path d={pathFromPoints(referencePoints)} fill="none" stroke="#9CA3AF" strokeWidth="1.2" strokeLinejoin="round" strokeLinecap="round" />
+        )}
+        {comparisonPoints.length > 1 && (
+          <path d={pathFromPoints(comparisonPoints)} fill="none" stroke={comparisonColor} strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round" />
+        )}
+        {openX != null && <line x1={openX} y1={margin.top} x2={openX} y2={height - margin.bottom} stroke={openStroke} strokeWidth="1.5" />}
+        {closeX != null && <line x1={closeX} y1={margin.top} x2={closeX} y2={height - margin.bottom} stroke={closeStroke} strokeWidth="1.5" />}
+        <g transform={`translate(${width / 2 - 70} 14)`}>
+          <rect x="0" y="-7" width="7" height="7" fill="#9CA3AF" />
+          <text x="11" y="0" fontSize="9" fontWeight="700" fill="#64748B">{contractLabelForYear(legs, numLegs, referenceYear)}</text>
+          <rect x="108" y="-7" width="7" height="7" fill={comparisonColor} />
+          <text x="119" y="0" fontSize="9" fontWeight="700" fill="#334155">{contractLabelForYear(legs, numLegs, comparisonYear)}</text>
+        </g>
+      </svg>
     </div>
   );
 }
@@ -1126,6 +1791,21 @@ function pathFromPoints(points) {
   return points.map((point, index) => `${index ? "L" : "M"} ${point.x} ${point.y}`).join(" ");
 }
 
+function buildTimeTicks(minTime, maxTime, count = 4) {
+  if (!Number.isFinite(minTime) || !Number.isFinite(maxTime) || minTime === maxTime) {
+    return [];
+  }
+
+  return Array.from({ length: count + 1 }, (_, index) => {
+    const timestamp = minTime + ((maxTime - minTime) * index) / count;
+    const date = new Date(timestamp);
+    return {
+      timestamp,
+      label: date.toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "2-digit" }),
+    };
+  });
+}
+
 function ChartLegend({ rows }) {
   return (
     <div className="mb-1 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 border-b border-slate-100 pb-1 text-[11px] font-bold text-slate-600">
@@ -1135,6 +1815,191 @@ function ChartLegend({ rows }) {
           <span>{row.label}: {formatChartValue(row.value)}</span>
         </div>
       ))}
+    </div>
+  );
+}
+
+function CalculatorView({ csvData, selectedYears, legs, numLegs, period }) {
+  const rows = useMemo(
+    () => buildCalculatorRows(csvData, legs, numLegs, selectedYears, period),
+    [csvData, legs, numLegs, selectedYears, period]
+  );
+  const validRows = rows.filter((row) => row.hasData);
+  const openAction = period.side === "buy" ? "buy" : "sell";
+  const closeAction = period.side === "buy" ? "sell" : "buy";
+  const openHeaderColor = period.side === "buy" ? "bg-green-700" : "bg-red-600";
+  const closeHeaderColor = period.side === "buy" ? "bg-red-600" : "bg-green-700";
+  const profitableCount = validRows.filter((row) => row.equityChange > 0).length;
+  const average = (field) =>
+    validRows.length
+      ? validRows.reduce((sum, row) => sum + (Number(row[field]) || 0), 0) / validRows.length
+      : null;
+
+  if (!rows.length) {
+    return (
+      <div className="flex h-full min-h-[520px] flex-1 items-center justify-center rounded border border-dashed border-slate-300 bg-white text-center text-slate-500">
+        <div>
+          <p className="mb-2 text-lg font-extrabold">No calculator rows yet</p>
+          <p className="text-sm font-semibold">Select one or more years and set an open and close period.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-full min-h-[520px] flex-1 overflow-auto rounded border border-slate-200 bg-white shadow-sm">
+      <CalculatorTimeline rows={validRows} period={period} />
+
+      <table className="min-w-[1320px] w-full border-collapse text-[11px]">
+        <thead className="sticky top-0 z-10">
+          <tr className="bg-slate-950 text-white">
+            <th className="border border-slate-300 px-2 py-2 text-left">ticker</th>
+            <th className={`border border-slate-300 px-2 py-2 text-right ${openHeaderColor}`}>
+              open ({openAction})
+            </th>
+            <th className={`border border-slate-300 px-2 py-2 text-right ${closeHeaderColor}`}>
+              close ({closeAction})
+            </th>
+            <th className="border border-slate-300 px-2 py-2 text-right">
+              change ({period.side === "buy" ? "sell - buy" : "sell - buy"})
+            </th>
+            <th className="border border-slate-300 px-2 py-2 text-right">equity change</th>
+            <th className="border border-slate-300 px-2 py-2 text-right">days</th>
+            <th className="border border-slate-300 px-2 py-2 text-right">avg. profit/day</th>
+            <th className="border border-slate-300 px-2 py-2 text-right">max adverse excursion</th>
+            <th className="border border-slate-300 px-2 py-2 text-right">max profitable excursion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, index) => {
+            if (!row.hasData) {
+              return (
+                <tr key={row.year} className={index % 2 ? "bg-white" : "bg-slate-50"}>
+                  <td className="border border-slate-200 px-2 py-1 font-bold text-slate-700">{row.ticker}</td>
+                  <td colSpan="8" className="border border-slate-200 px-2 py-1 text-slate-500">
+                    No overlapping data available for this selected period.
+                  </td>
+                </tr>
+              );
+            }
+
+            return (
+              <tr key={row.year} className={index % 2 ? "bg-white" : "bg-slate-50"}>
+                <td className="border border-slate-200 px-2 py-1 font-bold text-slate-700">{row.ticker}</td>
+                <td className="border border-slate-200 px-2 py-1 text-right">
+                  <span className="mr-3 text-slate-600">{formatTableDate(row.openDate)}</span>
+                  <span>{formatSignedNumber(row.openValue, 2)}</span>
+                </td>
+                <td className="border border-slate-200 px-2 py-1 text-right">
+                  <span className="mr-3 text-slate-600">{formatTableDate(row.closeDate)}</span>
+                  <span>{formatSignedNumber(row.closeValue, 2)}</span>
+                </td>
+                <td className={`border border-slate-200 px-2 py-1 text-right font-bold ${row.change < 0 ? "text-red-600" : "text-slate-950"}`}>
+                  {formatSignedNumber(row.change, 2)}
+                </td>
+                <td className={`border border-slate-200 px-2 py-1 text-right font-bold ${row.equityChange < 0 ? "text-red-600" : "text-slate-950"}`}>
+                  {formatSignedCurrency(row.equityChange)}
+                </td>
+                <td className="border border-slate-200 px-2 py-1 text-right">{row.days}</td>
+                <td className={`border border-slate-200 px-2 py-1 text-right font-bold ${row.avgProfitPerDay < 0 ? "text-red-600" : "text-slate-950"}`}>
+                  {formatSignedCurrency(row.avgProfitPerDay)}
+                </td>
+                <td className="border border-slate-200 px-2 py-1 text-right">
+                  <span className="mr-3 text-slate-600">{formatTableDate(row.maxAdverseDate)}</span>
+                  <span className={row.maxAdverseValue < 0 ? "font-bold text-red-600" : "font-bold text-slate-950"}>
+                    {formatSignedCurrency(row.maxAdverseValue)}
+                  </span>
+                </td>
+                <td className="border border-slate-200 px-2 py-1 text-right">
+                  <span className="mr-3 text-slate-600">{formatTableDate(row.maxProfitableDate)}</span>
+                  <span className={row.maxProfitableValue < 0 ? "font-bold text-red-600" : "font-bold text-slate-950"}>
+                    {formatSignedCurrency(row.maxProfitableValue)}
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+        <tfoot>
+          <tr className="bg-white text-[11px] font-extrabold text-slate-950">
+            <td className="border border-slate-300 px-2 py-1 text-right">
+              {validRows.length} trades; {validRows.length ? `${Math.round((profitableCount / validRows.length) * 100)}% profitable` : ""}
+            </td>
+            <td className="border border-slate-300 px-2 py-1" />
+            <td className="border border-slate-300 px-2 py-1 text-right">averages:</td>
+            <td className="border border-slate-300 px-2 py-1 text-right">{formatSignedNumber(average("change"), 2)}</td>
+            <td className="border border-slate-300 px-2 py-1 text-right">{formatSignedCurrency(average("equityChange"))}</td>
+            <td className="border border-slate-300 px-2 py-1 text-right">{formatSignedNumber(average("days"), 1)}</td>
+            <td className="border border-slate-300 px-2 py-1 text-right">{formatSignedCurrency(average("avgProfitPerDay"))}</td>
+            <td className="border border-slate-300 px-2 py-1 text-right">{formatSignedCurrency(average("maxAdverseValue"))}</td>
+            <td className="border border-slate-300 px-2 py-1 text-right">{formatSignedCurrency(average("maxProfitableValue"))}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  );
+}
+
+function CalculatorTimeline({ rows, period }) {
+  const width = 1320;
+  const height = 210;
+  const margin = { top: 28, right: 24, bottom: 36, left: 70 };
+  const plotW = width - margin.left - margin.right;
+  const plotH = height - margin.top - margin.bottom;
+  const validRows = rows.filter((row) => row.openDate && row.closeDate);
+
+  if (!validRows.length) {
+    return (
+      <div className="flex h-[210px] items-center justify-center border-b border-slate-300 text-sm font-semibold text-slate-500">
+        No timeline data available.
+      </div>
+    );
+  }
+
+  const allTimes = validRows.flatMap((row) => [parseDate(row.openDate).getTime(), parseDate(row.closeDate).getTime()]);
+  const minTime = Math.min(...allTimes);
+  const maxTime = Math.max(...allTimes);
+  const x = (timestamp) => margin.left + ((timestamp - minTime) / Math.max(1, maxTime - minTime)) * plotW;
+  const openColor = period.side === "buy" ? "#15803D" : "#DC2626";
+  const closeColor = period.side === "buy" ? "#DC2626" : "#15803D";
+  const ticks = buildTimeTicks(minTime, maxTime, 6);
+  const rowGap = Math.max(5, Math.min(12, plotH / Math.max(1, validRows.length)));
+
+  return (
+    <div className="border-b border-slate-300 bg-white">
+      <svg viewBox={`0 0 ${width} ${height}`} className="block h-[210px] w-full">
+        <rect x="0" y="0" width={width} height={height} fill="#fff" />
+        <text x={width / 2} y={18} textAnchor="middle" fontSize="12" fontWeight="800" fill="#020617">
+          {titleForConfig({ legs: rows.length ? [] : [], numLegs: 0 }) || "Calculator period map"}
+        </text>
+        {ticks.map((tick) => (
+          <g key={tick.timestamp}>
+            <line x1={x(tick.timestamp)} y1={margin.top} x2={x(tick.timestamp)} y2={height - margin.bottom} stroke="#d1d5db" />
+            <text x={x(tick.timestamp)} y={height - 12} textAnchor="middle" fontSize="10" fill="#111827">
+              {tick.label}
+            </text>
+          </g>
+        ))}
+        {validRows.map((row, index) => {
+          const y = margin.top + 8 + index * rowGap;
+          const openX = x(parseDate(row.openDate).getTime());
+          const closeX = x(parseDate(row.closeDate).getTime());
+          return (
+            <g key={row.year}>
+              <line x1={Math.min(openX, closeX)} y1={y} x2={Math.max(openX, closeX)} y2={y} stroke={colorForYear(row.year, rows[0]?.year)} strokeWidth="2" />
+              <circle cx={openX} cy={y} r="2" fill={openColor} />
+              <circle cx={closeX} cy={y} r="2" fill={closeColor} />
+            </g>
+          );
+        })}
+        <line x1={margin.left} y1={height - margin.bottom} x2={width - margin.right} y2={height - margin.bottom} stroke="#94a3b8" />
+        <text x={margin.left - 12} y={margin.top + 5} textAnchor="end" fontSize="10" fontWeight="800" fill="#334155">
+          {validRows[0]?.year}
+        </text>
+        <text x={margin.left - 12} y={height - margin.bottom - 5} textAnchor="end" fontSize="10" fontWeight="800" fill="#334155">
+          {validRows.at(-1)?.year}
+        </text>
+      </svg>
     </div>
   );
 }
