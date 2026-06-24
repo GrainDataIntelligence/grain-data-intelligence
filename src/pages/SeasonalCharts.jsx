@@ -5,6 +5,11 @@ const MAX_LEGS = 4;
 const HEDGING_MONTHS = ["Mar", "May", "Jul", "Sep", "Dec"];
 const COMMODITIES = ["Wheat", "Soybeans", "White Maize", "Yellow Maize", "Sunflower"];
 const PROGRAMS = ["Long Term Charts", "History", "Calculator"];
+const CHART_METRICS = {
+  price: { label: "Price", field: "price", chartType: "line", valueLabel: "Price" },
+  openInterest: { label: "Open Interest", field: "open_interest", chartType: "line", valueLabel: "Open Interest" },
+  volume: { label: "Volume", field: "volume", chartType: "bar", valueLabel: "Volume" },
+};
 const CURRENT_YEAR_COLOR = "#DC2626";
 const YEAR_COLORS = ["#2563EB", "#059669", "#A16207", "#7C3AED", "#0891B2", "#EA580C", "#64748B", "#111827"];
 const COMMODITY_CODES = {
@@ -217,6 +222,50 @@ function buildSeasonalChartData(csvData, legs, numLegs, selectedYears) {
       }
 
       pointsByDay.get(dateKey)[`year${year}`] = Math.round(value);
+    });
+  });
+
+  return [...pointsByDay.values()].sort((a, b) => a.order - b.order);
+}
+
+function buildSingleLegSeasonalMetricData(csvData, legs, selectedYears, metricKey) {
+  if (!csvData || !selectedYears.length) return [];
+
+  const leg = legs[0];
+  const metric = CHART_METRICS[metricKey];
+  if (!leg?.commodity || !leg.contract || !metric) return [];
+
+  const pointsByDay = new Map();
+  const endMonth = CONTRACT_MONTH_NUMBERS[leg.contract];
+  const alignOffset = Number(leg.alignOffset) || 0;
+
+  selectedYears.forEach((year) => {
+    const contractYear = year + alignOffset;
+    const { start, startMonth, end } = getSeasonWindow(contractYear, endMonth);
+    const contractRows = csvData[leg.commodity]?.[`${leg.contract}-${contractYear}`] ?? [];
+
+    contractRows.forEach((row) => {
+      const date = row.date ? parseDate(row.date) : null;
+      const value = row[metric.field];
+
+      if (
+        date &&
+        !Number.isNaN(date.getTime()) &&
+        Number.isFinite(value) &&
+        isInWindow(date, start, end)
+      ) {
+        const pointKey = dayKey(row.date);
+
+        if (!pointsByDay.has(pointKey)) {
+          pointsByDay.set(pointKey, {
+            dateKey: pointKey,
+            label: formatDayLabel(row.date),
+            order: getSeasonOrder(date, startMonth),
+          });
+        }
+
+        pointsByDay.get(pointKey)[`year${year}`] = Math.round(value);
+      }
     });
   });
 
@@ -514,7 +563,7 @@ function contractLabelForYear(legs, numLegs, year) {
     .join(" ");
 }
 
-function buildConfig({ numLegs, legs, selectedYears, showLabels, period, chartsPerRow }) {
+function buildConfig({ numLegs, legs, selectedYears, showLabels, period, chartsPerRow, chartMetric }) {
   return {
     numLegs,
     legs,
@@ -522,6 +571,7 @@ function buildConfig({ numLegs, legs, selectedYears, showLabels, period, chartsP
     showLabels,
     period,
     chartsPerRow,
+    chartMetric,
   };
 }
 
@@ -590,6 +640,7 @@ export default function SeasonalCharts() {
   const [period, setPeriod] = useState(DEFAULT_PERIOD);
   const [periodPanelOpen, setPeriodPanelOpen] = useState(false);
   const [chartsPerRow, setChartsPerRow] = useState(2);
+  const [chartMetric, setChartMetric] = useState("price");
   const [savedAnalyses, setSavedAnalyses] = useState([]);
   const [saveName, setSaveName] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -638,9 +689,15 @@ export default function SeasonalCharts() {
     });
   }, [availableYears]);
 
+  useEffect(() => {
+    if (numLegs !== 1 && chartMetric !== "price") setChartMetric("price");
+  }, [chartMetric, numLegs]);
+
+  const effectiveChartMetric = program === "Long Term Charts" && numLegs === 1 ? chartMetric : "price";
+
   const currentConfig = useMemo(
-    () => buildConfig({ numLegs, legs, selectedYears, showLabels, period, chartsPerRow }),
-    [numLegs, legs, selectedYears, showLabels, period, chartsPerRow]
+    () => buildConfig({ numLegs, legs, selectedYears, showLabels, period, chartsPerRow, chartMetric }),
+    [numLegs, legs, selectedYears, showLabels, period, chartsPerRow, chartMetric]
   );
 
   useEffect(() => {
@@ -674,8 +731,11 @@ export default function SeasonalCharts() {
   }, [activeTabId, currentConfig, program, selectedYears.length]);
 
   const chartData = useMemo(
-    () => buildSeasonalChartData(csvData, legs, numLegs, selectedYears),
-    [csvData, legs, numLegs, selectedYears]
+    () =>
+      effectiveChartMetric === "price"
+        ? buildSeasonalChartData(csvData, legs, numLegs, selectedYears)
+        : buildSingleLegSeasonalMetricData(csvData, legs, selectedYears, effectiveChartMetric),
+    [csvData, legs, numLegs, selectedYears, effectiveChartMetric]
   );
 
   const updateLeg = (index, updates) => {
@@ -693,6 +753,7 @@ export default function SeasonalCharts() {
     setShowLabels(Boolean(config.showLabels));
     setPeriod(config.period ?? DEFAULT_PERIOD);
     setChartsPerRow(config.chartsPerRow ?? 2);
+    setChartMetric(config.chartMetric ?? "price");
   };
 
   const saveAnalysis = () => {
@@ -1014,6 +1075,32 @@ export default function SeasonalCharts() {
                     </label>
                   )}
                 </div>
+                {program === "Long Term Charts" && (
+                  <div className="mt-2">
+                    <div className="mb-1 text-[10px] font-extrabold uppercase tracking-wide text-slate-500">Chart data</div>
+                    <div className="grid grid-cols-3 overflow-hidden rounded border border-slate-300 bg-white">
+                      {Object.entries(CHART_METRICS).map(([key, metric]) => {
+                        const disabled = key !== "price" && numLegs !== 1;
+                        return (
+                          <button
+                            key={key}
+                            type="button"
+                            disabled={disabled}
+                            onClick={() => setChartMetric(key)}
+                            className={`h-7 px-2 text-[11px] font-bold ${
+                              effectiveChartMetric === key
+                                ? "bg-slate-950 text-white"
+                                : "bg-white text-slate-700 hover:bg-slate-100"
+                            } ${disabled ? "cursor-not-allowed opacity-40 hover:bg-white" : ""}`}
+                            title={disabled ? "Open Interest and Volume are available for one future only." : metric.label}
+                          >
+                            {metric.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
 
             </div>
@@ -1050,6 +1137,7 @@ export default function SeasonalCharts() {
                   latestYear={availableYears[0]}
                   period={period}
                   periodVisible={periodPanelOpen}
+                  chartMetric={effectiveChartMetric}
                 />
               ) : program === "History" ? (
                 <HistoryView
@@ -1327,7 +1415,7 @@ function colorForLeg(index) {
   return ["#2563EB", "#DC2626", "#0F766E", "#7C3AED"][index] || "#111827";
 }
 
-function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, latestYear, period, periodVisible }) {
+function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, latestYear, period, periodVisible, chartMetric = "price" }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cursorX, setCursorX] = useState(null);
   const [cursorY, setCursorY] = useState(null);
@@ -1351,6 +1439,8 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
   const margin = { top: 24, right: 10, bottom: 40, left: 58 };
   const plotW = width - margin.left - margin.right;
   const plotH = height - margin.top - margin.bottom;
+  const metricConfig = CHART_METRICS[chartMetric] ?? CHART_METRICS.price;
+  const isBarChart = metricConfig.chartType === "bar";
   const sortedYears = [...selectedYears].sort((a, b) => b - a);
   const fullStart = 0;
   const fullEnd = chartData.length - 1;
@@ -1362,8 +1452,9 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
   const activeFullIndex = chartData.indexOf(activePoint);
   const allVisibleValues = visibleData.flatMap((point) => sortedYears.map((year) => point[`year${year}`])).filter(Number.isFinite);
   const domain = niceChartDomain(allVisibleValues);
+  const barDomain = isBarChart ? { ...domain, min: Math.min(0, domain.min) } : domain;
   const yTicks = [];
-  for (let value = domain.min; value <= domain.max + domain.step / 2; value += domain.step) yTicks.push(value);
+  for (let value = barDomain.min; value <= barDomain.max + domain.step / 2; value += domain.step) yTicks.push(value);
   const activeLegs = legs
     .slice(0, numLegs)
     .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
@@ -1385,10 +1476,10 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
     const ratio = (clampedOrder - visibleMinOrder) / Math.max(1, visibleMaxOrder - visibleMinOrder);
     return margin.left + ratio * plotW;
   };
-  const y = (value) => margin.top + plotH - ((value - domain.min) / Math.max(1, domain.max - domain.min)) * plotH;
+  const y = (value) => margin.top + plotH - ((value - barDomain.min) / Math.max(1, barDomain.max - barDomain.min)) * plotH;
   const defaultCursorY = Math.max(margin.top, Math.min(height - margin.bottom, y(0)));
   const cursorLineY = cursorY ?? defaultCursorY;
-  const cursorValue = domain.max - ((cursorLineY - margin.top) / plotH) * (domain.max - domain.min);
+  const cursorValue = barDomain.max - ((cursorLineY - margin.top) / plotH) * (barDomain.max - barDomain.min);
   const nearestIndexFromClientX = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const svgX = ((event.clientX - rect.left) / rect.width) * width;
@@ -1430,6 +1521,9 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
   const closeX = periodOverlapsVisible && periodMarker.showClose ? xFromOrder(periodMarker.closeOrder) : null;
   const openStroke = periodMarker.openColor;
   const closeStroke = periodMarker.closeColor;
+  const barStep = plotW / Math.max(1, visibleData.length - 1);
+  const barGroupWidth = Math.min(34, Math.max(10, barStep * 0.7));
+  const barWidth = Math.max(2, barGroupWidth / Math.max(1, sortedYears.length) - 1);
 
   return (
     <div className="h-full min-h-[520px] flex-1 rounded border border-slate-200 bg-white p-2 shadow-sm">
@@ -1507,24 +1601,47 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
             />
           )}
 
-          {sortedYears.map((year) => {
-            const points = visibleData
-              .map((point) => ({ point, value: point[`year${year}`], fullIndex: chartData.indexOf(point) }))
-              .filter((point) => Number.isFinite(point.value))
-              .map((point) => ({ x: x(point.fullIndex), y: y(point.value) }));
-            if (points.length < 2) return null;
-            return (
-              <path
-                key={year}
-                d={pathFromPoints(points)}
-                fill="none"
-                stroke={colorForYear(year, latestYear)}
-                strokeWidth={year === latestYear ? 2.4 : 1.2}
-                strokeLinejoin="round"
-                strokeLinecap="round"
-              />
-            );
-          })}
+          {isBarChart
+            ? sortedYears.map((year, yearIndex) => {
+                const color = colorForYear(year, latestYear);
+                return visibleData.map((point) => {
+                  const value = point[`year${year}`];
+                  if (!Number.isFinite(value)) return null;
+                  const fullIndex = chartData.indexOf(point);
+                  const centerX = x(fullIndex) - barGroupWidth / 2 + yearIndex * (barWidth + 1) + barWidth / 2;
+                  const yZero = y(0);
+                  const yValue = y(value);
+                  return (
+                    <rect
+                      key={`${year}-${point.dateKey}`}
+                      x={centerX - barWidth / 2}
+                      y={Math.min(yZero, yValue)}
+                      width={barWidth}
+                      height={Math.max(1, Math.abs(yZero - yValue))}
+                      fill={color}
+                      opacity={year === latestYear ? 0.9 : 0.7}
+                    />
+                  );
+                });
+              })
+            : sortedYears.map((year) => {
+                const points = visibleData
+                  .map((point) => ({ point, value: point[`year${year}`], fullIndex: chartData.indexOf(point) }))
+                  .filter((point) => Number.isFinite(point.value))
+                  .map((point) => ({ x: x(point.fullIndex), y: y(point.value) }));
+                if (points.length < 2) return null;
+                return (
+                  <path
+                    key={year}
+                    d={pathFromPoints(points)}
+                    fill="none"
+                    stroke={colorForYear(year, latestYear)}
+                    strokeWidth={year === latestYear ? 2.4 : 1.2}
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                  />
+                );
+              })}
 
           {openX != null && (
             <g>

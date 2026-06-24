@@ -38,6 +38,8 @@ function groupRowsByContract(rows) {
     groups[key].push({
       ...row,
       price: Number(row.price),
+      volume: Number(row.volume),
+      open_interest: Number(row.open_interest),
       contract_year: Number(year),
     });
 
