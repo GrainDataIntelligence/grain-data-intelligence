@@ -9,6 +9,17 @@ function parseDate(value) {
   return new Date(year, month - 1, day);
 }
 
+function marketingYearSortValue(year) {
+  const [start] = String(year).split("/");
+  const numeric = Number(start);
+  if (!Number.isFinite(numeric)) return 0;
+  return numeric < 50 ? 2000 + numeric : 1900 + numeric;
+}
+
+function sortMarketingYearsDesc(years) {
+  return [...years].sort((a, b) => marketingYearSortValue(b) - marketingYearSortValue(a));
+}
+
 function marketingYearStartDate(marketingYear) {
   const startYear = Number(`20${String(marketingYear).slice(0, 2)}`);
   return new Date(startYear, 8, 1);
@@ -62,7 +73,7 @@ function metricLabel(metric) {
 }
 
 function cftcYearColor(year, years) {
-  if (year === years.at(-1)) return "#d62828";
+  if (year === years[0]) return "#d62828";
   return yearColor(year, years);
 }
 
@@ -107,8 +118,8 @@ export default function FundamentalsCftc() {
         setData(payload);
         const first = payload.markets[0]?.name || "";
         setCommodity(first);
-        const commodityYears = [...new Set(payload.rows.filter((row) => row.commodity === first).map((row) => row.marketingYear))].sort();
-        setSelectedYears(new Set(commodityYears.slice(-5)));
+        const commodityYears = sortMarketingYearsDesc([...new Set(payload.rows.filter((row) => row.commodity === first).map((row) => row.marketingYear))]);
+        setSelectedYears(new Set(commodityYears.slice(0, 5)));
       });
   }, []);
 
@@ -120,11 +131,13 @@ export default function FundamentalsCftc() {
       return {
         ...row,
         managedMoneyNetChange: previous ? row.managedMoneyNet - previous.managedMoneyNet : 0,
+        managedMoneyLongChange: previous ? row.managedMoneyLong - previous.managedMoneyLong : 0,
+        managedMoneyShortChange: previous ? row.managedMoneyShort - previous.managedMoneyShort : 0,
       };
     });
   }, [data, commodity]);
 
-  const availableYears = useMemo(() => [...new Set(commodityRows.map((row) => row.marketingYear))].sort(), [commodityRows]);
+  const availableYears = useMemo(() => sortMarketingYearsDesc([...new Set(commodityRows.map((row) => row.marketingYear))]), [commodityRows]);
   const latest = data?.latest?.[commodity];
   const latestRow = commodityRows.at(-1);
   const marketName = data?.markets?.find((market) => market.name === commodity)?.market || "";
@@ -132,8 +145,8 @@ export default function FundamentalsCftc() {
   const handleCommodityChange = (nextCommodity) => {
     setCommodity(nextCommodity);
     if (!data) return;
-    const years = [...new Set(data.rows.filter((row) => row.commodity === nextCommodity).map((row) => row.marketingYear))].sort();
-    setSelectedYears(new Set(years.slice(-5)));
+    const years = sortMarketingYearsDesc([...new Set(data.rows.filter((row) => row.commodity === nextCommodity).map((row) => row.marketingYear))]);
+    setSelectedYears(new Set(years.slice(0, 5)));
   };
 
   if (!data) return <div className="min-h-screen bg-slate-100 p-8 text-slate-700">Loading CFTC data...</div>;
@@ -177,7 +190,7 @@ export default function FundamentalsCftc() {
               <label className="text-sm font-bold">Marketing years</label>
               <div className="grid grid-cols-2 gap-2">
                 <button className="rounded-md border border-slate-300 py-2" onClick={() => setSelectedYears(new Set())}>Clear All</button>
-                <button className="rounded-md border border-slate-300 py-2" onClick={() => setSelectedYears(new Set(availableYears.slice(-5)))}>Latest 5</button>
+                <button className="rounded-md border border-slate-300 py-2" onClick={() => setSelectedYears(new Set(availableYears.slice(0, 5)))}>Latest 5</button>
               </div>
               <div className="grid max-h-56 grid-cols-2 gap-2 overflow-auto text-sm">
                 {availableYears.map((year) => (
@@ -204,12 +217,13 @@ export default function FundamentalsCftc() {
         </aside>
 
         <section className="grid gap-5">
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 xl:grid-cols-6">
             <SummaryCard label="Latest report" value={latest ? longDate.format(parseDate(latest.date)) : "-"} sub={marketName} />
             <SummaryCard label="Managed money net" value={latest ? formatSigned(latest.managedMoneyNet) : "-"} sub="Longs minus shorts" />
-            <SummaryCard label="Weekly change" value={latestRow ? formatSigned(latestRow.managedMoneyNetChange) : "-"} sub="From previous report" />
+            <SummaryCard label="Net weekly change" value={latestRow ? formatSigned(latestRow.managedMoneyNetChange) : "-"} sub="From previous report" />
+            <SummaryCard label="Long weekly change" value={latestRow ? formatSigned(latestRow.managedMoneyLongChange) : "-"} sub="Managed money longs" />
+            <SummaryCard label="Short weekly change" value={latestRow ? formatSigned(latestRow.managedMoneyShortChange) : "-"} sub="Managed money shorts" />
             <SummaryCard label="Net percentile" value={latest ? `${latest.netPercentile.toFixed(1)}%` : "-"} sub="Full available history" />
-            <SummaryCard label="Open interest" value={latest ? fmt.format(latest.openInterest) : "-"} sub="Futures & options" />
           </div>
 
           <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/60">
@@ -296,7 +310,7 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels, met
   const x = (date) => margin.left + (seasonDay(date) / maxSeasonDay) * plotW;
   const y = (value) => margin.top + plotH - ((value - scale.min) / (scale.max - scale.min)) * plotH;
   const grouped = activeYears.map((year) => ({ year, values: rows.filter((row) => row.marketingYear === year) }));
-  const currentYear = years.at(-1);
+  const currentYear = years[0];
   const currentYearRows = rows.filter((row) => row.marketingYear === currentYear);
   const weeklySnapDays = (() => {
     const sourceRows = currentYearRows.length ? currentYearRows : activeRows;
@@ -423,7 +437,7 @@ function SeasonalPositionChart({ rows, years, selectedYears, showYearLabels, met
         <line x1={margin.left} y1={margin.top + plotH} x2={margin.left + plotW} y2={margin.top + plotH} stroke="#aeb8c4" />
         <line x1={margin.left} y1={margin.top} x2={margin.left} y2={margin.top + plotH} stroke="#aeb8c4" />
         {grouped.map((item) => {
-          const isCurrent = item.year === years.at(-1);
+          const isCurrent = item.year === years[0];
           const color = cftcYearColor(item.year, years);
           const path = item.values
             .filter((point) => Number.isFinite(netValue(point, metric)))
