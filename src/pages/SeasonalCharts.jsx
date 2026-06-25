@@ -629,6 +629,61 @@ function availableYearsForChart(csvData, legs, numLegs) {
     .sort((a, b) => b - a);
 }
 
+const ACTIVE_OPEN_INTEREST_THRESHOLD = 100;
+
+function contractExpiryDate(leg, baseYear) {
+  const contractYear = baseYear + (Number(leg.alignOffset) || 0);
+  const contractMonth = CONTRACT_MONTH_NUMBERS[leg.contract];
+  return new Date(contractYear, contractMonth, 0);
+}
+
+function latestOpenInterestForContract(rows, start = null, end = null) {
+  return rows.reduce(
+    (latest, row) => {
+      const date = row.date ? parseDate(row.date) : null;
+      if (!date || Number.isNaN(date.getTime()) || !Number.isFinite(row.open_interest)) return latest;
+      if (start && end && !isInWindow(date, start, end)) return latest;
+      if (!latest.date || date > latest.date) return { date, openInterest: row.open_interest };
+      return latest;
+    },
+    { date: null, openInterest: null }
+  ).openInterest;
+}
+
+function activeColorYearForChart(csvData, legs, numLegs, availableYears, chartData) {
+  if (!csvData || !availableYears.length) return availableYears[0];
+
+  const activeLegs = legs
+    .slice(0, numLegs)
+    .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
+
+  if (!activeLegs.length) return availableYears[0];
+
+  const today = new Date();
+  const { endMonth, endOffset } = getAnchorSeasonInfo(activeLegs);
+
+  const currentYear = availableYears.find((year) => {
+    const hasVisibleSeasonalData = chartData.some((point) => Number.isFinite(point[`year${year}`]));
+    if (!hasVisibleSeasonalData) return false;
+
+    const hasOpenContract = activeLegs.some((leg) => contractExpiryDate(leg, year) >= today);
+    if (!hasOpenContract) return false;
+
+    const { start, end } = getSeasonWindow(year + endOffset, endMonth);
+
+    return activeLegs.every((leg) => {
+      const contractYear = year + (Number(leg.alignOffset) || 0);
+      const rows = csvData[leg.commodity]?.[`${leg.contract}-${contractYear}`] ?? [];
+      const openInterest = latestOpenInterestForContract(rows, start, end);
+      return Number.isFinite(openInterest) && openInterest > ACTIVE_OPEN_INTEREST_THRESHOLD;
+    });
+  });
+
+  return currentYear ?? availableYears.find((year) =>
+    chartData.some((point) => Number.isFinite(point[`year${year}`]))
+  ) ?? availableYears[0];
+}
+
 export default function SeasonalCharts() {
   const [csvData, setCsvData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -693,7 +748,12 @@ export default function SeasonalCharts() {
     if (numLegs !== 1 && chartMetric !== "price") setChartMetric("price");
   }, [chartMetric, numLegs]);
 
+  useEffect(() => {
+    if (chartMetric !== "price" && program !== "Long Term Charts") setProgram("Long Term Charts");
+  }, [chartMetric, program]);
+
   const effectiveChartMetric = program === "Long Term Charts" && numLegs === 1 ? chartMetric : "price";
+  const nonPriceMetricActive = chartMetric !== "price" && numLegs === 1;
 
   const currentConfig = useMemo(
     () => buildConfig({ numLegs, legs, selectedYears, showLabels, period, chartsPerRow, chartMetric }),
@@ -736,6 +796,11 @@ export default function SeasonalCharts() {
         ? buildSeasonalChartData(csvData, legs, numLegs, selectedYears)
         : buildSingleLegSeasonalMetricData(csvData, legs, selectedYears, effectiveChartMetric),
     [csvData, legs, numLegs, selectedYears, effectiveChartMetric]
+  );
+
+  const activeColorYear = useMemo(
+    () => activeColorYearForChart(csvData, legs, numLegs, availableYears, chartData),
+    [csvData, legs, numLegs, availableYears, chartData]
   );
 
   const updateLeg = (index, updates) => {
@@ -839,6 +904,7 @@ export default function SeasonalCharts() {
   };
 
   const chooseProgram = (nextProgram) => {
+    if (nonPriceMetricActive && nextProgram !== "Long Term Charts") return;
     setProgram(nextProgram);
   };
 
@@ -961,8 +1027,9 @@ export default function SeasonalCharts() {
               className="h-8 rounded border border-blue-300 bg-[#083b63] px-3 text-xs font-extrabold text-white outline-none"
             >
               {PROGRAMS.map((item) => (
-                <option key={item} value={item}>
+                <option key={item} value={item} disabled={nonPriceMetricActive && item !== "Long Term Charts"}>
                   {item}
+                  {nonPriceMetricActive && item !== "Long Term Charts" ? " (Price only)" : ""}
                 </option>
               ))}
             </select>
@@ -1112,9 +1179,6 @@ export default function SeasonalCharts() {
                 <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500">{program}</p>
                 <h1 className="text-sm font-extrabold text-slate-950">{chartTitle}</h1>
               </div>
-              <div className="text-xs font-bold text-slate-500">
-                {chartData.length ? `${chartData.length} seasonal points` : "No chart data"}
-              </div>
             </div>
             <div className="flex min-h-0 flex-1 gap-2 p-2">
               <div className="flex shrink-0 flex-col gap-2" style={{ width: selectorRailWidth(numLegs) }}>
@@ -1134,7 +1198,7 @@ export default function SeasonalCharts() {
                   showLabels={showLabels}
                   legs={legs}
                   numLegs={numLegs}
-                  latestYear={availableYears[0]}
+                  latestYear={activeColorYear}
                   period={period}
                   periodVisible={periodPanelOpen}
                   chartMetric={effectiveChartMetric}
@@ -1146,7 +1210,7 @@ export default function SeasonalCharts() {
                   selectedYears={selectedYears}
                   legs={legs}
                   numLegs={numLegs}
-                  latestYear={availableYears[0]}
+                  latestYear={activeColorYear}
                   period={period}
                   periodVisible={periodPanelOpen}
                   chartsPerRow={chartsPerRow}

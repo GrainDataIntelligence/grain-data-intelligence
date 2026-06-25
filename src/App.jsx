@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import PasswordGate from "./components/PasswordGate";
 
 import Home from "./pages/Home";
 import SeasonalCharts from "./pages/SeasonalCharts";
@@ -26,10 +27,11 @@ import LongTermCharts from "./pages/LongTermCharts";
 
 function App() {
   return (
-    <Router basename="/">
-      <Navbar />
+    <PasswordGate>
+      <Router basename="/">
+        <Navbar />
 
-      <Routes>
+        <Routes>
         {/* Redirect root → /home */}
         <Route path="/" element={<Navigate to="/home" />} />
 
@@ -59,8 +61,9 @@ function App() {
 
         {/* 404 FALLBACK */}
         <Route path="*" element={<Navigate to="/home" />} />
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </PasswordGate>
   );
 }
 
