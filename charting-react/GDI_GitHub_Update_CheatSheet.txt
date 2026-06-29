@@ -1,0 +1,86 @@
+🧠 GRAIN DATA INTELLIGENCE – WEBSITE UPDATE CHEAT SHEET
+
+🌍 OVERVIEW
+This guide shows how to make updates to your website using VS Code + GitHub.
+You’ll always make changes locally (in VS Code), then “push” them to GitHub to update the live site.
+
+───────────────────────────────
+🪄 STEP 1 – Make Your Changes Locally
+───────────────────────────────
+Edit files in VS Code just like before:
+Example: src/pages/Pricing.jsx, Navbar.jsx, index.css, etc.
+Save your changes (Ctrl + S).
+
+Optional: preview locally before uploading:
+> npm run dev
+
+Open your browser at:
+👉 http://localhost:5173/
+
+───────────────────────────────
+📦 STEP 2 – Stage and Commit Your Changes
+───────────────────────────────
+In VS Code terminal (inside your project folder):
+> git add .
+
+✅ This stages all modified files.
+
+Then commit the changes with a short description:
+> git commit -m "Describe what you changed"
+
+Example:
+> git commit -m "Updated Pricing page layout and added Deluxe plan"
+
+───────────────────────────────
+☁️ STEP 3 – Push Changes to GitHub
+───────────────────────────────
+Send your new commit to GitHub:
+> git push
+
+If Git asks for authentication, confirm in your browser.
+
+Check your repository on GitHub.com — your latest changes will appear there.
+
+───────────────────────────────
+🚀 STEP 4 – Deploy to Your Live Site
+───────────────────────────────
+Rebuild and publish your changes live:
+> npm run build
+> npm run deploy
+
+Your live site will update within ~60 seconds:
+👉 https://graindataintelligence.github.io/grain-data-intelligence/
+
+───────────────────────────────
+🧹 STEP 5 – Verify & Clean Up
+───────────────────────────────
+Open your live link and confirm your changes.
+If they don’t show up, try:
+- Hard refresh (Ctrl + F5)
+- Ensure both build and deploy ran
+- Ensure you committed your changes first
+
+───────────────────────────────
+🧰 HANDY COMMANDS
+───────────────────────────────
+Preview locally ........ npm run dev
+Stage all files ......... git add .
+Commit changes .......... git commit -m "message"
+Push to GitHub .......... git push
+Build for deployment .... npm run build
+Deploy live ............. npm run deploy
+Check Git status ........ git status
+Pull updates ............ git pull
+
+───────────────────────────────
+⚠️ COMMON MISTAKES
+───────────────────────────────
+- Forgetting to run “npm run deploy” → no live update
+- Typos or wrong quotes in package.json → build fails
+- Running Git commands outside project folder → errors
+- Forgetting “git add .” before commit → no files uploaded
+
+───────────────────────────────
+✅ YOU’RE ALL SET!
+───────────────────────────────
+You can update, test, and deploy your website anytime using these steps.

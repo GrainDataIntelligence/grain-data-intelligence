@@ -1,0 +1,70 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import PasswordGate from "./components/PasswordGate";
+
+import Home from "./pages/Home";
+import SeasonalCharts from "./pages/SeasonalCharts";
+import Platform from "./pages/Platform";
+import Deliveries from "./pages/Deliveries";
+import SupplyAndDemand from "./pages/SupplyAndDemand";
+import Backtesting from "./pages/Backtesting";
+import DemoTrading from "./pages/DemoTrading";
+import Educational from "./pages/Educational";
+import Pricing from "./pages/Pricing";
+import About from "./pages/About";
+import LongTermChart  from "./pages/LongTermCharts";  
+import FundamentalsDeliveries from "./pages/FundamentalsDeliveries";
+import FundamentalsExports from "./pages/FundamentalsExports";
+import FundamentalsCftc from "./pages/FundamentalsCftc";
+import BalanceSheetWheat from "./pages/BalanceSheetWheat";
+import BalanceSheetSoybeans from "./pages/BalanceSheetSoybeans";
+import BalanceSheetSunflowers from "./pages/BalanceSheetSunflowers";
+import BalanceSheetMaize from "./pages/BalanceSheetMaize";
+
+// NEW PAGE
+import LongTermCharts from "./pages/LongTermCharts";
+
+function App() {
+  return (
+    <PasswordGate>
+      <Router basename="/">
+        <Navbar />
+
+        <Routes>
+        {/* Redirect root → /home */}
+        <Route path="/" element={<Navigate to="/home" />} />
+
+        {/* MAIN PAGES */}
+        <Route path="/home" element={<Home />} />
+        <Route path="/seasonal-charts" element={<SeasonalCharts />} />
+        <Route path="/platform" element={<Platform />} />
+        <Route path="/deliveries" element={<Deliveries />} />
+        <Route path="/supply-and-demand" element={<SupplyAndDemand />} />
+        <Route path="/backtesting" element={<Backtesting />} />
+        <Route path="/demo-trading" element={<DemoTrading />} />
+        <Route path="/educational" element={<Educational />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/long-term-chart" element={<LongTermChart />} />
+        <Route path="/fundamentals/deliveries" element={<FundamentalsDeliveries />} />
+        <Route path="/fundamentals/imports-exports" element={<FundamentalsExports />} />
+        <Route path="/fundamentals/cftc" element={<FundamentalsCftc />} />
+        <Route path="/balance-sheet/wheat" element={<BalanceSheetWheat />} />
+        <Route path="/balance-sheet/soybeans" element={<BalanceSheetSoybeans />} />
+        <Route path="/balance-sheet/sunflowers" element={<BalanceSheetSunflowers />} />
+        <Route path="/balance-sheet/maize" element={<BalanceSheetMaize />} />
+
+
+        {/* NEW LONG-TERM CHARTS MODULE */}
+        <Route path="/long-term-charts" element={<LongTermCharts />} />
+
+        {/* 404 FALLBACK */}
+        <Route path="*" element={<Navigate to="/home" />} />
+        </Routes>
+      </Router>
+    </PasswordGate>
+  );
+}
+
+export default App;

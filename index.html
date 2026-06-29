@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grain Fundamentals Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">South Africa grain fundamentals</p>
+        <h1>Exports dashboard</h1>
+      </div>
+      <div class="top-actions">
+        <a href="deliveries.html?v=oilseeds2">Deliveries</a>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="filters" aria-label="Dashboard filters">
+        <section>
+          <label for="commodity">Commodity</label>
+          <select id="commodity"></select>
+        </section>
+
+        <section>
+          <label>Destination / group</label>
+          <div class="destination-actions">
+            <button type="button" id="clearDestinations">Clear</button>
+            <button type="button" id="selectTotal">Total exports</button>
+          </div>
+          <div class="destinations" id="destinations"></div>
+        </section>
+
+        <section>
+          <label for="metric">Chart metric</label>
+          <div class="segmented" id="metric" role="group" aria-label="Chart metric">
+            <button type="button" data-value="cumulative" class="active">Cumulative</button>
+            <button type="button" data-value="weekly">Weekly</button>
+          </div>
+        </section>
+
+        <section>
+          <label for="chartType">Chart type</label>
+          <div class="segmented" id="chartType" role="group" aria-label="Chart type">
+            <button type="button" data-value="line" class="active">Line</button>
+            <button type="button" data-value="bar">Bar</button>
+          </div>
+        </section>
+
+        <section>
+          <label>Marketing years</label>
+          <div class="destination-actions">
+            <button type="button" id="clearYears">Clear All</button>
+            <button type="button" id="latestYears">Latest 4</button>
+          </div>
+          <div class="years" id="years"></div>
+        </section>
+
+        <section>
+          <label for="weekStart">Week range</label>
+          <div class="range-grid">
+            <input id="weekStart" type="number" min="1" max="52" />
+            <input id="weekEnd" type="number" min="1" max="52" />
+          </div>
+        </section>
+
+        <section>
+          <label for="averageToggle" class="check-row">
+            <input id="averageToggle" type="checkbox" checked />
+            Show 5-year average
+          </label>
+          <p class="hint" id="averageHint"></p>
+        </section>
+      </aside>
+
+      <section class="dashboard">
+        <div class="summary-grid" id="summary"></div>
+        <section class="chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow" id="chartEyebrow">Exports</p>
+              <h2 id="chartTitle">Cumulative export pace</h2>
+            </div>
+            <div class="legend" id="legend"></div>
+          </div>
+          <div class="chart-wrap">
+            <svg id="chart" role="img" aria-label="Exports chart"></svg>
+            <div class="tooltip" id="tooltip" hidden></div>
+          </div>
+        </section>
+        <section class="table-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Selected years</p>
+              <h2>Marketing year totals</h2>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Weeks</th>
+                  <th>Weekly total</th>
+                  <th>Final cumulative</th>
+                  <th>Vs 5-year avg</th>
+                </tr>
+              </thead>
+              <tbody id="totalsTable"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js?v=20260601-current-year-red"></script>
+  </body>
+</html>

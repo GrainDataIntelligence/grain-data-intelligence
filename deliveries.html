@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maize Deliveries Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">South Africa grain fundamentals</p>
+        <h1>Maize deliveries dashboard</h1>
+      </div>
+      <div class="top-actions">
+        <a href="index.html">Exports</a>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="filters" aria-label="Deliveries filters">
+        <section>
+          <label>Delivery type</label>
+          <div class="segmented thirds" id="deliveryType" role="group" aria-label="Delivery type">
+            <button type="button" data-value="Maize" class="active">Maize</button>
+            <button type="button" data-value="Sunflowers">Sunflowers</button>
+            <button type="button" data-value="Soybeans">Soybeans</button>
+          </div>
+        </section>
+
+        <section id="methodologySection">
+          <label>Methodology</label>
+          <div class="segmented" id="methodology" role="group" aria-label="Methodology">
+            <button type="button" data-value="SAGIS" class="active">SAGIS</button>
+            <button type="button" data-value="Earlies">Earlies</button>
+          </div>
+          <p class="hint" id="methodologyHint"></p>
+        </section>
+
+        <section id="maizeCommoditySection">
+          <label for="commodity">Deliveries commodity</label>
+          <select id="commodity"></select>
+        </section>
+
+        <section>
+          <label>Chart type</label>
+          <div class="segmented" id="chartType" role="group" aria-label="Chart type">
+            <button type="button" data-value="line" class="active">Line</button>
+            <button type="button" data-value="bar">Bar</button>
+          </div>
+        </section>
+
+        <section>
+          <label>Line metric</label>
+          <div class="segmented" id="deliveryMetric" role="group" aria-label="Delivery line metric">
+            <button type="button" data-value="cumulative" class="active">Tons</button>
+            <button type="button" data-value="percent">%</button>
+          </div>
+        </section>
+
+        <section>
+          <label>Marketing years</label>
+          <div class="destination-actions">
+            <button type="button" id="clearYears">Clear All</button>
+            <button type="button" id="latestYears">Latest 4</button>
+          </div>
+          <div class="years" id="years"></div>
+        </section>
+
+        <section>
+          <label for="weekStart">Week range</label>
+          <div class="range-grid">
+            <input id="weekStart" type="number" min="1" max="52" />
+            <input id="weekEnd" type="number" min="1" max="52" />
+          </div>
+        </section>
+
+        <section>
+          <label for="averageToggle" class="check-row">
+            <input id="averageToggle" type="checkbox" checked />
+            Show 5-year average
+          </label>
+          <p class="hint" id="averageHint"></p>
+        </section>
+      </aside>
+
+      <section class="dashboard">
+        <div class="summary-grid" id="summary"></div>
+
+        <section class="chart-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow" id="deliveryEyebrow">Deliveries pace</p>
+              <h2 id="deliveryTitle">Cumulative deliveries</h2>
+            </div>
+            <div class="legend" id="deliveryLegend"></div>
+          </div>
+          <div class="chart-wrap">
+            <svg id="deliveryChart" role="img" aria-label="Maize deliveries chart"></svg>
+            <div class="tooltip" id="deliveryTooltip" hidden></div>
+          </div>
+        </section>
+
+        <section class="chart-panel" id="gradePanel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Grade deliveries</p>
+              <h2 id="gradeTitle">Grade cumulative deliveries</h2>
+            </div>
+            <div class="grade-controls">
+              <select id="gradeCommodity"></select>
+              <select id="grade"></select>
+              <div class="segmented compact" id="gradeMetric" role="group" aria-label="Grade metric">
+                <button type="button" data-value="cumulative" class="active">Tons</button>
+                <button type="button" data-value="percent">%</button>
+              </div>
+            </div>
+          </div>
+          <div class="legend" id="gradeLegend"></div>
+          <div class="grade-years-block">
+            <div class="section-row">
+              <label>Grade marketing years</label>
+              <div class="destination-actions compact-actions">
+                <button type="button" id="clearGradeYears">Clear All</button>
+                <button type="button" id="latestGradeYears">Latest 4</button>
+              </div>
+            </div>
+            <div class="years grade-years" id="gradeYears"></div>
+          </div>
+          <div class="chart-wrap">
+            <svg id="gradeChart" role="img" aria-label="Maize grade deliveries chart"></svg>
+            <div class="tooltip" id="gradeTooltip" hidden></div>
+          </div>
+        </section>
+
+        <section class="table-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Selected years</p>
+              <h2>Delivery totals</h2>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Weeks</th>
+                  <th>Weekly total</th>
+                  <th>Final cumulative</th>
+                  <th>% delivered</th>
+                  <th>CEC estimate</th>
+                </tr>
+              </thead>
+              <tbody id="totalsTable"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="deliveries-oilseeds.js?v=20260601-grade-panel-fix"></script>
+  </body>
+</html>

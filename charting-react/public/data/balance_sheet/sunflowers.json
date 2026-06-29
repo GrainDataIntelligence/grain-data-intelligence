@@ -1,0 +1,7410 @@
+{
+  "generatedAt": "2026-06-29T14:55:47",
+  "sourceFile": "C:\\Users\\Myburgh Swiegers\\Downloads\\Sunflower_Data_Table_20260626.xlsx",
+  "rowCount": 3021,
+  "commodity": "Sunflowers",
+  "months": [
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+    "Jan",
+    "Feb"
+  ],
+  "views": [
+    "Sunflowers"
+  ],
+  "defaultView": "Sunflowers",
+  "metrics": [
+    {
+      "key": "producerDeliveries",
+      "label": "Producer Deliveries",
+      "type": "single"
+    },
+    {
+      "key": "imports",
+      "label": "Imports",
+      "type": "single"
+    },
+    {
+      "key": "processedLocalMarket",
+      "label": "Processed for the Local Market",
+      "type": "sum"
+    },
+    {
+      "key": "exports",
+      "label": "Exports",
+      "type": "exports"
+    },
+    {
+      "key": "totalDemand",
+      "label": "Total Demand",
+      "type": "demand"
+    },
+    {
+      "key": "endingStocks",
+      "label": "Ending Stocks",
+      "type": "stock"
+    }
+  ],
+  "years": [
+    "2013/14",
+    "2014/15",
+    "2015/16",
+    "2016/17",
+    "2017/18",
+    "2018/19",
+    "2019/20",
+    "2020/21",
+    "2021/22",
+    "2022/23",
+    "2023/24",
+    "2024/25",
+    "2025/26",
+    "2026/27"
+  ],
+  "publicationDates": [
+    "2014-04-29",
+    "2015-04-28",
+    "2016-04-26",
+    "2017-04-26",
+    "2018-04-25",
+    "2019-04-26",
+    "2020-04-29",
+    "2021-04-28",
+    "2022-04-28",
+    "2023-04-26",
+    "2024-04-25",
+    "2025-04-25",
+    "2026/04/24",
+    "2026/06/26"
+  ],
+  "rows": [
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2013,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 88096.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2013,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 291.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2013,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 146557.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2013,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 152894.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2013,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 759.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2013,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 248129.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2013,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 177646.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2013,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 104.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2013,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 796.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2013,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 360025.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2013,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 85987.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2013,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 155.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2013,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 8.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2013,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 1273.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2013,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 389011.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2013,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 28446.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2013,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 518.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2013,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 1086.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2013,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 355057.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2013,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 3093.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2013,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 156.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2013,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 740.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2013,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 288933.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2013,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 968.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2013,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 196.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2013,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 678.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2013,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 225051.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2013,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 1205.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2013,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 31734.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2013,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 639.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2013,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 191145.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2013,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 1996.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2013,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 79.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2013,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 874.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2013,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 121584.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2013,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 695.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2013,
+      "monthOrder": 10,
+      "metric": "imports",
+      "value": 119.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2013,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 298.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2013,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 77846.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2014,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 671.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2014,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 31201.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2014,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 720.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2014,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 75119.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2014,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 468.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2014,
+      "monthOrder": 12,
+      "metric": "imports",
+      "value": 30213.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2014,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 204.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2013/14",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2014,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 47116.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2014,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 33843.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2014,
+      "monthOrder": 1,
+      "metric": "imports",
+      "value": 28718.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2014,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 161.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2014,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 49964.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2014,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 225912.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2014,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 427.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2014,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 236781.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2014,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 339041.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2014,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 31.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2014,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 1469.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2014,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 503530.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2014,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 160141.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2014,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 129.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2014,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 508.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2014,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 584245.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2014,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 51880.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2014,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 358.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2014,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 22.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2014,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 862.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2014,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 565283.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2014,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 6666.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2014,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 892.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2014,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 620.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2014,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 489600.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2014,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 2293.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2014,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 642.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2014,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 849.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2014,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 404131.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2014,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 1716.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2014,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 227.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2014,
+      "monthOrder": 8,
+      "metric": "exports",
+      "value": 26.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2014,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 690.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2014,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 330746.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2014,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 3582.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2014,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 76.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2014,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 885.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2014,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 237266.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2014,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 3334.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2014,
+      "monthOrder": 10,
+      "metric": "imports",
+      "value": 29728.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2014,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 887.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2014,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 198182.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2015,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 1992.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2015,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 1586.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2015,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 215.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2015,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 138780.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2015,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 2765.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2015,
+      "monthOrder": 12,
+      "metric": "imports",
+      "value": 793.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2015,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 146.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2014/15",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2015,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 92927.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2015,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 24612.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2015,
+      "monthOrder": 1,
+      "metric": "imports",
+      "value": 1856.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2015,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 27.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2015,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 262.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2015,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 67643.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2015,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 236353.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2015,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 27.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2015,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 417.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2015,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 262953.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2015,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 259625.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2015,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 1099.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2015,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 465763.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2015,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 100542.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2015,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 20.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2015,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 62.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2015,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 774.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2015,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 498846.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2015,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 26897.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2015,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 387.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2015,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 820.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2015,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 446756.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2015,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 3719.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2015,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 1610.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2015,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 10.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2015,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 727.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2015,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 356032.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2015,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 2877.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2015,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 612.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2015,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 735.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2015,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 277062.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2015,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 1661.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2015,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 120.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2015,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 729.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2015,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 198679.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2015,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 1771.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2015,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 30674.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2015,
+      "monthOrder": 9,
+      "metric": "exports",
+      "value": 41.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2015,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 624.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2015,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 162190.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2015,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 1247.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2015,
+      "monthOrder": 10,
+      "metric": "imports",
+      "value": 168.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2015,
+      "monthOrder": 10,
+      "metric": "exports",
+      "value": 29.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2015,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 420.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2015,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 106589.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2016,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 1258.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2016,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 132.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2016,
+      "monthOrder": 11,
+      "metric": "exports",
+      "value": 10.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2016,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 274.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2016,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 62836.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2016,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 3107.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2016,
+      "monthOrder": 12,
+      "metric": "imports",
+      "value": 485.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2016,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 50.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2016,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 292.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2015/16",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2016,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 45867.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2016,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 8884.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2016,
+      "monthOrder": 1,
+      "metric": "imports",
+      "value": 48.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2016,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 193.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2016,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 34637.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2016,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 43260.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2016,
+      "monthOrder": 2,
+      "metric": "imports",
+      "value": 16524.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2016,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 10.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2016,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 195.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2016,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 62379.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2016,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 89165.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2016,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 155.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2016,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 55.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2016,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 386.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2016,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 97599.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2016,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 391599.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2016,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 48.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2016,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 1997.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2016,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 424692.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2016,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 180869.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2016,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 496.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2016,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 1046.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2016,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 539783.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2016,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 26060.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2016,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 686.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2016,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 23.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2016,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 723.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2016,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 494534.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2016,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 6626.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2016,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 461.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2016,
+      "monthOrder": 7,
+      "metric": "exports",
+      "value": 79.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2016,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 1107.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2016,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 420113.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2016,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 2555.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2016,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 57.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2016,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 501.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2016,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 337769.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2016,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 1959.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2016,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 153.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2016,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 455.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2016,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 282453.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2016,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 564.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2016,
+      "monthOrder": 10,
+      "metric": "imports",
+      "value": 21978.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2016,
+      "monthOrder": 10,
+      "metric": "exports",
+      "value": 5.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2016,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 138.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2016,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 257986.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2017,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 3205.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2017,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 22.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2017,
+      "monthOrder": 11,
+      "metric": "exports",
+      "value": 28.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2017,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 228.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2017,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 198162.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2017,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 4868.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2017,
+      "monthOrder": 12,
+      "metric": "imports",
+      "value": 30015.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2017,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 5.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2017,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 182.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2016/17",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2017,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 163086.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2017,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 125369.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2017,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 40.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2017,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 235.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2017,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 229653.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2017,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 144222.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2017,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 7.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2017,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 195.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2017,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 339464.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2017,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 252542.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2017,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 100.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2017,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 38.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2017,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 368.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2017,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 545764.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2017,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 236439.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2017,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 132.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2017,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 21.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2017,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 653.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2017,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 712196.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2017,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 86527.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2017,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 124.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2017,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 8.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2017,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 1118.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2017,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 714999.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2017,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 12966.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2017,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 74.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2017,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 4.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2017,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 842.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2017,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 637294.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2017,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 3673.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2017,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 56.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2017,
+      "monthOrder": 7,
+      "metric": "exports",
+      "value": 7.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2017,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 822.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2017,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 556437.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2017,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 3389.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2017,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 26.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2017,
+      "monthOrder": 8,
+      "metric": "exports",
+      "value": 1.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2017,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 911.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2017,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 465071.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2017,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 1352.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2017,
+      "monthOrder": 9,
+      "metric": "exports",
+      "value": 42.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2017,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 594.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2017,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 371772.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2017,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 387.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2017,
+      "monthOrder": 10,
+      "metric": "imports",
+      "value": 42.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2017,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 186.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2017,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 311323.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2018,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 3651.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2018,
+      "monthOrder": 11,
+      "metric": "exports",
+      "value": 62.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2018,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 206.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2018,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 233329.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2018,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 1654.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2018,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 44.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2018,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 204.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2017/18",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2018,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 154841.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2018,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 9613.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2018,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 51.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2018,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 275.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2018,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 88561.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2018,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 109677.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2018,
+      "monthOrder": 2,
+      "metric": "imports",
+      "value": 21.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2018,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 245.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2018,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 144441.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2018,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 231151.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2018,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 78.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2018,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 101.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2018,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 317.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2018,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 309507.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2018,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 250196.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2018,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 234.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2018,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 45.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2018,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 856.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2018,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 463311.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2018,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 214706.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2018,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 136.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2018,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 34.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2018,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 1156.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2018,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 584280.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2018,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 33477.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2018,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 213.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2018,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 11.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2018,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 815.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2018,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 538680.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2018,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 5235.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2018,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 177.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2018,
+      "monthOrder": 7,
+      "metric": "exports",
+      "value": 34.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2018,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 641.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2018,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 459756.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2018,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 2073.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2018,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 262.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2018,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 496.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2018,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 369751.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2018,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 2535.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2018,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 181.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2018,
+      "monthOrder": 9,
+      "metric": "exports",
+      "value": 137.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2018,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 1189.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2018,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 296520.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2018,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 715.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2018,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 56.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2018,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 241370.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2019,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 2817.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2019,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 22.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2019,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 119.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2019,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 180626.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2019,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 989.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2019,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 102.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2019,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 215.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2018/19",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2019,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 120165.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2019,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 5995.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2019,
+      "monthOrder": 1,
+      "metric": "imports",
+      "value": 22.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2019,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 17.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2019,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 154.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2019,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 85259.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2019,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 18709.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2019,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 67.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2019,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 295.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2019,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 95783.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2019,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 166783.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2019,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 26.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2019,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 65.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2019,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 403.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2019,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 231773.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2019,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 235523.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2019,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 78.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2019,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 5.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2019,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 277.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2019,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 396823.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2019,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 226729.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2019,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 156.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2019,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 51.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2019,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 949.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2019,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 546273.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2019,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 14171.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2019,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 52.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2019,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 103.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2019,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 880.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2019,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 486812.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2019,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 2746.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2019,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 26.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2019,
+      "monthOrder": 7,
+      "metric": "exports",
+      "value": 34.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2019,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 690.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2019,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 409886.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2019,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 2457.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2019,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 74.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2019,
+      "monthOrder": 8,
+      "metric": "exports",
+      "value": 119.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2019,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 470.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2019,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 341234.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2019,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 837.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2019,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 23.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2019,
+      "monthOrder": 9,
+      "metric": "exports",
+      "value": 8.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2019,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 158.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2019,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 273765.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2019,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 456.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2019,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 108.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2019,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 238312.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2020,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 2656.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2020,
+      "monthOrder": 11,
+      "metric": "exports",
+      "value": 57.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2020,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 271.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2020,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 191670.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2020,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 612.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2020,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 50.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2020,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 174.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2019/20",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2020,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 135325.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2020,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 8136.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2020,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 28.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2020,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 148.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2020,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 95083.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2020,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 65653.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2020,
+      "monthOrder": 2,
+      "metric": "imports",
+      "value": 22.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2020,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 70.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2020,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 146.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2020,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 118620.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2020,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 307797.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2020,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 34.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2020,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 229.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2020,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 353809.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2020,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 296930.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2020,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 47.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2020,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 367.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2020,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 570631.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2020,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 94271.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2020,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 68.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2020,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 741.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2020,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 581246.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2020,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 4210.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2020,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 21.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2020,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 52.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2020,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 653.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2020,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 506591.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2020,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 2952.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2020,
+      "monthOrder": 7,
+      "metric": "exports",
+      "value": 620.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2020,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 1842.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2020,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 431226.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2020,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 575.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2020,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 86.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2020,
+      "monthOrder": 8,
+      "metric": "exports",
+      "value": 56.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2020,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 321.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2020,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 338136.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2020,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 2595.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2020,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 174.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2020,
+      "monthOrder": 9,
+      "metric": "exports",
+      "value": 24.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2020,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 292.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2020,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 243452.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2020,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 992.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2020,
+      "monthOrder": 10,
+      "metric": "imports",
+      "value": 47.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2020,
+      "monthOrder": 10,
+      "metric": "exports",
+      "value": 69.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2020,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 145.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2020,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 176894.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2021,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 377.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2021,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 23.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2021,
+      "monthOrder": 11,
+      "metric": "exports",
+      "value": 51.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2021,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 242.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2021,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 121572.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2021,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 1079.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2021,
+      "monthOrder": 12,
+      "metric": "imports",
+      "value": 98.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2021,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 21.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2021,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 115.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2020/21",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2021,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 60964.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2021,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 49277.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2021,
+      "monthOrder": 1,
+      "metric": "imports",
+      "value": 46.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2021,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 14.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2021,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 72.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2021,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 55898.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2021,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 215878.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2021,
+      "monthOrder": 2,
+      "metric": "imports",
+      "value": 68.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2021,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 9.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2021,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 125.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2021,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 201630.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2021,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 182562.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2021,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 46.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2021,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 30.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2021,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 390.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2021,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 293284.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2021,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 139205.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2021,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 414.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2021,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 387.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2021,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 329619.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2021,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 70736.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2021,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 163.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2021,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 686.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2021,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 324187.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2021,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 9278.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2021,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 192.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2021,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 50.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2021,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 537.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2021,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 259406.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2021,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 3115.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2021,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 163.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2021,
+      "monthOrder": 7,
+      "metric": "exports",
+      "value": 14.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2021,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 560.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2021,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 190506.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2021,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 2838.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2021,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 64.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2021,
+      "monthOrder": 8,
+      "metric": "exports",
+      "value": 34.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2021,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 451.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2021,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 124095.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2021,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 1996.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2021,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 77.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2021,
+      "monthOrder": 9,
+      "metric": "exports",
+      "value": 31.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2021,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 239.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2021,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 65830.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2021,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 502.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2021,
+      "monthOrder": 10,
+      "metric": "exports",
+      "value": 18.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2021,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 64.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2021,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 43005.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2022,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 1024.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2022,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 23.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2022,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 54.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2022,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 31650.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2022,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 12672.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2022,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 17.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2022,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 172.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2021/22",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2022,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 31790.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2022,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 64149.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2022,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 13.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2022,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 43.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2022,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 63426.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2022,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 146848.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2022,
+      "monthOrder": 2,
+      "metric": "imports",
+      "value": 22.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2022,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 79.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2022,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 80.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2022,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 147491.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2022,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 262136.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2022,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 382.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2022,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 4.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2022,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 86.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2022,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 322287.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2022,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 221542.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2022,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 1639.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2022,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 18.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2022,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 276.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2022,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 463776.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2022,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 116682.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2022,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 1945.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2022,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 20.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2022,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 496.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2022,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 503488.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2022,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 16785.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2022,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 2121.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2022,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 404.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2022,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 433508.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2022,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 4569.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2022,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 610.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2022,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 657.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2022,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 359737.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2022,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 1786.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2022,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 45.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2022,
+      "monthOrder": 8,
+      "metric": "exports",
+      "value": 30.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2022,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 345.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2022,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 287755.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2022,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 2833.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2022,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 11.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2022,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 27.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2022,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 208236.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2022,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 1740.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2022,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 1.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2022,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 163118.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2023,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 1844.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2023,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 13.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2023,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 114921.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2023,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 870.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2023,
+      "monthOrder": 12,
+      "metric": "imports",
+      "value": 30.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2023,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 6.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2023,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 15.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2022/23",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2023,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 73517.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2023,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 53300.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2023,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 14.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2023,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 42.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2023,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 89550.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2023,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 222919.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2023,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 52.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2023,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 260900.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2023,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 202501.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2023,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 345.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2023,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 5.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2023,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 110.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2023,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 379167.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2023,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 138992.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2023,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 276.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2023,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 24.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2023,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 644.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2023,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 449985.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2023,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 76643.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2023,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 1753.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2023,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 482.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2023,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 456589.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2023,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 14402.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2023,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 3038.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2023,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 676.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2023,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 403903.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2023,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 2088.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2023,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 3634.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2023,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 576.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2023,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 346452.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2023,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 1402.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2023,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 596.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2023,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 781.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2023,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 295220.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2023,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 2970.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2023,
+      "monthOrder": 9,
+      "metric": "imports",
+      "value": 1204.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2023,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 205.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2023,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 254994.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2023,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 624.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2023,
+      "monthOrder": 10,
+      "metric": "imports",
+      "value": 920.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2023,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 3.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2023,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 216333.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2024,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 585.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2024,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 98.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2024,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 18.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2024,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 168975.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2024,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 5326.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2024,
+      "monthOrder": 12,
+      "metric": "imports",
+      "value": 929.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2024,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 25.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2024,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 37.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2023/24",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2024,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 127144.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2024,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 63570.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2024,
+      "monthOrder": 1,
+      "metric": "imports",
+      "value": 23.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2024,
+      "monthOrder": 1,
+      "metric": "processedLocalMarket",
+      "value": 47282.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2024,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 160.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2024,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 47442.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2024,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 144202.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2024,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 107001.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2024,
+      "monthOrder": 2,
+      "metric": "processedLocalMarket",
+      "value": 60184.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2024,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 377.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2024,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 60598.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2024,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 193928.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2024,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 271834.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2024,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 472.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2024,
+      "monthOrder": 3,
+      "metric": "processedLocalMarket",
+      "value": 69628.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2024,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 437.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2024,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 70159.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2024,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 396048.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2024,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 133779.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2024,
+      "monthOrder": 4,
+      "metric": "processedLocalMarket",
+      "value": 56034.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2024,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 422.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2024,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 56784.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2024,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 473099.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2024,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 36005.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2024,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 342.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2024,
+      "monthOrder": 5,
+      "metric": "processedLocalMarket",
+      "value": 66011.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2024,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 318.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2024,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 66868.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2024,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 442420.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2024,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 7252.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2024,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 175.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2024,
+      "monthOrder": 6,
+      "metric": "processedLocalMarket",
+      "value": 63966.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2024,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 574.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2024,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 64948.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2024,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 384603.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2024,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 2724.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2024,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 162.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2024,
+      "monthOrder": 7,
+      "metric": "processedLocalMarket",
+      "value": 78712.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2024,
+      "monthOrder": 7,
+      "metric": "exports",
+      "value": 821.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2024,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 80297.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2024,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 307220.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2024,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 4727.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2024,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 183.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2024,
+      "monthOrder": 8,
+      "metric": "processedLocalMarket",
+      "value": 68013.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2024,
+      "monthOrder": 8,
+      "metric": "exports",
+      "value": 1243.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2024,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 70106.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2024,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 242302.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2024,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 2690.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2024,
+      "monthOrder": 9,
+      "metric": "processedLocalMarket",
+      "value": 68161.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2024,
+      "monthOrder": 9,
+      "metric": "exports",
+      "value": 557.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2024,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 68738.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2024,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 177375.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2024,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 926.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2024,
+      "monthOrder": 10,
+      "metric": "imports",
+      "value": 21.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2024,
+      "monthOrder": 10,
+      "metric": "processedLocalMarket",
+      "value": 45704.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2024,
+      "monthOrder": 10,
+      "metric": "exports",
+      "value": 569.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2024,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 46296.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2024,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 132123.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2025,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 630.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2025,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 45.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2025,
+      "monthOrder": 11,
+      "metric": "processedLocalMarket",
+      "value": 32122.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2025,
+      "monthOrder": 11,
+      "metric": "exports",
+      "value": 1049.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2025,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 33173.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2025,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 100783.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2025,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 3313.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2025,
+      "monthOrder": 12,
+      "metric": "processedLocalMarket",
+      "value": 27440.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2025,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 1110.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2025,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 28555.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2024/25",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2025,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 72789.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2025,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 71608.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2025,
+      "monthOrder": 1,
+      "metric": "imports",
+      "value": 24.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2025,
+      "monthOrder": 1,
+      "metric": "processedLocalMarket",
+      "value": 40919.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2025,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 1148.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2025,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 42099.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Mar",
+      "calendarYear": 2025,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 103026.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2025,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 117281.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2025,
+      "monthOrder": 2,
+      "metric": "processedLocalMarket",
+      "value": 57106.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2025,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 972.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2025,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 58097.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Apr",
+      "calendarYear": 2025,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 158057.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2025,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 275642.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2025,
+      "monthOrder": 3,
+      "metric": "processedLocalMarket",
+      "value": 81904.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2025,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 936.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2025,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 82894.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "May",
+      "calendarYear": 2025,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 350510.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2025,
+      "monthOrder": 4,
+      "metric": "producerDeliveries",
+      "value": 127110.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2025,
+      "monthOrder": 4,
+      "metric": "imports",
+      "value": 54.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2025,
+      "monthOrder": 4,
+      "metric": "processedLocalMarket",
+      "value": 87804.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2025,
+      "monthOrder": 4,
+      "metric": "exports",
+      "value": 585.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2025,
+      "monthOrder": 4,
+      "metric": "totalDemand",
+      "value": 88754.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jun",
+      "calendarYear": 2025,
+      "monthOrder": 4,
+      "metric": "endingStocks",
+      "value": 388291.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2025,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 74401.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2025,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 258.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2025,
+      "monthOrder": 5,
+      "metric": "processedLocalMarket",
+      "value": 90155.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2025,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 1332.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2025,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 92145.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2025,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 370442.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2025,
+      "monthOrder": 6,
+      "metric": "producerDeliveries",
+      "value": 19736.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2025,
+      "monthOrder": 6,
+      "metric": "imports",
+      "value": 747.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2025,
+      "monthOrder": 6,
+      "metric": "processedLocalMarket",
+      "value": 71931.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2025,
+      "monthOrder": 6,
+      "metric": "exports",
+      "value": 924.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2025,
+      "monthOrder": 6,
+      "metric": "totalDemand",
+      "value": 73428.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Aug",
+      "calendarYear": 2025,
+      "monthOrder": 6,
+      "metric": "endingStocks",
+      "value": 317748.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2025,
+      "monthOrder": 7,
+      "metric": "producerDeliveries",
+      "value": 6285.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2025,
+      "monthOrder": 7,
+      "metric": "imports",
+      "value": 702.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2025,
+      "monthOrder": 7,
+      "metric": "processedLocalMarket",
+      "value": 76091.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2025,
+      "monthOrder": 7,
+      "metric": "exports",
+      "value": 16129.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2025,
+      "monthOrder": 7,
+      "metric": "totalDemand",
+      "value": 93245.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Sep",
+      "calendarYear": 2025,
+      "monthOrder": 7,
+      "metric": "endingStocks",
+      "value": 231054.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2025,
+      "monthOrder": 8,
+      "metric": "producerDeliveries",
+      "value": 917.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2025,
+      "monthOrder": 8,
+      "metric": "imports",
+      "value": 235.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2025,
+      "monthOrder": 8,
+      "metric": "processedLocalMarket",
+      "value": 66317.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2025,
+      "monthOrder": 8,
+      "metric": "exports",
+      "value": 1155.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2025,
+      "monthOrder": 8,
+      "metric": "totalDemand",
+      "value": 67685.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Oct",
+      "calendarYear": 2025,
+      "monthOrder": 8,
+      "metric": "endingStocks",
+      "value": 164471.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2025,
+      "monthOrder": 9,
+      "metric": "producerDeliveries",
+      "value": 1174.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2025,
+      "monthOrder": 9,
+      "metric": "processedLocalMarket",
+      "value": 68394.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2025,
+      "monthOrder": 9,
+      "metric": "exports",
+      "value": 844.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2025,
+      "monthOrder": 9,
+      "metric": "totalDemand",
+      "value": 69284.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Nov",
+      "calendarYear": 2025,
+      "monthOrder": 9,
+      "metric": "endingStocks",
+      "value": 96238.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2025,
+      "monthOrder": 10,
+      "metric": "producerDeliveries",
+      "value": 207.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2025,
+      "monthOrder": 10,
+      "metric": "processedLocalMarket",
+      "value": 40963.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2025,
+      "monthOrder": 10,
+      "metric": "exports",
+      "value": 1823.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2025,
+      "monthOrder": 10,
+      "metric": "totalDemand",
+      "value": 42786.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Dec",
+      "calendarYear": 2025,
+      "monthOrder": 10,
+      "metric": "endingStocks",
+      "value": 54934.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 1173.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 43599.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "processedLocalMarket",
+      "value": 39546.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "exports",
+      "value": 24.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 39570.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Jan",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 59585.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2026,
+      "monthOrder": 12,
+      "metric": "producerDeliveries",
+      "value": 13101.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2026,
+      "monthOrder": 12,
+      "metric": "imports",
+      "value": 22707.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2026,
+      "monthOrder": 12,
+      "metric": "processedLocalMarket",
+      "value": 44565.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2026,
+      "monthOrder": 12,
+      "metric": "exports",
+      "value": 452.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2026,
+      "monthOrder": 12,
+      "metric": "totalDemand",
+      "value": 45034.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2025/26",
+      "status": "Final",
+      "month": "Feb",
+      "calendarYear": 2026,
+      "monthOrder": 12,
+      "metric": "endingStocks",
+      "value": 49266.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Mar",
+      "calendarYear": 2026,
+      "monthOrder": 1,
+      "metric": "producerDeliveries",
+      "value": 95421.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Mar",
+      "calendarYear": 2026,
+      "monthOrder": 1,
+      "metric": "imports",
+      "value": 45.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Mar",
+      "calendarYear": 2026,
+      "monthOrder": 1,
+      "metric": "processedLocalMarket",
+      "value": 47728.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Mar",
+      "calendarYear": 2026,
+      "monthOrder": 1,
+      "metric": "exports",
+      "value": 487.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Mar",
+      "calendarYear": 2026,
+      "monthOrder": 1,
+      "metric": "totalDemand",
+      "value": 48215.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Mar",
+      "calendarYear": 2026,
+      "monthOrder": 1,
+      "metric": "endingStocks",
+      "value": 97071.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Apr",
+      "calendarYear": 2026,
+      "monthOrder": 2,
+      "metric": "producerDeliveries",
+      "value": 254341.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Apr",
+      "calendarYear": 2026,
+      "monthOrder": 2,
+      "metric": "processedLocalMarket",
+      "value": 83633.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Apr",
+      "calendarYear": 2026,
+      "monthOrder": 2,
+      "metric": "exports",
+      "value": 569.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Apr",
+      "calendarYear": 2026,
+      "monthOrder": 2,
+      "metric": "totalDemand",
+      "value": 84228.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Apr",
+      "calendarYear": 2026,
+      "monthOrder": 2,
+      "metric": "endingStocks",
+      "value": 269962.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "May",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 298193.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "May",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 566.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "May",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "processedLocalMarket",
+      "value": 83596.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "May",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 428.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "May",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 84398.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "May",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "endingStocks",
+      "value": 483744.0
+    }
+  ]
+}
