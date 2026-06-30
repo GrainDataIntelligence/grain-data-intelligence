@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-06-30T08:21:36",
+  "articleCount": 1,
+  "articles": [
+    {
+      "id": "important-dates-and-what-they-mean",
+      "title": "Important Dates and What They Mean",
+      "subtitle": "",
+      "sourceFile": "C:\\Users\\Myburgh Swiegers\\Projects\\Codex_GDI\\content\\education\\raw\\Important Dates and What They Mean.docx",
+      "updatedAt": "2026-06-30T08:13:20",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "“First Notice Day” – What does that mean and what does it represent:Fist Notice Day is the first day of the new trading month which long position holders could receive delivery on their futures via the random allocation process."
+        },
+        {
+          "type": "paragraph",
+          "text": "If a trader wishes to receive physical stock they do not need to do anything and will receive their physical stock at the randomly selected silo."
+        },
+        {
+          "type": "paragraph",
+          "text": "However if the trader does not wish to receive delivery they need to close their long position(s) either buy selling a future contract or buying the spread (which in turn will close the long future). If the trader selected to Buy the spread their long would have been rolled on to a different month."
+        }
+      ]
+    }
+  ]
+}

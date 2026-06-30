@@ -3,6 +3,12 @@ import { averageColor, fmt, yearColor } from "./fundamentalsUtils";
 
 const featuredMetricKeys = new Set(["producerDeliveries", "imports", "totalSupply", "localDemand", "exports", "totalDemand", "unutilizedClosingStock", "endingStocks"]);
 const hiddenMaizeMetrics = new Set(["gristing", "bioFuel"]);
+const oilseedLocalMarketReportingMetrics = new Set([
+  "processedLocalMarket",
+  "humanConsumptionLocal",
+  "animalFeedLocal",
+  "oilAndOilcakeLocal",
+]);
 const chartWidth = 1040;
 const chartHeight = 430;
 const margin = { top: 26, right: 8, bottom: 46, left: 68 };
@@ -207,7 +213,7 @@ function niceDomain(values) {
   return { min, max: max === min ? min + step : max, step };
 }
 
-function BalanceSheetChart({ months, series, average, selectedYears, allYears, metricLabel, mode, view }) {
+function BalanceSheetChart({ months, series, average, selectedYears, allYears, metricLabel, mode, view, metricNote }) {
   const [hover, setHover] = useState(null);
   const activeSeries = series.filter((item) => selectedYears.has(item.year));
   const values = activeSeries.flatMap((item) => item.values.map((point) => point.value));
@@ -249,6 +255,7 @@ function BalanceSheetChart({ months, series, average, selectedYears, allYears, m
           <h2 className="text-lg font-extrabold text-slate-950">
             {mode === "cumulative" ? "Cumulative" : "Monthly"} {metricLabel}
           </h2>
+          {metricNote ? <p className="mt-1 text-xs font-semibold text-amber-700">{metricNote}</p> : null}
         </div>
         <div className="flex flex-wrap justify-end gap-x-4 gap-y-2 text-xs text-slate-600">
           {activeSeries.map((item) => (
@@ -370,7 +377,7 @@ function BalanceSheetChart({ months, series, average, selectedYears, allYears, m
   );
 }
 
-function BalanceSheetTable({ months, series, metricLabel, metricType, mode, view }) {
+function BalanceSheetTable({ months, series, metricLabel, metricType, mode, view, metricNote }) {
   const { rows, summaryRows, totalHeader, comparisonMonth, showFullYearTotal } = useMemo(
     () => buildBalanceTable(series, months, metricType, mode),
     [series, months, metricType, mode]
@@ -383,6 +390,7 @@ function BalanceSheetTable({ months, series, metricLabel, metricType, mode, view
       <div className="mb-3">
         <p className="text-xs font-bold uppercase text-slate-500">Selected Data Table</p>
         <h2 className="text-lg font-extrabold text-slate-950">{title}</h2>
+        {metricNote ? <p className="mt-1 text-xs font-semibold text-amber-700">{metricNote}</p> : null}
       </div>
 
       <div className="overflow-auto rounded-md border border-slate-300">
@@ -500,6 +508,10 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
   const average = useMemo(() => averageSeries(series, selectedYears, availableYears, showAverage), [series, selectedYears, availableYears, showAverage]);
   const averageComparable = latestPoint ? average?.values.find((point) => point.monthOrder === latestPoint.monthOrder) : null;
   const latestPublication = data?.publicationDates?.at(-1);
+  const metricNote =
+    ["Soybeans", "Sunflowers"].includes(data?.commodity) && oilseedLocalMarketReportingMetrics.has(metric)
+      ? "Note: detailed local-market reporting for this line starts from the 2024/25 marketing year."
+      : "";
 
   if (!data || !metricMeta) {
     return <div className="min-h-screen bg-slate-100 p-8 text-slate-700">Loading balance sheet...</div>;
@@ -596,6 +608,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
             metricLabel={metricMeta.label}
             mode={mode}
             view={view}
+            metricNote={metricNote}
           />
           <BalanceSheetTable
             months={data.months}
@@ -604,6 +617,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
             metricType={metricMeta.type}
             mode={mode}
             view={view}
+            metricNote={metricNote}
           />
         </section>
       </main>
