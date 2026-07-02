@@ -15,6 +15,16 @@ const margin = { top: 26, right: 8, bottom: 46, left: 68 };
 const plotWidth = chartWidth - margin.left - margin.right;
 const plotHeight = chartHeight - margin.top - margin.bottom;
 
+function metricFamily(metric) {
+  if (!metric) return null;
+  return metric.type === "stock" ? "stock" : "flow";
+}
+
+function metricLabel(metrics) {
+  if (!metrics.length) return "";
+  return metrics.map((item) => item.label).join(" + ");
+}
+
 function ToggleGroup({ value, onChange, options }) {
   return (
     <div className="grid grid-cols-2 overflow-hidden rounded-md border border-slate-300">
@@ -34,20 +44,31 @@ function ToggleGroup({ value, onChange, options }) {
   );
 }
 
-function buildSeries(rows, metric, mode, metricType) {
+function buildSeries(rows, selectedMetrics, mode, metricType) {
+  const selectedMetricKeys = new Set(selectedMetrics);
   const byYear = new Map();
-  for (const row of rows.filter((item) => item.metric === metric)) {
-    if (!byYear.has(row.marketingYear)) byYear.set(row.marketingYear, []);
-    byYear.get(row.marketingYear).push(row);
+
+  for (const row of rows.filter((item) => selectedMetricKeys.has(item.metric))) {
+    if (!byYear.has(row.marketingYear)) byYear.set(row.marketingYear, new Map());
+    const yearMap = byYear.get(row.marketingYear);
+    const monthKey = row.monthOrder;
+    const existing = yearMap.get(monthKey) || {
+      month: row.month,
+      calendarYear: row.calendarYear,
+      monthOrder: row.monthOrder,
+      value: 0,
+    };
+    existing.value += row.value;
+    yearMap.set(monthKey, existing);
   }
 
   return [...byYear.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([year, values]) => {
+    .map(([year, monthMap]) => {
       let running = 0;
       return {
         year,
-        values: values
+        values: [...monthMap.values()]
           .sort((a, b) => a.monthOrder - b.monthOrder)
           .map((row) => {
             running += row.value;
@@ -253,7 +274,7 @@ function BalanceSheetChart({ months, series, average, selectedYears, allYears, m
         <div>
           <p className="text-xs font-bold uppercase text-slate-500">{view} Balance Sheet</p>
           <h2 className="text-lg font-extrabold text-slate-950">
-            {mode === "cumulative" ? "Cumulative" : "Monthly"} {metricLabel}
+            {metricLabel ? `${mode === "cumulative" ? "Cumulative" : "Monthly"} ${metricLabel}` : "Select one or more chart lines"}
           </h2>
           {metricNote ? <p className="mt-1 text-xs font-semibold text-amber-700">{metricNote}</p> : null}
         </div>
@@ -273,6 +294,11 @@ function BalanceSheetChart({ months, series, average, selectedYears, allYears, m
         </div>
       </div>
 
+      {!metricLabel ? (
+        <div className="grid h-[560px] place-items-center rounded-md border border-dashed border-slate-300 bg-slate-50 text-sm font-semibold text-slate-500">
+          Select a Balance Sheet line from the left panel to draw the chart.
+        </div>
+      ) : (
       <div className="relative overflow-hidden">
         <svg
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
@@ -373,6 +399,7 @@ function BalanceSheetChart({ months, series, average, selectedYears, allYears, m
           )}
         </svg>
       </div>
+      )}
     </div>
   );
 }
@@ -382,7 +409,7 @@ function BalanceSheetTable({ months, series, metricLabel, metricType, mode, view
     () => buildBalanceTable(series, months, metricType, mode),
     [series, months, metricType, mode]
   );
-  const title = `${view} - ${mode === "cumulative" && metricType !== "stock" ? `Cumulative ${metricLabel}` : metricLabel}`;
+  const title = metricLabel ? `${view} - ${mode === "cumulative" && metricType !== "stock" ? `Cumulative ${metricLabel}` : metricLabel}` : "Select one or more chart lines";
   const extraColumnCount = showFullYearTotal ? 1 : 0;
 
   return (
@@ -393,6 +420,11 @@ function BalanceSheetTable({ months, series, metricLabel, metricType, mode, view
         {metricNote ? <p className="mt-1 text-xs font-semibold text-amber-700">{metricNote}</p> : null}
       </div>
 
+      {!metricLabel ? (
+        <div className="rounded-md border border-dashed border-slate-300 bg-slate-50 p-8 text-center text-sm font-semibold text-slate-500">
+          Select a Balance Sheet line from the left panel to show the data table.
+        </div>
+      ) : (
       <div className="overflow-auto rounded-md border border-slate-300">
         <table className="min-w-[1120px] border-collapse text-right text-xs text-slate-950">
           <thead>
@@ -455,10 +487,11 @@ function BalanceSheetTable({ months, series, metricLabel, metricType, mode, view
           </tbody>
         </table>
       </div>
-      <p className="mt-2 text-xs text-slate-500">
+      )}
+      {metricLabel ? <p className="mt-2 text-xs text-slate-500">
         {totalHeader}, YTD Change and Rank are calculated as at {comparisonMonth}
         {showFullYearTotal ? "; Total shows the full marketing-year sum where available." : "."}
-      </p>
+      </p> : null}
     </div>
   );
 }
@@ -466,7 +499,7 @@ function BalanceSheetTable({ months, series, metricLabel, metricType, mode, view
 export default function BalanceSheetDashboard({ dataPath, title }) {
   const [data, setData] = useState(null);
   const [view, setView] = useState("");
-  const [metric, setMetric] = useState("producerDeliveries");
+  const [selectedMetrics, setSelectedMetrics] = useState(["producerDeliveries"]);
   const [mode, setMode] = useState("monthly");
   const [selectedYears, setSelectedYears] = useState(new Set());
   const [showAverage, setShowAverage] = useState(true);
@@ -485,19 +518,25 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
     if (!data) return [];
     return data.commodity === "Maize" ? data.metrics.filter((item) => !hiddenMaizeMetrics.has(item.key)) : data.metrics;
   }, [data]);
-  const metricMeta = metrics.find((item) => item.key === metric);
+  const selectedMetricMetas = selectedMetrics.map((key) => metrics.find((item) => item.key === key)).filter(Boolean);
+  const selectedFamily = metricFamily(selectedMetricMetas[0]);
+  const combinedMetricType = selectedFamily === "stock" ? "stock" : "combined";
+  const combinedMetricLabel = metricLabel(selectedMetricMetas);
 
   useEffect(() => {
-    if (metrics.length && !metricMeta) {
-      setMetric(metrics[0].key);
+    if (!metrics.length) return;
+    const validKeys = new Set(metrics.map((item) => item.key));
+    const validSelected = selectedMetrics.filter((key) => validKeys.has(key));
+    if (validSelected.length !== selectedMetrics.length) {
+      setSelectedMetrics(validSelected);
     }
-  }, [metrics, metricMeta]);
+  }, [metrics, selectedMetrics]);
 
   const filteredRows = useMemo(() => data?.rows.filter((row) => row.view === view) || [], [data, view]);
   const series = useMemo(() => {
-    if (!data || !metricMeta) return [];
-    return buildSeries(filteredRows, metric, mode, metricMeta.type);
-  }, [data, filteredRows, metric, mode, metricMeta]);
+    if (!data || !selectedMetricMetas.length) return [];
+    return buildSeries(filteredRows, selectedMetrics, mode, combinedMetricType);
+  }, [data, filteredRows, selectedMetrics, mode, selectedMetricMetas.length, combinedMetricType]);
 
   const availableYears = data?.years || [];
   const displayYears = [...availableYears].reverse();
@@ -509,11 +548,24 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
   const averageComparable = latestPoint ? average?.values.find((point) => point.monthOrder === latestPoint.monthOrder) : null;
   const latestPublication = data?.publicationDates?.at(-1);
   const metricNote =
-    ["Soybeans", "Sunflowers"].includes(data?.commodity) && oilseedLocalMarketReportingMetrics.has(metric)
+    ["Soybeans", "Sunflowers"].includes(data?.commodity) && selectedMetrics.some((key) => oilseedLocalMarketReportingMetrics.has(key))
       ? "Note: detailed local-market reporting for this line starts from the 2024/25 marketing year."
       : "";
 
-  if (!data || !metricMeta) {
+  const toggleMetric = (metricItem) => {
+    const nextFamily = metricFamily(metricItem);
+    if (selectedMetrics.includes(metricItem.key)) {
+      setSelectedMetrics(selectedMetrics.filter((key) => key !== metricItem.key));
+      return;
+    }
+    if (selectedFamily && nextFamily !== selectedFamily) {
+      setSelectedMetrics([metricItem.key]);
+      return;
+    }
+    setSelectedMetrics([...selectedMetrics, metricItem.key]);
+  };
+
+  if (!data) {
     return <div className="min-h-screen bg-slate-100 p-8 text-slate-700">Loading balance sheet...</div>;
   }
 
@@ -540,21 +592,38 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
               </label>
             )}
 
-            <label className="grid gap-2 text-sm font-bold">
-              Chart
-              <select value={metric} onChange={(event) => setMetric(event.target.value)} className="rounded-md border border-slate-300 px-3 py-2 font-normal">
-                {metrics.map((item) => (
-                  <option key={item.key} value={item.key}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <section className="grid gap-2">
+              <label className="text-sm font-bold">Chart lines</label>
+              <div className="max-h-72 overflow-auto rounded-md border border-slate-300 bg-white p-2">
+                {metrics.map((item) => {
+                  const checked = selectedMetrics.includes(item.key);
+                  const disabled = !checked && selectedMetricMetas.length > 0 && metricFamily(item) !== selectedFamily;
+                  return (
+                    <label
+                      key={item.key}
+                      className={`flex items-start gap-2 rounded px-2 py-1.5 text-sm ${disabled ? "cursor-not-allowed text-slate-400" : "cursor-pointer text-slate-800 hover:bg-slate-50"}`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        disabled={disabled}
+                        onChange={() => toggleMetric(item)}
+                        className="mt-0.5"
+                      />
+                      <span>{item.label}</span>
+                    </label>
+                  );
+                })}
+              </div>
+              <p className="text-xs leading-5 text-slate-500">
+                Select multiple compatible lines. Stock lines can only be combined with other stock lines.
+              </p>
+            </section>
 
             <section className="grid gap-2">
               <label className="text-sm font-bold">View</label>
               <ToggleGroup value={mode} onChange={setMode} options={[{ value: "monthly", label: "Monthly" }, { value: "cumulative", label: "Cumulative" }]} />
-              {metricMeta.type === "stock" && mode === "cumulative" && (
+              {combinedMetricType === "stock" && mode === "cumulative" && (
                 <p className="text-xs leading-5 text-slate-500">Ending stocks stay as point-in-time monthly values.</p>
               )}
             </section>
@@ -605,7 +674,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
             average={average}
             selectedYears={selectedYears}
             allYears={availableYears}
-            metricLabel={metricMeta.label}
+            metricLabel={combinedMetricLabel}
             mode={mode}
             view={view}
             metricNote={metricNote}
@@ -613,8 +682,8 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
           <BalanceSheetTable
             months={data.months}
             series={series}
-            metricLabel={metricMeta.label}
-            metricType={metricMeta.type}
+            metricLabel={combinedMetricLabel}
+            metricType={combinedMetricType}
             mode={mode}
             view={view}
             metricNote={metricNote}
