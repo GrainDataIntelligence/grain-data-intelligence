@@ -8314,10 +8314,10 @@
       "weekNumber": 13,
       "weekLabel": "23/05 - 29/05/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 657508.0,
-      "cumulativeTons": 2274620.0,
+      "weeklyTons": 657870.0,
+      "cumulativeTons": 2274982.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 13.182733
+      "percentDelivered": 13.184831
     },
     {
       "family": "Maize",
@@ -8326,10 +8326,10 @@
       "weekNumber": 14,
       "weekLabel": "30/05 - 05/06/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 739453.0,
-      "cumulativeTons": 3014073.0,
+      "weeklyTons": 740734.0,
+      "cumulativeTons": 3015716.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 17.46829
+      "percentDelivered": 17.477812
     },
     {
       "family": "Maize",
@@ -8338,10 +8338,10 @@
       "weekNumber": 15,
       "weekLabel": "06/06 - 12/06/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 1113366.0,
-      "cumulativeTons": 4127439.0,
+      "weeklyTons": 1118923.0,
+      "cumulativeTons": 4134639.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 23.920887
+      "percentDelivered": 23.962615
     },
     {
       "family": "Maize",
@@ -8350,10 +8350,10 @@
       "weekNumber": 16,
       "weekLabel": "13/06 - 19/06/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 1373317.0,
-      "cumulativeTons": 5500756.0,
+      "weeklyTons": 1373352.0,
+      "cumulativeTons": 5507991.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 31.88005
+      "percentDelivered": 31.921981
     },
     {
       "family": "Maize",
@@ -8362,10 +8362,22 @@
       "weekNumber": 17,
       "weekLabel": "20/06 - 26/06/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 847375.0,
-      "cumulativeTons": 6348131.0,
+      "weeklyTons": 877479.0,
+      "cumulativeTons": 6385470.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 36.791076
+      "percentDelivered": 37.007477
+    },
+    {
+      "family": "Maize",
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "weekLabel": "27/06 - 03/07/2026",
+      "commodity": "Total Maize",
+      "weeklyTons": 867715.0,
+      "cumulativeTons": 7253185.0,
+      "cecEstimate": 17254540.0,
+      "percentDelivered": 42.036386
     },
     {
       "family": "Maize",
@@ -16534,10 +16546,10 @@
       "weekNumber": 13,
       "weekLabel": "23/05 - 29/05/2026",
       "commodity": "White Maize",
-      "weeklyTons": 212397.0,
-      "cumulativeTons": 817275.0,
+      "weeklyTons": 212690.0,
+      "cumulativeTons": 817568.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 8.804291
+      "percentDelivered": 8.807447
     },
     {
       "family": "Maize",
@@ -16546,10 +16558,10 @@
       "weekNumber": 14,
       "weekLabel": "30/05 - 05/06/2026",
       "commodity": "White Maize",
-      "weeklyTons": 291245.0,
-      "cumulativeTons": 1108520.0,
+      "weeklyTons": 292414.0,
+      "cumulativeTons": 1109982.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 11.941797
+      "percentDelivered": 11.957547
     },
     {
       "family": "Maize",
@@ -16558,10 +16570,10 @@
       "weekNumber": 15,
       "weekLabel": "06/06 - 12/06/2026",
       "commodity": "White Maize",
-      "weeklyTons": 518349.0,
-      "cumulativeTons": 1626869.0,
+      "weeklyTons": 523877.0,
+      "cumulativeTons": 1633859.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 17.525836
+      "percentDelivered": 17.601137
     },
     {
       "family": "Maize",
@@ -16571,9 +16583,9 @@
       "weekLabel": "13/06 - 19/06/2026",
       "commodity": "White Maize",
       "weeklyTons": 702660.0,
-      "cumulativeTons": 2329529.0,
+      "cumulativeTons": 2336519.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 25.095409
+      "percentDelivered": 25.17071
     },
     {
       "family": "Maize",
@@ -16582,10 +16594,22 @@
       "weekNumber": 17,
       "weekLabel": "20/06 - 26/06/2026",
       "commodity": "White Maize",
-      "weeklyTons": 456498.0,
-      "cumulativeTons": 2786027.0,
+      "weeklyTons": 464357.0,
+      "cumulativeTons": 2800876.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 30.013143
+      "percentDelivered": 30.173107
+    },
+    {
+      "family": "Maize",
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "weekLabel": "27/06 - 03/07/2026",
+      "commodity": "White Maize",
+      "weeklyTons": 488226.0,
+      "cumulativeTons": 3289102.0,
+      "cecEstimate": 9282690.0,
+      "percentDelivered": 35.432639
     },
     {
       "family": "Maize",
@@ -24754,10 +24778,10 @@
       "weekNumber": 13,
       "weekLabel": "23/05 - 29/05/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 445111.0,
-      "cumulativeTons": 1457345.0,
+      "weeklyTons": 445180.0,
+      "cumulativeTons": 1457414.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 18.281139
+      "percentDelivered": 18.282005
     },
     {
       "family": "Maize",
@@ -24766,10 +24790,10 @@
       "weekNumber": 14,
       "weekLabel": "30/05 - 05/06/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 448208.0,
-      "cumulativeTons": 1905553.0,
+      "weeklyTons": 448320.0,
+      "cumulativeTons": 1905734.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 23.903523
+      "percentDelivered": 23.905794
     },
     {
       "family": "Maize",
@@ -24778,10 +24802,10 @@
       "weekNumber": 15,
       "weekLabel": "06/06 - 12/06/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 595017.0,
-      "cumulativeTons": 2500570.0,
+      "weeklyTons": 595046.0,
+      "cumulativeTons": 2500780.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 31.367499
+      "percentDelivered": 31.370134
     },
     {
       "family": "Maize",
@@ -24790,10 +24814,10 @@
       "weekNumber": 16,
       "weekLabel": "13/06 - 19/06/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 670657.0,
-      "cumulativeTons": 3171227.0,
+      "weeklyTons": 670692.0,
+      "cumulativeTons": 3171472.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 39.780314
+      "percentDelivered": 39.783388
     },
     {
       "family": "Maize",
@@ -24802,10 +24826,22 @@
       "weekNumber": 17,
       "weekLabel": "20/06 - 26/06/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 390877.0,
-      "cumulativeTons": 3562104.0,
+      "weeklyTons": 413122.0,
+      "cumulativeTons": 3584594.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 44.68353
+      "percentDelivered": 44.965648
+    },
+    {
+      "family": "Maize",
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "weekLabel": "27/06 - 03/07/2026",
+      "commodity": "Yellow Maize",
+      "weeklyTons": 379489.0,
+      "cumulativeTons": 3964083.0,
+      "cecEstimate": 7971850.0,
+      "percentDelivered": 49.726011
     },
     {
       "family": "Maize",
@@ -32974,10 +33010,10 @@
       "weekNumber": 5,
       "weekLabel": "23/05 - 29/05/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 657508.0,
-      "cumulativeTons": 1391407.0,
+      "weeklyTons": 657870.0,
+      "cumulativeTons": 1391769.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 8.064005
+      "percentDelivered": 8.066103
     },
     {
       "family": "Maize",
@@ -32986,10 +33022,10 @@
       "weekNumber": 6,
       "weekLabel": "30/05 - 05/06/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 739453.0,
-      "cumulativeTons": 2130860.0,
+      "weeklyTons": 740734.0,
+      "cumulativeTons": 2132503.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 12.349561
+      "percentDelivered": 12.359083
     },
     {
       "family": "Maize",
@@ -32998,10 +33034,10 @@
       "weekNumber": 7,
       "weekLabel": "06/06 - 12/06/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 1113366.0,
-      "cumulativeTons": 3244226.0,
+      "weeklyTons": 1118923.0,
+      "cumulativeTons": 3251426.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 18.802159
+      "percentDelivered": 18.843887
     },
     {
       "family": "Maize",
@@ -33010,10 +33046,10 @@
       "weekNumber": 8,
       "weekLabel": "13/06 - 19/06/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 1373317.0,
-      "cumulativeTons": 4617543.0,
+      "weeklyTons": 1373352.0,
+      "cumulativeTons": 4624778.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 26.761322
+      "percentDelivered": 26.803253
     },
     {
       "family": "Maize",
@@ -33022,10 +33058,22 @@
       "weekNumber": 9,
       "weekLabel": "20/06 - 26/06/2026",
       "commodity": "Total Maize",
-      "weeklyTons": 847375.0,
-      "cumulativeTons": 5464918.0,
+      "weeklyTons": 877479.0,
+      "cumulativeTons": 5502257.0,
       "cecEstimate": 17254540.0,
-      "percentDelivered": 31.672348
+      "percentDelivered": 31.888749
+    },
+    {
+      "family": "Maize",
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "weekLabel": "27/06 - 03/07/2026",
+      "commodity": "Total Maize",
+      "weeklyTons": 867715.0,
+      "cumulativeTons": 6369972.0,
+      "cecEstimate": 17254540.0,
+      "percentDelivered": 36.917658
     },
     {
       "family": "Maize",
@@ -41194,10 +41242,10 @@
       "weekNumber": 5,
       "weekLabel": "23/05 - 29/05/2026",
       "commodity": "White Maize",
-      "weeklyTons": 212397.0,
-      "cumulativeTons": 434373.0,
+      "weeklyTons": 212690.0,
+      "cumulativeTons": 434666.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 4.679387
+      "percentDelivered": 4.682544
     },
     {
       "family": "Maize",
@@ -41206,10 +41254,10 @@
       "weekNumber": 6,
       "weekLabel": "30/05 - 05/06/2026",
       "commodity": "White Maize",
-      "weeklyTons": 291245.0,
-      "cumulativeTons": 725618.0,
+      "weeklyTons": 292414.0,
+      "cumulativeTons": 727080.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 7.816894
+      "percentDelivered": 7.832643
     },
     {
       "family": "Maize",
@@ -41218,10 +41266,10 @@
       "weekNumber": 7,
       "weekLabel": "06/06 - 12/06/2026",
       "commodity": "White Maize",
-      "weeklyTons": 518349.0,
-      "cumulativeTons": 1243967.0,
+      "weeklyTons": 523877.0,
+      "cumulativeTons": 1250957.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 13.400932
+      "percentDelivered": 13.476234
     },
     {
       "family": "Maize",
@@ -41231,9 +41279,9 @@
       "weekLabel": "13/06 - 19/06/2026",
       "commodity": "White Maize",
       "weeklyTons": 702660.0,
-      "cumulativeTons": 1946627.0,
+      "cumulativeTons": 1953617.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 20.970505
+      "percentDelivered": 21.045807
     },
     {
       "family": "Maize",
@@ -41242,10 +41290,22 @@
       "weekNumber": 9,
       "weekLabel": "20/06 - 26/06/2026",
       "commodity": "White Maize",
-      "weeklyTons": 456498.0,
-      "cumulativeTons": 2403125.0,
+      "weeklyTons": 464357.0,
+      "cumulativeTons": 2417974.0,
       "cecEstimate": 9282690.0,
-      "percentDelivered": 25.888239
+      "percentDelivered": 26.048204
+    },
+    {
+      "family": "Maize",
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "weekLabel": "27/06 - 03/07/2026",
+      "commodity": "White Maize",
+      "weeklyTons": 488226.0,
+      "cumulativeTons": 2906200.0,
+      "cecEstimate": 9282690.0,
+      "percentDelivered": 31.307735
     },
     {
       "family": "Maize",
@@ -49414,10 +49474,10 @@
       "weekNumber": 5,
       "weekLabel": "23/05 - 29/05/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 445111.0,
-      "cumulativeTons": 957034.0,
+      "weeklyTons": 445180.0,
+      "cumulativeTons": 957103.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 12.005168
+      "percentDelivered": 12.006034
     },
     {
       "family": "Maize",
@@ -49426,10 +49486,10 @@
       "weekNumber": 6,
       "weekLabel": "30/05 - 05/06/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 448208.0,
-      "cumulativeTons": 1405242.0,
+      "weeklyTons": 448320.0,
+      "cumulativeTons": 1405423.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 17.627552
+      "percentDelivered": 17.629822
     },
     {
       "family": "Maize",
@@ -49438,10 +49498,10 @@
       "weekNumber": 7,
       "weekLabel": "06/06 - 12/06/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 595017.0,
-      "cumulativeTons": 2000259.0,
+      "weeklyTons": 595046.0,
+      "cumulativeTons": 2000469.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 25.091528
+      "percentDelivered": 25.094163
     },
     {
       "family": "Maize",
@@ -49450,10 +49510,10 @@
       "weekNumber": 8,
       "weekLabel": "13/06 - 19/06/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 670657.0,
-      "cumulativeTons": 2670916.0,
+      "weeklyTons": 670692.0,
+      "cumulativeTons": 2671161.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 33.504343
+      "percentDelivered": 33.507417
     },
     {
       "family": "Maize",
@@ -49462,10 +49522,22 @@
       "weekNumber": 9,
       "weekLabel": "20/06 - 26/06/2026",
       "commodity": "Yellow Maize",
-      "weeklyTons": 390877.0,
-      "cumulativeTons": 3061793.0,
+      "weeklyTons": 413122.0,
+      "cumulativeTons": 3084283.0,
       "cecEstimate": 7971850.0,
-      "percentDelivered": 38.407559
+      "percentDelivered": 38.689677
+    },
+    {
+      "family": "Maize",
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "weekLabel": "27/06 - 03/07/2026",
+      "commodity": "Yellow Maize",
+      "weeklyTons": 379489.0,
+      "cumulativeTons": 3463772.0,
+      "cecEstimate": 7971850.0,
+      "percentDelivered": 43.45004
     },
     {
       "family": "Oilseeds",
@@ -54658,10 +54730,22 @@
       "weekNumber": 17,
       "weekLabel": "20/06 - 26/06/2026",
       "commodity": "Soybeans",
-      "weeklyTons": 26534.0,
-      "cumulativeTons": 2683195.0,
+      "weeklyTons": 27379.0,
+      "cumulativeTons": 2684040.0,
       "cecEstimate": 3043825.0,
-      "percentDelivered": 88.152078
+      "percentDelivered": 88.17984
+    },
+    {
+      "family": "Oilseeds",
+      "methodology": "Standard",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "weekLabel": "27/06 - 03/07/2026",
+      "commodity": "Soybeans",
+      "weeklyTons": 19714.0,
+      "cumulativeTons": 2703754.0,
+      "cecEstimate": 3043825.0,
+      "percentDelivered": 88.827511
     },
     {
       "family": "Oilseeds",
@@ -59854,10 +59938,22 @@
       "weekNumber": 17,
       "weekLabel": "20/06 - 26/06/2026",
       "commodity": "Sunflowers",
-      "weeklyTons": 10316.0,
-      "cumulativeTons": 760696.0,
+      "weeklyTons": 11514.0,
+      "cumulativeTons": 761894.0,
       "cecEstimate": 910530.0,
-      "percentDelivered": 83.544309
+      "percentDelivered": 83.675881
+    },
+    {
+      "family": "Oilseeds",
+      "methodology": "Standard",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "weekLabel": "27/06 - 03/07/2026",
+      "commodity": "Sunflowers",
+      "weeklyTons": 12812.0,
+      "cumulativeTons": 774706.0,
+      "cecEstimate": 910530.0,
+      "percentDelivered": 85.082974
     }
   ],
   "gradeRows": [
@@ -67347,10 +67443,10 @@
       "weekNumber": 13,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 657508.0,
-      "cumulativeTons": 2274620.0,
-      "totalWeeklyTons": 657508.0,
-      "percentOfTotalDelivered": 156.07972
+      "weeklyTons": 657870.0,
+      "cumulativeTons": 2274982.0,
+      "totalWeeklyTons": 657870.0,
+      "percentOfTotalDelivered": 156.097169
     },
     {
       "methodology": "Earlies",
@@ -67358,10 +67454,10 @@
       "weekNumber": 14,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 739453.0,
-      "cumulativeTons": 3014073.0,
-      "totalWeeklyTons": 739453.0,
-      "percentOfTotalDelivered": 158.173139
+      "weeklyTons": 740734.0,
+      "cumulativeTons": 3015716.0,
+      "totalWeeklyTons": 740734.0,
+      "percentOfTotalDelivered": 158.24433
     },
     {
       "methodology": "Earlies",
@@ -67369,10 +67465,10 @@
       "weekNumber": 15,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 1113366.0,
-      "cumulativeTons": 4127439.0,
-      "totalWeeklyTons": 1113366.0,
-      "percentOfTotalDelivered": 165.059926
+      "weeklyTons": 1118923.0,
+      "cumulativeTons": 4134639.0,
+      "totalWeeklyTons": 1118923.0,
+      "percentOfTotalDelivered": 165.333976
     },
     {
       "methodology": "Earlies",
@@ -67380,10 +67476,10 @@
       "weekNumber": 16,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 1373317.0,
-      "cumulativeTons": 5500756.0,
-      "totalWeeklyTons": 1373317.0,
-      "percentOfTotalDelivered": 173.458286
+      "weeklyTons": 1373352.0,
+      "cumulativeTons": 5507991.0,
+      "totalWeeklyTons": 1373352.0,
+      "percentOfTotalDelivered": 173.673014
     },
     {
       "methodology": "Earlies",
@@ -67391,10 +67487,21 @@
       "weekNumber": 17,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 847375.0,
-      "cumulativeTons": 6348131.0,
-      "totalWeeklyTons": 847375.0,
-      "percentOfTotalDelivered": 178.212961
+      "weeklyTons": 877479.0,
+      "cumulativeTons": 6385470.0,
+      "totalWeeklyTons": 877479.0,
+      "percentOfTotalDelivered": 178.136492
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "Total Maize",
+      "grade": "Grand Total",
+      "weeklyTons": 867715.0,
+      "cumulativeTons": 7253185.0,
+      "totalWeeklyTons": 867715.0,
+      "percentOfTotalDelivered": 182.972582
     },
     {
       "methodology": "Earlies",
@@ -74882,10 +74989,10 @@
       "weekNumber": 13,
       "commodity": "Total Maize",
       "grade": "White Total",
-      "weeklyTons": 212397.0,
-      "cumulativeTons": 817275.0,
-      "totalWeeklyTons": 657508.0,
-      "percentOfTotalDelivered": 56.07972
+      "weeklyTons": 212690.0,
+      "cumulativeTons": 817568.0,
+      "totalWeeklyTons": 657870.0,
+      "percentOfTotalDelivered": 56.097169
     },
     {
       "methodology": "Earlies",
@@ -74893,10 +75000,10 @@
       "weekNumber": 14,
       "commodity": "Total Maize",
       "grade": "White Total",
-      "weeklyTons": 291245.0,
-      "cumulativeTons": 1108520.0,
-      "totalWeeklyTons": 739453.0,
-      "percentOfTotalDelivered": 58.173139
+      "weeklyTons": 292414.0,
+      "cumulativeTons": 1109982.0,
+      "totalWeeklyTons": 740734.0,
+      "percentOfTotalDelivered": 58.24433
     },
     {
       "methodology": "Earlies",
@@ -74904,10 +75011,10 @@
       "weekNumber": 15,
       "commodity": "Total Maize",
       "grade": "White Total",
-      "weeklyTons": 518349.0,
-      "cumulativeTons": 1626869.0,
-      "totalWeeklyTons": 1113366.0,
-      "percentOfTotalDelivered": 65.059926
+      "weeklyTons": 523877.0,
+      "cumulativeTons": 1633859.0,
+      "totalWeeklyTons": 1118923.0,
+      "percentOfTotalDelivered": 65.333976
     },
     {
       "methodology": "Earlies",
@@ -74916,9 +75023,9 @@
       "commodity": "Total Maize",
       "grade": "White Total",
       "weeklyTons": 702660.0,
-      "cumulativeTons": 2329529.0,
-      "totalWeeklyTons": 1373317.0,
-      "percentOfTotalDelivered": 73.458286
+      "cumulativeTons": 2336519.0,
+      "totalWeeklyTons": 1373352.0,
+      "percentOfTotalDelivered": 73.673014
     },
     {
       "methodology": "Earlies",
@@ -74926,10 +75033,21 @@
       "weekNumber": 17,
       "commodity": "Total Maize",
       "grade": "White Total",
-      "weeklyTons": 456498.0,
-      "cumulativeTons": 2786027.0,
-      "totalWeeklyTons": 847375.0,
-      "percentOfTotalDelivered": 78.212961
+      "weeklyTons": 464357.0,
+      "cumulativeTons": 2800876.0,
+      "totalWeeklyTons": 877479.0,
+      "percentOfTotalDelivered": 78.136492
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "Total Maize",
+      "grade": "White Total",
+      "weeklyTons": 488226.0,
+      "cumulativeTons": 3289102.0,
+      "totalWeeklyTons": 867715.0,
+      "percentOfTotalDelivered": 82.972582
     },
     {
       "methodology": "Earlies",
@@ -82417,9 +82535,9 @@
       "weekNumber": 13,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 445111.0,
-      "cumulativeTons": 1457345.0,
-      "totalWeeklyTons": 657508.0,
+      "weeklyTons": 445180.0,
+      "cumulativeTons": 1457414.0,
+      "totalWeeklyTons": 657870.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -82428,9 +82546,9 @@
       "weekNumber": 14,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 448208.0,
-      "cumulativeTons": 1905553.0,
-      "totalWeeklyTons": 739453.0,
+      "weeklyTons": 448320.0,
+      "cumulativeTons": 1905734.0,
+      "totalWeeklyTons": 740734.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -82439,9 +82557,9 @@
       "weekNumber": 15,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 595017.0,
-      "cumulativeTons": 2500570.0,
-      "totalWeeklyTons": 1113366.0,
+      "weeklyTons": 595046.0,
+      "cumulativeTons": 2500780.0,
+      "totalWeeklyTons": 1118923.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -82450,9 +82568,9 @@
       "weekNumber": 16,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 670657.0,
-      "cumulativeTons": 3171227.0,
-      "totalWeeklyTons": 1373317.0,
+      "weeklyTons": 670692.0,
+      "cumulativeTons": 3171472.0,
+      "totalWeeklyTons": 1373352.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -82461,9 +82579,20 @@
       "weekNumber": 17,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 390877.0,
-      "cumulativeTons": 3562104.0,
-      "totalWeeklyTons": 847375.0,
+      "weeklyTons": 413122.0,
+      "cumulativeTons": 3584594.0,
+      "totalWeeklyTons": 877479.0,
+      "percentOfTotalDelivered": 100.0
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "Total Maize",
+      "grade": "Yellow Total",
+      "weeklyTons": 379489.0,
+      "cumulativeTons": 3964083.0,
+      "totalWeeklyTons": 867715.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -89952,10 +90081,10 @@
       "weekNumber": 13,
       "commodity": "White Maize",
       "grade": "WM1",
-      "weeklyTons": 203480.0,
-      "cumulativeTons": 763535.0,
-      "totalWeeklyTons": 212397.0,
-      "percentOfTotalDelivered": 93.42449
+      "weeklyTons": 203773.0,
+      "cumulativeTons": 763828.0,
+      "totalWeeklyTons": 212690.0,
+      "percentOfTotalDelivered": 93.426846
     },
     {
       "methodology": "Earlies",
@@ -89963,10 +90092,10 @@
       "weekNumber": 14,
       "commodity": "White Maize",
       "grade": "WM1",
-      "weeklyTons": 274716.0,
-      "cumulativeTons": 1038251.0,
-      "totalWeeklyTons": 291245.0,
-      "percentOfTotalDelivered": 93.661007
+      "weeklyTons": 275885.0,
+      "cumulativeTons": 1039713.0,
+      "totalWeeklyTons": 292414.0,
+      "percentOfTotalDelivered": 93.669357
     },
     {
       "methodology": "Earlies",
@@ -89974,10 +90103,10 @@
       "weekNumber": 15,
       "commodity": "White Maize",
       "grade": "WM1",
-      "weeklyTons": 490354.0,
-      "cumulativeTons": 1528605.0,
-      "totalWeeklyTons": 518349.0,
-      "percentOfTotalDelivered": 93.959932
+      "weeklyTons": 495882.0,
+      "cumulativeTons": 1535595.0,
+      "totalWeeklyTons": 523877.0,
+      "percentOfTotalDelivered": 93.985772
     },
     {
       "methodology": "Earlies",
@@ -89986,9 +90115,9 @@
       "commodity": "White Maize",
       "grade": "WM1",
       "weeklyTons": 666203.0,
-      "cumulativeTons": 2194808.0,
+      "cumulativeTons": 2201798.0,
       "totalWeeklyTons": 702660.0,
-      "percentOfTotalDelivered": 94.216814
+      "percentOfTotalDelivered": 94.234115
     },
     {
       "methodology": "Earlies",
@@ -89996,10 +90125,21 @@
       "weekNumber": 17,
       "commodity": "White Maize",
       "grade": "WM1",
-      "weeklyTons": 429286.0,
-      "cumulativeTons": 2624094.0,
-      "totalWeeklyTons": 456498.0,
-      "percentOfTotalDelivered": 94.187673
+      "weeklyTons": 437145.0,
+      "cumulativeTons": 2638943.0,
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 94.218487
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "White Maize",
+      "grade": "WM1",
+      "weeklyTons": 459860.0,
+      "cumulativeTons": 3098803.0,
+      "totalWeeklyTons": 488226.0,
+      "percentOfTotalDelivered": 94.214257
     },
     {
       "methodology": "Earlies",
@@ -97489,8 +97629,8 @@
       "grade": "WM2",
       "weeklyTons": 8021.0,
       "cumulativeTons": 48163.0,
-      "totalWeeklyTons": 212397.0,
-      "percentOfTotalDelivered": 5.89312
+      "totalWeeklyTons": 212690.0,
+      "percentOfTotalDelivered": 5.891008
     },
     {
       "methodology": "Earlies",
@@ -97500,8 +97640,8 @@
       "grade": "WM2",
       "weeklyTons": 15443.0,
       "cumulativeTons": 63606.0,
-      "totalWeeklyTons": 291245.0,
-      "percentOfTotalDelivered": 5.737921
+      "totalWeeklyTons": 292414.0,
+      "percentOfTotalDelivered": 5.730363
     },
     {
       "methodology": "Earlies",
@@ -97511,8 +97651,8 @@
       "grade": "WM2",
       "weeklyTons": 26631.0,
       "cumulativeTons": 90237.0,
-      "totalWeeklyTons": 518349.0,
-      "percentOfTotalDelivered": 5.546667
+      "totalWeeklyTons": 523877.0,
+      "percentOfTotalDelivered": 5.522937
     },
     {
       "methodology": "Earlies",
@@ -97523,7 +97663,7 @@
       "weeklyTons": 34602.0,
       "cumulativeTons": 124839.0,
       "totalWeeklyTons": 702660.0,
-      "percentOfTotalDelivered": 5.35898
+      "percentOfTotalDelivered": 5.342948
     },
     {
       "methodology": "Earlies",
@@ -97533,8 +97673,19 @@
       "grade": "WM2",
       "weeklyTons": 24519.0,
       "cumulativeTons": 149358.0,
-      "totalWeeklyTons": 456498.0,
-      "percentOfTotalDelivered": 5.360967
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 5.332546
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "White Maize",
+      "grade": "WM2",
+      "weeklyTons": 25437.0,
+      "cumulativeTons": 174795.0,
+      "totalWeeklyTons": 488226.0,
+      "percentOfTotalDelivered": 5.314368
     },
     {
       "methodology": "Earlies",
@@ -105024,8 +105175,8 @@
       "grade": "WM3",
       "weeklyTons": 761.0,
       "cumulativeTons": 4752.0,
-      "totalWeeklyTons": 212397.0,
-      "percentOfTotalDelivered": 0.581444
+      "totalWeeklyTons": 212690.0,
+      "percentOfTotalDelivered": 0.581236
     },
     {
       "methodology": "Earlies",
@@ -105035,8 +105186,8 @@
       "grade": "WM3",
       "weeklyTons": 1017.0,
       "cumulativeTons": 5769.0,
-      "totalWeeklyTons": 291245.0,
-      "percentOfTotalDelivered": 0.520424
+      "totalWeeklyTons": 292414.0,
+      "percentOfTotalDelivered": 0.519738
     },
     {
       "methodology": "Earlies",
@@ -105046,8 +105197,8 @@
       "grade": "WM3",
       "weeklyTons": 1187.0,
       "cumulativeTons": 6956.0,
-      "totalWeeklyTons": 518349.0,
-      "percentOfTotalDelivered": 0.42757
+      "totalWeeklyTons": 523877.0,
+      "percentOfTotalDelivered": 0.425741
     },
     {
       "methodology": "Earlies",
@@ -105058,7 +105209,7 @@
       "weeklyTons": 1810.0,
       "cumulativeTons": 8766.0,
       "totalWeeklyTons": 702660.0,
-      "percentOfTotalDelivered": 0.376299
+      "percentOfTotalDelivered": 0.375173
     },
     {
       "methodology": "Earlies",
@@ -105068,8 +105219,19 @@
       "grade": "WM3",
       "weeklyTons": 2657.0,
       "cumulativeTons": 11423.0,
-      "totalWeeklyTons": 456498.0,
-      "percentOfTotalDelivered": 0.41001
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 0.407837
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "White Maize",
+      "grade": "WM3",
+      "weeklyTons": 2884.0,
+      "cumulativeTons": 14307.0,
+      "totalWeeklyTons": 488226.0,
+      "percentOfTotalDelivered": 0.434982
     },
     {
       "methodology": "Earlies",
@@ -112559,8 +112721,8 @@
       "grade": "WMO",
       "weeklyTons": 135.0,
       "cumulativeTons": 825.0,
-      "totalWeeklyTons": 212397.0,
-      "percentOfTotalDelivered": 0.100945
+      "totalWeeklyTons": 212690.0,
+      "percentOfTotalDelivered": 0.100909
     },
     {
       "methodology": "Earlies",
@@ -112570,8 +112732,8 @@
       "grade": "WMO",
       "weeklyTons": 69.0,
       "cumulativeTons": 894.0,
-      "totalWeeklyTons": 291245.0,
-      "percentOfTotalDelivered": 0.080648
+      "totalWeeklyTons": 292414.0,
+      "percentOfTotalDelivered": 0.080542
     },
     {
       "methodology": "Earlies",
@@ -112581,8 +112743,8 @@
       "grade": "WMO",
       "weeklyTons": 177.0,
       "cumulativeTons": 1071.0,
-      "totalWeeklyTons": 518349.0,
-      "percentOfTotalDelivered": 0.065832
+      "totalWeeklyTons": 523877.0,
+      "percentOfTotalDelivered": 0.06555
     },
     {
       "methodology": "Earlies",
@@ -112593,7 +112755,7 @@
       "weeklyTons": 45.0,
       "cumulativeTons": 1116.0,
       "totalWeeklyTons": 702660.0,
-      "percentOfTotalDelivered": 0.047907
+      "percentOfTotalDelivered": 0.047763
     },
     {
       "methodology": "Earlies",
@@ -112603,8 +112765,19 @@
       "grade": "WMO",
       "weeklyTons": 36.0,
       "cumulativeTons": 1152.0,
-      "totalWeeklyTons": 456498.0,
-      "percentOfTotalDelivered": 0.041349
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 0.04113
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "White Maize",
+      "grade": "WMO",
+      "weeklyTons": 45.0,
+      "cumulativeTons": 1197.0,
+      "totalWeeklyTons": 488226.0,
+      "percentOfTotalDelivered": 0.036393
     },
     {
       "methodology": "Earlies",
@@ -120092,9 +120265,9 @@
       "weekNumber": 13,
       "commodity": "White Maize",
       "grade": "White Total",
-      "weeklyTons": 212397.0,
-      "cumulativeTons": 817275.0,
-      "totalWeeklyTons": 212397.0,
+      "weeklyTons": 212690.0,
+      "cumulativeTons": 817568.0,
+      "totalWeeklyTons": 212690.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -120103,9 +120276,9 @@
       "weekNumber": 14,
       "commodity": "White Maize",
       "grade": "White Total",
-      "weeklyTons": 291245.0,
-      "cumulativeTons": 1108520.0,
-      "totalWeeklyTons": 291245.0,
+      "weeklyTons": 292414.0,
+      "cumulativeTons": 1109982.0,
+      "totalWeeklyTons": 292414.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -120114,9 +120287,9 @@
       "weekNumber": 15,
       "commodity": "White Maize",
       "grade": "White Total",
-      "weeklyTons": 518349.0,
-      "cumulativeTons": 1626869.0,
-      "totalWeeklyTons": 518349.0,
+      "weeklyTons": 523877.0,
+      "cumulativeTons": 1633859.0,
+      "totalWeeklyTons": 523877.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -120126,7 +120299,7 @@
       "commodity": "White Maize",
       "grade": "White Total",
       "weeklyTons": 702660.0,
-      "cumulativeTons": 2329529.0,
+      "cumulativeTons": 2336519.0,
       "totalWeeklyTons": 702660.0,
       "percentOfTotalDelivered": 100.0
     },
@@ -120136,9 +120309,20 @@
       "weekNumber": 17,
       "commodity": "White Maize",
       "grade": "White Total",
-      "weeklyTons": 456498.0,
-      "cumulativeTons": 2786027.0,
-      "totalWeeklyTons": 456498.0,
+      "weeklyTons": 464357.0,
+      "cumulativeTons": 2800876.0,
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 100.0
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "White Maize",
+      "grade": "White Total",
+      "weeklyTons": 488226.0,
+      "cumulativeTons": 3289102.0,
+      "totalWeeklyTons": 488226.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -127627,10 +127811,10 @@
       "weekNumber": 13,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 421361.0,
-      "cumulativeTons": 1406225.0,
-      "totalWeeklyTons": 445111.0,
-      "percentOfTotalDelivered": 96.492251
+      "weeklyTons": 421430.0,
+      "cumulativeTons": 1406294.0,
+      "totalWeeklyTons": 445180.0,
+      "percentOfTotalDelivered": 96.492417
     },
     {
       "methodology": "Earlies",
@@ -127638,10 +127822,10 @@
       "weekNumber": 14,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 412508.0,
-      "cumulativeTons": 1818733.0,
-      "totalWeeklyTons": 448208.0,
-      "percentOfTotalDelivered": 95.443842
+      "weeklyTons": 412620.0,
+      "cumulativeTons": 1818914.0,
+      "totalWeeklyTons": 448320.0,
+      "percentOfTotalDelivered": 95.444275
     },
     {
       "methodology": "Earlies",
@@ -127649,10 +127833,10 @@
       "weekNumber": 15,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 537305.0,
-      "cumulativeTons": 2356038.0,
-      "totalWeeklyTons": 595017.0,
-      "percentOfTotalDelivered": 94.220038
+      "weeklyTons": 537334.0,
+      "cumulativeTons": 2356248.0,
+      "totalWeeklyTons": 595046.0,
+      "percentOfTotalDelivered": 94.220523
     },
     {
       "methodology": "Earlies",
@@ -127660,10 +127844,10 @@
       "weekNumber": 16,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 609374.0,
-      "cumulativeTons": 2965412.0,
-      "totalWeeklyTons": 670657.0,
-      "percentOfTotalDelivered": 93.509925
+      "weeklyTons": 609409.0,
+      "cumulativeTons": 2965657.0,
+      "totalWeeklyTons": 670692.0,
+      "percentOfTotalDelivered": 93.510427
     },
     {
       "methodology": "Earlies",
@@ -127671,10 +127855,21 @@
       "weekNumber": 17,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 358493.0,
-      "cumulativeTons": 3323905.0,
-      "totalWeeklyTons": 390877.0,
-      "percentOfTotalDelivered": 93.312969
+      "weeklyTons": 380571.0,
+      "cumulativeTons": 3346228.0,
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 93.350265
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "Yellow Maize",
+      "grade": "YM1",
+      "weeklyTons": 347559.0,
+      "cumulativeTons": 3693787.0,
+      "totalWeeklyTons": 379489.0,
+      "percentOfTotalDelivered": 93.181374
     },
     {
       "methodology": "Earlies",
@@ -135164,8 +135359,8 @@
       "grade": "YM2",
       "weeklyTons": 23148.0,
       "cumulativeTons": 49168.0,
-      "totalWeeklyTons": 445111.0,
-      "percentOfTotalDelivered": 3.373806
+      "totalWeeklyTons": 445180.0,
+      "percentOfTotalDelivered": 3.373647
     },
     {
       "methodology": "Earlies",
@@ -135175,8 +135370,8 @@
       "grade": "YM2",
       "weeklyTons": 34786.0,
       "cumulativeTons": 83954.0,
-      "totalWeeklyTons": 448208.0,
-      "percentOfTotalDelivered": 4.405755
+      "totalWeeklyTons": 448320.0,
+      "percentOfTotalDelivered": 4.405337
     },
     {
       "methodology": "Earlies",
@@ -135186,8 +135381,8 @@
       "grade": "YM2",
       "weeklyTons": 54295.0,
       "cumulativeTons": 138249.0,
-      "totalWeeklyTons": 595017.0,
-      "percentOfTotalDelivered": 5.528699
+      "totalWeeklyTons": 595046.0,
+      "percentOfTotalDelivered": 5.528235
     },
     {
       "methodology": "Earlies",
@@ -135197,8 +135392,8 @@
       "grade": "YM2",
       "weeklyTons": 57879.0,
       "cumulativeTons": 196128.0,
-      "totalWeeklyTons": 670657.0,
-      "percentOfTotalDelivered": 6.184609
+      "totalWeeklyTons": 670692.0,
+      "percentOfTotalDelivered": 6.184132
     },
     {
       "methodology": "Earlies",
@@ -135206,10 +135401,21 @@
       "weekNumber": 17,
       "commodity": "Yellow Maize",
       "grade": "YM2",
-      "weeklyTons": 31372.0,
-      "cumulativeTons": 227500.0,
-      "totalWeeklyTons": 390877.0,
-      "percentOfTotalDelivered": 6.386675
+      "weeklyTons": 31539.0,
+      "cumulativeTons": 227667.0,
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 6.351263
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "Yellow Maize",
+      "grade": "YM2",
+      "weeklyTons": 30516.0,
+      "cumulativeTons": 258183.0,
+      "totalWeeklyTons": 379489.0,
+      "percentOfTotalDelivered": 6.513057
     },
     {
       "methodology": "Earlies",
@@ -142699,8 +142905,8 @@
       "grade": "YM3",
       "weeklyTons": 555.0,
       "cumulativeTons": 1432.0,
-      "totalWeeklyTons": 445111.0,
-      "percentOfTotalDelivered": 0.098261
+      "totalWeeklyTons": 445180.0,
+      "percentOfTotalDelivered": 0.098256
     },
     {
       "methodology": "Earlies",
@@ -142710,8 +142916,8 @@
       "grade": "YM3",
       "weeklyTons": 866.0,
       "cumulativeTons": 2298.0,
-      "totalWeeklyTons": 448208.0,
-      "percentOfTotalDelivered": 0.120595
+      "totalWeeklyTons": 448320.0,
+      "percentOfTotalDelivered": 0.120583
     },
     {
       "methodology": "Earlies",
@@ -142721,8 +142927,8 @@
       "grade": "YM3",
       "weeklyTons": 3228.0,
       "cumulativeTons": 5526.0,
-      "totalWeeklyTons": 595017.0,
-      "percentOfTotalDelivered": 0.22099
+      "totalWeeklyTons": 595046.0,
+      "percentOfTotalDelivered": 0.220971
     },
     {
       "methodology": "Earlies",
@@ -142732,8 +142938,8 @@
       "grade": "YM3",
       "weeklyTons": 3266.0,
       "cumulativeTons": 8792.0,
-      "totalWeeklyTons": 670657.0,
-      "percentOfTotalDelivered": 0.277243
+      "totalWeeklyTons": 670692.0,
+      "percentOfTotalDelivered": 0.277221
     },
     {
       "methodology": "Earlies",
@@ -142743,8 +142949,19 @@
       "grade": "YM3",
       "weeklyTons": 824.0,
       "cumulativeTons": 9616.0,
-      "totalWeeklyTons": 390877.0,
-      "percentOfTotalDelivered": 0.269953
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 0.268259
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "Yellow Maize",
+      "grade": "YM3",
+      "weeklyTons": 1344.0,
+      "cumulativeTons": 10960.0,
+      "totalWeeklyTons": 379489.0,
+      "percentOfTotalDelivered": 0.276483
     },
     {
       "methodology": "Earlies",
@@ -150234,8 +150451,8 @@
       "grade": "YMO",
       "weeklyTons": 47.0,
       "cumulativeTons": 520.0,
-      "totalWeeklyTons": 445111.0,
-      "percentOfTotalDelivered": 0.035681
+      "totalWeeklyTons": 445180.0,
+      "percentOfTotalDelivered": 0.03568
     },
     {
       "methodology": "Earlies",
@@ -150245,8 +150462,8 @@
       "grade": "YMO",
       "weeklyTons": 48.0,
       "cumulativeTons": 568.0,
-      "totalWeeklyTons": 448208.0,
-      "percentOfTotalDelivered": 0.029808
+      "totalWeeklyTons": 448320.0,
+      "percentOfTotalDelivered": 0.029805
     },
     {
       "methodology": "Earlies",
@@ -150256,8 +150473,8 @@
       "grade": "YMO",
       "weeklyTons": 189.0,
       "cumulativeTons": 757.0,
-      "totalWeeklyTons": 595017.0,
-      "percentOfTotalDelivered": 0.030273
+      "totalWeeklyTons": 595046.0,
+      "percentOfTotalDelivered": 0.030271
     },
     {
       "methodology": "Earlies",
@@ -150267,8 +150484,8 @@
       "grade": "YMO",
       "weeklyTons": 138.0,
       "cumulativeTons": 895.0,
-      "totalWeeklyTons": 670657.0,
-      "percentOfTotalDelivered": 0.028223
+      "totalWeeklyTons": 670692.0,
+      "percentOfTotalDelivered": 0.02822
     },
     {
       "methodology": "Earlies",
@@ -150278,8 +150495,19 @@
       "grade": "YMO",
       "weeklyTons": 188.0,
       "cumulativeTons": 1083.0,
-      "totalWeeklyTons": 390877.0,
-      "percentOfTotalDelivered": 0.030403
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 0.030213
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "Yellow Maize",
+      "grade": "YMO",
+      "weeklyTons": 70.0,
+      "cumulativeTons": 1153.0,
+      "totalWeeklyTons": 379489.0,
+      "percentOfTotalDelivered": 0.029086
     },
     {
       "methodology": "Earlies",
@@ -157767,9 +157995,9 @@
       "weekNumber": 13,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 445111.0,
-      "cumulativeTons": 1457345.0,
-      "totalWeeklyTons": 445111.0,
+      "weeklyTons": 445180.0,
+      "cumulativeTons": 1457414.0,
+      "totalWeeklyTons": 445180.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -157778,9 +158006,9 @@
       "weekNumber": 14,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 448208.0,
-      "cumulativeTons": 1905553.0,
-      "totalWeeklyTons": 448208.0,
+      "weeklyTons": 448320.0,
+      "cumulativeTons": 1905734.0,
+      "totalWeeklyTons": 448320.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -157789,9 +158017,9 @@
       "weekNumber": 15,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 595017.0,
-      "cumulativeTons": 2500570.0,
-      "totalWeeklyTons": 595017.0,
+      "weeklyTons": 595046.0,
+      "cumulativeTons": 2500780.0,
+      "totalWeeklyTons": 595046.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -157800,9 +158028,9 @@
       "weekNumber": 16,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 670657.0,
-      "cumulativeTons": 3171227.0,
-      "totalWeeklyTons": 670657.0,
+      "weeklyTons": 670692.0,
+      "cumulativeTons": 3171472.0,
+      "totalWeeklyTons": 670692.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -157811,9 +158039,20 @@
       "weekNumber": 17,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 390877.0,
-      "cumulativeTons": 3562104.0,
-      "totalWeeklyTons": 390877.0,
+      "weeklyTons": 413122.0,
+      "cumulativeTons": 3584594.0,
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 100.0
+    },
+    {
+      "methodology": "Earlies",
+      "marketingYear": "2026/27",
+      "weekNumber": 18,
+      "commodity": "Yellow Maize",
+      "grade": "Yellow Total",
+      "weeklyTons": 379489.0,
+      "cumulativeTons": 3964083.0,
+      "totalWeeklyTons": 379489.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -165302,10 +165541,10 @@
       "weekNumber": 5,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 657508.0,
-      "cumulativeTons": 1391407.0,
-      "totalWeeklyTons": 657508.0,
-      "percentOfTotalDelivered": 145.387416
+      "weeklyTons": 657870.0,
+      "cumulativeTons": 1391769.0,
+      "totalWeeklyTons": 657870.0,
+      "percentOfTotalDelivered": 145.414757
     },
     {
       "methodology": "SAGIS",
@@ -165313,10 +165552,10 @@
       "weekNumber": 6,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 739453.0,
-      "cumulativeTons": 2130860.0,
-      "totalWeeklyTons": 739453.0,
-      "percentOfTotalDelivered": 151.636515
+      "weeklyTons": 740734.0,
+      "cumulativeTons": 2132503.0,
+      "totalWeeklyTons": 740734.0,
+      "percentOfTotalDelivered": 151.733891
     },
     {
       "methodology": "SAGIS",
@@ -165324,10 +165563,10 @@
       "weekNumber": 7,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 1113366.0,
-      "cumulativeTons": 3244226.0,
-      "totalWeeklyTons": 1113366.0,
-      "percentOfTotalDelivered": 162.190296
+      "weeklyTons": 1118923.0,
+      "cumulativeTons": 3251426.0,
+      "totalWeeklyTons": 1118923.0,
+      "percentOfTotalDelivered": 162.533186
     },
     {
       "methodology": "SAGIS",
@@ -165335,10 +165574,10 @@
       "weekNumber": 8,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 1373317.0,
-      "cumulativeTons": 4617543.0,
-      "totalWeeklyTons": 1373317.0,
-      "percentOfTotalDelivered": 172.882374
+      "weeklyTons": 1373352.0,
+      "cumulativeTons": 4624778.0,
+      "totalWeeklyTons": 1373352.0,
+      "percentOfTotalDelivered": 173.137374
     },
     {
       "methodology": "SAGIS",
@@ -165346,10 +165585,21 @@
       "weekNumber": 9,
       "commodity": "Total Maize",
       "grade": "Grand Total",
-      "weeklyTons": 847375.0,
-      "cumulativeTons": 5464918.0,
-      "totalWeeklyTons": 847375.0,
-      "percentOfTotalDelivered": 178.487507
+      "weeklyTons": 877479.0,
+      "cumulativeTons": 5502257.0,
+      "totalWeeklyTons": 877479.0,
+      "percentOfTotalDelivered": 178.396632
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "Total Maize",
+      "grade": "Grand Total",
+      "weeklyTons": 867715.0,
+      "cumulativeTons": 6369972.0,
+      "totalWeeklyTons": 867715.0,
+      "percentOfTotalDelivered": 183.902751
     },
     {
       "methodology": "SAGIS",
@@ -172837,10 +173087,10 @@
       "weekNumber": 5,
       "commodity": "Total Maize",
       "grade": "White Total",
-      "weeklyTons": 212397.0,
-      "cumulativeTons": 434373.0,
-      "totalWeeklyTons": 657508.0,
-      "percentOfTotalDelivered": 45.387416
+      "weeklyTons": 212690.0,
+      "cumulativeTons": 434666.0,
+      "totalWeeklyTons": 657870.0,
+      "percentOfTotalDelivered": 45.414757
     },
     {
       "methodology": "SAGIS",
@@ -172848,10 +173098,10 @@
       "weekNumber": 6,
       "commodity": "Total Maize",
       "grade": "White Total",
-      "weeklyTons": 291245.0,
-      "cumulativeTons": 725618.0,
-      "totalWeeklyTons": 739453.0,
-      "percentOfTotalDelivered": 51.636515
+      "weeklyTons": 292414.0,
+      "cumulativeTons": 727080.0,
+      "totalWeeklyTons": 740734.0,
+      "percentOfTotalDelivered": 51.733891
     },
     {
       "methodology": "SAGIS",
@@ -172859,10 +173109,10 @@
       "weekNumber": 7,
       "commodity": "Total Maize",
       "grade": "White Total",
-      "weeklyTons": 518349.0,
-      "cumulativeTons": 1243967.0,
-      "totalWeeklyTons": 1113366.0,
-      "percentOfTotalDelivered": 62.190296
+      "weeklyTons": 523877.0,
+      "cumulativeTons": 1250957.0,
+      "totalWeeklyTons": 1118923.0,
+      "percentOfTotalDelivered": 62.533186
     },
     {
       "methodology": "SAGIS",
@@ -172871,9 +173121,9 @@
       "commodity": "Total Maize",
       "grade": "White Total",
       "weeklyTons": 702660.0,
-      "cumulativeTons": 1946627.0,
-      "totalWeeklyTons": 1373317.0,
-      "percentOfTotalDelivered": 72.882374
+      "cumulativeTons": 1953617.0,
+      "totalWeeklyTons": 1373352.0,
+      "percentOfTotalDelivered": 73.137374
     },
     {
       "methodology": "SAGIS",
@@ -172881,10 +173131,21 @@
       "weekNumber": 9,
       "commodity": "Total Maize",
       "grade": "White Total",
-      "weeklyTons": 456498.0,
-      "cumulativeTons": 2403125.0,
-      "totalWeeklyTons": 847375.0,
-      "percentOfTotalDelivered": 78.487507
+      "weeklyTons": 464357.0,
+      "cumulativeTons": 2417974.0,
+      "totalWeeklyTons": 877479.0,
+      "percentOfTotalDelivered": 78.396632
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "Total Maize",
+      "grade": "White Total",
+      "weeklyTons": 488226.0,
+      "cumulativeTons": 2906200.0,
+      "totalWeeklyTons": 867715.0,
+      "percentOfTotalDelivered": 83.902751
     },
     {
       "methodology": "SAGIS",
@@ -180372,9 +180633,9 @@
       "weekNumber": 5,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 445111.0,
-      "cumulativeTons": 957034.0,
-      "totalWeeklyTons": 657508.0,
+      "weeklyTons": 445180.0,
+      "cumulativeTons": 957103.0,
+      "totalWeeklyTons": 657870.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -180383,9 +180644,9 @@
       "weekNumber": 6,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 448208.0,
-      "cumulativeTons": 1405242.0,
-      "totalWeeklyTons": 739453.0,
+      "weeklyTons": 448320.0,
+      "cumulativeTons": 1405423.0,
+      "totalWeeklyTons": 740734.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -180394,9 +180655,9 @@
       "weekNumber": 7,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 595017.0,
-      "cumulativeTons": 2000259.0,
-      "totalWeeklyTons": 1113366.0,
+      "weeklyTons": 595046.0,
+      "cumulativeTons": 2000469.0,
+      "totalWeeklyTons": 1118923.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -180405,9 +180666,9 @@
       "weekNumber": 8,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 670657.0,
-      "cumulativeTons": 2670916.0,
-      "totalWeeklyTons": 1373317.0,
+      "weeklyTons": 670692.0,
+      "cumulativeTons": 2671161.0,
+      "totalWeeklyTons": 1373352.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -180416,9 +180677,20 @@
       "weekNumber": 9,
       "commodity": "Total Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 390877.0,
-      "cumulativeTons": 3061793.0,
-      "totalWeeklyTons": 847375.0,
+      "weeklyTons": 413122.0,
+      "cumulativeTons": 3084283.0,
+      "totalWeeklyTons": 877479.0,
+      "percentOfTotalDelivered": 100.0
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "Total Maize",
+      "grade": "Yellow Total",
+      "weeklyTons": 379489.0,
+      "cumulativeTons": 3463772.0,
+      "totalWeeklyTons": 867715.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -187907,10 +188179,10 @@
       "weekNumber": 5,
       "commodity": "White Maize",
       "grade": "WM1",
-      "weeklyTons": 203480.0,
-      "cumulativeTons": 414106.0,
-      "totalWeeklyTons": 212397.0,
-      "percentOfTotalDelivered": 95.334194
+      "weeklyTons": 203773.0,
+      "cumulativeTons": 414399.0,
+      "totalWeeklyTons": 212690.0,
+      "percentOfTotalDelivered": 95.337339
     },
     {
       "methodology": "SAGIS",
@@ -187918,10 +188190,10 @@
       "weekNumber": 6,
       "commodity": "White Maize",
       "grade": "WM1",
-      "weeklyTons": 274716.0,
-      "cumulativeTons": 688822.0,
-      "totalWeeklyTons": 291245.0,
-      "percentOfTotalDelivered": 94.929012
+      "weeklyTons": 275885.0,
+      "cumulativeTons": 690284.0,
+      "totalWeeklyTons": 292414.0,
+      "percentOfTotalDelivered": 94.939209
     },
     {
       "methodology": "SAGIS",
@@ -187929,10 +188201,10 @@
       "weekNumber": 7,
       "commodity": "White Maize",
       "grade": "WM1",
-      "weeklyTons": 490354.0,
-      "cumulativeTons": 1179176.0,
-      "totalWeeklyTons": 518349.0,
-      "percentOfTotalDelivered": 94.791582
+      "weeklyTons": 495882.0,
+      "cumulativeTons": 1186166.0,
+      "totalWeeklyTons": 523877.0,
+      "percentOfTotalDelivered": 94.820685
     },
     {
       "methodology": "SAGIS",
@@ -187941,9 +188213,9 @@
       "commodity": "White Maize",
       "grade": "WM1",
       "weeklyTons": 666203.0,
-      "cumulativeTons": 1845379.0,
+      "cumulativeTons": 1852369.0,
       "totalWeeklyTons": 702660.0,
-      "percentOfTotalDelivered": 94.798798
+      "percentOfTotalDelivered": 94.817408
     },
     {
       "methodology": "SAGIS",
@@ -187951,10 +188223,21 @@
       "weekNumber": 9,
       "commodity": "White Maize",
       "grade": "WM1",
-      "weeklyTons": 429286.0,
-      "cumulativeTons": 2274665.0,
-      "totalWeeklyTons": 456498.0,
-      "percentOfTotalDelivered": 94.65446
+      "weeklyTons": 437145.0,
+      "cumulativeTons": 2289514.0,
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 94.687288
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "White Maize",
+      "grade": "WM1",
+      "weeklyTons": 459860.0,
+      "cumulativeTons": 2749374.0,
+      "totalWeeklyTons": 488226.0,
+      "percentOfTotalDelivered": 94.603744
     },
     {
       "methodology": "SAGIS",
@@ -195444,8 +195727,8 @@
       "grade": "WM2",
       "weeklyTons": 8021.0,
       "cumulativeTons": 18365.0,
-      "totalWeeklyTons": 212397.0,
-      "percentOfTotalDelivered": 4.227933
+      "totalWeeklyTons": 212690.0,
+      "percentOfTotalDelivered": 4.225083
     },
     {
       "methodology": "SAGIS",
@@ -195455,8 +195738,8 @@
       "grade": "WM2",
       "weeklyTons": 15443.0,
       "cumulativeTons": 33808.0,
-      "totalWeeklyTons": 291245.0,
-      "percentOfTotalDelivered": 4.659201
+      "totalWeeklyTons": 292414.0,
+      "percentOfTotalDelivered": 4.649832
     },
     {
       "methodology": "SAGIS",
@@ -195466,8 +195749,8 @@
       "grade": "WM2",
       "weeklyTons": 26631.0,
       "cumulativeTons": 60439.0,
-      "totalWeeklyTons": 518349.0,
-      "percentOfTotalDelivered": 4.858569
+      "totalWeeklyTons": 523877.0,
+      "percentOfTotalDelivered": 4.831421
     },
     {
       "methodology": "SAGIS",
@@ -195478,7 +195761,7 @@
       "weeklyTons": 34602.0,
       "cumulativeTons": 95041.0,
       "totalWeeklyTons": 702660.0,
-      "percentOfTotalDelivered": 4.882343
+      "percentOfTotalDelivered": 4.864874
     },
     {
       "methodology": "SAGIS",
@@ -195488,8 +195771,19 @@
       "grade": "WM2",
       "weeklyTons": 24519.0,
       "cumulativeTons": 119560.0,
-      "totalWeeklyTons": 456498.0,
-      "percentOfTotalDelivered": 4.975189
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 4.944635
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "White Maize",
+      "grade": "WM2",
+      "weeklyTons": 25437.0,
+      "cumulativeTons": 144997.0,
+      "totalWeeklyTons": 488226.0,
+      "percentOfTotalDelivered": 4.98923
     },
     {
       "methodology": "SAGIS",
@@ -202979,8 +203273,8 @@
       "grade": "WM3",
       "weeklyTons": 761.0,
       "cumulativeTons": 1527.0,
-      "totalWeeklyTons": 212397.0,
-      "percentOfTotalDelivered": 0.351541
+      "totalWeeklyTons": 212690.0,
+      "percentOfTotalDelivered": 0.351304
     },
     {
       "methodology": "SAGIS",
@@ -202990,8 +203284,8 @@
       "grade": "WM3",
       "weeklyTons": 1017.0,
       "cumulativeTons": 2544.0,
-      "totalWeeklyTons": 291245.0,
-      "percentOfTotalDelivered": 0.350598
+      "totalWeeklyTons": 292414.0,
+      "percentOfTotalDelivered": 0.349893
     },
     {
       "methodology": "SAGIS",
@@ -203001,8 +203295,8 @@
       "grade": "WM3",
       "weeklyTons": 1187.0,
       "cumulativeTons": 3731.0,
-      "totalWeeklyTons": 518349.0,
-      "percentOfTotalDelivered": 0.299928
+      "totalWeeklyTons": 523877.0,
+      "percentOfTotalDelivered": 0.298252
     },
     {
       "methodology": "SAGIS",
@@ -203013,7 +203307,7 @@
       "weeklyTons": 1810.0,
       "cumulativeTons": 5541.0,
       "totalWeeklyTons": 702660.0,
-      "percentOfTotalDelivered": 0.284646
+      "percentOfTotalDelivered": 0.283628
     },
     {
       "methodology": "SAGIS",
@@ -203023,8 +203317,19 @@
       "grade": "WM3",
       "weeklyTons": 2657.0,
       "cumulativeTons": 8198.0,
-      "totalWeeklyTons": 456498.0,
-      "percentOfTotalDelivered": 0.341139
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 0.339044
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "White Maize",
+      "grade": "WM3",
+      "weeklyTons": 2884.0,
+      "cumulativeTons": 11082.0,
+      "totalWeeklyTons": 488226.0,
+      "percentOfTotalDelivered": 0.381323
     },
     {
       "methodology": "SAGIS",
@@ -210514,8 +210819,8 @@
       "grade": "WMO",
       "weeklyTons": 135.0,
       "cumulativeTons": 375.0,
-      "totalWeeklyTons": 212397.0,
-      "percentOfTotalDelivered": 0.086331
+      "totalWeeklyTons": 212690.0,
+      "percentOfTotalDelivered": 0.086273
     },
     {
       "methodology": "SAGIS",
@@ -210525,8 +210830,8 @@
       "grade": "WMO",
       "weeklyTons": 69.0,
       "cumulativeTons": 444.0,
-      "totalWeeklyTons": 291245.0,
-      "percentOfTotalDelivered": 0.061189
+      "totalWeeklyTons": 292414.0,
+      "percentOfTotalDelivered": 0.061066
     },
     {
       "methodology": "SAGIS",
@@ -210536,8 +210841,8 @@
       "grade": "WMO",
       "weeklyTons": 177.0,
       "cumulativeTons": 621.0,
-      "totalWeeklyTons": 518349.0,
-      "percentOfTotalDelivered": 0.049921
+      "totalWeeklyTons": 523877.0,
+      "percentOfTotalDelivered": 0.049642
     },
     {
       "methodology": "SAGIS",
@@ -210548,7 +210853,7 @@
       "weeklyTons": 45.0,
       "cumulativeTons": 666.0,
       "totalWeeklyTons": 702660.0,
-      "percentOfTotalDelivered": 0.034213
+      "percentOfTotalDelivered": 0.034091
     },
     {
       "methodology": "SAGIS",
@@ -210558,8 +210863,19 @@
       "grade": "WMO",
       "weeklyTons": 36.0,
       "cumulativeTons": 702.0,
-      "totalWeeklyTons": 456498.0,
-      "percentOfTotalDelivered": 0.029212
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 0.029033
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "White Maize",
+      "grade": "WMO",
+      "weeklyTons": 45.0,
+      "cumulativeTons": 747.0,
+      "totalWeeklyTons": 488226.0,
+      "percentOfTotalDelivered": 0.025704
     },
     {
       "methodology": "SAGIS",
@@ -218047,9 +218363,9 @@
       "weekNumber": 5,
       "commodity": "White Maize",
       "grade": "White Total",
-      "weeklyTons": 212397.0,
-      "cumulativeTons": 434373.0,
-      "totalWeeklyTons": 212397.0,
+      "weeklyTons": 212690.0,
+      "cumulativeTons": 434666.0,
+      "totalWeeklyTons": 212690.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -218058,9 +218374,9 @@
       "weekNumber": 6,
       "commodity": "White Maize",
       "grade": "White Total",
-      "weeklyTons": 291245.0,
-      "cumulativeTons": 725618.0,
-      "totalWeeklyTons": 291245.0,
+      "weeklyTons": 292414.0,
+      "cumulativeTons": 727080.0,
+      "totalWeeklyTons": 292414.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -218069,9 +218385,9 @@
       "weekNumber": 7,
       "commodity": "White Maize",
       "grade": "White Total",
-      "weeklyTons": 518349.0,
-      "cumulativeTons": 1243967.0,
-      "totalWeeklyTons": 518349.0,
+      "weeklyTons": 523877.0,
+      "cumulativeTons": 1250957.0,
+      "totalWeeklyTons": 523877.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -218081,7 +218397,7 @@
       "commodity": "White Maize",
       "grade": "White Total",
       "weeklyTons": 702660.0,
-      "cumulativeTons": 1946627.0,
+      "cumulativeTons": 1953617.0,
       "totalWeeklyTons": 702660.0,
       "percentOfTotalDelivered": 100.0
     },
@@ -218091,9 +218407,20 @@
       "weekNumber": 9,
       "commodity": "White Maize",
       "grade": "White Total",
-      "weeklyTons": 456498.0,
-      "cumulativeTons": 2403125.0,
-      "totalWeeklyTons": 456498.0,
+      "weeklyTons": 464357.0,
+      "cumulativeTons": 2417974.0,
+      "totalWeeklyTons": 464357.0,
+      "percentOfTotalDelivered": 100.0
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "White Maize",
+      "grade": "White Total",
+      "weeklyTons": 488226.0,
+      "cumulativeTons": 2906200.0,
+      "totalWeeklyTons": 488226.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -225582,10 +225909,10 @@
       "weekNumber": 5,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 421361.0,
-      "cumulativeTons": 917487.0,
-      "totalWeeklyTons": 445111.0,
-      "percentOfTotalDelivered": 95.867754
+      "weeklyTons": 421430.0,
+      "cumulativeTons": 917556.0,
+      "totalWeeklyTons": 445180.0,
+      "percentOfTotalDelivered": 95.868052
     },
     {
       "methodology": "SAGIS",
@@ -225593,10 +225920,10 @@
       "weekNumber": 6,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 412508.0,
-      "cumulativeTons": 1329995.0,
-      "totalWeeklyTons": 448208.0,
-      "percentOfTotalDelivered": 94.645264
+      "weeklyTons": 412620.0,
+      "cumulativeTons": 1330176.0,
+      "totalWeeklyTons": 448320.0,
+      "percentOfTotalDelivered": 94.645954
     },
     {
       "methodology": "SAGIS",
@@ -225604,10 +225931,10 @@
       "weekNumber": 7,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 537305.0,
-      "cumulativeTons": 1867300.0,
-      "totalWeeklyTons": 595017.0,
-      "percentOfTotalDelivered": 93.352911
+      "weeklyTons": 537334.0,
+      "cumulativeTons": 1867510.0,
+      "totalWeeklyTons": 595046.0,
+      "percentOfTotalDelivered": 93.353609
     },
     {
       "methodology": "SAGIS",
@@ -225615,10 +225942,10 @@
       "weekNumber": 8,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 609374.0,
-      "cumulativeTons": 2476674.0,
-      "totalWeeklyTons": 670657.0,
-      "percentOfTotalDelivered": 92.727514
+      "weeklyTons": 609409.0,
+      "cumulativeTons": 2476919.0,
+      "totalWeeklyTons": 670692.0,
+      "percentOfTotalDelivered": 92.728181
     },
     {
       "methodology": "SAGIS",
@@ -225626,10 +225953,21 @@
       "weekNumber": 9,
       "commodity": "Yellow Maize",
       "grade": "YM1",
-      "weeklyTons": 358493.0,
-      "cumulativeTons": 2835167.0,
-      "totalWeeklyTons": 390877.0,
-      "percentOfTotalDelivered": 92.598259
+      "weeklyTons": 380571.0,
+      "cumulativeTons": 2857490.0,
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 92.646816
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "Yellow Maize",
+      "grade": "YM1",
+      "weeklyTons": 347559.0,
+      "cumulativeTons": 3205049.0,
+      "totalWeeklyTons": 379489.0,
+      "percentOfTotalDelivered": 92.5306
     },
     {
       "methodology": "SAGIS",
@@ -233119,8 +233457,8 @@
       "grade": "YM2",
       "weeklyTons": 23148.0,
       "cumulativeTons": 38089.0,
-      "totalWeeklyTons": 445111.0,
-      "percentOfTotalDelivered": 3.9799
+      "totalWeeklyTons": 445180.0,
+      "percentOfTotalDelivered": 3.979613
     },
     {
       "methodology": "SAGIS",
@@ -233130,8 +233468,8 @@
       "grade": "YM2",
       "weeklyTons": 34786.0,
       "cumulativeTons": 72875.0,
-      "totalWeeklyTons": 448208.0,
-      "percentOfTotalDelivered": 5.18594
+      "totalWeeklyTons": 448320.0,
+      "percentOfTotalDelivered": 5.185272
     },
     {
       "methodology": "SAGIS",
@@ -233141,8 +233479,8 @@
       "grade": "YM2",
       "weeklyTons": 54295.0,
       "cumulativeTons": 127170.0,
-      "totalWeeklyTons": 595017.0,
-      "percentOfTotalDelivered": 6.357677
+      "totalWeeklyTons": 595046.0,
+      "percentOfTotalDelivered": 6.357009
     },
     {
       "methodology": "SAGIS",
@@ -233152,8 +233490,8 @@
       "grade": "YM2",
       "weeklyTons": 57879.0,
       "cumulativeTons": 185049.0,
-      "totalWeeklyTons": 670657.0,
-      "percentOfTotalDelivered": 6.928297
+      "totalWeeklyTons": 670692.0,
+      "percentOfTotalDelivered": 6.927662
     },
     {
       "methodology": "SAGIS",
@@ -233161,10 +233499,21 @@
       "weekNumber": 9,
       "commodity": "Yellow Maize",
       "grade": "YM2",
-      "weeklyTons": 31372.0,
-      "cumulativeTons": 216421.0,
-      "totalWeeklyTons": 390877.0,
-      "percentOfTotalDelivered": 7.06844
+      "weeklyTons": 31539.0,
+      "cumulativeTons": 216588.0,
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 7.022313
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "Yellow Maize",
+      "grade": "YM2",
+      "weeklyTons": 30516.0,
+      "cumulativeTons": 247104.0,
+      "totalWeeklyTons": 379489.0,
+      "percentOfTotalDelivered": 7.133957
     },
     {
       "methodology": "SAGIS",
@@ -240654,8 +241003,8 @@
       "grade": "YM3",
       "weeklyTons": 555.0,
       "cumulativeTons": 1294.0,
-      "totalWeeklyTons": 445111.0,
-      "percentOfTotalDelivered": 0.135209
+      "totalWeeklyTons": 445180.0,
+      "percentOfTotalDelivered": 0.1352
     },
     {
       "methodology": "SAGIS",
@@ -240665,8 +241014,8 @@
       "grade": "YM3",
       "weeklyTons": 866.0,
       "cumulativeTons": 2160.0,
-      "totalWeeklyTons": 448208.0,
-      "percentOfTotalDelivered": 0.15371
+      "totalWeeklyTons": 448320.0,
+      "percentOfTotalDelivered": 0.15369
     },
     {
       "methodology": "SAGIS",
@@ -240676,8 +241025,8 @@
       "grade": "YM3",
       "weeklyTons": 3228.0,
       "cumulativeTons": 5388.0,
-      "totalWeeklyTons": 595017.0,
-      "percentOfTotalDelivered": 0.269365
+      "totalWeeklyTons": 595046.0,
+      "percentOfTotalDelivered": 0.269337
     },
     {
       "methodology": "SAGIS",
@@ -240687,8 +241036,8 @@
       "grade": "YM3",
       "weeklyTons": 3266.0,
       "cumulativeTons": 8654.0,
-      "totalWeeklyTons": 670657.0,
-      "percentOfTotalDelivered": 0.324009
+      "totalWeeklyTons": 670692.0,
+      "percentOfTotalDelivered": 0.323979
     },
     {
       "methodology": "SAGIS",
@@ -240698,8 +241047,19 @@
       "grade": "YM3",
       "weeklyTons": 824.0,
       "cumulativeTons": 9478.0,
-      "totalWeeklyTons": 390877.0,
-      "percentOfTotalDelivered": 0.309557
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 0.3073
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "Yellow Maize",
+      "grade": "YM3",
+      "weeklyTons": 1344.0,
+      "cumulativeTons": 10822.0,
+      "totalWeeklyTons": 379489.0,
+      "percentOfTotalDelivered": 0.312434
     },
     {
       "methodology": "SAGIS",
@@ -248189,8 +248549,8 @@
       "grade": "YMO",
       "weeklyTons": 47.0,
       "cumulativeTons": 164.0,
-      "totalWeeklyTons": 445111.0,
-      "percentOfTotalDelivered": 0.017136
+      "totalWeeklyTons": 445180.0,
+      "percentOfTotalDelivered": 0.017135
     },
     {
       "methodology": "SAGIS",
@@ -248200,8 +248560,8 @@
       "grade": "YMO",
       "weeklyTons": 48.0,
       "cumulativeTons": 212.0,
-      "totalWeeklyTons": 448208.0,
-      "percentOfTotalDelivered": 0.015086
+      "totalWeeklyTons": 448320.0,
+      "percentOfTotalDelivered": 0.015084
     },
     {
       "methodology": "SAGIS",
@@ -248211,8 +248571,8 @@
       "grade": "YMO",
       "weeklyTons": 189.0,
       "cumulativeTons": 401.0,
-      "totalWeeklyTons": 595017.0,
-      "percentOfTotalDelivered": 0.020047
+      "totalWeeklyTons": 595046.0,
+      "percentOfTotalDelivered": 0.020045
     },
     {
       "methodology": "SAGIS",
@@ -248222,8 +248582,8 @@
       "grade": "YMO",
       "weeklyTons": 138.0,
       "cumulativeTons": 539.0,
-      "totalWeeklyTons": 670657.0,
-      "percentOfTotalDelivered": 0.02018
+      "totalWeeklyTons": 670692.0,
+      "percentOfTotalDelivered": 0.020178
     },
     {
       "methodology": "SAGIS",
@@ -248233,8 +248593,19 @@
       "grade": "YMO",
       "weeklyTons": 188.0,
       "cumulativeTons": 727.0,
-      "totalWeeklyTons": 390877.0,
-      "percentOfTotalDelivered": 0.023744
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 0.023571
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "Yellow Maize",
+      "grade": "YMO",
+      "weeklyTons": 70.0,
+      "cumulativeTons": 797.0,
+      "totalWeeklyTons": 379489.0,
+      "percentOfTotalDelivered": 0.02301
     },
     {
       "methodology": "SAGIS",
@@ -255722,9 +256093,9 @@
       "weekNumber": 5,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 445111.0,
-      "cumulativeTons": 957034.0,
-      "totalWeeklyTons": 445111.0,
+      "weeklyTons": 445180.0,
+      "cumulativeTons": 957103.0,
+      "totalWeeklyTons": 445180.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -255733,9 +256104,9 @@
       "weekNumber": 6,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 448208.0,
-      "cumulativeTons": 1405242.0,
-      "totalWeeklyTons": 448208.0,
+      "weeklyTons": 448320.0,
+      "cumulativeTons": 1405423.0,
+      "totalWeeklyTons": 448320.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -255744,9 +256115,9 @@
       "weekNumber": 7,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 595017.0,
-      "cumulativeTons": 2000259.0,
-      "totalWeeklyTons": 595017.0,
+      "weeklyTons": 595046.0,
+      "cumulativeTons": 2000469.0,
+      "totalWeeklyTons": 595046.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -255755,9 +256126,9 @@
       "weekNumber": 8,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 670657.0,
-      "cumulativeTons": 2670916.0,
-      "totalWeeklyTons": 670657.0,
+      "weeklyTons": 670692.0,
+      "cumulativeTons": 2671161.0,
+      "totalWeeklyTons": 670692.0,
       "percentOfTotalDelivered": 100.0
     },
     {
@@ -255766,9 +256137,20 @@
       "weekNumber": 9,
       "commodity": "Yellow Maize",
       "grade": "Yellow Total",
-      "weeklyTons": 390877.0,
-      "cumulativeTons": 3061793.0,
-      "totalWeeklyTons": 390877.0,
+      "weeklyTons": 413122.0,
+      "cumulativeTons": 3084283.0,
+      "totalWeeklyTons": 413122.0,
+      "percentOfTotalDelivered": 100.0
+    },
+    {
+      "methodology": "SAGIS",
+      "marketingYear": "2026/27",
+      "weekNumber": 10,
+      "commodity": "Yellow Maize",
+      "grade": "Yellow Total",
+      "weeklyTons": 379489.0,
+      "cumulativeTons": 3463772.0,
+      "totalWeeklyTons": 379489.0,
       "percentOfTotalDelivered": 100.0
     }
   ]
