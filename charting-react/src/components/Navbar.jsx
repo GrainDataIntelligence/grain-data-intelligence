@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import Logo from "../assets/logo.png"; // adjust if needed
+import NavbarLogo from "../assets/gdi-navbar-logo.png";
 
 function Navbar() {
   const [fundamentalsOpen, setFundamentalsOpen] = useState(false);
@@ -8,14 +8,15 @@ function Navbar() {
 
   return (
     <nav className="w-full bg-[#0a1128] text-white shadow-md border-b border-gray-700">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <div className="mx-auto flex w-full items-center justify-between gap-6 px-10 py-2">
         
-        {/* LEFT SIDE: Logo + Name */}
-        <div className="flex items-center space-x-3">
-          <img src={Logo} alt="GDI Logo" className="h-8" />
-          <span className="text-lg font-semibold text-yellow-400">
-            Grain Data Intelligence
-          </span>
+        {/* LEFT SIDE: Logo */}
+        <div className="flex min-w-[360px] items-center">
+          <img
+            src={NavbarLogo}
+            alt="Grain Data Intelligence"
+            className="h-14 w-[360px] object-contain object-left"
+          />
         </div>
 
         {/* RIGHT SIDE: Menu */}

@@ -4,6 +4,15 @@ const ACCOUNT_START = 1000000;
 const CONTRACT_TONS = 100;
 
 const TRADE_TYPES = ["Futures", "Calendar Spread", "Split"];
+const ALLOWED_COMMODITIES = ["WMAZ", "YMAZ", "WEAT", "SUNS", "SOYB", "CORN"];
+const PRICE_HISTORY_FILES = {
+  CORN: "Corn.csv",
+  SOYB: "Soybeans.csv",
+  SUNS: "Sunflower.csv",
+  WEAT: "Wheat.csv",
+  WMAZ: "White_Maize.csv",
+  YMAZ: "Yellow_Maize.csv",
+};
 const DEFAULT_ACCOUNT = {
   cash: ACCOUNT_START,
   realizedPL: 0,
@@ -11,8 +20,8 @@ const DEFAULT_ACCOUNT = {
 };
 
 const commodityNames = {
-  BEAN: "Soybeans",
   CORN: "Corn",
+  SOYB: "Soybeans",
   SUNS: "Sunflowers",
   WEAT: "Wheat",
   WMAZ: "White Maize",
@@ -33,6 +42,40 @@ function formatMoney(value) {
 
 function formatNumber(value) {
   return new Intl.NumberFormat("en-ZA", { maximumFractionDigits: 0 }).format(Number(value) || 0);
+}
+
+function formatPrice(value) {
+  return new Intl.NumberFormat("en-ZA", { maximumFractionDigits: 2 }).format(Number(value) || 0);
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(",").map((header) => header.trim());
+
+  return lines.slice(1).flatMap((line) => {
+    if (!line.trim()) return [];
+    const values = line.split(",");
+    return [
+      headers.reduce((row, header, index) => {
+        row[header] = values[index]?.trim() ?? "";
+        return row;
+      }, {}),
+    ];
+  });
+}
+
+function parseReportDate(value) {
+  const [year, month, day] = String(value || "").split("/").map(Number);
+  const date = new Date(year, month - 1, day);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function parseExpiry(expiry) {
+  const [, month, yearText] = String(expiry || "").split("-");
+  const year = Number(yearText);
+  if (!month || !Number.isFinite(year)) return null;
+  return { month, year: year < 100 ? 2000 + year : year };
 }
 
 function getStoredAccount() {
@@ -64,8 +107,51 @@ function tradeLabel(trade) {
   return `${trade.commodity1} ${trade.expiry1}`;
 }
 
+function latestContractPrice(priceRows, commodity, expiry) {
+  const contract = parseExpiry(expiry);
+  if (!commodity || !contract) return null;
+
+  return (priceRows[commodity] || [])
+    .filter(
+      (row) =>
+        row.contract_month === contract.month &&
+        Number(row.contract_year) === contract.year &&
+        Number.isFinite(row.price)
+    )
+    .reduce((latest, row) => {
+      if (!latest) return row;
+      return row.reportDate > latest.reportDate ? row : latest;
+    }, null)?.price ?? null;
+}
+
+function impliedTradePrice(priceRows, trade) {
+  const firstPrice = latestContractPrice(priceRows, trade.commodity1, trade.expiry1);
+  if (firstPrice == null) return null;
+
+  if (trade.type === "Futures") return firstPrice;
+
+  if (trade.type === "Calendar Spread") {
+    const secondPrice = latestContractPrice(priceRows, trade.commodity1, trade.expiry2);
+    return secondPrice == null ? null : secondPrice - firstPrice;
+  }
+
+  if (trade.type === "Split") {
+    const secondPrice = latestContractPrice(priceRows, trade.commodity2, trade.expiry1);
+    return secondPrice == null ? null : secondPrice - firstPrice;
+  }
+
+  return null;
+}
+
+function tradePL(trade, markPrice) {
+  if (markPrice == null || !Number.isFinite(Number(markPrice))) return 0;
+  const direction = trade.side === "Buy" ? 1 : -1;
+  return (Number(markPrice) - trade.entryPrice) * CONTRACT_TONS * trade.quantity * direction;
+}
+
 export default function DemoTrading() {
   const [marginRows, setMarginRows] = useState([]);
+  const [priceRows, setPriceRows] = useState({});
   const [account, setAccount] = useState(getStoredAccount);
   const [tradeType, setTradeType] = useState("Futures");
   const [commodity1, setCommodity1] = useState("");
@@ -75,6 +161,7 @@ export default function DemoTrading() {
   const [side, setSide] = useState("Buy");
   const [quantity, setQuantity] = useState(1);
   const [entryPrice, setEntryPrice] = useState("");
+  const [entryPriceEdited, setEntryPriceEdited] = useState(false);
   const [message, setMessage] = useState("");
   const [closePrices, setClosePrices] = useState({});
 
@@ -82,7 +169,10 @@ export default function DemoTrading() {
     fetch(`${import.meta.env.BASE_URL}data/im_safex.json`)
       .then((response) => response.json())
       .then((data) => {
-        const rows = data.map(normalizeMarginRow);
+        const rows = data
+          .map(normalizeMarginRow)
+          .filter((row) => ALLOWED_COMMODITIES.includes(row.commodity))
+          .sort((a, b) => ALLOWED_COMMODITIES.indexOf(a.commodity) - ALLOWED_COMMODITIES.indexOf(b.commodity));
         setMarginRows(rows);
         const firstCommodity = rows[0]?.commodity || "";
         setCommodity1(firstCommodity);
@@ -92,10 +182,32 @@ export default function DemoTrading() {
   }, []);
 
   useEffect(() => {
+    Promise.all(
+      Object.entries(PRICE_HISTORY_FILES).map(async ([commodity, file]) => {
+        const response = await fetch(`${import.meta.env.BASE_URL}data/price_history/${file}`);
+        if (!response.ok) throw new Error(file);
+        const rows = parseCSV(await response.text()).map((row) => ({
+          commodity,
+          contract_month: row.contract_month,
+          contract_year: Number(row.contract_year),
+          price: Number(row.price),
+          reportDate: parseReportDate(row.date),
+        }));
+        return [commodity, rows.filter((row) => row.reportDate && Number.isFinite(row.price))];
+      })
+    )
+      .then((entries) => setPriceRows(Object.fromEntries(entries)))
+      .catch(() => setMessage("Could not load the price history files."));
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("gdiDemoTradingAccount", JSON.stringify(account));
   }, [account]);
 
-  const commodities = useMemo(() => [...new Set(marginRows.map((row) => row.commodity))].sort(), [marginRows]);
+  const commodities = useMemo(
+    () => ALLOWED_COMMODITIES.filter((commodity) => marginRows.some((row) => row.commodity === commodity)),
+    [marginRows]
+  );
 
   const expiries1 = useMemo(
     () => marginRows.filter((row) => row.commodity === commodity1).map((row) => row.expiry_date),
@@ -124,6 +236,27 @@ export default function DemoTrading() {
   const row2Calendar = marginRows.find((row) => row.commodity === commodity1 && row.expiry_date === expiry2);
   const row2Split = marginRows.find((row) => row.commodity === commodity2 && row.expiry_date === expiry1);
 
+  const suggestedEntryPrice = useMemo(
+    () =>
+      impliedTradePrice(priceRows, {
+        type: tradeType,
+        commodity1,
+        commodity2,
+        expiry1,
+        expiry2,
+      }),
+    [commodity1, commodity2, expiry1, expiry2, priceRows, tradeType]
+  );
+
+  useEffect(() => {
+    if (entryPriceEdited) return;
+    setEntryPrice(suggestedEntryPrice == null ? "" : String(Math.round(suggestedEntryPrice * 100) / 100));
+  }, [entryPriceEdited, suggestedEntryPrice]);
+
+  useEffect(() => {
+    setEntryPriceEdited(false);
+  }, [commodity1, commodity2, expiry1, expiry2, tradeType]);
+
   const marginPerContract = useMemo(() => {
     if (!row1) return 0;
     if (tradeType === "Futures") return row1.imr;
@@ -141,9 +274,15 @@ export default function DemoTrading() {
 
   const totalMargin = marginPerContract * (Number(quantity) || 0);
   const marginUsed = account.trades.filter((trade) => trade.status === "Open").reduce((sum, trade) => sum + trade.margin, 0);
-  const availableFunds = account.cash - marginUsed;
   const openTrades = account.trades.filter((trade) => trade.status === "Open");
   const closedTrades = account.trades.filter((trade) => trade.status === "Closed");
+  const openTradesWithMarks = openTrades.map((trade) => {
+    const mtm = impliedTradePrice(priceRows, trade);
+    return { ...trade, mtm, unrealizedPL: tradePL(trade, mtm) };
+  });
+  const unrealizedPL = openTradesWithMarks.reduce((sum, trade) => sum + trade.unrealizedPL, 0);
+  const accountEquity = account.cash + unrealizedPL;
+  const availableFunds = accountEquity - marginUsed;
 
   const placeTrade = () => {
     const cleanQuantity = Number(quantity);
@@ -178,18 +317,18 @@ export default function DemoTrading() {
 
     setAccount((current) => ({ ...current, trades: [trade, ...current.trades] }));
     setEntryPrice("");
+    setEntryPriceEdited(false);
     setMessage("Trade placed.");
   };
 
   const closeTrade = (trade) => {
-    const closePrice = Number(closePrices[trade.id]);
+    const closePrice = closePrices[trade.id] === undefined || closePrices[trade.id] === "" ? Number(trade.mtm) : Number(closePrices[trade.id]);
     if (!Number.isFinite(closePrice)) {
       setMessage("Enter a close price before closing the trade.");
       return;
     }
 
-    const direction = trade.side === "Buy" ? 1 : -1;
-    const pl = (closePrice - trade.entryPrice) * CONTRACT_TONS * trade.quantity * direction;
+    const pl = tradePL(trade, closePrice);
 
     setAccount((current) => ({
       ...current,
@@ -211,7 +350,7 @@ export default function DemoTrading() {
     setMessage("Account reset.");
   };
 
-  const recentMarginRows = marginRows.slice(0, 8);
+  const recentMarginRows = marginRows.filter((row) => row.commodity === commodity1).slice(0, 10);
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900">
@@ -231,10 +370,10 @@ export default function DemoTrading() {
         </div>
 
         <div className="mb-5 grid gap-4 md:grid-cols-4">
-          <SummaryCard label="Account equity" value={formatMoney(account.cash)} tone="green" />
+          <SummaryCard label="Account equity" value={formatMoney(accountEquity)} tone={accountEquity >= ACCOUNT_START ? "green" : "red"} />
           <SummaryCard label="Margin used" value={formatMoney(marginUsed)} tone="amber" />
           <SummaryCard label="Available funds" value={formatMoney(availableFunds)} tone="blue" />
-          <SummaryCard label="Realized P/L" value={formatMoney(account.realizedPL)} tone={account.realizedPL >= 0 ? "green" : "red"} />
+          <SummaryCard label="Open P/L" value={formatMoney(unrealizedPL)} tone={unrealizedPL >= 0 ? "green" : "red"} />
         </div>
 
         <div className="grid gap-5 xl:grid-cols-[390px_minmax(0,1fr)]">
@@ -288,12 +427,23 @@ export default function DemoTrading() {
                 </Field>
               </div>
 
+              {tradeType !== "Futures" && (
+                <p className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs leading-relaxed text-slate-500">
+                  {tradeType === "Calendar Spread"
+                    ? "For calendar spreads, Buy/Sell applies to the second expiry. The first expiry is the opposite leg."
+                    : "For splits, Buy/Sell applies to the second commodity. The first commodity is the opposite leg."}
+                </p>
+              )}
+
               <Field label={tradeType === "Futures" ? "Entry price" : "Entry spread"}>
                 <input
                   type="number"
                   step="0.01"
                   value={entryPrice}
-                  onChange={(event) => setEntryPrice(event.target.value)}
+                  onChange={(event) => {
+                    setEntryPriceEdited(true);
+                    setEntryPrice(event.target.value);
+                  }}
                   placeholder={tradeType === "Futures" ? "Example: 4300" : "Example: -45"}
                   className="h-10 w-full rounded-md border border-slate-300 px-3 text-sm outline-none focus:border-slate-500"
                 />
@@ -332,7 +482,7 @@ export default function DemoTrading() {
                 <span className="text-sm font-bold text-slate-500">{openTrades.length} open</span>
               </div>
               <PositionsTable
-                trades={openTrades}
+                trades={openTradesWithMarks}
                 closePrices={closePrices}
                 setClosePrices={setClosePrices}
                 closeTrade={closeTrade}
@@ -353,6 +503,7 @@ export default function DemoTrading() {
                 <div className="mb-3">
                   <p className="text-xs font-bold uppercase tracking-wide text-slate-500">SAFEX reference</p>
                   <h2 className="text-lg font-extrabold text-slate-950">Margin snapshot</h2>
+                  <p className="text-xs text-slate-500">{commodityNames[commodity1] || commodity1}</p>
                 </div>
                 <div className="space-y-2">
                   {recentMarginRows.map((row) => (
@@ -435,7 +586,7 @@ function Segmented({ options, value, onChange }) {
   );
 }
 
-function PositionsTable({ trades, closePrices, setClosePrices, closeTrade, emptyText }) {
+function PositionsTable({ trades, closePrices = {}, setClosePrices, closeTrade, emptyText }) {
   if (!trades.length) {
     return <div className="rounded-md border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-sm font-semibold text-slate-500">{emptyText}</div>;
   }
@@ -449,9 +600,10 @@ function PositionsTable({ trades, closePrices, setClosePrices, closeTrade, empty
             <th className="px-3 py-2">Side</th>
             <th className="px-3 py-2 text-right">Qty</th>
             <th className="px-3 py-2 text-right">Entry</th>
+            <th className="px-3 py-2 text-right">MTM</th>
             <th className="px-3 py-2 text-right">Margin</th>
             <th className="px-3 py-2 text-right">Close</th>
-            <th className="px-3 py-2 text-right">P/L</th>
+            <th className="px-3 py-2 text-right">{trades.some((trade) => trade.status === "Open") ? "Open P/L" : "P/L"}</th>
             <th className="px-3 py-2"></th>
           </tr>
         </thead>
@@ -461,22 +613,24 @@ function PositionsTable({ trades, closePrices, setClosePrices, closeTrade, empty
               <td className="px-3 py-3 font-bold text-slate-900">{tradeLabel(trade)}</td>
               <td className={`px-3 py-3 font-bold ${trade.side === "Buy" ? "text-emerald-700" : "text-red-700"}`}>{trade.side}</td>
               <td className="px-3 py-3 text-right">{formatNumber(trade.quantity)}</td>
-              <td className="px-3 py-3 text-right">{formatNumber(trade.entryPrice)}</td>
+              <td className="px-3 py-3 text-right">{formatPrice(trade.entryPrice)}</td>
+              <td className="px-3 py-3 text-right">{trade.status === "Open" && trade.mtm != null ? formatPrice(trade.mtm) : "-"}</td>
               <td className="px-3 py-3 text-right">{formatMoney(trade.margin)}</td>
               <td className="px-3 py-3 text-right">
                 {trade.status === "Open" ? (
                   <input
                     type="number"
-                    value={closePrices?.[trade.id] || ""}
+                    value={closePrices[trade.id] ?? ""}
+                    placeholder={trade.mtm == null ? "" : formatPrice(trade.mtm)}
                     onChange={(event) => setClosePrices((current) => ({ ...current, [trade.id]: event.target.value }))}
                     className="h-9 w-24 rounded-md border border-slate-300 px-2 text-right outline-none focus:border-slate-500"
                   />
                 ) : (
-                  formatNumber(trade.closePrice)
+                  formatPrice(trade.closePrice)
                 )}
               </td>
-              <td className={`px-3 py-3 text-right font-extrabold ${(trade.pl || 0) >= 0 ? "text-emerald-700" : "text-red-700"}`}>
-                {trade.status === "Closed" ? formatMoney(trade.pl) : "-"}
+              <td className={`px-3 py-3 text-right font-extrabold ${(trade.status === "Open" ? trade.unrealizedPL : trade.pl || 0) >= 0 ? "text-emerald-700" : "text-red-700"}`}>
+                {trade.status === "Open" ? formatMoney(trade.unrealizedPL) : formatMoney(trade.pl)}
               </td>
               <td className="px-3 py-3 text-right">
                 {trade.status === "Open" && (
