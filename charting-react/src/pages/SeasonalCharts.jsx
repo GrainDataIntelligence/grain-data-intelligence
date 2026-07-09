@@ -3,7 +3,7 @@ import { loadAllCSVData } from "../components/dataLoader";
 
 const MAX_LEGS = 4;
 const HEDGING_MONTHS = ["Mar", "May", "Jul", "Sep", "Dec"];
-const COMMODITIES = ["Wheat", "Soybeans", "White Maize", "Yellow Maize", "Sunflower"];
+const COMMODITIES = ["Wheat", "Soybeans", "Corn", "White Maize", "Yellow Maize", "Sunflower"];
 const PROGRAMS = ["Long Term Charts", "History", "Calculator"];
 const CHART_METRICS = {
   price: { label: "Price", field: "price", chartType: "line", valueLabel: "Price" },
@@ -15,6 +15,7 @@ const YEAR_COLORS = ["#2563EB", "#059669", "#A16207", "#7C3AED", "#0891B2", "#EA
 const COMMODITY_CODES = {
   Wheat: "WEA",
   Soybeans: "SB",
+  Corn: "CORN",
   Sunflower: "FH",
   "White Maize": "WM",
   "Yellow Maize": "YM",
@@ -30,6 +31,7 @@ const UNIT_MOVES = {
   "White Maize": 100,
   "Yellow Maize": 100,
   Soybeans: 100,
+  Corn: 100,
   Sunflower: 50,
   Wheat: 50,
 };

@@ -31,6 +31,7 @@ $commodityBlocks = @{
   "SUNFLOWER SEEDS FUTURE"     = @{ Commodity = "SUNS"; File = "Sunflower.csv" }
   "SOYA BEANS"                 = @{ Commodity = "SOYB"; File = "Soybeans.csv" }
   "SOYA BEANS FUTURE"          = @{ Commodity = "SOYB"; File = "Soybeans.csv" }
+  "CORN CONTRACT"              = @{ Commodity = "CORN"; File = "Corn.csv" }
 }
 
 function Normalize-Heading([string]$value) {

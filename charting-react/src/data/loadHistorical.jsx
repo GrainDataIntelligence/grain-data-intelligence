@@ -7,6 +7,7 @@ export const COMMODITY_DEFS = {
   WHEAT: { code: "WHEAT", label: "Wheat", file: "Wheat.csv" },
   SOYA: { code: "SOYA", label: "Soybeans", file: "Soybeans.csv" },
   SUNS: { code: "SUNS", label: "Sunflower", file: "Sunflower.csv" },
+  CORN: { code: "CORN", label: "Corn", file: "Corn.csv" },
 };
 
 // Very simple CSV parser, assuming there are no commas inside fields
