@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-07-02T11:54:20",
+  "articleCount": 2,
+  "articles": [
+    {
+      "id": "basics-of-options-in-the-grain-market",
+      "title": "Basics of Options in the Grain Market",
+      "subtitle": "",
+      "sourceFile": "C:\\Users\\Myburgh Swiegers\\Projects\\Codex_GDI\\content\\education\\raw\\Basics of Options in the Grain Market.docx",
+      "updatedAt": "2026-07-02T11:53:28",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "What does these terms mean and what does it represent:First Notice Day - is the first day of the new trading month which long position holders could be notified that they will receive delivery on their futures via the random allocation process. (The actual delivery only takes place from First Delivery Day). Random allocation starts at 14:30 on FND and runs everyday for the remainder of the month at 14:30 (for example if a trader is long on th"
+        },
+        {
+          "type": "paragraph",
+          "text": "Options are not specific to the grain markets."
+        }
+      ]
+    },
+    {
+      "id": "important-dates-and-what-they-mean",
+      "title": "Important Dates and What They Mean",
+      "subtitle": "",
+      "sourceFile": "C:\\Users\\Myburgh Swiegers\\Projects\\Codex_GDI\\content\\education\\raw\\Important Dates and What They Mean.docx",
+      "updatedAt": "2026-06-30T14:18:17",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "What does these terms mean and what does it represent:First Notice Day - is the first day of the new trading month which long position holders could be notified that they will receive delivery on their futures via the random allocation process. (The actual delivery only takes place from First Delivery Day). Random allocation starts at 14:30 on FND and runs everyday for the remainder of the month at 14:30 (for example if a trader is long on th"
+        },
+        {
+          "type": "paragraph",
+          "text": "If a trader wishes to receive physical stock, they do not need to do anything and will receive their physical stock at the randomly selected silo."
+        },
+        {
+          "type": "paragraph",
+          "text": "However, if the trader does not wish to receive delivery, they need to close their long position(s) either by selling a future contract or buying the spread (which in turn will close the long future). If the trader selected to Buy the spread their long would have been rolled on to a different month."
+        },
+        {
+          "type": "paragraph",
+          "text": "First Delivery Day – Is always the first business day after First Notice Day."
+        },
+        {
+          "type": "paragraph",
+          "text": "If a trader received delivery, for example on the 4th of the month at 14:30 via the random allocation process, one of two things happen. If the trader’s account is in debit (meaning they owe money) they will need to pay the outstanding money for the full value of the delivery they received. If however the client’s account is in credit (meaning they have cash reserves in their account) the outstanding amount will automatically be deducted for the stock that they received delivery for."
+        },
+        {
+          "type": "paragraph",
+          "text": "This might be better explained via an example.Example one is where the trader’s account is in debit.Assuming the trader’s account is R50,000 in debit (meaning they owe money) and they receive delivery of 1 contract (100 tons) of WMAZ at a MTM of R3,000, the value of that WMAZ would be R300,000. Since the account is already in R50,000 in debit the trader would need to pay the R300,000 for the physical WMAZ as well as the original R50,000 debit amount. The exact outstanding amount will be reflected in their Interest Statement."
+        },
+        {
+          "type": "paragraph",
+          "text": "Consider the trader was in credit by a small amount (meaning they have cash reserves in their account), let’s assume R20,000 they would still need to make payment for the physical WMAZ received of R300,000 but the R20,000 credit will cover a part of the outstanding balance meaning they would only need to pay R280,000. Again, the exact outstanding balance will reflect on their Interest Statement. If the trader’s account is in credit by more than the amount of the physical grain they receive the amount owed will be automatically deducted from the trader’s account. Assuming the trader has a credit amount of R350,000 and the value of the delivery is R300,000 then the amount of R300,000 will be automatically deducted leaving the trader with a remaining credit of R50,000."
+        },
+        {
+          "type": "paragraph",
+          "text": "Option Expiry Date – Option expiry date is the date at which a trader’s options is converted to futures. To better understand this concept refer to our [[What is options]] article."
+        }
+      ]
+    }
+  ]
+}
