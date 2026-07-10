@@ -154,6 +154,40 @@ function periodMarkers(period, startMonth, minOrder, maxOrder) {
   };
 }
 
+function periodMarkersForWindow(period, window, minOrder, maxOrder) {
+  const openDate = period?.openDate ? parseDate(period.openDate) : null;
+  const closeDate = period?.closeDate ? parseDate(period.closeDate) : null;
+  const isBuy = period?.side === "buy";
+  const openColor = isBuy ? "#16A34A" : "#DC2626";
+  const closeColor = isBuy ? "#DC2626" : "#16A34A";
+  const openInWindow =
+    openDate &&
+    !Number.isNaN(openDate.getTime()) &&
+    openDate >= window.start &&
+    openDate <= window.end;
+  const closeInWindow =
+    closeDate &&
+    !Number.isNaN(closeDate.getTime()) &&
+    closeDate >= window.start &&
+    closeDate <= window.end;
+  const openOrder = openInWindow ? getSeasonOrder(openDate, window.startMonth) : null;
+  const closeOrder = closeInWindow ? getSeasonOrder(closeDate, window.startMonth) : null;
+  const bothVisible = openOrder != null && closeOrder != null;
+
+  return {
+    openOrder,
+    closeOrder,
+    startOrder: bothVisible ? Math.min(openOrder, closeOrder) : null,
+    endOrder: bothVisible ? Math.max(openOrder, closeOrder) : null,
+    isValid: openOrder != null || closeOrder != null,
+    hasBand: bothVisible,
+    openColor,
+    closeColor,
+    showOpen: openOrder != null && openOrder >= minOrder && openOrder <= maxOrder,
+    showClose: closeOrder != null && closeOrder >= minOrder && closeOrder <= maxOrder,
+  };
+}
+
 function isInWindow(date, start, end) {
   return date >= start && date <= end;
 }
@@ -378,11 +412,20 @@ function formatSignedCurrency(value) {
   return `${prefix}${formatCurrency(Math.abs(value))}`;
 }
 
+function formatPercent(value, decimals = 0) {
+  if (value == null || Number.isNaN(value)) return "";
+  return `${new Intl.NumberFormat(undefined, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(value)}%`;
+}
+
 function unitMoveForLegs(legs, numLegs) {
-  return legs.slice(0, numLegs).reduce((sum, leg) => {
-    const quantity = Number(leg.quantity) || 0;
-    return sum + Math.abs(quantity) * (UNIT_MOVES[leg.commodity] || 50);
-  }, 0);
+  const firstActiveLeg = legs
+    .slice(0, numLegs)
+    .find((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
+
+  return firstActiveLeg ? UNIT_MOVES[firstActiveLeg.commodity] || 50 : 0;
 }
 
 function buildCalculatorRows(csvData, legs, numLegs, selectedYears, period) {
@@ -1705,6 +1748,7 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
   const [activeIndex, setActiveIndex] = useState(0);
   const [cursorX, setCursorX] = useState(null);
   const [cursorY, setCursorY] = useState(null);
+  const [isHovering, setIsHovering] = useState(false);
   const [zoomRange, setZoomRange] = useState(null);
   const [dragStart, setDragStart] = useState(null);
   const [dragCurrent, setDragCurrent] = useState(null);
@@ -1745,12 +1789,12 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
     .slice(0, numLegs)
     .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
   const seasonEndInfo = activeLegs.length ? getAnchorSeasonInfo(activeLegs) : { endMonth: 12, endOffset: 0 };
-  const startMonth = activeLegs.length
-    ? getSeasonWindow((latestYear || selectedYears[0]) + seasonEndInfo.endOffset, seasonEndInfo.endMonth).startMonth
-    : 1;
+  const referenceWindow = activeLegs.length
+    ? getSeasonWindow((latestYear || selectedYears[0]) + seasonEndInfo.endOffset, seasonEndInfo.endMonth)
+    : getSeasonWindow(latestYear || selectedYears[0] || new Date().getFullYear(), 12);
   const visibleMinOrder = visibleData[0]?.order ?? 0;
   const visibleMaxOrder = visibleData.at(-1)?.order ?? 0;
-  const periodMarker = periodMarkers(period, startMonth, visibleMinOrder, visibleMaxOrder);
+  const periodMarker = periodMarkersForWindow(period, referenceWindow, visibleMinOrder, visibleMaxOrder);
   const periodIsValid = periodMarker.isValid && visibleData.length > 1;
 
   const x = (index) => {
@@ -1761,6 +1805,16 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
     const clampedOrder = clamp(order, visibleMinOrder, visibleMaxOrder);
     const ratio = (clampedOrder - visibleMinOrder) / Math.max(1, visibleMaxOrder - visibleMinOrder);
     return margin.left + ratio * plotW;
+  };
+  const xFromNearestVisibleOrder = (order) => {
+    if (order == null || !visibleData.length) return null;
+    const nearestPoint = visibleData.reduce((best, point) => {
+      const distance = Math.abs(point.order - order);
+      if (!best || distance < best.distance) return { point, distance };
+      return best;
+    }, null)?.point;
+    if (!nearestPoint) return null;
+    return x(chartData.indexOf(nearestPoint));
   };
   const y = (value) => margin.top + plotH - ((value - barDomain.min) / Math.max(1, barDomain.max - barDomain.min)) * plotH;
   const defaultCursorY = Math.max(margin.top, Math.min(height - margin.bottom, y(0)));
@@ -1799,12 +1853,18 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
   const periodOverlapsVisible =
     periodVisible &&
     periodIsValid &&
+    periodMarker.hasBand &&
     periodMarker.endOrder >= visibleMinOrder &&
     periodMarker.startOrder <= visibleMaxOrder;
-  const periodLeft = periodOverlapsVisible ? xFromOrder(periodMarker.startOrder) : null;
-  const periodRight = periodOverlapsVisible ? xFromOrder(periodMarker.endOrder) : null;
-  const openX = periodOverlapsVisible && periodMarker.showOpen ? xFromOrder(periodMarker.openOrder) : null;
-  const closeX = periodOverlapsVisible && periodMarker.showClose ? xFromOrder(periodMarker.closeOrder) : null;
+  const snappedPeriodStartX = periodOverlapsVisible ? xFromNearestVisibleOrder(periodMarker.startOrder) : null;
+  const snappedPeriodEndX = periodOverlapsVisible ? xFromNearestVisibleOrder(periodMarker.endOrder) : null;
+  const periodLeft =
+    snappedPeriodStartX != null && snappedPeriodEndX != null ? Math.min(snappedPeriodStartX, snappedPeriodEndX) : null;
+  const periodRight =
+    snappedPeriodStartX != null && snappedPeriodEndX != null ? Math.max(snappedPeriodStartX, snappedPeriodEndX) : null;
+  const markerVisible = periodVisible && periodIsValid;
+  const openX = markerVisible && periodMarker.showOpen ? xFromNearestVisibleOrder(periodMarker.openOrder) : null;
+  const closeX = markerVisible && periodMarker.showClose ? xFromNearestVisibleOrder(periodMarker.closeOrder) : null;
   const openStroke = periodMarker.openColor;
   const closeStroke = periodMarker.closeColor;
   const barStep = plotW / Math.max(1, visibleData.length - 1);
@@ -1829,6 +1889,7 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
           preserveAspectRatio="none"
           className="h-full w-full select-none"
           onMouseMove={(event) => {
+            setIsHovering(true);
             const rect = event.currentTarget.getBoundingClientRect();
             const svgX = ((event.clientX - rect.left) / rect.width) * width;
             const svgY = ((event.clientY - rect.top) / rect.height) * height;
@@ -1837,6 +1898,13 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
             setCursorX(Math.max(margin.left, Math.min(width - margin.right, svgX)));
             setCursorY(Math.max(margin.top, Math.min(height - margin.bottom, svgY)));
             if (dragStart != null) setDragCurrent(index);
+          }}
+          onMouseLeave={() => {
+            setIsHovering(false);
+            setCursorX(null);
+            setCursorY(null);
+            setDragStart(null);
+            setDragCurrent(null);
           }}
           onMouseDown={(event) => {
             const index = nearestIndexFromClientX(event);
@@ -1876,7 +1944,7 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
           <line x1={margin.left} y1={margin.top} x2={margin.left} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
           <line x1={margin.left} y1={height - margin.bottom} x2={width - margin.right} y2={height - margin.bottom} stroke="#94a3b8" strokeWidth="1" />
 
-          {periodOverlapsVisible && (
+          {periodOverlapsVisible && periodLeft != null && periodRight != null && (
             <rect
               x={periodLeft}
               y={margin.top}
@@ -1962,24 +2030,28 @@ function SeasonalChart({ chartData, selectedYears, showLabels, legs, numLegs, la
             </g>
           )}
 
-          <line x1={cursorLineX} y1={margin.top} x2={cursorLineX} y2={height - margin.bottom} stroke="#6b7280" strokeDasharray="3 3" />
-          <line x1={margin.left} y1={cursorLineY} x2={width - margin.right} y2={cursorLineY} stroke="#6b7280" strokeDasharray="3 3" />
-          <g>
-            <rect x={margin.left - 66} y={cursorLineY - 12} width="48" height="20" rx="2" fill="#020617" />
-            <polygon points={`${margin.left - 18},${cursorLineY - 7} ${margin.left - 10},${cursorLineY} ${margin.left - 18},${cursorLineY + 7}`} fill="#020617" />
-            <text x={margin.left - 42} y={cursorLineY + 4} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="800">
-              {formatChartValue(cursorValue)}
-            </text>
-          </g>
-          <g>
-            <rect x={xLabelCenter - 58} y={height - margin.bottom + 12} width="116" height="22" rx="2" fill="#020617" />
-            <polygon points={`${cursorLineX - 5},${height - margin.bottom + 12} ${cursorLineX},${height - margin.bottom + 6} ${cursorLineX + 5},${height - margin.bottom + 12}`} fill="#020617" />
-            <text x={xLabelCenter} y={height - margin.bottom + 27} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="800">
-              {activePoint?.label}
-            </text>
-          </g>
+          {isHovering && (
+            <>
+              <line x1={cursorLineX} y1={margin.top} x2={cursorLineX} y2={height - margin.bottom} stroke="#6b7280" strokeDasharray="3 3" />
+              <line x1={margin.left} y1={cursorLineY} x2={width - margin.right} y2={cursorLineY} stroke="#6b7280" strokeDasharray="3 3" />
+              <g>
+                <rect x={margin.left - 66} y={cursorLineY - 12} width="48" height="20" rx="2" fill="#020617" />
+                <polygon points={`${margin.left - 18},${cursorLineY - 7} ${margin.left - 10},${cursorLineY} ${margin.left - 18},${cursorLineY + 7}`} fill="#020617" />
+                <text x={margin.left - 42} y={cursorLineY + 4} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="800">
+                  {formatChartValue(cursorValue)}
+                </text>
+              </g>
+              <g>
+                <rect x={xLabelCenter - 58} y={height - margin.bottom + 12} width="116" height="22" rx="2" fill="#020617" />
+                <polygon points={`${cursorLineX - 5},${height - margin.bottom + 12} ${cursorLineX},${height - margin.bottom + 6} ${cursorLineX + 5},${height - margin.bottom + 12}`} fill="#020617" />
+                <text x={xLabelCenter} y={height - margin.bottom + 27} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="800">
+                  {activePoint?.label}
+                </text>
+              </g>
+            </>
+          )}
 
-          {showLabels &&
+          {isHovering && showLabels &&
             labelRows.map((row) => (
               <g key={row.year}>
                 <line x1={activeX} y1={y(row.value)} x2={row.connectorX} y2={row.connectorY} stroke={row.color} strokeWidth="1" opacity="0.65" />
@@ -2063,9 +2135,9 @@ function HistoryMiniChart({ csvData, referenceYear, comparisonYear, legs, numLeg
     .slice(0, numLegs)
     .filter((leg) => leg.commodity && leg.contract && Number(leg.quantity) > 0);
   const seasonEndInfo = activeLegs.length ? getAnchorSeasonInfo(activeLegs) : { endMonth: 12, endOffset: 0 };
-  const startMonth = activeLegs.length
-    ? getSeasonWindow((latestYear || referenceYear) + seasonEndInfo.endOffset, seasonEndInfo.endMonth).startMonth
-    : 1;
+  const referenceWindow = activeLegs.length
+    ? getSeasonWindow(referenceYear + seasonEndInfo.endOffset, seasonEndInfo.endMonth)
+    : getSeasonWindow(referenceYear, 12);
   const xFromOrder = (order) => {
     const minOrder = miniData[0]?.order ?? 0;
     const maxOrder = miniData.at(-1)?.order ?? 0;
@@ -2075,18 +2147,20 @@ function HistoryMiniChart({ csvData, referenceYear, comparisonYear, legs, numLeg
   };
   const minOrder = miniData[0]?.order ?? 0;
   const maxOrder = miniData.at(-1)?.order ?? 0;
-  const periodMarker = periodMarkers(period, startMonth, minOrder, maxOrder);
+  const periodMarker = periodMarkersForWindow(period, referenceWindow, minOrder, maxOrder);
   const periodOverlapsVisible =
     periodVisible &&
     periodMarker.isValid &&
+    periodMarker.hasBand &&
     periodMarker.endOrder >= minOrder &&
     periodMarker.startOrder <= maxOrder;
   const periodLeft = periodOverlapsVisible ? xFromOrder(periodMarker.startOrder) : null;
   const periodRight = periodOverlapsVisible ? xFromOrder(periodMarker.endOrder) : null;
   const openStroke = periodMarker.openColor;
   const closeStroke = periodMarker.closeColor;
-  const openX = periodOverlapsVisible && periodMarker.showOpen ? xFromOrder(periodMarker.openOrder) : null;
-  const closeX = periodOverlapsVisible && periodMarker.showClose ? xFromOrder(periodMarker.closeOrder) : null;
+  const markerVisible = periodVisible && periodMarker.isValid;
+  const openX = markerVisible && periodMarker.showOpen ? xFromOrder(periodMarker.openOrder) : null;
+  const closeX = markerVisible && periodMarker.showClose ? xFromOrder(periodMarker.closeOrder) : null;
   const referencePoints = miniData
     .map((point, index) => ({ x: x(index), y: y(point[referenceKey]), value: point[referenceKey] }))
     .filter((point) => Number.isFinite(point.value));
@@ -2237,6 +2311,10 @@ function CalculatorView({ csvData, selectedYears, legs, numLegs, period }) {
     validRows.length
       ? validRows.reduce((sum, row) => sum + (Number(row[field]) || 0), 0) / validRows.length
       : null;
+  const bestRow = validRows.reduce((best, row) => (!best || row.equityChange > best.equityChange ? row : best), null);
+  const worstRow = validRows.reduce((worst, row) => (!worst || row.equityChange < worst.equityChange ? row : worst), null);
+  const profitablePct = validRows.length ? (profitableCount / validRows.length) * 100 : null;
+  const chartTitle = titleForConfig({ legs, numLegs });
 
   if (!rows.length) {
     return (
@@ -2251,7 +2329,48 @@ function CalculatorView({ csvData, selectedYears, legs, numLegs, period }) {
 
   return (
     <div className="h-full min-h-[520px] flex-1 overflow-auto rounded border border-slate-200 bg-white shadow-sm">
-      <CalculatorTimeline rows={validRows} period={period} />
+      <div className="border-b border-slate-200 bg-white px-3 py-2">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-extrabold uppercase tracking-wide text-slate-500">Calculator</p>
+            <h2 className="text-sm font-extrabold text-slate-950">{chartTitle}</h2>
+            <p className="mt-1 text-[11px] font-semibold text-slate-500">
+              Tests the selected open and close period against each selected historical contract.
+            </p>
+          </div>
+          <div className="grid min-w-[520px] grid-cols-4 gap-2 text-right">
+            <div className="rounded border border-slate-200 bg-slate-50 px-3 py-2">
+              <p className="text-[10px] font-extrabold uppercase text-slate-500">Trades</p>
+              <p className="text-lg font-black text-slate-950">{validRows.length}</p>
+            </div>
+            <div className="rounded border border-slate-200 bg-slate-50 px-3 py-2">
+              <p className="text-[10px] font-extrabold uppercase text-slate-500">Profitable</p>
+              <p className="text-lg font-black text-slate-950">{formatPercent(profitablePct)}</p>
+            </div>
+            <div className="rounded border border-slate-200 bg-slate-50 px-3 py-2">
+              <p className="text-[10px] font-extrabold uppercase text-slate-500">Avg P/L</p>
+              <p className={`text-lg font-black ${average("equityChange") < 0 ? "text-red-600" : "text-emerald-700"}`}>
+                {formatSignedCurrency(average("equityChange"))}
+              </p>
+            </div>
+            <div className="rounded border border-slate-200 bg-slate-50 px-3 py-2">
+              <p className="text-[10px] font-extrabold uppercase text-slate-500">Avg Days</p>
+              <p className="text-lg font-black text-slate-950">{formatSignedNumber(average("days"), 1)}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid min-w-[1320px] grid-cols-2 gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-[11px]">
+        <div className="rounded border border-slate-200 bg-white px-3 py-2">
+          <span className="font-extrabold uppercase text-slate-500">Best year: </span>
+          <span className="font-black text-emerald-700">{bestRow ? `${bestRow.ticker} ${formatSignedCurrency(bestRow.equityChange)}` : "-"}</span>
+        </div>
+        <div className="rounded border border-slate-200 bg-white px-3 py-2">
+          <span className="font-extrabold uppercase text-slate-500">Worst year: </span>
+          <span className="font-black text-red-600">{worstRow ? `${worstRow.ticker} ${formatSignedCurrency(worstRow.equityChange)}` : "-"}</span>
+        </div>
+      </div>
 
       <table className="min-w-[1320px] w-full border-collapse text-[11px]">
         <thead className="sticky top-0 z-10">
@@ -2264,7 +2383,7 @@ function CalculatorView({ csvData, selectedYears, legs, numLegs, period }) {
               close ({closeAction})
             </th>
             <th className="border border-slate-300 px-2 py-2 text-right">
-              change ({period.side === "buy" ? "sell - buy" : "sell - buy"})
+              change (sell - buy)
             </th>
             <th className="border border-slate-300 px-2 py-2 text-right">equity change</th>
             <th className="border border-slate-300 px-2 py-2 text-right">days</th>
@@ -2343,7 +2462,7 @@ function CalculatorView({ csvData, selectedYears, legs, numLegs, period }) {
   );
 }
 
-function CalculatorTimeline({ rows, period }) {
+function CalculatorTimeline({ rows, period, title }) {
   const width = 1320;
   const height = 210;
   const margin = { top: 28, right: 24, bottom: 36, left: 70 };
@@ -2367,14 +2486,21 @@ function CalculatorTimeline({ rows, period }) {
   const closeColor = period.side === "buy" ? "#DC2626" : "#15803D";
   const ticks = buildTimeTicks(minTime, maxTime, 6);
   const rowGap = Math.max(5, Math.min(12, plotH / Math.max(1, validRows.length)));
+  const openTimes = validRows.map((row) => parseDate(row.openDate).getTime()).filter(Number.isFinite);
+  const closeTimes = validRows.map((row) => parseDate(row.closeDate).getTime()).filter(Number.isFinite);
+  const averageOpenTime = openTimes.reduce((sum, value) => sum + value, 0) / Math.max(1, openTimes.length);
+  const averageCloseTime = closeTimes.reduce((sum, value) => sum + value, 0) / Math.max(1, closeTimes.length);
+  const bandLeft = Math.min(x(averageOpenTime), x(averageCloseTime));
+  const bandRight = Math.max(x(averageOpenTime), x(averageCloseTime));
 
   return (
     <div className="border-b border-slate-300 bg-white">
       <svg viewBox={`0 0 ${width} ${height}`} className="block h-[210px] w-full">
         <rect x="0" y="0" width={width} height={height} fill="#fff" />
         <text x={width / 2} y={18} textAnchor="middle" fontSize="12" fontWeight="800" fill="#020617">
-          {titleForConfig({ legs: rows.length ? [] : [], numLegs: 0 }) || "Calculator period map"}
+          {title || "Calculator period map"}
         </text>
+        <rect x={bandLeft} y={margin.top} width={Math.max(1, bandRight - bandLeft)} height={plotH} fill="#FDE68A" opacity="0.42" />
         {ticks.map((tick) => (
           <g key={tick.timestamp}>
             <line x1={x(tick.timestamp)} y1={margin.top} x2={x(tick.timestamp)} y2={height - margin.bottom} stroke="#d1d5db" />
@@ -2395,6 +2521,14 @@ function CalculatorTimeline({ rows, period }) {
             </g>
           );
         })}
+        <line x1={x(averageOpenTime)} y1={margin.top} x2={x(averageOpenTime)} y2={height - margin.bottom} stroke={openColor} strokeWidth="1.5" />
+        <line x1={x(averageCloseTime)} y1={margin.top} x2={x(averageCloseTime)} y2={height - margin.bottom} stroke={closeColor} strokeWidth="1.5" />
+        <text x={x(averageOpenTime)} y={margin.top - 5} textAnchor="middle" fontSize="10" fontWeight="800" fill={openColor}>
+          open
+        </text>
+        <text x={x(averageCloseTime)} y={margin.top - 5} textAnchor="middle" fontSize="10" fontWeight="800" fill={closeColor}>
+          close
+        </text>
         <line x1={margin.left} y1={height - margin.bottom} x2={width - margin.right} y2={height - margin.bottom} stroke="#94a3b8" />
         <text x={margin.left - 12} y={margin.top + 5} textAnchor="end" fontSize="10" fontWeight="800" fill="#334155">
           {validRows[0]?.year}
