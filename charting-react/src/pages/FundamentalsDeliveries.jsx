@@ -26,11 +26,38 @@ const LOWER_GRADE_BY_COMMODITY = {
 };
 
 const tablePctFmt = new Intl.NumberFormat("en-ZA", { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+const LOWER_GRADE_LABEL = "Lower Grade";
 
 function gradeSelectionLabel(grades) {
   const selected = [...grades];
   if (!selected.length) return "No grade";
   return selected.length === 1 ? selected[0] : selected.join(" + ");
+}
+
+function gradeOptionsWithLowerGrade(options, commodity) {
+  return LOWER_GRADE_BY_COMMODITY[commodity]?.length ? [...options, LOWER_GRADE_LABEL] : options;
+}
+
+function defaultGradeForCommodity(commodity, options) {
+  const totalGrade = TOTAL_GRADE_BY_COMMODITY[commodity];
+  return options.includes(totalGrade) ? totalGrade : options[0];
+}
+
+function sourceGradesForSelection(selectedGrades, commodity) {
+  const lowerGradeParts = LOWER_GRADE_BY_COMMODITY[commodity] || [];
+  return new Set(
+    [...selectedGrades].flatMap((grade) => (grade === LOWER_GRADE_LABEL ? lowerGradeParts : [grade]))
+  );
+}
+
+function gradeTooltip(grade, commodity) {
+  if (grade === LOWER_GRADE_LABEL) {
+    return `${LOWER_GRADE_LABEL} is the sum of ${(LOWER_GRADE_BY_COMMODITY[commodity] || []).join(", ")}`;
+  }
+  if (grade === "Total Lower Grade") {
+    return "Total Lower Grade is the sum of LG2, LG3 and LGO.";
+  }
+  return undefined;
 }
 
 function aggregateGradeRows(rows, totalRowsByKey) {
@@ -376,7 +403,7 @@ export default function FundamentalsDeliveries() {
   const [showDeliveryLabels, setShowDeliveryLabels] = useState(true);
   const [gradeCommodity, setGradeCommodity] = useState("White Maize");
   const [gradeMethodology, setGradeMethodology] = useState("SAGIS");
-  const [selectedGrades, setSelectedGrades] = useState(new Set(["WM1"]));
+  const [selectedGrades, setSelectedGrades] = useState(new Set(["White Total"]));
   const [gradeMetric, setGradeMetric] = useState("cumulative");
   const [gradePercentMetric, setGradePercentMetric] = useState("cumulative");
   const [gradeSelectedYears, setGradeSelectedYears] = useState(new Set());
@@ -403,22 +430,26 @@ export default function FundamentalsDeliveries() {
 
   const activeCommodity = deliveryType === "Maize" ? commodity : deliveryType;
   const activeMethodology = deliveryType === "Maize" ? methodology : "Standard";
-  const calendarStartMonth = deliveryType === "Maize" && methodology === "SAGIS" ? 5 : 3;
+  const calendarStartMonth = deliveryType === "Maize" ? (methodology === "SAGIS" ? 5 : 3) : deliveryType === "Wheat" ? 10 : 3;
   const gradeCalendarStartMonth = gradeMethodology === "SAGIS" ? 5 : 3;
   const metric = chartType === "bar" ? "weekly" : deliveryMetric;
+  const deliveryTypeOptions = data?.families?.length
+    ? data.families.map((item) => ({ value: item, label: item }))
+    : [{ value: "Maize", label: "Maize" }, { value: "Sunflowers", label: "Sunflowers" }, { value: "Soybeans", label: "Soybeans" }, { value: "Wheat", label: "Wheat" }];
 
   const deliveryRows = useMemo(() => {
     if (!data) return [];
     return data.deliveryRows.filter(
       (row) =>
-        (deliveryType === "Maize" ? row.family === "Maize" : row.family === "Oilseeds") &&
+        row.family === deliveryType &&
         row.methodology === activeMethodology &&
         row.commodity === activeCommodity &&
         row.weekNumber >= weekStart &&
         row.weekNumber <= weekEnd &&
         row.weekNumber <= 52
-    );
+      );
   }, [data, deliveryType, activeCommodity, activeMethodology, weekStart, weekEnd]);
+  const availableDeliveryYears = useMemo(() => [...new Set(deliveryRows.map((row) => row.marketingYear))].sort(), [deliveryRows]);
 
   const valueForDelivery = (row) => {
     if (metric === "percent") return row.percentDelivered;
@@ -426,21 +457,24 @@ export default function FundamentalsDeliveries() {
     return row.cumulativeTons;
   };
   const deliverySeries = useMemo(() => seriesFromRows(deliveryRows.filter((row) => selectedYears.has(row.marketingYear)), valueForDelivery), [deliveryRows, selectedYears, metric]);
-  const deliveryAverage = useMemo(() => (data ? averageSeries(seriesFromRows(deliveryRows, valueForDelivery), selectedYears, data.marketingYears, showAverage) : null), [data, deliveryRows, selectedYears, showAverage, metric]);
+  const deliveryAverage = useMemo(() => (data ? averageSeries(seriesFromRows(deliveryRows, valueForDelivery), selectedYears, availableDeliveryYears, showAverage) : null), [data, deliveryRows, selectedYears, availableDeliveryYears, showAverage, metric]);
 
-  const gradeOptions = data?.gradeOptions?.[gradeCommodity] || [];
+  const rawGradeOptions = data?.gradeOptions?.[gradeCommodity] || [];
+  const gradeOptions = gradeOptionsWithLowerGrade(rawGradeOptions, gradeCommodity);
   const gradeOptionsKey = gradeOptions.join("|");
   useEffect(() => {
     if (!data || !gradeOptions.length) return;
+    const defaultGrade = defaultGradeForCommodity(gradeCommodity, gradeOptions);
     setSelectedGrades((current) => {
       const validGrades = [...current].filter((item) => gradeOptions.includes(item));
-      return validGrades.length ? new Set(validGrades) : new Set([gradeOptions[0]]);
+      return validGrades.length ? new Set(validGrades) : new Set([defaultGrade]);
     });
   }, [data, gradeCommodity, gradeOptionsKey]);
 
   const gradeRows = useMemo(() => {
     if (!data || deliveryType !== "Maize") return [];
     const totalGrade = TOTAL_GRADE_BY_COMMODITY[gradeCommodity];
+    const sourceSelectedGrades = sourceGradesForSelection(selectedGrades, gradeCommodity);
     const totalRowsByKey = new Map();
     for (const row of data.gradeRows) {
       if (
@@ -459,7 +493,7 @@ export default function FundamentalsDeliveries() {
       (row) =>
         row.methodology === gradeMethodology &&
         row.commodity === gradeCommodity &&
-        selectedGrades.has(row.grade) &&
+        sourceSelectedGrades.has(row.grade) &&
         row.weekNumber >= gradeWeekStart &&
         row.weekNumber <= gradeWeekEnd &&
         row.weekNumber <= 52
@@ -519,7 +553,7 @@ export default function FundamentalsDeliveries() {
           <div className="grid gap-5">
             <section className="grid gap-2">
               <label className="text-sm font-bold">Delivery type</label>
-              <ToggleGroup columns={3} value={deliveryType} onChange={setDeliveryType} options={[{ value: "Maize", label: "Maize" }, { value: "Sunflowers", label: "Sunflowers" }, { value: "Soybeans", label: "Soybeans" }]} />
+              <ToggleGroup columns={2} value={deliveryType} onChange={setDeliveryType} options={deliveryTypeOptions} />
             </section>
             {deliveryType === "Maize" && (
               <>
@@ -544,7 +578,7 @@ export default function FundamentalsDeliveries() {
               <label className="text-sm font-bold">Line metric</label>
               <ToggleGroup value={deliveryMetric} onChange={setDeliveryMetric} options={[{ value: "cumulative", label: "Tons" }, { value: "percent", label: "%" }]} />
             </section>
-            <YearChecks years={data.marketingYears} selectedYears={selectedYears} setSelectedYears={setSelectedYears} />
+            <YearChecks years={availableDeliveryYears.length ? availableDeliveryYears : data.marketingYears} selectedYears={selectedYears} setSelectedYears={setSelectedYears} />
             <section className="grid gap-2">
               <label className="text-sm font-bold">Week range</label>
               <div className="grid grid-cols-2 gap-2">
@@ -563,10 +597,10 @@ export default function FundamentalsDeliveries() {
           </div>
           <ChartPanel
             title={`${metric === "weekly" ? "Weekly deliveries" : metric === "percent" ? "% delivered vs CEC" : "Cumulative deliveries"}: ${activeCommodity}`}
-            eyebrow={deliveryType === "Maize" ? `${methodology} methodology` : "Standard oilseeds methodology"}
+            eyebrow={deliveryType === "Maize" ? `${methodology} methodology` : "Standard methodology"}
             series={deliverySeries}
             average={deliveryAverage}
-            years={data.marketingYears}
+            years={availableDeliveryYears.length ? availableDeliveryYears : data.marketingYears}
             chartType={chartType}
             valueKind={metric === "percent" ? "percent" : "tons"}
             weekStart={weekStart}
@@ -599,14 +633,18 @@ export default function FundamentalsDeliveries() {
                     <label className="text-sm font-bold">Grades</label>
                     <div className="grid max-h-40 grid-cols-2 gap-2 overflow-auto text-sm">
                       {gradeOptions.map((item) => (
-                        <label key={item} className="flex items-center gap-2">
+                        <label
+                          key={item}
+                          className="flex items-center gap-2"
+                          title={gradeTooltip(item, gradeCommodity)}
+                        >
                           <input
                             type="checkbox"
                             checked={selectedGrades.has(item)}
                             onChange={(event) => {
                               const next = new Set(selectedGrades);
                               event.target.checked ? next.add(item) : next.delete(item);
-                              if (!next.size && gradeOptions.length) next.add(gradeOptions[0]);
+                              if (!next.size && gradeOptions.length) next.add(defaultGradeForCommodity(gradeCommodity, gradeOptions));
                               setSelectedGrades(next);
                             }}
                           />

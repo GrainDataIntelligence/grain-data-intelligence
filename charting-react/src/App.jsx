@@ -21,6 +21,7 @@ import BalanceSheetWheat from "./pages/BalanceSheetWheat";
 import BalanceSheetSoybeans from "./pages/BalanceSheetSoybeans";
 import BalanceSheetSunflowers from "./pages/BalanceSheetSunflowers";
 import BalanceSheetMaize from "./pages/BalanceSheetMaize";
+import AnnualSdSummary from "./pages/AnnualSdSummary";
 
 // NEW PAGE
 import LongTermCharts from "./pages/LongTermCharts";
@@ -54,6 +55,7 @@ function App() {
         <Route path="/balance-sheet/soybeans" element={<BalanceSheetSoybeans />} />
         <Route path="/balance-sheet/sunflowers" element={<BalanceSheetSunflowers />} />
         <Route path="/balance-sheet/maize" element={<BalanceSheetMaize />} />
+        <Route path="/annual-sd-summary" element={<AnnualSdSummary />} />
 
 
         {/* NEW LONG-TERM CHARTS MODULE */}

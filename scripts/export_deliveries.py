@@ -10,6 +10,7 @@ from openpyxl import load_workbook
 ROOT = Path(__file__).resolve().parents[1]
 WORKBOOK = ROOT / "Clean_deliveries_format_maize.xlsx"
 OILSEEDS_WORKBOOK = ROOT / "Codex Oilseeds.xlsx"
+WHEAT_WORKBOOK = ROOT / "Codex Wheat.xlsx"
 OUTFILE = ROOT / "data" / "deliveries.json"
 PUBLIC_OUTFILE = ROOT / "charting-react" / "public" / "data" / "fundamentals" / "deliveries.json"
 
@@ -46,8 +47,11 @@ GRADE_COLUMNS = {
         "Yellow Total": 23,
     },
     "Total Maize": {
-        "White Total": 18,
-        "Yellow Total": 23,
+        "LG1": [14, 19],
+        "LG2": [15, 20],
+        "LG3": [16, 21],
+        "LGO": [17, 22],
+        "Total Lower Grade": [15, 16, 17, 20, 21, 22],
         "Grand Total": 24,
     },
 }
@@ -119,7 +123,7 @@ def load_oilseed_rows() -> tuple[list[dict], dict[str, dict[str, float]], set[st
             cumulative = running[year]
             rows.append(
                 {
-                    "family": "Oilseeds",
+                    "family": commodity,
                     "methodology": "Standard",
                     "marketingYear": year,
                     "weekNumber": week,
@@ -131,6 +135,53 @@ def load_oilseed_rows() -> tuple[list[dict], dict[str, dict[str, float]], set[st
                     "percentDelivered": round((cumulative / cec_value) * 100, 6) if cec_value else None,
                 }
             )
+
+    return rows, dict(cec), years
+
+
+def load_wheat_rows() -> tuple[list[dict], dict[str, dict[str, float]], set[str]]:
+    if not WHEAT_WORKBOOK.exists():
+        return [], {}, set()
+
+    wb = load_workbook(WHEAT_WORKBOOK, data_only=True, read_only=True)
+    ws = wb["Wheat"] if "Wheat" in wb.sheetnames else wb[wb.sheetnames[0]]
+    commodity = "Wheat"
+    rows: list[dict] = []
+    cec: dict[str, dict[str, float]] = defaultdict(dict)
+    years: set[str] = set()
+
+    commodity_cec = load_oilseed_cec(ws, commodity)
+    for year, values in commodity_cec.items():
+        cec[year].update(values)
+
+    running: dict[str, float] = defaultdict(float)
+    for excel_row in ws.iter_rows(min_row=2, min_col=1, max_col=6, values_only=True):
+        week, year, week_label, _prod, _adjustments, weekly = excel_row
+        if not valid_year(year) or not isinstance(week, (int, float)):
+            continue
+        week = int(week)
+        if week > 52:
+            continue
+
+        year = str(year)
+        years.add(year)
+        running[year] += as_number(weekly)
+        cec_value = cec.get(year, {}).get(commodity, 0.0)
+        cumulative = running[year]
+        rows.append(
+            {
+                "family": "Wheat",
+                "methodology": "Standard",
+                "marketingYear": year,
+                "weekNumber": week,
+                "weekLabel": str(week_label or ""),
+                "commodity": commodity,
+                "weeklyTons": round(as_number(weekly), 3),
+                "cumulativeTons": round(cumulative, 3),
+                "cecEstimate": round(cec_value, 3),
+                "percentDelivered": round((cumulative / cec_value) * 100, 6) if cec_value else None,
+            }
+        )
 
     return rows, dict(cec), years
 
@@ -192,7 +243,8 @@ def normalise() -> dict:
             # The methodology changes which week/year bucket the same weekly data belongs to.
             for commodity, grades in GRADE_COLUMNS.items():
                 for grade, col_idx in grades.items():
-                    grade_weekly[(methodology, year, week, commodity, grade)] += as_number(excel_row[col_idx])
+                    columns = col_idx if isinstance(col_idx, list) else [col_idx]
+                    grade_weekly[(methodology, year, week, commodity, grade)] += sum(as_number(excel_row[index]) for index in columns)
 
     grade_rows: list[dict] = []
     running: dict[tuple[str, str, str, str], float] = defaultdict(float)
@@ -233,15 +285,21 @@ def normalise() -> dict:
     for year, values in oilseed_cec.items():
         cec.setdefault(year, {}).update(values)
     years.update(oilseed_years)
+    wheat_rows, wheat_cec, wheat_years = load_wheat_rows()
+    delivery_rows.extend(wheat_rows)
+    for year, values in wheat_cec.items():
+        cec.setdefault(year, {}).update(values)
+    years.update(wheat_years)
     delivery_rows.sort(key=lambda item: (item["family"], item["methodology"], item["commodity"], item["marketingYear"], item["weekNumber"]))
 
     return {
         "generatedFrom": WORKBOOK.name,
         "oilseedsGeneratedFrom": OILSEEDS_WORKBOOK.name if OILSEEDS_WORKBOOK.exists() else None,
-        "families": ["Maize", "Sunflowers", "Soybeans"],
+        "wheatGeneratedFrom": WHEAT_WORKBOOK.name if WHEAT_WORKBOOK.exists() else None,
+        "families": ["Maize", "Sunflowers", "Soybeans", "Wheat"],
         "methodologies": ["SAGIS", "Earlies"],
         "commodities": ["White Maize", "Yellow Maize", "Total Maize"],
-        "oilseedCommodities": ["Sunflowers", "Soybeans"],
+        "standardCommodities": ["Sunflowers", "Soybeans", "Wheat"],
         "marketingYears": sorted(years),
         "cecEstimates": cec,
         "gradeOptions": grade_labels,

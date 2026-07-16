@@ -139,6 +139,15 @@ function Navbar() {
           </div>
 
           <NavLink
+            to="/annual-sd-summary"
+            className={({ isActive }) =>
+              isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"
+            }
+          >
+            <span>Annual S&D</span>
+          </NavLink>
+
+          <NavLink
             to="/demo-trading"
             className={({ isActive }) =>
               isActive ? "text-yellow-400 font-semibold" : "hover:text-yellow-300"

@@ -460,6 +460,11 @@ export default function DemoTrading() {
                 </div>
               </div>
 
+              <p className="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs leading-relaxed text-slate-500">
+                Keep in mind this is only Initial Margin, not a buffer for Maintenance
+                Margin, for more information refer to our article regarding Margin.
+              </p>
+
               {message && <div className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">{message}</div>}
 
               <button
