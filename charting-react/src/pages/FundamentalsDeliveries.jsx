@@ -302,7 +302,7 @@ function drawExportTooltip(ctx, { series, average, years, valueKind, chartType, 
   });
 }
 
-async function exportChartPng({ container, title, eyebrow, legendItems, fileName, series, average, years, valueKind, chartType, weekStart, weekEnd, includeLabels, referenceYear, calendarStartMonth }) {
+async function exportChartPng({ container, title, subtitle, eyebrow, legendItems, fileName, series, average, years, valueKind, chartType, weekStart, weekEnd, includeLabels, referenceYear, calendarStartMonth }) {
   const svg = container?.querySelector("svg");
   if (!svg) return;
 
@@ -321,7 +321,7 @@ async function exportChartPng({ container, title, eyebrow, legendItems, fileName
     const image = await loadImage(svgUrl);
     const exportWidth = 1600;
     const padding = 48;
-    const headerHeight = 118;
+    const headerHeight = subtitle ? 140 : 118;
     const chartWidth = exportWidth - padding * 2;
     const chartHeight = Math.round((chartWidth / svgWidth) * svgHeight);
     const exportHeight = headerHeight + chartHeight + padding;
@@ -340,6 +340,11 @@ async function exportChartPng({ container, title, eyebrow, legendItems, fileName
     ctx.fillStyle = "#0f172a";
     ctx.font = "800 26px Arial, sans-serif";
     ctx.fillText(title, padding, 70);
+    if (subtitle) {
+      ctx.fillStyle = "#475569";
+      ctx.font = "700 16px Arial, sans-serif";
+      ctx.fillText(subtitle, padding, 96);
+    }
 
     let legendX = exportWidth - padding;
     let legendY = 34;
@@ -517,6 +522,7 @@ export default function FundamentalsDeliveries() {
   const gradeMetricTitle = gradeMetric === "percent"
     ? `${gradePercentMetric === "weekly" ? "weekly" : "cumulative"} % of total delivered`
     : "cumulative deliveries";
+  const gradeCommodityDescription = `Selected commodity: ${gradeCommodity}`;
   const gradeBasisDescription = gradeMetric === "percent"
     ? gradePercentMetric === "weekly"
       ? `Of ${gradeCommodity} delivered in that week, what percentage was ${selectedGradeTitle}?`
@@ -688,6 +694,7 @@ export default function FundamentalsDeliveries() {
                   <div>
                     <p className="text-xs font-bold uppercase text-slate-500">Grade deliveries</p>
                     <h2 className="text-lg font-extrabold">{selectedGradeTitle} {gradeMetricTitle} | {gradeMethodology}</h2>
+                    <p className="mt-1 max-w-2xl text-xs font-extrabold uppercase tracking-wide text-slate-600">{gradeCommodityDescription}</p>
                     <p className="mt-1 max-w-2xl text-xs font-semibold text-slate-500">{gradeBasisDescription}</p>
                   </div>
                   <div className="grid justify-items-end gap-2">
@@ -703,6 +710,7 @@ export default function FundamentalsDeliveries() {
                             container: gradeChartRef.current,
                             eyebrow: "Grade deliveries",
                             title: `${selectedGradeTitle} ${gradeMetricTitle} | ${gradeMethodology}`,
+                            subtitle: `${gradeCommodityDescription}. ${gradeBasisDescription}`,
                             legendItems: chartLegendItems(gradeSeries, gradeAverage, data.marketingYears),
                             fileName: `grade-deliveries-${selectedGradeTitle}-${gradeMetricTitle}-${gradeMethodology}`,
                             series: gradeSeries,
@@ -981,9 +989,9 @@ function Legend({ series, average, years }) {
   return <div className="mb-2 flex flex-wrap justify-end gap-3 text-xs text-slate-500">{series.map((item) => <span key={item.year} className="inline-flex items-center gap-1"><span className="h-3 w-3 rounded-sm" style={{ background: yearColor(item.year, years) }} />{item.year}</span>)}{average && <span className="inline-flex items-center gap-1"><span className="h-3 w-3 rounded-sm" style={{ background: averageColor }} />5-year avg</span>}</div>;
 }
 
-function ChartPanel({ title, eyebrow, series, average, years, chartType, valueKind, weekStart, weekEnd, calendarStartMonth, referenceYear, showLabels, onToggleLabels, fileName }) {
+function ChartPanel({ title, subtitle, eyebrow, series, average, years, chartType, valueKind, weekStart, weekEnd, calendarStartMonth, referenceYear, showLabels, onToggleLabels, fileName }) {
   const chartRef = useRef(null);
-  return <section ref={chartRef} className="rounded-lg border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/60"><div className="mb-4 flex items-start justify-between gap-4"><div><p className="text-xs font-bold uppercase text-slate-500">{eyebrow}</p><h2 className="text-lg font-extrabold">{title}</h2></div><div className="grid justify-items-end gap-2"><div className="flex flex-wrap justify-end gap-2"><button type="button" className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50" onClick={onToggleLabels}>{showLabels ? "Hide Labels" : "Show Labels"}</button><button type="button" className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50" onClick={() => exportChartPng({ container: chartRef.current, title, eyebrow, legendItems: chartLegendItems(series, average, years), fileName, series, average, years, valueKind, chartType, weekStart, weekEnd, referenceYear, calendarStartMonth, includeLabels: showLabels })}>Download PNG</button></div><Legend series={series} average={average} years={years} /></div></div><FundamentalsChart series={series} average={average} years={years} chartType={chartType} valueKind={valueKind} weekStart={weekStart} weekEnd={weekEnd} calendarStartMonth={calendarStartMonth} referenceYear={referenceYear} showLabels={showLabels} /></section>;
+  return <section ref={chartRef} className="rounded-lg border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/60"><div className="mb-4 flex items-start justify-between gap-4"><div><p className="text-xs font-bold uppercase text-slate-500">{eyebrow}</p><h2 className="text-lg font-extrabold">{title}</h2>{subtitle && <p className="mt-1 max-w-2xl text-xs font-semibold text-slate-500">{subtitle}</p>}</div><div className="grid justify-items-end gap-2"><div className="flex flex-wrap justify-end gap-2"><button type="button" className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50" onClick={onToggleLabels}>{showLabels ? "Hide Labels" : "Show Labels"}</button><button type="button" className="rounded-md border border-slate-300 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50" onClick={() => exportChartPng({ container: chartRef.current, title, subtitle, eyebrow, legendItems: chartLegendItems(series, average, years), fileName, series, average, years, valueKind, chartType, weekStart, weekEnd, referenceYear, calendarStartMonth, includeLabels: showLabels })}>Download PNG</button></div><Legend series={series} average={average} years={years} /></div></div><FundamentalsChart series={series} average={average} years={years} chartType={chartType} valueKind={valueKind} weekStart={weekStart} weekEnd={weekEnd} calendarStartMonth={calendarStartMonth} referenceYear={referenceYear} showLabels={showLabels} /></section>;
 }
 
 function YearChecks({ label = "Marketing years", years, selectedYears, setSelectedYears }) {

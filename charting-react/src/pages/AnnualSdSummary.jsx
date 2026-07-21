@@ -254,6 +254,7 @@ export default function AnnualSdSummary() {
   const [selectedYears, setSelectedYears] = useState(DEFAULT_SELECTED_YEARS);
   const [scenarios, setScenarios] = useState([]);
   const [scenarioSource, setScenarioSource] = useState(`year:${SCENARIO_BASE_YEAR}`);
+  const [activeScenarioCell, setActiveScenarioCell] = useState(null);
   const chartRow = rows.find((row) => row.label === chartRowLabel) || rows[0];
   const projectionYear = "2026/27";
   const rowByLabel = (label) => rows.find((row) => row.label === label);
@@ -288,7 +289,28 @@ export default function AnnualSdSummary() {
           ? {
               ...scenario,
               values: recalculateScenarioValues(
-                { ...scenario.values, [rowLabel]: rawScenarioValue(parseScenarioNumber(value)) },
+                { ...scenario.values, [rowLabel]: value },
+                rowLabel
+              ),
+            }
+          : scenario
+      )
+    );
+  };
+  const normalizeScenarioValue = (scenarioId, rowLabel) => {
+    setActiveScenarioCell(null);
+    if (FORMULA_ROWS.has(rowLabel)) return;
+
+    setScenarios((current) =>
+      current.map((scenario) =>
+        scenario.id === scenarioId
+          ? {
+              ...scenario,
+              values: recalculateScenarioValues(
+                {
+                  ...scenario.values,
+                  [rowLabel]: rawScenarioValue(parseScenarioNumber(scenario.values[rowLabel])),
+                },
                 rowLabel
               ),
             }
@@ -511,15 +533,19 @@ export default function AnnualSdSummary() {
                           {scenarios.map((scenario) => (
                           <td key={scenario.id} className="whitespace-nowrap border border-amber-200 bg-amber-50 px-1 py-0.5 text-right">
                             <input
-                                value={formatScenarioInput(scenario.values[row.label], row)}
+                                value={
+                                  activeScenarioCell === `${scenario.id}:${row.label}`
+                                    ? (scenario.values[row.label] ?? "")
+                                    : formatScenarioInput(scenario.values[row.label], row)
+                                }
                                 onChange={(event) => updateScenarioValue(scenario.id, row.label, event.target.value)}
+                                onFocus={() => setActiveScenarioCell(`${scenario.id}:${row.label}`)}
+                                onBlur={() => normalizeScenarioValue(scenario.id, row.label)}
                                 readOnly={FORMULA_ROWS.has(row.label)}
                                 className={`h-7 w-full rounded border px-1.5 text-right text-xs outline-none focus:border-amber-500 ${
-                                  row.isTotal
+                                  row.isTotal || FORMULA_ROWS.has(row.label)
                                     ? "border-amber-300 bg-amber-100 font-extrabold"
-                                    : FORMULA_ROWS.has(row.label)
-                                      ? "border-amber-200 bg-amber-50 font-semibold text-slate-700"
-                                      : "border-amber-200 bg-white"
+                                    : "border-amber-200 bg-white"
                                 }`}
                                 aria-label={`${scenario.name} ${row.label}`}
                               />
