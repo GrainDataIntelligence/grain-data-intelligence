@@ -6,7 +6,7 @@ import openpyxl
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = Path(r"C:\Users\Myburgh Swiegers\Downloads\SD_Maize-per-month_20260626.xlsx")
+RAW_DIR = ROOT / "data" / "raw" / "balance_sheet" / "maize"
 LOCAL_OUTPUT = ROOT / "data" / "balance_sheet" / "maize.json"
 PUBLIC_OUTPUT = ROOT / "charting-react" / "public" / "data" / "balance_sheet" / "maize.json"
 OFFICIAL_OUTPUT = (
@@ -51,6 +51,19 @@ ROW_MAP = {
 }
 
 
+def latest_source():
+    source_files = sorted(
+        RAW_DIR.glob("*.xlsx"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    if not source_files:
+        raise FileNotFoundError(
+            f"No maize balance-sheet .xlsx files found in {RAW_DIR}"
+        )
+    return source_files[0]
+
+
 def parse_month(value):
     if isinstance(value, datetime):
         return value.year, value.strftime("%b")
@@ -82,8 +95,9 @@ def numeric(value):
     return float(text) if text else 0.0
 
 
-def build_payload():
-    wb = openpyxl.load_workbook(SOURCE, read_only=False, data_only=True)
+def build_payload(source=None):
+    source = source or latest_source()
+    wb = openpyxl.load_workbook(source, read_only=False, data_only=True)
     ws = wb["Maize"]
 
     blocks = []
@@ -121,7 +135,7 @@ def build_payload():
 
     return {
         "generatedAt": datetime.now().isoformat(timespec="seconds"),
-        "sourceFile": str(SOURCE),
+        "sourceFile": str(source.relative_to(ROOT)),
         "rowCount": len(rows),
         "commodity": "Maize",
         "months": MONTHS,
