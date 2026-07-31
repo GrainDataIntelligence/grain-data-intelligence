@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -6,16 +7,10 @@ import openpyxl
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RAW_DIR = ROOT / "data" / "raw" / "balance_sheet" / "maize"
+RAW_DIR = ROOT / "data" / "raw" / "balance_sheet"
+SOURCE_SHEET = "Maize"
 LOCAL_OUTPUT = ROOT / "data" / "balance_sheet" / "maize.json"
 PUBLIC_OUTPUT = ROOT / "charting-react" / "public" / "data" / "balance_sheet" / "maize.json"
-OFFICIAL_OUTPUT = (
-    Path(r"C:\Users\Myburgh Swiegers\Projects\GrainDataIntelligence\grain-data-intelligence")
-    / "public"
-    / "data"
-    / "balance_sheet"
-    / "maize.json"
-)
 
 MONTHS = ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"]
 MONTH_ORDER = {month: index + 1 for index, month in enumerate(MONTHS)}
@@ -57,11 +52,20 @@ def latest_source():
         key=lambda path: path.stat().st_mtime,
         reverse=True,
     )
-    if not source_files:
-        raise FileNotFoundError(
-            f"No maize balance-sheet .xlsx files found in {RAW_DIR}"
-        )
-    return source_files[0]
+    for source_file in source_files:
+        try:
+            workbook = openpyxl.load_workbook(source_file, read_only=True, data_only=True)
+        except (OSError, ValueError):
+            continue
+        try:
+            if SOURCE_SHEET in workbook.sheetnames:
+                return source_file
+        finally:
+            workbook.close()
+
+    raise FileNotFoundError(
+        f"No .xlsx workbook containing a '{SOURCE_SHEET}' worksheet found in {RAW_DIR}"
+    )
 
 
 def parse_month(value):
@@ -95,10 +99,19 @@ def numeric(value):
     return float(text) if text else 0.0
 
 
+def publication_date(source):
+    date_matches = re.findall(r"(20\d{6})", source.stem)
+    if not date_matches:
+        raise ValueError(
+            f"Could not determine publication date from maize workbook name: {source.name}"
+        )
+    return datetime.strptime(date_matches[-1], "%Y%m%d").strftime("%Y-%m-%d")
+
+
 def build_payload(source=None):
     source = source or latest_source()
     wb = openpyxl.load_workbook(source, read_only=False, data_only=True)
-    ws = wb["Maize"]
+    ws = wb[SOURCE_SHEET]
 
     blocks = []
     column = 2
@@ -146,7 +159,7 @@ def build_payload(source=None):
             for key, label, metric_type in ROW_MAP.values()
         ],
         "years": sorted(years),
-        "publicationDates": ["2026-05-25"],
+        "publicationDates": [publication_date(source)],
         "rows": rows,
     }
 
@@ -160,8 +173,6 @@ def main():
     payload = build_payload()
     write_json(LOCAL_OUTPUT, payload)
     write_json(PUBLIC_OUTPUT, payload)
-    if OFFICIAL_OUTPUT.parents[2].exists():
-        write_json(OFFICIAL_OUTPUT, payload)
     print(f"Wrote {payload['rowCount']} Maize balance sheet rows")
     print(f"Years: {payload['years'][0]} to {payload['years'][-1]}")
     print(f"Output: {PUBLIC_OUTPUT}")

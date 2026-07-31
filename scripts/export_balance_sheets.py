@@ -7,14 +7,9 @@ import openpyxl
 
 
 ROOT = Path(__file__).resolve().parents[1]
+RAW_DIR = ROOT / "data" / "raw" / "balance_sheet"
 PUBLIC_DIR = ROOT / "charting-react" / "public" / "data" / "balance_sheet"
 LOCAL_DIR = ROOT / "data" / "balance_sheet"
-OFFICIAL_DIR = (
-    Path(r"C:\Users\Myburgh Swiegers\Projects\GrainDataIntelligence\grain-data-intelligence")
-    / "public"
-    / "data"
-    / "balance_sheet"
-)
 
 EXPORT_COMPONENTS = [
     "RSA Export Harbours",
@@ -28,7 +23,6 @@ CONFIGS = [
     {
         "key": "wheat",
         "commodity": "Wheat",
-        "source": Path(r"C:\Users\Myburgh Swiegers\Downloads\Wheat_Data_Table_20260626.xlsx"),
         "sheet": "Data Table Wheat",
         "months": ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
         "viewLabels": {"Human": "Wheat"},
@@ -37,7 +31,6 @@ CONFIGS = [
     {
         "key": "sunflowers",
         "commodity": "Sunflowers",
-        "source": Path(r"C:\Users\Myburgh Swiegers\Downloads\Sunflower_Data_Table_20260626.xlsx"),
         "sheet": "Data Table SUN",
         "months": ["Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb"],
         "viewLabels": {"Sunflower": "Sunflowers"},
@@ -47,7 +40,6 @@ CONFIGS = [
     {
         "key": "soybeans",
         "commodity": "Soybeans",
-        "source": Path(r"C:\Users\Myburgh Swiegers\Downloads\Soybeans_Data_Table_20260626.xlsx"),
         "sheet": "Data Table SOA",
         "months": ["Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb"],
         "viewLabels": {"Soybeans": "Soybeans"},
@@ -57,7 +49,6 @@ CONFIGS = [
     {
         "key": "maize",
         "commodity": "Maize",
-        "source": Path(r"C:\Users\Myburgh Swiegers\Downloads\Maize_Data_Table_20260525.xlsx"),
         "sheet": "Data Table Maize",
         "months": ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr"],
         "viewLabels": {"White": "White Maize", "Yellow": "Yellow Maize"},
@@ -138,6 +129,28 @@ METRIC_DEFINITIONS = {
 }
 
 
+def latest_source(sheet_name):
+    source_files = sorted(
+        RAW_DIR.glob("*.xlsx"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    for source_file in source_files:
+        try:
+            workbook = openpyxl.load_workbook(source_file, read_only=True, data_only=True)
+        except (OSError, ValueError):
+            continue
+        try:
+            if sheet_name in workbook.sheetnames:
+                return source_file
+        finally:
+            workbook.close()
+
+    raise FileNotFoundError(
+        f"No .xlsx workbook containing a '{sheet_name}' worksheet found in {RAW_DIR}"
+    )
+
+
 def month_info(value, month_order):
     if isinstance(value, datetime):
         month = value.strftime("%b")
@@ -188,7 +201,8 @@ def metric_value(metric_type, items, month_values):
 
 def build_payload(config):
     month_order = {month: index + 1 for index, month in enumerate(config["months"])}
-    wb = openpyxl.load_workbook(config["source"], read_only=True, data_only=True)
+    source = latest_source(config["sheet"])
+    wb = openpyxl.load_workbook(source, read_only=True, data_only=True)
     ws = wb[config["sheet"]]
     headers = [cell.value for cell in next(ws.iter_rows(min_row=1, max_row=1))]
     index = {header: position for position, header in enumerate(headers) if header}
@@ -280,7 +294,7 @@ def build_payload(config):
 
     return {
         "generatedAt": datetime.now().isoformat(timespec="seconds"),
-        "sourceFile": str(config["source"]),
+        "sourceFile": str(source.relative_to(ROOT)),
         "rowCount": row_count,
         "commodity": config["commodity"],
         "months": config["months"],
@@ -303,14 +317,14 @@ def main():
         if config["key"] == "maize":
             continue
         payload = build_payload(config)
-        for output_dir in [LOCAL_DIR, PUBLIC_DIR, OFFICIAL_DIR]:
+        for output_dir in [LOCAL_DIR, PUBLIC_DIR]:
             write_json(output_dir / f"{config['key']}.json", payload)
         print(f"{config['commodity']}: wrote {len(payload['rows'])} rows, {payload['years'][0]} to {payload['years'][-1]}")
 
     from export_maize_balance_sheet import build_payload as build_maize_payload
 
     maize_payload = build_maize_payload()
-    for output_dir in [LOCAL_DIR, PUBLIC_DIR, OFFICIAL_DIR]:
+    for output_dir in [LOCAL_DIR, PUBLIC_DIR]:
         write_json(output_dir / "maize.json", maize_payload)
     print(f"Maize: wrote {len(maize_payload['rows'])} rows, {maize_payload['years'][0]} to {maize_payload['years'][-1]}")
 
