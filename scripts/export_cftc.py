@@ -66,6 +66,9 @@ def normalise() -> dict:
     if not raw_files:
         raise FileNotFoundError(f"No CFTC CSV files found in {RAW_DIR}")
     raw_file = raw_files[0]
+    previous_payload = None
+    if OUTFILE.exists():
+        previous_payload = json.loads(OUTFILE.read_text(encoding="utf-8"))
     market_lookup = {market: commodity for commodity, market in MARKETS.items()}
     rows_by_commodity: dict[str, list[dict]] = defaultdict(list)
 
@@ -98,6 +101,22 @@ def normalise() -> dict:
                     "openInterest": round(open_interest, 3),
                 }
             )
+
+    carried_forward_markets = []
+    if previous_payload:
+        previous_market_names = {
+            item.get("name") for item in previous_payload.get("markets", []) if item.get("name")
+        }
+        missing_markets = sorted(previous_market_names - set(rows_by_commodity))
+        for commodity in missing_markets:
+            previous_rows = [
+                {key: value for key, value in row.items() if key != "commodity"}
+                for row in previous_payload.get("rows", [])
+                if row.get("commodity") == commodity
+            ]
+            if previous_rows:
+                rows_by_commodity[commodity].extend(previous_rows)
+                carried_forward_markets.append(commodity)
 
     commodities = []
     rows = []
@@ -135,6 +154,7 @@ def normalise() -> dict:
 
     return {
         "generatedFrom": str(raw_file.relative_to(ROOT)),
+        "carriedForwardMarkets": carried_forward_markets,
         "markets": commodities,
         "marketingYears": sorted(years),
         "latest": latest_by_commodity,
