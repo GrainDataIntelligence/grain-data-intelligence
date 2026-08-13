@@ -6,32 +6,25 @@ function formatValue(value, kind) {
   return fmt.format(value);
 }
 
-function tooltipPosition({ pointX, pointY, clusterTop, clusterBottom, linePoints, chartWidth, chartHeight, margin }) {
+function tooltipPosition({ pointX, pointY, clusterTop, clusterBottom, linePoints, chartWidth, chartHeight, margin, tooltipHeight }) {
   const tooltipW = 260;
-  const tooltipH = 150;
+  const tooltipH = tooltipHeight;
   const pad = 12;
   const plotLeft = margin.left;
   const plotRight = chartWidth - margin.right;
   const plotTop = margin.top;
   const plotBottom = chartHeight - margin.bottom;
-  const plotW = plotRight - plotLeft;
   const lineBandTop = Math.max(plotTop, clusterTop - 34);
   const lineBandBottom = Math.min(plotBottom, clusterBottom + 34);
-  const roomRight = plotRight - pointX;
-  const roomLeft = pointX - plotLeft;
-  const preferRight = roomRight >= tooltipW + 36 || roomRight >= roomLeft;
-  const sideX = preferRight ? pointX + 24 : pointX - tooltipW - 24;
-  const otherSideX = preferRight ? pointX - tooltipW - 24 : pointX + 24;
+  const rightX = pointX + 24;
+  const leftX = pointX - tooltipW - 24;
+  const fitsRight = rightX + tooltipW <= plotRight - pad;
+  const sideX = fitsRight ? rightX : leftX;
 
   const candidates = [
     { x: sideX, y: pointY - tooltipH / 2 },
     { x: sideX, y: pointY + 18 },
     { x: sideX, y: pointY - tooltipH - 18 },
-    { x: otherSideX, y: pointY - tooltipH / 2 },
-    { x: otherSideX, y: pointY + 18 },
-    { x: otherSideX, y: pointY - tooltipH - 18 },
-    { x: pointX - tooltipW / 2, y: pointY + 24 },
-    { x: pointX - tooltipW / 2, y: pointY - tooltipH - 24 },
     { x: sideX, y: (clusterTop + clusterBottom) / 2 - tooltipH / 2 },
   ];
 
@@ -131,6 +124,7 @@ export default function FundamentalsChart({
       linePoints,
       chartWidth: rect.width,
       chartHeight: rect.height,
+      tooltipHeight: 38 + weekValues.length * 20,
       margin: {
         top: (margin.top / height) * rect.height,
         right: (margin.right / width) * rect.width,
