@@ -129,9 +129,9 @@
       "Wheat": 1986680.0000000002
     },
     "2026/27": {
-      "White Maize": 9282690.0,
+      "White Maize": 9390790.0,
       "Yellow Maize": 7971850.0,
-      "Total Maize": 17254540.0,
+      "Total Maize": 17362640.0,
       "Sunflowers": 874805.0,
       "Soybeans": 3043825.0
     }
@@ -8186,8 +8186,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 65627.0,
       "cumulativeTons": 65627.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 0.380346
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 0.377978
     },
     {
       "family": "Maize",
@@ -8198,8 +8198,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 83187.0,
       "cumulativeTons": 148814.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 0.862463
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 0.857093
     },
     {
       "family": "Maize",
@@ -8210,8 +8210,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 100181.0,
       "cumulativeTons": 248995.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 1.443069
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 1.434085
     },
     {
       "family": "Maize",
@@ -8222,8 +8222,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 109129.0,
       "cumulativeTons": 358124.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 2.075535
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 2.062613
     },
     {
       "family": "Maize",
@@ -8234,8 +8234,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 69142.0,
       "cumulativeTons": 427266.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 2.476253
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 2.460835
     },
     {
       "family": "Maize",
@@ -8246,8 +8246,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 108193.0,
       "cumulativeTons": 535459.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 3.103293
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 3.083972
     },
     {
       "family": "Maize",
@@ -8258,8 +8258,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 138291.0,
       "cumulativeTons": 673750.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 3.904769
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 3.880458
     },
     {
       "family": "Maize",
@@ -8270,8 +8270,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 209463.0,
       "cumulativeTons": 883213.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 5.118728
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 5.086859
     },
     {
       "family": "Maize",
@@ -8282,8 +8282,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 13668.0,
       "cumulativeTons": 896881.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 5.197942
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 5.16558
     },
     {
       "family": "Maize",
@@ -8294,8 +8294,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 102874.0,
       "cumulativeTons": 999755.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 5.794156
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 5.758082
     },
     {
       "family": "Maize",
@@ -8306,8 +8306,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 207905.0,
       "cumulativeTons": 1207660.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 6.999085
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 6.955509
     },
     {
       "family": "Maize",
@@ -8318,8 +8318,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 409488.0,
       "cumulativeTons": 1617148.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 9.372304
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 9.313952
     },
     {
       "family": "Maize",
@@ -8330,8 +8330,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 659722.0,
       "cumulativeTons": 2276870.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 13.195773
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 13.113616
     },
     {
       "family": "Maize",
@@ -8342,8 +8342,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 743105.0,
       "cumulativeTons": 3019975.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 17.502495
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 17.393524
     },
     {
       "family": "Maize",
@@ -8354,8 +8354,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1124751.0,
       "cumulativeTons": 4144726.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 24.021075
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 23.87152
     },
     {
       "family": "Maize",
@@ -8366,8 +8366,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1386822.0,
       "cumulativeTons": 5531548.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 32.058508
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 31.858911
     },
     {
       "family": "Maize",
@@ -8378,8 +8378,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 965346.0,
       "cumulativeTons": 6496894.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 37.653244
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 37.418814
     },
     {
       "family": "Maize",
@@ -8390,8 +8390,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 877072.0,
       "cumulativeTons": 7373966.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 42.736381
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 42.470304
     },
     {
       "family": "Maize",
@@ -8402,8 +8402,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1396683.0,
       "cumulativeTons": 8770649.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 50.830964
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 50.51449
     },
     {
       "family": "Maize",
@@ -8414,8 +8414,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1479910.0,
       "cumulativeTons": 10250559.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 59.407895
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 59.038021
     },
     {
       "family": "Maize",
@@ -8426,8 +8426,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1398758.0,
       "cumulativeTons": 11649317.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 67.514503
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 67.094157
     },
     {
       "family": "Maize",
@@ -8438,8 +8438,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1195299.0,
       "cumulativeTons": 12844616.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 74.44195
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 73.978473
     },
     {
       "family": "Maize",
@@ -8450,8 +8450,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 895284.0,
       "cumulativeTons": 13739900.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 79.630636
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 79.134855
     },
     {
       "family": "Maize",
@@ -16478,8 +16478,8 @@
       "commodity": "White Maize",
       "weeklyTons": 29851.0,
       "cumulativeTons": 29851.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 0.321577
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 0.317875
     },
     {
       "family": "Maize",
@@ -16490,8 +16490,8 @@
       "commodity": "White Maize",
       "weeklyTons": 45747.0,
       "cumulativeTons": 75598.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 0.814398
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 0.805023
     },
     {
       "family": "Maize",
@@ -16502,8 +16502,8 @@
       "commodity": "White Maize",
       "weeklyTons": 55973.0,
       "cumulativeTons": 131571.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 1.41738
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 1.401064
     },
     {
       "family": "Maize",
@@ -16514,8 +16514,8 @@
       "commodity": "White Maize",
       "weeklyTons": 54514.0,
       "cumulativeTons": 186085.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 2.004645
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 1.981569
     },
     {
       "family": "Maize",
@@ -16526,8 +16526,8 @@
       "commodity": "White Maize",
       "weeklyTons": 29235.0,
       "cumulativeTons": 215320.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 2.319586
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 2.292885
     },
     {
       "family": "Maize",
@@ -16538,8 +16538,8 @@
       "commodity": "White Maize",
       "weeklyTons": 44501.0,
       "cumulativeTons": 259821.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 2.798984
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 2.766764
     },
     {
       "family": "Maize",
@@ -16550,8 +16550,8 @@
       "commodity": "White Maize",
       "weeklyTons": 55384.0,
       "cumulativeTons": 315205.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 3.395621
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 3.356533
     },
     {
       "family": "Maize",
@@ -16562,8 +16562,8 @@
       "commodity": "White Maize",
       "weeklyTons": 67697.0,
       "cumulativeTons": 382902.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 4.124903
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 4.077421
     },
     {
       "family": "Maize",
@@ -16574,8 +16574,8 @@
       "commodity": "White Maize",
       "weeklyTons": 4007.0,
       "cumulativeTons": 386909.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 4.16807
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 4.12009
     },
     {
       "family": "Maize",
@@ -16586,8 +16586,8 @@
       "commodity": "White Maize",
       "weeklyTons": 29475.0,
       "cumulativeTons": 416384.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 4.485596
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 4.433961
     },
     {
       "family": "Maize",
@@ -16598,8 +16598,8 @@
       "commodity": "White Maize",
       "weeklyTons": 67828.0,
       "cumulativeTons": 484212.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 5.21629
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 5.156244
     },
     {
       "family": "Maize",
@@ -16610,8 +16610,8 @@
       "commodity": "White Maize",
       "weeklyTons": 120666.0,
       "cumulativeTons": 604878.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 6.516193
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 6.441183
     },
     {
       "family": "Maize",
@@ -16622,8 +16622,8 @@
       "commodity": "White Maize",
       "weeklyTons": 212690.0,
       "cumulativeTons": 817568.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 8.807447
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 8.706062
     },
     {
       "family": "Maize",
@@ -16634,8 +16634,8 @@
       "commodity": "White Maize",
       "weeklyTons": 292589.0,
       "cumulativeTons": 1110157.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 11.959432
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 11.821764
     },
     {
       "family": "Maize",
@@ -16646,8 +16646,8 @@
       "commodity": "White Maize",
       "weeklyTons": 524956.0,
       "cumulativeTons": 1635113.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 17.614646
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 17.411879
     },
     {
       "family": "Maize",
@@ -16658,8 +16658,8 @@
       "commodity": "White Maize",
       "weeklyTons": 711064.0,
       "cumulativeTons": 2346177.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 25.274753
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 24.983809
     },
     {
       "family": "Maize",
@@ -16670,8 +16670,8 @@
       "commodity": "White Maize",
       "weeklyTons": 499676.0,
       "cumulativeTons": 2845853.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 30.657633
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 30.304724
     },
     {
       "family": "Maize",
@@ -16682,8 +16682,8 @@
       "commodity": "White Maize",
       "weeklyTons": 493731.0,
       "cumulativeTons": 3339584.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 35.976468
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 35.562333
     },
     {
       "family": "Maize",
@@ -16694,8 +16694,8 @@
       "commodity": "White Maize",
       "weeklyTons": 836506.0,
       "cumulativeTons": 4176090.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 44.987929
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 44.470061
     },
     {
       "family": "Maize",
@@ -16706,8 +16706,8 @@
       "commodity": "White Maize",
       "weeklyTons": 925924.0,
       "cumulativeTons": 5102014.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 54.962667
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 54.329976
     },
     {
       "family": "Maize",
@@ -16718,8 +16718,8 @@
       "commodity": "White Maize",
       "weeklyTons": 940682.0,
       "cumulativeTons": 6042696.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 65.096389
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 64.347046
     },
     {
       "family": "Maize",
@@ -16730,8 +16730,8 @@
       "commodity": "White Maize",
       "weeklyTons": 817550.0,
       "cumulativeTons": 6860246.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 73.903642
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 73.052917
     },
     {
       "family": "Maize",
@@ -16742,8 +16742,8 @@
       "commodity": "White Maize",
       "weeklyTons": 637394.0,
       "cumulativeTons": 7497640.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 80.770122
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 79.840354
     },
     {
       "family": "Maize",
@@ -33158,8 +33158,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 13668.0,
       "cumulativeTons": 13668.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 0.079214
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 0.078721
     },
     {
       "family": "Maize",
@@ -33170,8 +33170,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 102874.0,
       "cumulativeTons": 116542.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 0.675428
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 0.671223
     },
     {
       "family": "Maize",
@@ -33182,8 +33182,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 207905.0,
       "cumulativeTons": 324447.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 1.880357
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 1.86865
     },
     {
       "family": "Maize",
@@ -33194,8 +33194,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 409488.0,
       "cumulativeTons": 733935.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 4.253576
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 4.227093
     },
     {
       "family": "Maize",
@@ -33206,8 +33206,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 659722.0,
       "cumulativeTons": 1393657.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 8.077045
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 8.026757
     },
     {
       "family": "Maize",
@@ -33218,8 +33218,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 743105.0,
       "cumulativeTons": 2136762.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 12.383767
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 12.306665
     },
     {
       "family": "Maize",
@@ -33230,8 +33230,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1124751.0,
       "cumulativeTons": 3261513.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 18.902347
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 18.784661
     },
     {
       "family": "Maize",
@@ -33242,8 +33242,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1386822.0,
       "cumulativeTons": 4648335.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 26.939779
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 26.772052
     },
     {
       "family": "Maize",
@@ -33254,8 +33254,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 965346.0,
       "cumulativeTons": 5613681.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 32.534516
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 32.331955
     },
     {
       "family": "Maize",
@@ -33266,8 +33266,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 877072.0,
       "cumulativeTons": 6490753.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 37.617653
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 37.383445
     },
     {
       "family": "Maize",
@@ -33278,8 +33278,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1396683.0,
       "cumulativeTons": 7887436.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 45.712236
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 45.427631
     },
     {
       "family": "Maize",
@@ -33290,8 +33290,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1479910.0,
       "cumulativeTons": 9367346.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 54.289167
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 53.951162
     },
     {
       "family": "Maize",
@@ -33302,8 +33302,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1398758.0,
       "cumulativeTons": 10766104.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 62.395775
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 62.007298
     },
     {
       "family": "Maize",
@@ -33314,8 +33314,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 1195299.0,
       "cumulativeTons": 11961403.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 69.323222
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 68.891614
     },
     {
       "family": "Maize",
@@ -33326,8 +33326,8 @@
       "commodity": "Total Maize",
       "weeklyTons": 895284.0,
       "cumulativeTons": 12856687.0,
-      "cecEstimate": 17254540.0,
-      "percentDelivered": 74.511908
+      "cecEstimate": 17362640.0,
+      "percentDelivered": 74.047996
     },
     {
       "family": "Maize",
@@ -41450,8 +41450,8 @@
       "commodity": "White Maize",
       "weeklyTons": 4007.0,
       "cumulativeTons": 4007.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 0.043166
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 0.042669
     },
     {
       "family": "Maize",
@@ -41462,8 +41462,8 @@
       "commodity": "White Maize",
       "weeklyTons": 29475.0,
       "cumulativeTons": 33482.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 0.360693
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 0.356541
     },
     {
       "family": "Maize",
@@ -41474,8 +41474,8 @@
       "commodity": "White Maize",
       "weeklyTons": 67828.0,
       "cumulativeTons": 101310.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 1.091386
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 1.078823
     },
     {
       "family": "Maize",
@@ -41486,8 +41486,8 @@
       "commodity": "White Maize",
       "weeklyTons": 120666.0,
       "cumulativeTons": 221976.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 2.39129
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 2.363763
     },
     {
       "family": "Maize",
@@ -41498,8 +41498,8 @@
       "commodity": "White Maize",
       "weeklyTons": 212690.0,
       "cumulativeTons": 434666.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 4.682544
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 4.628641
     },
     {
       "family": "Maize",
@@ -41510,8 +41510,8 @@
       "commodity": "White Maize",
       "weeklyTons": 292589.0,
       "cumulativeTons": 727255.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 7.834529
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 7.744343
     },
     {
       "family": "Maize",
@@ -41522,8 +41522,8 @@
       "commodity": "White Maize",
       "weeklyTons": 524956.0,
       "cumulativeTons": 1252211.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 13.489743
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 13.334459
     },
     {
       "family": "Maize",
@@ -41534,8 +41534,8 @@
       "commodity": "White Maize",
       "weeklyTons": 711064.0,
       "cumulativeTons": 1963275.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 21.14985
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 20.906388
     },
     {
       "family": "Maize",
@@ -41546,8 +41546,8 @@
       "commodity": "White Maize",
       "weeklyTons": 499676.0,
       "cumulativeTons": 2462951.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 26.532729
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 26.227304
     },
     {
       "family": "Maize",
@@ -41558,8 +41558,8 @@
       "commodity": "White Maize",
       "weeklyTons": 493731.0,
       "cumulativeTons": 2956682.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 31.851565
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 31.484912
     },
     {
       "family": "Maize",
@@ -41570,8 +41570,8 @@
       "commodity": "White Maize",
       "weeklyTons": 836506.0,
       "cumulativeTons": 3793188.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 40.863026
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 40.39264
     },
     {
       "family": "Maize",
@@ -41582,8 +41582,8 @@
       "commodity": "White Maize",
       "weeklyTons": 925924.0,
       "cumulativeTons": 4719112.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 50.837764
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 50.252556
     },
     {
       "family": "Maize",
@@ -41594,8 +41594,8 @@
       "commodity": "White Maize",
       "weeklyTons": 940682.0,
       "cumulativeTons": 5659794.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 60.971486
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 60.269626
     },
     {
       "family": "Maize",
@@ -41606,8 +41606,8 @@
       "commodity": "White Maize",
       "weeklyTons": 817550.0,
       "cumulativeTons": 6477344.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 69.778739
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 68.975496
     },
     {
       "family": "Maize",
@@ -41618,8 +41618,8 @@
       "commodity": "White Maize",
       "weeklyTons": 637394.0,
       "cumulativeTons": 7114738.0,
-      "cecEstimate": 9282690.0,
-      "percentDelivered": 76.645218
+      "cecEstimate": 9390790.0,
+      "percentDelivered": 75.762934
     },
     {
       "family": "Maize",
