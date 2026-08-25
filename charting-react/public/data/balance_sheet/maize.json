@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-31T08:30:15",
-  "sourceFile": "data\\raw\\balance_sheet\\SD_Maize-per-month_20260724-1.xlsx",
-  "rowCount": 24492,
+  "generatedAt": "2026-08-25T12:33:51",
+  "sourceFile": "data\\raw\\balance_sheet\\SD_Maize-per-month_20260825.xlsx",
+  "rowCount": 24570,
   "commodity": "Maize",
   "months": [
     "May",
@@ -185,7 +185,7 @@
     "2026/27"
   ],
   "publicationDates": [
-    "2026-07-24"
+    "2026-08-25"
   ],
   "rows": [
     {
@@ -243586,7 +243586,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "producerDeliveries",
-      "value": 442069.0
+      "value": 445834.0
     },
     {
       "view": "Yellow Maize",
@@ -243596,7 +243596,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "producerDeliveries",
-      "value": 993616.0
+      "value": 994864.0
     },
     {
       "view": "Total Maize",
@@ -243606,7 +243606,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "producerDeliveries",
-      "value": 1435685.0
+      "value": 1440698.0
     },
     {
       "view": "White Maize",
@@ -243656,7 +243656,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "surplus",
-      "value": 534.0
+      "value": 1442.0
     },
     {
       "view": "Total Maize",
@@ -243666,7 +243666,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "surplus",
-      "value": 534.0
+      "value": 1442.0
     },
     {
       "view": "White Maize",
@@ -243676,7 +243676,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "totalSupply",
-      "value": 2379567.0
+      "value": 2383332.0
     },
     {
       "view": "Yellow Maize",
@@ -243686,7 +243686,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "totalSupply",
-      "value": 1982439.0
+      "value": 1984595.0
     },
     {
       "view": "Total Maize",
@@ -243696,7 +243696,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "totalSupply",
-      "value": 4362006.0
+      "value": 4367927.0
     },
     {
       "view": "White Maize",
@@ -243706,7 +243706,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "processedLocalMarket",
-      "value": 474033.0
+      "value": 475812.0
     },
     {
       "view": "Yellow Maize",
@@ -243716,7 +243716,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "processedLocalMarket",
-      "value": 455404.0
+      "value": 456015.0
     },
     {
       "view": "Total Maize",
@@ -243726,7 +243726,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "processedLocalMarket",
-      "value": 929437.0
+      "value": 931827.0
     },
     {
       "view": "White Maize",
@@ -243736,7 +243736,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "human",
-      "value": 375928.0
+      "value": 377707.0
     },
     {
       "view": "Yellow Maize",
@@ -243756,7 +243756,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "human",
-      "value": 433286.0
+      "value": 435065.0
     },
     {
       "view": "White Maize",
@@ -243766,7 +243766,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "animal",
-      "value": 97596.0
+      "value": 97620.0
     },
     {
       "view": "Yellow Maize",
@@ -243776,7 +243776,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "animal",
-      "value": 396616.0
+      "value": 397227.0
     },
     {
       "view": "Total Maize",
@@ -243786,7 +243786,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "animal",
-      "value": 494212.0
+      "value": 494847.0
     },
     {
       "view": "White Maize",
@@ -243796,7 +243796,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "gristing",
-      "value": 509.0
+      "value": 485.0
     },
     {
       "view": "Yellow Maize",
@@ -243816,7 +243816,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "gristing",
-      "value": 1939.0
+      "value": 1915.0
     },
     {
       "view": "White Maize",
@@ -243916,7 +243916,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "netDispatchesReceipts",
-      "value": -3050.0
+      "value": -624.0
     },
     {
       "view": "Yellow Maize",
@@ -243926,7 +243926,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "netDispatchesReceipts",
-      "value": 4977.0
+      "value": 5123.0
     },
     {
       "view": "Total Maize",
@@ -243936,7 +243936,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "netDispatchesReceipts",
-      "value": 1927.0
+      "value": 4499.0
     },
     {
       "view": "White Maize",
@@ -243946,7 +243946,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "deficit",
-      "value": 35.0
+      "value": 435.0
     },
     {
       "view": "Yellow Maize",
@@ -243966,7 +243966,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "deficit",
-      "value": 35.0
+      "value": 435.0
     },
     {
       "view": "White Maize",
@@ -243976,7 +243976,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "localDemand",
-      "value": 471412.0
+      "value": 476017.0
     },
     {
       "view": "Yellow Maize",
@@ -243986,7 +243986,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "localDemand",
-      "value": 461137.0
+      "value": 461894.0
     },
     {
       "view": "Total Maize",
@@ -243996,7 +243996,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "localDemand",
-      "value": 932549.0
+      "value": 937911.0
     },
     {
       "view": "White Maize",
@@ -244216,7 +244216,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "totalDemand",
-      "value": 553016.0
+      "value": 557621.0
     },
     {
       "view": "Yellow Maize",
@@ -244226,7 +244226,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "totalDemand",
-      "value": 764609.0
+      "value": 765366.0
     },
     {
       "view": "Total Maize",
@@ -244236,7 +244236,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "totalDemand",
-      "value": 1317625.0
+      "value": 1322987.0
     },
     {
       "view": "White Maize",
@@ -244246,7 +244246,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "unutilizedClosingStock",
-      "value": 1826551.0
+      "value": 1825711.0
     },
     {
       "view": "Yellow Maize",
@@ -244256,7 +244256,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "unutilizedClosingStock",
-      "value": 1217830.0
+      "value": 1219229.0
     },
     {
       "view": "Total Maize",
@@ -244266,7 +244266,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "unutilizedClosingStock",
-      "value": 3044381.0
+      "value": 3044940.0
     },
     {
       "view": "White Maize",
@@ -244276,7 +244276,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "storersAndTraders",
-      "value": 1644518.0
+      "value": 1643678.0
     },
     {
       "view": "Yellow Maize",
@@ -244286,7 +244286,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "storersAndTraders",
-      "value": 987989.0
+      "value": 989463.0
     },
     {
       "view": "Total Maize",
@@ -244296,7 +244296,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "storersAndTraders",
-      "value": 2632507.0
+      "value": 2633141.0
     },
     {
       "view": "White Maize",
@@ -244316,7 +244316,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "processors",
-      "value": 229841.0
+      "value": 229766.0
     },
     {
       "view": "Total Maize",
@@ -244326,7 +244326,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "processors",
-      "value": 411874.0
+      "value": 411799.0
     },
     {
       "view": "White Maize",
@@ -244336,7 +244336,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "openingStock",
-      "value": 1826551.0
+      "value": 1825711.0
     },
     {
       "view": "Yellow Maize",
@@ -244346,7 +244346,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "openingStock",
-      "value": 1217830.0
+      "value": 1219229.0
     },
     {
       "view": "Total Maize",
@@ -244356,7 +244356,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "openingStock",
-      "value": 3044381.0
+      "value": 3044940.0
     },
     {
       "view": "White Maize",
@@ -244366,7 +244366,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "producerDeliveries",
-      "value": 2207594.0
+      "value": 2214095.0
     },
     {
       "view": "Yellow Maize",
@@ -244376,7 +244376,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "producerDeliveries",
-      "value": 2320832.0
+      "value": 2321397.0
     },
     {
       "view": "Total Maize",
@@ -244386,7 +244386,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "producerDeliveries",
-      "value": 4528426.0
+      "value": 4535492.0
     },
     {
       "view": "White Maize",
@@ -244456,7 +244456,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "totalSupply",
-      "value": 4034145.0
+      "value": 4039806.0
     },
     {
       "view": "Yellow Maize",
@@ -244466,7 +244466,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "totalSupply",
-      "value": 3538662.0
+      "value": 3540626.0
     },
     {
       "view": "Total Maize",
@@ -244476,7 +244476,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "totalSupply",
-      "value": 7572807.0
+      "value": 7580432.0
     },
     {
       "view": "White Maize",
@@ -244486,7 +244486,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "processedLocalMarket",
-      "value": 447241.0
+      "value": 449425.0
     },
     {
       "view": "Yellow Maize",
@@ -244496,7 +244496,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "processedLocalMarket",
-      "value": 443291.0
+      "value": 444579.0
     },
     {
       "view": "Total Maize",
@@ -244506,7 +244506,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "processedLocalMarket",
-      "value": 890532.0
+      "value": 894004.0
     },
     {
       "view": "White Maize",
@@ -244516,7 +244516,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "human",
-      "value": 344882.0
+      "value": 347067.0
     },
     {
       "view": "Yellow Maize",
@@ -244526,7 +244526,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "human",
-      "value": 56848.0
+      "value": 56860.0
     },
     {
       "view": "Total Maize",
@@ -244536,7 +244536,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "human",
-      "value": 401730.0
+      "value": 403927.0
     },
     {
       "view": "White Maize",
@@ -244546,7 +244546,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "animal",
-      "value": 101670.0
+      "value": 101669.0
     },
     {
       "view": "Yellow Maize",
@@ -244556,7 +244556,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "animal",
-      "value": 385150.0
+      "value": 386426.0
     },
     {
       "view": "Total Maize",
@@ -244566,7 +244566,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "animal",
-      "value": 486820.0
+      "value": 488095.0
     },
     {
       "view": "White Maize",
@@ -244676,7 +244676,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "releasedToEndConsumers",
-      "value": 971.0
+      "value": 941.0
     },
     {
       "view": "Total Maize",
@@ -244686,7 +244686,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "releasedToEndConsumers",
-      "value": 971.0
+      "value": 941.0
     },
     {
       "view": "White Maize",
@@ -244696,7 +244696,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "netDispatchesReceipts",
-      "value": 2205.0
+      "value": 1771.0
     },
     {
       "view": "Yellow Maize",
@@ -244706,7 +244706,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "netDispatchesReceipts",
-      "value": -4006.0
+      "value": -4869.0
     },
     {
       "view": "Total Maize",
@@ -244716,7 +244716,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "netDispatchesReceipts",
-      "value": -1801.0
+      "value": -3098.0
     },
     {
       "view": "White Maize",
@@ -244726,7 +244726,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "deficit",
-      "value": 1148.0
+      "value": 296.0
     },
     {
       "view": "Yellow Maize",
@@ -244746,7 +244746,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "deficit",
-      "value": 3019.0
+      "value": 2167.0
     },
     {
       "view": "White Maize",
@@ -244756,7 +244756,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "localDemand",
-      "value": 450795.0
+      "value": 451693.0
     },
     {
       "view": "Yellow Maize",
@@ -244766,7 +244766,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "localDemand",
-      "value": 442127.0
+      "value": 442522.0
     },
     {
       "view": "Total Maize",
@@ -244776,7 +244776,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "localDemand",
-      "value": 892922.0
+      "value": 894215.0
     },
     {
       "view": "White Maize",
@@ -244786,7 +244786,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "exports",
-      "value": 68577.0
+      "value": 68644.0
     },
     {
       "view": "Yellow Maize",
@@ -244796,7 +244796,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "exports",
-      "value": 266126.0
+      "value": 266374.0
     },
     {
       "view": "Total Maize",
@@ -244806,7 +244806,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "exports",
-      "value": 334703.0
+      "value": 335018.0
     },
     {
       "view": "White Maize",
@@ -244906,7 +244906,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "wholeMaize",
-      "value": 53037.0
+      "value": 53104.0
     },
     {
       "view": "Yellow Maize",
@@ -244916,7 +244916,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "wholeMaize",
-      "value": 254156.0
+      "value": 254404.0
     },
     {
       "view": "Total Maize",
@@ -244926,7 +244926,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "wholeMaize",
-      "value": 307193.0
+      "value": 307508.0
     },
     {
       "view": "White Maize",
@@ -244936,7 +244936,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "borderPosts",
-      "value": 53037.0
+      "value": 53104.0
     },
     {
       "view": "Yellow Maize",
@@ -244956,7 +244956,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "borderPosts",
-      "value": 81394.0
+      "value": 81461.0
     },
     {
       "view": "White Maize",
@@ -244976,7 +244976,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "harbours",
-      "value": 225799.0
+      "value": 226047.0
     },
     {
       "view": "Total Maize",
@@ -244986,7 +244986,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "harbours",
-      "value": 225799.0
+      "value": 226047.0
     },
     {
       "view": "White Maize",
@@ -244996,7 +244996,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "totalDemand",
-      "value": 519372.0
+      "value": 520337.0
     },
     {
       "view": "Yellow Maize",
@@ -245006,7 +245006,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "totalDemand",
-      "value": 708253.0
+      "value": 708896.0
     },
     {
       "view": "Total Maize",
@@ -245016,7 +245016,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "totalDemand",
-      "value": 1227625.0
+      "value": 1229233.0
     },
     {
       "view": "White Maize",
@@ -245026,7 +245026,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "unutilizedClosingStock",
-      "value": 3514773.0
+      "value": 3519469.0
     },
     {
       "view": "Yellow Maize",
@@ -245036,7 +245036,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "unutilizedClosingStock",
-      "value": 2830409.0
+      "value": 2831730.0
     },
     {
       "view": "Total Maize",
@@ -245046,7 +245046,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "unutilizedClosingStock",
-      "value": 6345182.0
+      "value": 6351199.0
     },
     {
       "view": "White Maize",
@@ -245056,7 +245056,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "storersAndTraders",
-      "value": 3216640.0
+      "value": 3218356.0
     },
     {
       "view": "Yellow Maize",
@@ -245066,7 +245066,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "storersAndTraders",
-      "value": 2515326.0
+      "value": 2516558.0
     },
     {
       "view": "Total Maize",
@@ -245076,7 +245076,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "storersAndTraders",
-      "value": 5731966.0
+      "value": 5734914.0
     },
     {
       "view": "White Maize",
@@ -245086,7 +245086,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "processors",
-      "value": 298133.0
+      "value": 301113.0
     },
     {
       "view": "Yellow Maize",
@@ -245096,7 +245096,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "processors",
-      "value": 315083.0
+      "value": 315172.0
     },
     {
       "view": "Total Maize",
@@ -245106,7 +245106,787 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "processors",
-      "value": 613216.0
+      "value": 616285.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "openingStock",
+      "value": 3519469.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "openingStock",
+      "value": 2831730.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "openingStock",
+      "value": 6351199.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 3944297.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 2262525.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "producerDeliveries",
+      "value": 6206822.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 0.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 0.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "imports",
+      "value": 0.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "surplus",
+      "value": 7962.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "surplus",
+      "value": 3985.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "surplus",
+      "value": 11947.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "totalSupply",
+      "value": 7471728.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "totalSupply",
+      "value": 5098240.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "totalSupply",
+      "value": 12569968.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "processedLocalMarket",
+      "value": 507410.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "processedLocalMarket",
+      "value": 469058.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "processedLocalMarket",
+      "value": 976468.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "human",
+      "value": 406924.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "human",
+      "value": 55410.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "human",
+      "value": 462334.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "animal",
+      "value": 99792.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "animal",
+      "value": 411640.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "animal",
+      "value": 511432.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "gristing",
+      "value": 694.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "gristing",
+      "value": 2008.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "gristing",
+      "value": 2702.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "bioFuel",
+      "value": 0.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "bioFuel",
+      "value": 0.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "bioFuel",
+      "value": 0.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "withdrawnByProducers",
+      "value": 282.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "withdrawnByProducers",
+      "value": 0.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "withdrawnByProducers",
+      "value": 282.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "releasedToEndConsumers",
+      "value": 27.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "releasedToEndConsumers",
+      "value": 951.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "releasedToEndConsumers",
+      "value": 978.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "netDispatchesReceipts",
+      "value": -1408.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "netDispatchesReceipts",
+      "value": 716.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "netDispatchesReceipts",
+      "value": -692.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "deficit",
+      "value": 0.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "deficit",
+      "value": 0.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "deficit",
+      "value": 0.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "localDemand",
+      "value": 506311.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "localDemand",
+      "value": 470725.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "localDemand",
+      "value": 977036.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 70820.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 198890.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "exports",
+      "value": 269710.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "products",
+      "value": 20122.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "products",
+      "value": 13812.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "products",
+      "value": 33934.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "africanCountries",
+      "value": 20122.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "africanCountries",
+      "value": 11436.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "africanCountries",
+      "value": 31558.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "otherCountries",
+      "value": 0.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "otherCountries",
+      "value": 2376.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "otherCountries",
+      "value": 2376.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "wholeMaize",
+      "value": 50698.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "wholeMaize",
+      "value": 185078.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "wholeMaize",
+      "value": 235776.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "borderPosts",
+      "value": 50698.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "borderPosts",
+      "value": 35405.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "borderPosts",
+      "value": 86103.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "harbours",
+      "value": 0.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "harbours",
+      "value": 149673.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "harbours",
+      "value": 149673.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 577131.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 669615.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "totalDemand",
+      "value": 1246746.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "unutilizedClosingStock",
+      "value": 6894597.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "unutilizedClosingStock",
+      "value": 4428625.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "unutilizedClosingStock",
+      "value": 11323222.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "storersAndTraders",
+      "value": 6365588.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "storersAndTraders",
+      "value": 4048172.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "storersAndTraders",
+      "value": 10413760.0
+    },
+    {
+      "view": "White Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "processors",
+      "value": 529009.0
+    },
+    {
+      "view": "Yellow Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "processors",
+      "value": 380453.0
+    },
+    {
+      "view": "Total Maize",
+      "marketingYear": "2026/27",
+      "status": "Final",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 3,
+      "metric": "processors",
+      "value": 909462.0
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-31T08:30:13",
-  "sourceFile": "data\\raw\\balance_sheet\\Soybeans_Data_Table_20260724.xlsx",
-  "rowCount": 3040,
+  "generatedAt": "2026-08-25T12:33:49",
+  "sourceFile": "data\\raw\\balance_sheet\\Soybeans_Data_Table_20260825.xlsx",
+  "rowCount": 3059,
   "commodity": "Soybeans",
   "months": [
     "Mar",
@@ -163,7 +163,7 @@
     "2024-04-25",
     "2025-04-25",
     "2026/04/24",
-    "2026/07/24"
+    "2026/08/25"
   ],
   "rows": [
     {
@@ -22974,7 +22974,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "processedLocalMarket",
-      "value": 158783.0
+      "value": 158786.0
     },
     {
       "view": "Soybeans",
@@ -22994,7 +22994,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "totalDemand",
-      "value": 210259.0
+      "value": 210262.0
     },
     {
       "view": "Soybeans",
@@ -23004,7 +23004,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "endingStocks",
-      "value": 151888.0
+      "value": 151981.0
     },
     {
       "view": "Soybeans",
@@ -23034,7 +23034,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "animalFeedLocal",
-      "value": 8544.0
+      "value": 8547.0
     },
     {
       "view": "Soybeans",
@@ -23064,7 +23064,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "animalFeedCommercial",
-      "value": 8951.0
+      "value": 8954.0
     },
     {
       "view": "Soybeans",
@@ -23094,7 +23094,7 @@
       "calendarYear": 2026,
       "monthOrder": 1,
       "metric": "netDispatchesReceipts",
-      "value": -233.0
+      "value": -329.0
     },
     {
       "view": "Soybeans",
@@ -23144,7 +23144,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "producerDeliveries",
-      "value": 493033.0
+      "value": 492931.0
     },
     {
       "view": "Soybeans",
@@ -23164,7 +23164,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "exports",
-      "value": 33433.0
+      "value": 33331.0
     },
     {
       "view": "Soybeans",
@@ -23174,7 +23174,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "totalDemand",
-      "value": 222050.0
+      "value": 221948.0
     },
     {
       "view": "Soybeans",
@@ -23194,7 +23194,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "openingStock",
-      "value": 151888.0
+      "value": 151981.0
     },
     {
       "view": "Soybeans",
@@ -23284,7 +23284,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "netDispatchesReceipts",
-      "value": -41.0
+      "value": 52.0
     },
     {
       "view": "Soybeans",
@@ -23314,7 +23314,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "rsaExportBorderPosts",
-      "value": 19051.0
+      "value": 18949.0
     },
     {
       "view": "Soybeans",
@@ -23334,7 +23334,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "producerDeliveries",
-      "value": 1755124.0
+      "value": 1757165.0
     },
     {
       "view": "Soybeans",
@@ -23354,7 +23354,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "processedLocalMarket",
-      "value": 203922.0
+      "value": 203929.0
     },
     {
       "view": "Soybeans",
@@ -23364,7 +23364,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "exports",
-      "value": 58813.0
+      "value": 60880.0
     },
     {
       "view": "Soybeans",
@@ -23374,7 +23374,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "totalDemand",
-      "value": 264227.0
+      "value": 266301.0
     },
     {
       "view": "Soybeans",
@@ -23384,7 +23384,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "endingStocks",
-      "value": 1915368.0
+      "value": 1915340.0
     },
     {
       "view": "Soybeans",
@@ -23414,7 +23414,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "animalFeedLocal",
-      "value": 8620.0
+      "value": 8627.0
     },
     {
       "view": "Soybeans",
@@ -23444,7 +23444,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "animalFeedCommercial",
-      "value": 9446.0
+      "value": 9453.0
     },
     {
       "view": "Soybeans",
@@ -23484,7 +23484,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "netDispatchesReceipts",
-      "value": -65.0
+      "value": -72.0
     },
     {
       "view": "Soybeans",
@@ -23494,7 +23494,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "surplusDeficit",
-      "value": -240.0
+      "value": -238.0
     },
     {
       "view": "Soybeans",
@@ -23504,7 +23504,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "rsaExportHarbours",
-      "value": 6617.0
+      "value": 8684.0
     },
     {
       "view": "Soybeans",
@@ -23544,7 +23544,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "producerDeliveries",
-      "value": 381421.0
+      "value": 382110.0
     },
     {
       "view": "Soybeans",
@@ -23564,7 +23564,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "processedLocalMarket",
-      "value": 201496.0
+      "value": 201956.0
     },
     {
       "view": "Soybeans",
@@ -23574,7 +23574,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "exports",
-      "value": 37151.0
+      "value": 38189.0
     },
     {
       "view": "Soybeans",
@@ -23584,7 +23584,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "totalDemand",
-      "value": 240438.0
+      "value": 241936.0
     },
     {
       "view": "Soybeans",
@@ -23594,7 +23594,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "endingStocks",
-      "value": 2058796.0
+      "value": 2058131.0
     },
     {
       "view": "Soybeans",
@@ -23604,7 +23604,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "openingStock",
-      "value": 1915368.0
+      "value": 1915340.0
     },
     {
       "view": "Soybeans",
@@ -23634,7 +23634,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "oilAndOilcakeLocal",
-      "value": 190651.0
+      "value": 191111.0
     },
     {
       "view": "Soybeans",
@@ -23664,7 +23664,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "oilAndOilcakeCommercial",
-      "value": 204103.0
+      "value": 204563.0
     },
     {
       "view": "Soybeans",
@@ -23704,7 +23704,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "netDispatchesReceipts",
-      "value": 201.0
+      "value": 328.0
     },
     {
       "view": "Soybeans",
@@ -23714,7 +23714,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "surplusDeficit",
-      "value": -2071.0
+      "value": -2370.0
     },
     {
       "view": "Soybeans",
@@ -23724,7 +23724,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "rsaExportHarbours",
-      "value": 3554.0
+      "value": 4592.0
     },
     {
       "view": "Soybeans",
@@ -23755,6 +23755,216 @@
       "monthOrder": 4,
       "metric": "productExportOtherCountries",
       "value": 943.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 64885.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 102.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "processedLocalMarket",
+      "value": 223276.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 57015.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 282505.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 1839546.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "openingStock",
+      "value": 2058131.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "humanConsumptionLocal",
+      "value": 1735.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "animalFeedLocal",
+      "value": 10553.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "oilAndOilcakeLocal",
+      "value": 210988.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "humanConsumptionCommercial",
+      "value": 1735.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "animalFeedCommercial",
+      "value": 11477.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "oilAndOilcakeCommercial",
+      "value": 225312.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "seedForPlanting",
+      "value": 2139.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "releasedToEndConsumers",
+      "value": 25.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "withdrawnByProducers",
+      "value": 50.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "netDispatchesReceipts",
+      "value": -111.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "surplusDeficit",
+      "value": 1178.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "rsaExportHarbours",
+      "value": 4306.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "rsaExportBorderPosts",
+      "value": 37461.0
+    },
+    {
+      "view": "Soybeans",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "productExportAfricanCountries",
+      "value": 15248.0
     }
   ]
 }

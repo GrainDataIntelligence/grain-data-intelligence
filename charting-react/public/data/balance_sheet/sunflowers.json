@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-31T08:30:12",
-  "sourceFile": "data\\raw\\balance_sheet\\Sunflower_Data_Table_20260724.xlsx",
-  "rowCount": 3040,
+  "generatedAt": "2026-08-25T12:33:49",
+  "sourceFile": "data\\raw\\balance_sheet\\Sunflower_Data_Table_20260825.xlsx",
+  "rowCount": 3059,
   "commodity": "Sunflowers",
   "months": [
     "Mar",
@@ -163,7 +163,7 @@
     "2024-04-25",
     "2025-04-25",
     "2026/04/24",
-    "2026/07/24"
+    "2026/08/25"
   ],
   "rows": [
     {
@@ -22714,7 +22714,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "producerDeliveries",
-      "value": 254341.0
+      "value": 254361.0
     },
     {
       "view": "Sunflowers",
@@ -22724,7 +22724,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "processedLocalMarket",
-      "value": 83633.0
+      "value": 83663.0
     },
     {
       "view": "Sunflowers",
@@ -22744,7 +22744,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "totalDemand",
-      "value": 84228.0
+      "value": 84248.0
     },
     {
       "view": "Sunflowers",
@@ -22784,7 +22784,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "animalFeedLocal",
-      "value": 464.0
+      "value": 494.0
     },
     {
       "view": "Sunflowers",
@@ -22814,7 +22814,7 @@
       "calendarYear": 2026,
       "monthOrder": 2,
       "metric": "animalFeedCommercial",
-      "value": 464.0
+      "value": 494.0
     },
     {
       "view": "Sunflowers",
@@ -22835,16 +22835,6 @@
       "monthOrder": 2,
       "metric": "seedForPlanting",
       "value": 16.0
-    },
-    {
-      "view": "Sunflowers",
-      "marketingYear": "2026/27",
-      "status": "Active",
-      "month": "Apr",
-      "calendarYear": 2026,
-      "monthOrder": 2,
-      "metric": "withdrawnByProducers",
-      "value": 10.0
     },
     {
       "view": "Sunflowers",
@@ -22904,7 +22894,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "processedLocalMarket",
-      "value": 83658.0
+      "value": 83667.0
     },
     {
       "view": "Sunflowers",
@@ -22934,7 +22924,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "endingStocks",
-      "value": 483407.0
+      "value": 483426.0
     },
     {
       "view": "Sunflowers",
@@ -22964,7 +22954,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "animalFeedLocal",
-      "value": 460.0
+      "value": 469.0
     },
     {
       "view": "Sunflowers",
@@ -22994,7 +22984,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "animalFeedCommercial",
-      "value": 460.0
+      "value": 469.0
     },
     {
       "view": "Sunflowers",
@@ -23023,16 +23013,6 @@
       "month": "May",
       "calendarYear": 2026,
       "monthOrder": 3,
-      "metric": "releasedToEndConsumers",
-      "value": 9.0
-    },
-    {
-      "view": "Sunflowers",
-      "marketingYear": "2026/27",
-      "status": "Active",
-      "month": "May",
-      "calendarYear": 2026,
-      "monthOrder": 3,
       "metric": "netDispatchesReceipts",
       "value": 76.0
     },
@@ -23044,7 +23024,7 @@
       "calendarYear": 2026,
       "monthOrder": 3,
       "metric": "surplusDeficit",
-      "value": 878.0
+      "value": 859.0
     },
     {
       "view": "Sunflowers",
@@ -23064,7 +23044,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "producerDeliveries",
-      "value": 119655.0
+      "value": 119842.0
     },
     {
       "view": "Sunflowers",
@@ -23074,7 +23054,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "processedLocalMarket",
-      "value": 82105.0
+      "value": 81604.0
     },
     {
       "view": "Sunflowers",
@@ -23094,7 +23074,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "totalDemand",
-      "value": 82961.0
+      "value": 82460.0
     },
     {
       "view": "Sunflowers",
@@ -23104,7 +23084,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "endingStocks",
-      "value": 520133.0
+      "value": 521005.0
     },
     {
       "view": "Sunflowers",
@@ -23114,7 +23094,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "openingStock",
-      "value": 483407.0
+      "value": 483426.0
     },
     {
       "view": "Sunflowers",
@@ -23144,7 +23124,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "oilAndOilcakeLocal",
-      "value": 81359.0
+      "value": 80858.0
     },
     {
       "view": "Sunflowers",
@@ -23174,7 +23154,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "oilAndOilcakeCommercial",
-      "value": 81986.0
+      "value": 81485.0
     },
     {
       "view": "Sunflowers",
@@ -23194,7 +23174,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "netDispatchesReceipts",
-      "value": 187.0
+      "value": 17.0
     },
     {
       "view": "Sunflowers",
@@ -23204,7 +23184,7 @@
       "calendarYear": 2026,
       "monthOrder": 4,
       "metric": "surplusDeficit",
-      "value": -219.0
+      "value": -214.0
     },
     {
       "view": "Sunflowers",
@@ -23215,6 +23195,186 @@
       "monthOrder": 4,
       "metric": "productExportAfricanCountries",
       "value": 627.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "producerDeliveries",
+      "value": 40488.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "imports",
+      "value": 48.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "processedLocalMarket",
+      "value": 78397.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "exports",
+      "value": 661.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "totalDemand",
+      "value": 80027.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "endingStocks",
+      "value": 481012.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "openingStock",
+      "value": 521005.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "humanConsumptionLocal",
+      "value": 190.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "animalFeedLocal",
+      "value": 556.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "oilAndOilcakeLocal",
+      "value": 77651.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "humanConsumptionCommercial",
+      "value": 190.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "animalFeedCommercial",
+      "value": 556.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "oilAndOilcakeCommercial",
+      "value": 78312.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "seedForPlanting",
+      "value": 953.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "withdrawnByProducers",
+      "value": 16.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "netDispatchesReceipts",
+      "value": 293.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "surplusDeficit",
+      "value": 209.0
+    },
+    {
+      "view": "Sunflowers",
+      "marketingYear": "2026/27",
+      "status": "Active",
+      "month": "Jul",
+      "calendarYear": 2026,
+      "monthOrder": 5,
+      "metric": "productExportAfricanCountries",
+      "value": 661.0
     }
   ]
 }
