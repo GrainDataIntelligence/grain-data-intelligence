@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { loadAllCSVData } from "../components/dataLoader";
+import { readWorkspace, saveWorkspace } from "./seasonalWorkspace";
 
 const MAX_LEGS = 4;
 const HEDGING_MONTHS = ["Mar", "May", "Jul", "Sep", "Dec"];
@@ -57,6 +58,20 @@ const DEFAULT_PERIOD = {
 const SAVED_ANALYSES_KEY = "seasonalChartsSavedAnalyses";
 const SAVED_FOLDERS_KEY = "seasonalChartsSavedFolders";
 const UNFILED_FOLDER_ID = "__unfiled";
+
+function isValidWorkspaceConfig(config) {
+  return config && Number.isInteger(config.numLegs) && config.numLegs >= 1 && config.numLegs <= MAX_LEGS &&
+    Array.isArray(config.legs) && config.legs.length === MAX_LEGS && config.legs.every((leg) =>
+      leg && COMMODITIES.includes(leg.commodity) && HEDGING_MONTHS.includes(leg.contract) &&
+      ["long", "short"].includes(leg.side) && Number.isFinite(Number(leg.quantity)) &&
+      Number.isFinite(Number(leg.alignOffset))) &&
+    Array.isArray(config.selectedYears) && config.selectedYears.every(Number.isInteger) &&
+    typeof config.showLabels === "boolean" && [1, 2, 3].includes(config.chartsPerRow) &&
+    Object.hasOwn(CHART_METRICS, config.chartMetric) && config.period &&
+    ["buy", "sell"].includes(config.period.side) &&
+    [config.period.openDate, config.period.closeDate].every((date) =>
+      typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date));
+}
 
 function parseDate(value) {
   const [year, month, day] = value.split(/[-/]/).map(Number);
@@ -795,26 +810,29 @@ function activeColorYearForChart(csvData, legs, numLegs, availableYears, chartDa
 }
 
 export default function SeasonalCharts() {
+  const [workspace] = useState(() => readWorkspace(isValidWorkspaceConfig));
+  const initialConfig = workspace?.activeTab?.config;
+  const [needsInitialTab, setNeedsInitialTab] = useState(!workspace);
   const [csvData, setCsvData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [numLegs, setNumLegs] = useState(2);
-  const [legs, setLegs] = useState(DEFAULT_LEGS);
-  const [selectedYears, setSelectedYears] = useState([]);
-  const [showLabels, setShowLabels] = useState(false);
-  const [period, setPeriod] = useState(DEFAULT_PERIOD);
+  const [numLegs, setNumLegs] = useState(initialConfig?.numLegs ?? 2);
+  const [legs, setLegs] = useState(initialConfig?.legs ?? DEFAULT_LEGS);
+  const [selectedYears, setSelectedYears] = useState(initialConfig?.selectedYears ?? []);
+  const [showLabels, setShowLabels] = useState(initialConfig?.showLabels ?? false);
+  const [period, setPeriod] = useState(initialConfig?.period ?? DEFAULT_PERIOD);
   const [periodPanelOpen, setPeriodPanelOpen] = useState(false);
-  const [chartsPerRow, setChartsPerRow] = useState(2);
-  const [chartMetric, setChartMetric] = useState("price");
+  const [chartsPerRow, setChartsPerRow] = useState(initialConfig?.chartsPerRow ?? 2);
+  const [chartMetric, setChartMetric] = useState(initialConfig?.chartMetric ?? "price");
   const [savedAnalyses, setSavedAnalyses] = useState([]);
   const [savedFolders, setSavedFolders] = useState([]);
   const [expandedFolders, setExpandedFolders] = useState(new Set([UNFILED_FOLDER_ID]));
   const [saveFolderId, setSaveFolderId] = useState(UNFILED_FOLDER_ID);
   const [saveName, setSaveName] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [program, setProgram] = useState("Long Term Charts");
-  const [openTabs, setOpenTabs] = useState([]);
-  const [activeTabId, setActiveTabId] = useState(null);
+  const [program, setProgram] = useState(workspace?.activeTab?.program ?? "Long Term Charts");
+  const [openTabs, setOpenTabs] = useState(workspace?.tabs ?? []);
+  const [activeTabId, setActiveTabId] = useState(workspace?.activeTab?.id ?? null);
 
   useEffect(() => {
     const loadData = async () => {
@@ -896,7 +914,16 @@ export default function SeasonalCharts() {
   }, [activeTabId, currentConfig, program]);
 
   useEffect(() => {
-    if (activeTabId || !selectedYears.length) return;
+    if (needsInitialTab) return;
+    // Include the current controls immediately, before the tab-sync effect renders again.
+    const tabs = openTabs.map((tab) => tab.id === activeTabId
+      ? { ...tab, program, title: tabTitle(program, currentConfig), config: currentConfig }
+      : tab);
+    saveWorkspace(tabs, activeTabId);
+  }, [openTabs, activeTabId, currentConfig, program, needsInitialTab]);
+
+  useEffect(() => {
+    if (!needsInitialTab || activeTabId || !selectedYears.length) return;
     const id = Date.now().toString();
     setOpenTabs([
       {
@@ -907,7 +934,8 @@ export default function SeasonalCharts() {
       },
     ]);
     setActiveTabId(id);
-  }, [activeTabId, currentConfig, program, selectedYears.length]);
+    setNeedsInitialTab(false);
+  }, [activeTabId, currentConfig, program, selectedYears.length, needsInitialTab]);
 
   const chartData = useMemo(
     () =>
@@ -941,6 +969,7 @@ export default function SeasonalCharts() {
   };
 
   const saveAnalysis = () => {
+    if (!activeTabId) return;
     const trimmed = saveName.trim();
     if (!trimmed) return;
 
@@ -978,6 +1007,7 @@ export default function SeasonalCharts() {
   };
 
   const updateAnalysis = (analysisId) => {
+    if (!activeTabId) return;
     const updated = savedAnalyses.map((item) =>
       item.id === analysisId ? { ...item, config: currentConfig, timestamp: Date.now() } : item
     );
@@ -1044,6 +1074,7 @@ export default function SeasonalCharts() {
   };
 
   const addTab = (name = null, config = currentConfig, tabProgram = program) => {
+    setNeedsInitialTab(false);
     const id = Date.now().toString();
     const nextTab = {
       id,
@@ -1064,23 +1095,26 @@ export default function SeasonalCharts() {
   };
 
   const closeTab = (tabId) => {
-    setOpenTabs((tabs) => {
-      const next = tabs.filter((tab) => tab.id !== tabId);
-      if (tabId === activeTabId) {
-        const replacement = next.at(-1);
-        setActiveTabId(replacement?.id || null);
-        if (replacement) {
-          setProgram(replacement.program);
-          applyConfig(replacement.config);
-        }
-      }
-      return next;
-    });
+    const next = openTabs.filter((tab) => tab.id !== tabId);
+    if (!next.length) {
+      closeAllTabs();
+      return;
+    }
+    setOpenTabs(next);
+    if (tabId === activeTabId) selectTab(next.at(-1));
   };
 
   const closeAllTabs = () => {
+    setNeedsInitialTab(false);
     setOpenTabs([]);
     setActiveTabId(null);
+    setProgram("Long Term Charts");
+    applyConfig({
+      numLegs: 2,
+      legs: DEFAULT_LEGS,
+      selectedYears: availableYearsForChart(csvData, DEFAULT_LEGS, 2).slice(0, 5),
+      period: DEFAULT_PERIOD,
+    });
   };
 
   const chooseProgram = (nextProgram) => {
@@ -1174,6 +1208,7 @@ export default function SeasonalCharts() {
                   <button
                     type="button"
                     onClick={saveAnalysis}
+                    disabled={!activeTabId}
                     className="h-8 rounded bg-slate-950 px-3 text-xs font-bold text-white hover:bg-slate-800"
                   >
                     Save
@@ -1351,6 +1386,8 @@ export default function SeasonalCharts() {
             </div>
           </div>
 
+          {activeTabId ? (
+            <>
           <div className="border-b border-slate-300 bg-white p-2">
             <div className="flex flex-wrap items-start gap-3">
               <PeriodControl
@@ -1494,6 +1531,14 @@ export default function SeasonalCharts() {
               )}
             </div>
           </div>
+            </>
+          ) : (
+            <div className="flex min-h-[320px] flex-1 items-center justify-center bg-slate-100 p-8">
+              <p role="status" className="text-center text-base font-semibold text-slate-600">
+                Click ‘Add Tab’ to open a new chart.
+              </p>
+            </div>
+          )}
         </main>
       </div>
     </div>
