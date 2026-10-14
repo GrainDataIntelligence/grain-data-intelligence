@@ -48,6 +48,18 @@ function formatPrice(value) {
   return new Intl.NumberFormat("en-ZA", { maximumFractionDigits: 2 }).format(Number(value) || 0);
 }
 
+function formatTradeDate(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return new Intl.DateTimeFormat("en-ZA", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    timeZone: "Africa/Johannesburg",
+  }).format(date);
+}
+
 function parseCSV(text) {
   const lines = text.trim().split(/\r?\n/);
   if (lines.length < 2) return [];
@@ -602,6 +614,7 @@ function PositionsTable({ trades, closePrices = {}, setClosePrices, closeTrade, 
         <thead>
           <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500">
             <th className="px-3 py-2">Trade</th>
+            <th className="whitespace-nowrap px-3 py-2">Trade date</th>
             <th className="px-3 py-2">Side</th>
             <th className="px-3 py-2 text-right">Qty</th>
             <th className="px-3 py-2 text-right">Entry</th>
@@ -616,6 +629,7 @@ function PositionsTable({ trades, closePrices = {}, setClosePrices, closeTrade, 
           {trades.map((trade) => (
             <tr key={trade.id} className="border-b border-slate-100">
               <td className="px-3 py-3 font-bold text-slate-900">{tradeLabel(trade)}</td>
+              <td className="whitespace-nowrap px-3 py-3 text-slate-600">{formatTradeDate(trade.openedAt)}</td>
               <td className={`px-3 py-3 font-bold ${trade.side === "Buy" ? "text-emerald-700" : "text-red-700"}`}>{trade.side}</td>
               <td className="px-3 py-3 text-right">{formatNumber(trade.quantity)}</td>
               <td className="px-3 py-3 text-right">{formatPrice(trade.entryPrice)}</td>
