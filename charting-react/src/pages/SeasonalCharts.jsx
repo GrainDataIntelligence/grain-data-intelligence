@@ -2171,10 +2171,6 @@ function HistoryMiniChart({ csvData, referenceYear, comparisonYear, legs, numLeg
   const domain = niceChartDomain(values);
   const yTicks = [];
   for (let value = domain.min; value <= domain.max + domain.step / 2; value += domain.step) yTicks.push(value);
-  const x = (index) => {
-    if (miniData.length <= 1) return margin.left + plotW / 2;
-    return margin.left + (index / Math.max(1, miniData.length - 1)) * plotW;
-  };
   const y = (value) => margin.top + plotH - ((value - domain.min) / Math.max(1, domain.max - domain.min)) * plotH;
   const activeLegs = legs
     .slice(0, numLegs)
@@ -2184,6 +2180,7 @@ function HistoryMiniChart({ csvData, referenceYear, comparisonYear, legs, numLeg
     ? getSeasonWindow(referenceYear + seasonEndInfo.endOffset, seasonEndInfo.endMonth)
     : getSeasonWindow(referenceYear, 12);
   const xFromOrder = (order) => {
+    if (miniData.length <= 1) return margin.left + plotW / 2;
     const minOrder = miniData[0]?.order ?? 0;
     const maxOrder = miniData.at(-1)?.order ?? 0;
     const clampedOrder = clamp(order, minOrder, maxOrder);
@@ -2207,10 +2204,10 @@ function HistoryMiniChart({ csvData, referenceYear, comparisonYear, legs, numLeg
   const openX = markerVisible && periodMarker.showOpen ? xFromOrder(periodMarker.openOrder) : null;
   const closeX = markerVisible && periodMarker.showClose ? xFromOrder(periodMarker.closeOrder) : null;
   const referencePoints = miniData
-    .map((point, index) => ({ x: x(index), y: y(point[referenceKey]), value: point[referenceKey] }))
+    .map((point) => ({ x: xFromOrder(point.order), y: y(point[referenceKey]), value: point[referenceKey] }))
     .filter((point) => Number.isFinite(point.value));
   const comparisonPoints = miniData
-    .map((point, index) => ({ x: x(index), y: y(point[comparisonKey]), value: point[comparisonKey] }))
+    .map((point) => ({ x: xFromOrder(point.order), y: y(point[comparisonKey]), value: point[comparisonKey] }))
     .filter((point) => Number.isFinite(point.value));
   const xTicks = miniData.filter((_, index) => {
     const step = Math.max(1, Math.floor(miniData.length / 4));
@@ -2234,11 +2231,10 @@ function HistoryMiniChart({ csvData, referenceYear, comparisonYear, legs, numLeg
           </g>
         ))}
         {xTicks.map((point) => {
-          const index = miniData.indexOf(point);
           return (
             <g key={point.dateKey}>
-              <line x1={x(index)} y1={margin.top} x2={x(index)} y2={height - margin.bottom} stroke="#e5e7eb" strokeWidth="1" />
-              <text x={x(index)} y={height - 9} textAnchor="middle" fill="#111827" fontSize="9">
+              <line x1={xFromOrder(point.order)} y1={margin.top} x2={xFromOrder(point.order)} y2={height - margin.bottom} stroke="#e5e7eb" strokeWidth="1" />
+              <text x={xFromOrder(point.order)} y={height - 9} textAnchor="middle" fill="#111827" fontSize="9">
                 {point.label}
               </text>
             </g>
