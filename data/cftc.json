@@ -1,5 +1,5 @@
 {
-  "generatedFrom": "data\\raw\\cftc\\Disaggregated_-_Combined_20261012.csv",
+  "generatedFrom": "data\\raw\\cftc\\Disaggregated_-_Combined_20261020.csv",
   "carriedForwardMarkets": [],
   "markets": [
     {
@@ -61,84 +61,84 @@
   ],
   "latest": {
     "Corn": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "marketingYear": "26/27",
-      "managedMoneyLong": 384250.0,
-      "managedMoneyShort": 66891.0,
-      "managedMoneySpread": 365886.0,
-      "managedMoneyNet": 317359.0,
-      "openInterest": 2558826.0,
-      "netPercentile": 90.4
+      "managedMoneyLong": 321331.0,
+      "managedMoneyShort": 90454.0,
+      "managedMoneySpread": 369847.0,
+      "managedMoneyNet": 230877.0,
+      "openInterest": 2519671.0,
+      "netPercentile": 76.3
     },
     "Feeder Cattle": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "marketingYear": "26/27",
-      "managedMoneyLong": 18827.0,
-      "managedMoneyShort": 10040.0,
-      "managedMoneySpread": 13047.0,
-      "managedMoneyNet": 8787.0,
-      "openInterest": 93223.0,
-      "netPercentile": 66.8
+      "managedMoneyLong": 18855.0,
+      "managedMoneyShort": 10003.0,
+      "managedMoneySpread": 12903.0,
+      "managedMoneyNet": 8852.0,
+      "openInterest": 92539.0,
+      "netPercentile": 67.1
     },
     "Lean Hogs": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "marketingYear": "26/27",
-      "managedMoneyLong": 73149.0,
-      "managedMoneyShort": 108421.0,
-      "managedMoneySpread": 59396.0,
-      "managedMoneyNet": -35272.0,
-      "openInterest": 426558.0,
-      "netPercentile": 0.2
+      "managedMoneyLong": 69172.0,
+      "managedMoneyShort": 111260.0,
+      "managedMoneySpread": 59837.0,
+      "managedMoneyNet": -42088.0,
+      "openInterest": 427572.0,
+      "netPercentile": 0.1
     },
     "Live Cattle": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "marketingYear": "26/27",
-      "managedMoneyLong": 77963.0,
-      "managedMoneyShort": 27043.0,
-      "managedMoneySpread": 56012.0,
-      "managedMoneyNet": 50920.0,
-      "openInterest": 387285.0,
-      "netPercentile": 43.6
+      "managedMoneyLong": 73074.0,
+      "managedMoneyShort": 24326.0,
+      "managedMoneySpread": 57246.0,
+      "managedMoneyNet": 48748.0,
+      "openInterest": 390003.0,
+      "netPercentile": 41.9
     },
     "Soybean Meal": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "marketingYear": "26/27",
-      "managedMoneyLong": 213651.0,
-      "managedMoneyShort": 6847.0,
-      "managedMoneySpread": 102224.0,
-      "managedMoneyNet": 206804.0,
-      "openInterest": 727248.0,
-      "netPercentile": 99.8
+      "managedMoneyLong": 212946.0,
+      "managedMoneyShort": 6815.0,
+      "managedMoneySpread": 96063.0,
+      "managedMoneyNet": 206131.0,
+      "openInterest": 742046.0,
+      "netPercentile": 99.7
     },
     "Soybean Oil": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "marketingYear": "26/27",
-      "managedMoneyLong": 122341.0,
-      "managedMoneyShort": 22894.0,
-      "managedMoneySpread": 84414.0,
-      "managedMoneyNet": 99447.0,
-      "openInterest": 625847.0,
-      "netPercentile": 94.5
+      "managedMoneyLong": 116449.0,
+      "managedMoneyShort": 27121.0,
+      "managedMoneySpread": 91055.0,
+      "managedMoneyNet": 89328.0,
+      "openInterest": 638230.0,
+      "netPercentile": 91.7
     },
     "Soybeans": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "marketingYear": "26/27",
-      "managedMoneyLong": 279144.0,
-      "managedMoneyShort": 27484.0,
-      "managedMoneySpread": 189011.0,
-      "managedMoneyNet": 251660.0,
-      "openInterest": 1379088.0,
-      "netPercentile": 99.4
+      "managedMoneyLong": 272905.0,
+      "managedMoneyShort": 35414.0,
+      "managedMoneySpread": 168820.0,
+      "managedMoneyNet": 237491.0,
+      "openInterest": 1329482.0,
+      "netPercentile": 98.2
     },
     "Wheat": {
-      "date": "2026-10-06",
+      "date": "2026-10-13",
       "marketingYear": "26/27",
-      "managedMoneyLong": 84078.0,
-      "managedMoneyShort": 113621.0,
-      "managedMoneySpread": 140303.0,
-      "managedMoneyNet": -29543.0,
-      "openInterest": 597861.0,
-      "netPercentile": 55.3
+      "managedMoneyLong": 85818.0,
+      "managedMoneyShort": 118856.0,
+      "managedMoneySpread": 139581.0,
+      "managedMoneyNet": -33038.0,
+      "openInterest": 608955.0,
+      "netPercentile": 53.4
     }
   },
   "rows": [
@@ -11814,6 +11814,17 @@
       "openInterest": 2558826.0
     },
     {
+      "commodity": "Corn",
+      "date": "2026-10-13",
+      "seasonalDate": "2000-10-13",
+      "marketingYear": "26/27",
+      "managedMoneyLong": 321331.0,
+      "managedMoneyShort": 90454.0,
+      "managedMoneySpread": 369847.0,
+      "managedMoneyNet": 230877.0,
+      "openInterest": 2519671.0
+    },
+    {
       "commodity": "Feeder Cattle",
       "date": "2006-06-13",
       "seasonalDate": "2001-06-13",
@@ -23483,6 +23494,17 @@
       "managedMoneySpread": 13047.0,
       "managedMoneyNet": 8787.0,
       "openInterest": 93223.0
+    },
+    {
+      "commodity": "Feeder Cattle",
+      "date": "2026-10-13",
+      "seasonalDate": "2000-10-13",
+      "marketingYear": "26/27",
+      "managedMoneyLong": 18855.0,
+      "managedMoneyShort": 10003.0,
+      "managedMoneySpread": 12903.0,
+      "managedMoneyNet": 8852.0,
+      "openInterest": 92539.0
     },
     {
       "commodity": "Lean Hogs",
@@ -35156,6 +35178,17 @@
       "openInterest": 426558.0
     },
     {
+      "commodity": "Lean Hogs",
+      "date": "2026-10-13",
+      "seasonalDate": "2000-10-13",
+      "marketingYear": "26/27",
+      "managedMoneyLong": 69172.0,
+      "managedMoneyShort": 111260.0,
+      "managedMoneySpread": 59837.0,
+      "managedMoneyNet": -42088.0,
+      "openInterest": 427572.0
+    },
+    {
       "commodity": "Live Cattle",
       "date": "2006-06-13",
       "seasonalDate": "2001-06-13",
@@ -46825,6 +46858,17 @@
       "managedMoneySpread": 56012.0,
       "managedMoneyNet": 50920.0,
       "openInterest": 387285.0
+    },
+    {
+      "commodity": "Live Cattle",
+      "date": "2026-10-13",
+      "seasonalDate": "2000-10-13",
+      "marketingYear": "26/27",
+      "managedMoneyLong": 73074.0,
+      "managedMoneyShort": 24326.0,
+      "managedMoneySpread": 57246.0,
+      "managedMoneyNet": 48748.0,
+      "openInterest": 390003.0
     },
     {
       "commodity": "Soybean Meal",
@@ -58498,6 +58542,17 @@
       "openInterest": 727248.0
     },
     {
+      "commodity": "Soybean Meal",
+      "date": "2026-10-13",
+      "seasonalDate": "2000-10-13",
+      "marketingYear": "26/27",
+      "managedMoneyLong": 212946.0,
+      "managedMoneyShort": 6815.0,
+      "managedMoneySpread": 96063.0,
+      "managedMoneyNet": 206131.0,
+      "openInterest": 742046.0
+    },
+    {
       "commodity": "Soybean Oil",
       "date": "2006-06-13",
       "seasonalDate": "2001-06-13",
@@ -70167,6 +70222,17 @@
       "managedMoneySpread": 84414.0,
       "managedMoneyNet": 99447.0,
       "openInterest": 625847.0
+    },
+    {
+      "commodity": "Soybean Oil",
+      "date": "2026-10-13",
+      "seasonalDate": "2000-10-13",
+      "marketingYear": "26/27",
+      "managedMoneyLong": 116449.0,
+      "managedMoneyShort": 27121.0,
+      "managedMoneySpread": 91055.0,
+      "managedMoneyNet": 89328.0,
+      "openInterest": 638230.0
     },
     {
       "commodity": "Soybeans",
@@ -81840,6 +81906,17 @@
       "openInterest": 1379088.0
     },
     {
+      "commodity": "Soybeans",
+      "date": "2026-10-13",
+      "seasonalDate": "2000-10-13",
+      "marketingYear": "26/27",
+      "managedMoneyLong": 272905.0,
+      "managedMoneyShort": 35414.0,
+      "managedMoneySpread": 168820.0,
+      "managedMoneyNet": 237491.0,
+      "openInterest": 1329482.0
+    },
+    {
       "commodity": "Wheat",
       "date": "2013-12-17",
       "seasonalDate": "2000-12-17",
@@ -89197,6 +89274,17 @@
       "managedMoneySpread": 140303.0,
       "managedMoneyNet": -29543.0,
       "openInterest": 597861.0
+    },
+    {
+      "commodity": "Wheat",
+      "date": "2026-10-13",
+      "seasonalDate": "2000-10-13",
+      "marketingYear": "26/27",
+      "managedMoneyLong": 85818.0,
+      "managedMoneyShort": 118856.0,
+      "managedMoneySpread": 139581.0,
+      "managedMoneyNet": -33038.0,
+      "openInterest": 608955.0
     }
   ]
 }
