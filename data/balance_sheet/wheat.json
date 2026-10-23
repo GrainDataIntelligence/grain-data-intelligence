@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-25T12:33:48",
-  "sourceFile": "data\\raw\\balance_sheet\\Wheat_Data_Table_20260825.xlsx",
-  "rowCount": 11542,
+  "generatedAt": "2026-10-23T08:36:51",
+  "sourceFile": "data\\raw\\balance_sheet\\Wheat_Data_Table_20260925.xlsx",
+  "rowCount": 11576,
   "commodity": "Wheat",
   "months": [
     "Oct",
@@ -113,7 +113,7 @@
     "2023-11-27",
     "2024-11-26",
     "2025/11/26",
-    "2026/08/25"
+    "2026/09/25"
   ],
   "rows": [
     {
@@ -20194,7 +20194,7 @@
       "calendarYear": 2025,
       "monthOrder": 3,
       "metric": "processedLocalMarket",
-      "value": 284517.0
+      "value": 284527.0
     },
     {
       "view": "Wheat",
@@ -20214,7 +20214,7 @@
       "calendarYear": 2025,
       "monthOrder": 3,
       "metric": "totalDemand",
-      "value": 294016.0
+      "value": 294026.0
     },
     {
       "view": "Wheat",
@@ -20304,7 +20304,7 @@
       "calendarYear": 2026,
       "monthOrder": 5,
       "metric": "imports",
-      "value": 125144.0
+      "value": 125419.0
     },
     {
       "view": "Wheat",
@@ -20344,7 +20344,7 @@
       "calendarYear": 2026,
       "monthOrder": 5,
       "metric": "endingStocks",
-      "value": 1526545.0
+      "value": 1526820.0
     },
     {
       "view": "Wheat",
@@ -20404,7 +20404,7 @@
       "calendarYear": 2026,
       "monthOrder": 6,
       "metric": "endingStocks",
-      "value": 1576943.0
+      "value": 1577218.0
     },
     {
       "view": "Wheat",
@@ -20464,7 +20464,7 @@
       "calendarYear": 2026,
       "monthOrder": 7,
       "metric": "endingStocks",
-      "value": 1469140.0
+      "value": 1469415.0
     },
     {
       "view": "Wheat",
@@ -20474,7 +20474,7 @@
       "calendarYear": 2026,
       "monthOrder": 8,
       "metric": "producerDeliveries",
-      "value": 7386.0
+      "value": 7035.0
     },
     {
       "view": "Wheat",
@@ -20524,7 +20524,7 @@
       "calendarYear": 2026,
       "monthOrder": 8,
       "metric": "endingStocks",
-      "value": 1291744.0
+      "value": 1292157.0
     },
     {
       "view": "Wheat",
@@ -20534,7 +20534,7 @@
       "calendarYear": 2026,
       "monthOrder": 9,
       "metric": "producerDeliveries",
-      "value": 6889.0
+      "value": 6854.0
     },
     {
       "view": "Wheat",
@@ -20544,7 +20544,7 @@
       "calendarYear": 2026,
       "monthOrder": 9,
       "metric": "imports",
-      "value": 205354.0
+      "value": 204705.0
     },
     {
       "view": "Wheat",
@@ -20584,7 +20584,7 @@
       "calendarYear": 2026,
       "monthOrder": 9,
       "metric": "endingStocks",
-      "value": 1191797.0
+      "value": 1191561.0
     },
     {
       "view": "Wheat",
@@ -20604,7 +20604,7 @@
       "calendarYear": 2026,
       "monthOrder": 10,
       "metric": "imports",
-      "value": 167333.0
+      "value": 166342.0
     },
     {
       "view": "Wheat",
@@ -20614,7 +20614,7 @@
       "calendarYear": 2026,
       "monthOrder": 10,
       "metric": "processedLocalMarket",
-      "value": 295103.0
+      "value": 295052.0
     },
     {
       "view": "Wheat",
@@ -20624,7 +20624,7 @@
       "calendarYear": 2026,
       "monthOrder": 10,
       "metric": "exports",
-      "value": 19255.0
+      "value": 19286.0
     },
     {
       "view": "Wheat",
@@ -20634,7 +20634,7 @@
       "calendarYear": 2026,
       "monthOrder": 10,
       "metric": "totalDemand",
-      "value": 314414.0
+      "value": 314394.0
     },
     {
       "view": "Wheat",
@@ -20644,7 +20644,67 @@
       "calendarYear": 2026,
       "monthOrder": 10,
       "metric": "endingStocks",
-      "value": 1043694.0
+      "value": 1042178.0
+    },
+    {
+      "view": "Wheat",
+      "marketingYear": "2025/26",
+      "status": "Active",
+      "month": "Aug",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "producerDeliveries",
+      "value": 3843.0
+    },
+    {
+      "view": "Wheat",
+      "marketingYear": "2025/26",
+      "status": "Active",
+      "month": "Aug",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "imports",
+      "value": 188278.0
+    },
+    {
+      "view": "Wheat",
+      "marketingYear": "2025/26",
+      "status": "Active",
+      "month": "Aug",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "processedLocalMarket",
+      "value": 300977.0
+    },
+    {
+      "view": "Wheat",
+      "marketingYear": "2025/26",
+      "status": "Active",
+      "month": "Aug",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "exports",
+      "value": 17322.0
+    },
+    {
+      "view": "Wheat",
+      "marketingYear": "2025/26",
+      "status": "Active",
+      "month": "Aug",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "totalDemand",
+      "value": 318344.0
+    },
+    {
+      "view": "Wheat",
+      "marketingYear": "2025/26",
+      "status": "Active",
+      "month": "Aug",
+      "calendarYear": 2026,
+      "monthOrder": 11,
+      "metric": "endingStocks",
+      "value": 915868.0
     }
   ]
 }
