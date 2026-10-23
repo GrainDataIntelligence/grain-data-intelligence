@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { averageColor, fmt, yearColor } from "./fundamentalsUtils";
+import { soybeanMetrics, soybeanRows, soybeanMetricsOverlap } from "./soybeanMetrics";
 
 const featuredMetricKeys = new Set(["producerDeliveries", "imports", "totalSupply", "localDemand", "exports", "totalDemand", "unutilizedClosingStock", "endingStocks"]);
 const hiddenMaizeMetrics = new Set(["gristing", "bioFuel"]);
@@ -508,7 +509,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
     fetch(dataPath)
       .then((response) => response.json())
       .then((payload) => {
-        setData(payload);
+        setData(payload.commodity === "Soybeans" ? { ...payload, rows: soybeanRows(payload.rows) } : payload);
         setView(payload.defaultView || payload.views?.[0] || payload.commodity);
         setSelectedYears(new Set(payload.years.slice(-5)));
       });
@@ -516,6 +517,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
 
   const metrics = useMemo(() => {
     if (!data) return [];
+    if (data.commodity === "Soybeans") return soybeanMetrics(data.metrics);
     return data.commodity === "Maize" ? data.metrics.filter((item) => !hiddenMaizeMetrics.has(item.key)) : data.metrics;
   }, [data]);
   const selectedMetricMetas = selectedMetrics.map((key) => metrics.find((item) => item.key === key)).filter(Boolean);
@@ -553,6 +555,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
       : "";
 
   const toggleMetric = (metricItem) => {
+    if (data?.commodity === "Soybeans" && selectedMetrics.some((key) => soybeanMetricsOverlap(key, metricItem.key))) return;
     const nextFamily = metricFamily(metricItem);
     if (selectedMetrics.includes(metricItem.key)) {
       setSelectedMetrics(selectedMetrics.filter((key) => key !== metricItem.key));
@@ -597,7 +600,8 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
               <div className="max-h-72 overflow-auto rounded-md border border-slate-300 bg-white p-2">
                 {metrics.map((item) => {
                   const checked = selectedMetrics.includes(item.key);
-                  const disabled = !checked && selectedMetricMetas.length > 0 && metricFamily(item) !== selectedFamily;
+                  const disabled = !checked && ((selectedMetricMetas.length > 0 && metricFamily(item) !== selectedFamily)
+                    || (data.commodity === "Soybeans" && selectedMetrics.some((key) => soybeanMetricsOverlap(key, item.key))));
                   return (
                     <label
                       key={item.key}
@@ -617,6 +621,7 @@ export default function BalanceSheetDashboard({ dataPath, title }) {
               </div>
               <p className="text-xs leading-5 text-slate-500">
                 Select multiple compatible lines. Stock lines can only be combined with other stock lines.
+                {data.commodity === "Soybeans" ? " Overlapping totals and components are disabled to prevent double counting. Clear the selected lines to switch." : ""}
               </p>
             </section>
 
