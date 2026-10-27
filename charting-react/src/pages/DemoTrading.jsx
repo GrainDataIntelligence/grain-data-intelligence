@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { matchingSplitRow } from "./splitContracts";
 
 const ACCOUNT_START = 1000000;
 const CONTRACT_TONS = 100;
@@ -115,7 +116,9 @@ function normalizeMarginRow(row) {
 
 function tradeLabel(trade) {
   if (trade.type === "Calendar Spread") return `${trade.commodity1} ${trade.expiry1} / ${trade.expiry2}`;
-  if (trade.type === "Split") return `${trade.commodity1} / ${trade.commodity2} ${trade.expiry1}`;
+  if (trade.type === "Split") return trade.expiry2 && trade.expiry2 !== trade.expiry1
+    ? `${trade.commodity1} ${trade.expiry1} / ${trade.commodity2} ${trade.expiry2}`
+    : `${trade.commodity1} / ${trade.commodity2} ${trade.expiry1}`;
   return `${trade.commodity1} ${trade.expiry1}`;
 }
 
@@ -148,7 +151,7 @@ function impliedTradePrice(priceRows, trade) {
   }
 
   if (trade.type === "Split") {
-    const secondPrice = latestContractPrice(priceRows, trade.commodity2, trade.expiry1);
+    const secondPrice = latestContractPrice(priceRows, trade.commodity2, trade.expiry2 || trade.expiry1);
     return secondPrice == null ? null : secondPrice - firstPrice;
   }
 
@@ -226,11 +229,6 @@ export default function DemoTrading() {
     [commodity1, marginRows]
   );
 
-  const expiries2 = useMemo(
-    () => marginRows.filter((row) => row.commodity === commodity2).map((row) => row.expiry_date),
-    [commodity2, marginRows]
-  );
-
   useEffect(() => {
     if (!expiries1.includes(expiry1)) setExpiry1(expiries1[0] || "");
     if (tradeType === "Calendar Spread" && (!expiry2 || expiry2 === expiry1 || !expiries1.includes(expiry2))) {
@@ -239,14 +237,14 @@ export default function DemoTrading() {
   }, [expiries1, expiry1, expiry2, tradeType]);
 
   useEffect(() => {
-    if (tradeType === "Split" && !expiries2.includes(expiry1)) {
+    if (tradeType === "Split" && commodity2 === commodity1) {
       setCommodity2(commodities.find((commodity) => commodity !== commodity1) || commodity1);
     }
-  }, [commodities, commodity1, expiries2, expiry1, tradeType]);
+  }, [commodities, commodity1, commodity2, tradeType]);
 
   const row1 = marginRows.find((row) => row.commodity === commodity1 && row.expiry_date === expiry1);
   const row2Calendar = marginRows.find((row) => row.commodity === commodity1 && row.expiry_date === expiry2);
-  const row2Split = marginRows.find((row) => row.commodity === commodity2 && row.expiry_date === expiry1);
+  const row2Split = matchingSplitRow(marginRows, commodity2, expiry1);
 
   const suggestedEntryPrice = useMemo(
     () =>
@@ -255,9 +253,9 @@ export default function DemoTrading() {
         commodity1,
         commodity2,
         expiry1,
-        expiry2,
+        expiry2: tradeType === "Split" ? row2Split?.expiry_date : expiry2,
       }),
-    [commodity1, commodity2, expiry1, expiry2, priceRows, tradeType]
+    [commodity1, commodity2, expiry1, expiry2, priceRows, tradeType, row2Split]
   );
 
   useEffect(() => {
@@ -299,6 +297,10 @@ export default function DemoTrading() {
   const placeTrade = () => {
     const cleanQuantity = Number(quantity);
     const cleanEntry = Number(entryPrice);
+    if (tradeType === "Split" && (!row2Split || commodity1 === commodity2)) {
+      setMessage("Choose two different commodities with a matching contract month and year.");
+      return;
+    }
     if (!commodity1 || !expiry1 || !cleanQuantity || cleanQuantity < 1) {
       setMessage("Select a contract and enter a valid quantity.");
       return;
@@ -318,7 +320,7 @@ export default function DemoTrading() {
       commodity1,
       commodity2: tradeType === "Split" ? commodity2 : "",
       expiry1,
-      expiry2: tradeType === "Calendar Spread" ? expiry2 : "",
+      expiry2: tradeType === "Split" ? row2Split.expiry_date : tradeType === "Calendar Spread" ? expiry2 : "",
       side,
       quantity: cleanQuantity,
       entryPrice: cleanEntry,
@@ -421,6 +423,11 @@ export default function DemoTrading() {
               {tradeType === "Split" && (
                 <Field label="Second commodity">
                   <Select value={commodity2} onChange={setCommodity2} options={commodities.filter((commodity) => commodity !== commodity1)} />
+                  {row2Split ? (
+                    <p className="mt-1 text-xs text-slate-500">Second leg expiry: {row2Split.expiry_date}</p>
+                  ) : (
+                    <p role="status" className="mt-1 text-xs text-amber-700">No matching contract month and year. Choose another expiry or commodity.</p>
+                  )}
                 </Field>
               )}
 
