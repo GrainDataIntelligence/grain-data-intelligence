@@ -112,7 +112,7 @@ export default function FundamentalsCftc() {
   const [showYearLabels, setShowYearLabels] = useState(true);
 
   useEffect(() => {
-    fetch("/data/fundamentals/cftc.json")
+    fetch(`/data/fundamentals/cftc.json?refresh=${Date.now()}`, { cache: "no-store" })
       .then((response) => response.json())
       .then((payload) => {
         setData(payload);
