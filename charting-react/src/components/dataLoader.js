@@ -52,7 +52,8 @@ export async function loadAllCSVData() {
   const entries = await Promise.all(
     Object.entries(COMMODITY_FILES).map(async ([commodity, file]) => {
       const response = await fetch(
-        `${import.meta.env.BASE_URL}data/price_history/${file}`
+        `${import.meta.env.BASE_URL}data/price_history/${file}?refresh=${Date.now()}`,
+        { cache: "no-store" }
       );
 
       if (!response.ok) {

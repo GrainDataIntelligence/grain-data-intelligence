@@ -199,7 +199,7 @@ export default function DemoTrading() {
   useEffect(() => {
     Promise.all(
       Object.entries(PRICE_HISTORY_FILES).map(async ([commodity, file]) => {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/price_history/${file}`);
+        const response = await fetch(`${import.meta.env.BASE_URL}data/price_history/${file}?refresh=${Date.now()}`, { cache: "no-store" });
         if (!response.ok) throw new Error(file);
         const rows = parseCSV(await response.text()).map((row) => ({
           commodity,
