@@ -4,7 +4,8 @@ import { readWorkspace, saveWorkspace } from "./seasonalWorkspace";
 
 const MAX_LEGS = 4;
 const HEDGING_MONTHS = ["Mar", "May", "Jul", "Sep", "Dec"];
-const COMMODITIES = ["Wheat", "Soybeans", "Corn", "White Maize", "Yellow Maize", "Sunflower"];
+const COMMODITIES = ["BEAN", "Corn", "Soybeans", "Sunflower", "Wheat", "White Maize", "Yellow Maize"];
+const contractMonthsFor = (commodity) => commodity === "BEAN" ? ["Mar", "May", "Jul", "Sep", "Nov"] : HEDGING_MONTHS;
 const PROGRAMS = ["Long Term Charts", "History", "Calculator"];
 const CHART_METRICS = {
   price: { label: "Price", field: "price", chartType: "line", valueLabel: "Price" },
@@ -17,6 +18,7 @@ const COMMODITY_CODES = {
   Wheat: "WEA",
   Soybeans: "SB",
   Corn: "CORN",
+  BEAN: "BEAN",
   Sunflower: "FH",
   "White Maize": "WM",
   "Yellow Maize": "YM",
@@ -26,6 +28,7 @@ const CONTRACT_MONTH_CODES = {
   May: "K",
   Jul: "N",
   Sep: "U",
+  Nov: "X",
   Dec: "Z",
 };
 const UNIT_MOVES = {
@@ -33,6 +36,7 @@ const UNIT_MOVES = {
   "Yellow Maize": 100,
   Soybeans: 100,
   Corn: 100,
+  BEAN: 100,
   Sunflower: 50,
   Wheat: 50,
 };
@@ -41,6 +45,7 @@ const CONTRACT_MONTH_NUMBERS = {
   May: 5,
   Jul: 7,
   Sep: 9,
+  Nov: 11,
   Dec: 12,
 };
 
@@ -62,7 +67,7 @@ const UNFILED_FOLDER_ID = "__unfiled";
 function isValidWorkspaceConfig(config) {
   return config && Number.isInteger(config.numLegs) && config.numLegs >= 1 && config.numLegs <= MAX_LEGS &&
     Array.isArray(config.legs) && config.legs.length === MAX_LEGS && config.legs.every((leg) =>
-      leg && COMMODITIES.includes(leg.commodity) && HEDGING_MONTHS.includes(leg.contract) &&
+      leg && COMMODITIES.includes(leg.commodity) && contractMonthsFor(leg.commodity).includes(leg.contract) &&
       ["long", "short"].includes(leg.side) && Number.isFinite(Number(leg.quantity)) &&
       Number.isFinite(Number(leg.alignOffset))) &&
     Array.isArray(config.selectedYears) && config.selectedYears.every(Number.isInteger) &&
@@ -210,6 +215,7 @@ function isInWindow(date, start, end) {
 function normalizeLegs(legs) {
   return legs.map((leg) => ({
     ...leg,
+    contract: contractMonthsFor(leg.commodity).includes(leg.contract) ? leg.contract : leg.commodity === "BEAN" ? "Nov" : "Dec",
     alignOffset: Number.isFinite(Number(leg.alignOffset)) ? Number(leg.alignOffset) : 0,
   }));
 }
@@ -953,7 +959,7 @@ export default function SeasonalCharts() {
   const updateLeg = (index, updates) => {
     setLegs((currentLegs) =>
       currentLegs.map((leg, legIndex) =>
-        legIndex === index ? { ...leg, ...updates } : leg
+        legIndex === index ? normalizeLegs([{ ...leg, ...updates }])[0] : leg
       )
     );
   };
@@ -1671,7 +1677,7 @@ function LegBuilder({ numLegs, setNumLegs, legs, updateLeg }) {
               >
                 {COMMODITIES.map((commodity) => (
                   <option key={commodity} value={commodity}>
-                    {commodity}
+                    {commodity === "BEAN" ? "Bean" : commodity}
                   </option>
                 ))}
               </select>
@@ -1680,7 +1686,7 @@ function LegBuilder({ numLegs, setNumLegs, legs, updateLeg }) {
                 onChange={(event) => updateLeg(index, { contract: event.target.value })}
                 className={`h-8 border-r border-slate-300 px-2 text-xs font-bold outline-none ${colorClass}`}
               >
-                {HEDGING_MONTHS.map((month) => (
+                {contractMonthsFor(leg.commodity).map((month) => (
                   <option key={month} value={month}>
                     {month}
                   </option>

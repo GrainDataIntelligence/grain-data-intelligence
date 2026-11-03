@@ -20,6 +20,7 @@ $monthOrder = @{
   "May" = 5
   "Jul" = 7
   "Sep" = 9
+  "Nov" = 11
   "Dec" = 12
 }
 
@@ -32,6 +33,7 @@ $commodityBlocks = @{
   "SOYA BEANS"                 = @{ Commodity = "SOYB"; File = "Soybeans.csv" }
   "SOYA BEANS FUTURE"          = @{ Commodity = "SOYB"; File = "Soybeans.csv" }
   "CORN CONTRACT"              = @{ Commodity = "CORN"; File = "Corn.csv" }
+  "SOYBEAN CONTRACT"           = @{ Commodity = "BEAN"; File = "Bean.csv"; Months = @("Mar", "May", "Jul", "Sep", "Nov") }
 }
 
 function Normalize-Heading([string]$value) {
@@ -82,7 +84,7 @@ function Read-ReportRows([string]$path) {
   $sheet = $null
 
   try {
-    $workbook = $excel.Workbooks.Open($path)
+    $workbook = $excel.Workbooks.Open($path, 0, $true)
     $sheet = $workbook.Worksheets.Item(1)
     $reportDate = Parse-ReportDate ([string]$sheet.Cells.Item(3, 1).Text)
     $lastRow = $sheet.UsedRange.Rows.Count
@@ -106,7 +108,8 @@ function Read-ReportRows([string]$path) {
       if (-not $activeBlock) { continue }
 
       $month = (Get-Culture).TextInfo.ToTitleCase($contractMatch.Groups[1].Value.ToLowerInvariant())
-      if ($allowedMonths -notcontains $month) { continue }
+      $blockMonths = if ($activeBlock.ContainsKey("Months")) { $activeBlock.Months } else { $allowedMonths }
+      if ($blockMonths -notcontains $month) { continue }
 
       $yearText = $contractMatch.Groups[2].Value
       $year = if ($yearText.Length -eq 2) { 2000 + [int]$yearText } else { [int]$yearText }
@@ -172,8 +175,21 @@ function Update-CommodityFile([string]$fileName, [object[]]$newRows) {
     }
   })
 
+  if ($fileName -eq "Bean.csv") {
+    $combined = @($combined | Sort-Object `
+      @{ Expression = { [datetime]::ParseExact($_.date, "yyyy/MM/dd", [Globalization.CultureInfo]::InvariantCulture) } }, `
+      @{ Expression = { [int]$_.contract_year } }, `
+      @{ Expression = { $monthOrder[$_.contract_month] } })
+  }
+
   if ($DryRun) {
     Write-Output "Dry run: would update $fileName with $($newRows.Count) rows"
+    if ($fileName -eq "Bean.csv") {
+      Write-Output "BEAN merge sorted by report date, contract year, then calendar month:"
+      foreach ($row in ($combined | Where-Object { $newKeys.ContainsKey("$($_.date)|$($_.commodity)|$($_.contract_month)|$($_.contract_year)") })) {
+        Write-Output (Csv-Line $row)
+      }
+    }
     return
   }
 

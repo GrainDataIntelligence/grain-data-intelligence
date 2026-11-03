@@ -5,6 +5,7 @@ const COMMODITY_FILES = {
   "Yellow Maize": "Yellow_Maize.csv",
   Sunflower: "Sunflower.csv",
   Corn: "Corn.csv",
+  BEAN: "Bean.csv",
 };
 
 function parseCSV(text) {

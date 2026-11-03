@@ -11,9 +11,10 @@ RAW_DIR = ROOT / "data" / "raw" / "margin"
 OUTFILE = ROOT / "charting-react" / "public" / "data" / "im_safex.json"
 PRICE_HISTORY_DIR = ROOT / "charting-react" / "public" / "data" / "price_history"
 
-ALLOWED_COMMODITIES = {"WMAZ", "YMAZ", "WEAT", "SUNS", "SOYB", "CORN"}
-COMMODITY_ORDER = {"WMAZ": 0, "YMAZ": 1, "WEAT": 2, "SUNS": 3, "SOYB": 4, "CORN": 5}
+ALLOWED_COMMODITIES = {"WMAZ", "YMAZ", "WEAT", "SUNS", "SOYB", "CORN", "BEAN"}
+COMMODITY_ORDER = {"WMAZ": 0, "YMAZ": 1, "WEAT": 2, "SUNS": 3, "SOYB": 4, "CORN": 5, "BEAN": 6}
 MAIN_HEDGING_MONTHS = {"Mar", "May", "Jul", "Sep", "Dec"}
+BEAN_HEDGING_MONTHS = {"Mar", "May", "Jul", "Sep", "Nov"}
 MIN_OPEN_INTEREST = 100
 PRICE_HISTORY_FILES = {
     "WMAZ": "White_Maize.csv",
@@ -22,6 +23,7 @@ PRICE_HISTORY_FILES = {
     "SUNS": "Sunflower.csv",
     "SOYB": "Soybeans.csv",
     "CORN": "Corn.csv",
+    "BEAN": "Bean.csv",
 }
 
 
@@ -90,7 +92,7 @@ def load_latest_open_interest():
                 if row.get("commodity") != commodity:
                     continue
                 month = (row.get("contract_month") or "").strip()
-                if month not in MAIN_HEDGING_MONTHS:
+                if month not in (BEAN_HEDGING_MONTHS if commodity == "BEAN" else MAIN_HEDGING_MONTHS):
                     continue
                 try:
                     year = int(float(row.get("contract_year") or 0))
@@ -117,7 +119,7 @@ def latest_source():
     return files[0]
 
 
-def export():
+def build_rows():
     source = latest_source()
     latest_open_interest = load_latest_open_interest()
     workbook = openpyxl.load_workbook(source, data_only=True)
@@ -135,7 +137,7 @@ def export():
         expiry = format_expiry(sheet.cell(row=row, column=header_map["ExpiryDate"]).value)
         if not expiry:
             continue
-        if expiry.split("-")[1] not in MAIN_HEDGING_MONTHS:
+        if expiry.split("-")[1] not in (BEAN_HEDGING_MONTHS if commodity == "BEAN" else MAIN_HEDGING_MONTHS):
             continue
         contract_key = expiry_contract_key(expiry)
         if contract_key is None:
@@ -158,7 +160,12 @@ def export():
         )
 
     rows.sort(key=lambda item: (COMMODITY_ORDER[item["commodity"]], expiry_sort_key(item["expiry_date"])))
+    workbook.close()
+    return source, rows
 
+
+def export():
+    source, rows = build_rows()
     OUTFILE.parent.mkdir(parents=True, exist_ok=True)
     OUTFILE.write_text(json.dumps(rows, indent=2), encoding="utf-8")
     print(f"Exported {len(rows)} margin rows from {source.name} to {OUTFILE}")

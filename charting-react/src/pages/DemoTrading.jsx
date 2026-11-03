@@ -5,8 +5,9 @@ const ACCOUNT_START = 1000000;
 const CONTRACT_TONS = 100;
 
 const TRADE_TYPES = ["Futures", "Calendar Spread", "Split"];
-const ALLOWED_COMMODITIES = ["WMAZ", "YMAZ", "WEAT", "SUNS", "SOYB", "CORN"];
+const ALLOWED_COMMODITIES = ["WMAZ", "YMAZ", "WEAT", "SUNS", "SOYB", "CORN", "BEAN"];
 const PRICE_HISTORY_FILES = {
+  BEAN: "Bean.csv",
   CORN: "Corn.csv",
   SOYB: "Soybeans.csv",
   SUNS: "Sunflower.csv",
@@ -21,6 +22,7 @@ const DEFAULT_ACCOUNT = {
 };
 
 const commodityNames = {
+  BEAN: "Bean",
   CORN: "Corn",
   SOYB: "Soybeans",
   SUNS: "Sunflowers",
@@ -181,7 +183,7 @@ export default function DemoTrading() {
   const [closePrices, setClosePrices] = useState({});
 
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}data/im_safex.json`)
+    fetch(`${import.meta.env.BASE_URL}data/im_safex.json?refresh=${Date.now()}`, { cache: "no-store" })
       .then((response) => response.json())
       .then((data) => {
         const rows = data
@@ -220,7 +222,9 @@ export default function DemoTrading() {
   }, [account]);
 
   const commodities = useMemo(
-    () => ALLOWED_COMMODITIES.filter((commodity) => marginRows.some((row) => row.commodity === commodity)),
+    () => ALLOWED_COMMODITIES
+      .filter((commodity) => marginRows.some((row) => row.commodity === commodity))
+      .sort((a, b) => commodityNames[a].localeCompare(commodityNames[b])),
     [marginRows]
   );
 
